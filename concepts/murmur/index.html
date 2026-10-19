@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Mur Mur Studio Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Geologica:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --paper:#fcfbf5; --paper-2:#f4f1e2; --butter:#f6e8a6; --card:#ffffff; --ink:#1d2116; --ink-2:#3e4534; --muted:#6c7160; --line:#e5e1cd; --line-2:#cdc8ae;
+  --matcha:#55732a; --matcha-soft:#e4ecd2; --on-matcha:#fbfaf2; --err:#b3261e; --open:#4d7a24;
+  --foot:#1d2116; --on-foot:#f5efd4; --on-foot-muted:#aeb09a;
+  --display:'Cormorant Garamond','Cormorant',Georgia,'Times New Roman',serif;
+  --sans:'Geologica',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --gut-l:max(16px, env(safe-area-inset-left, 0px)); --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  --hdr:66px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#14170f; --paper-2:#1b1f14; --butter:#35321c; --card:#1f2318; --ink:#f3edcf; --ink-2:#d8d3b6; --muted:#a2a08a; --line:#2f3424; --line-2:#474d37;
+  --matcha:#a9c870; --matcha-soft:#283019; --on-matcha:#14170f; --err:#ff8a80; --open:#a9c870;
+  --foot:#0c0e08; --on-foot:#f0ead0; --on-foot-muted:#9d9f88;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#14170f; --paper-2:#1b1f14; --butter:#35321c; --card:#1f2318; --ink:#f3edcf; --ink-2:#d8d3b6; --muted:#a2a08a; --line:#2f3424; --line-2:#474d37;
+  --matcha:#a9c870; --matcha-soft:#283019; --on-matcha:#14170f; --err:#ff8a80; --open:#a9c870;
+  --foot:#0c0e08; --on-foot:#f0ead0; --on-foot-muted:#9d9f88;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 16px + env(safe-area-inset-top, 0px))}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{background:var(--paper);color:var(--ink);font:300 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:60;background:var(--paper)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:500;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+i{font-style:italic}
+.wrap{max-width:1240px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.eb{font:500 12px/1.3 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--matcha)}
+.h2{font-size:clamp(40px,5.4vw,72px);line-height:.98;margin-top:14px}
+.h2 i{color:var(--matcha)}
+.lead{font-size:18px;color:var(--ink-2);max-width:52ch;margin-top:18px}
+.sec{padding-block:clamp(72px,9vw,120px)}
+.alt{background:var(--paper-2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--open);box-shadow:0 0 0 4px color-mix(in srgb, var(--open) 20%, transparent);flex:none}
+.ua{display:inline-block;width:14px;height:10px;border-radius:2px;background:linear-gradient(#0057b7 50%,#ffd500 50%);flex:none}
+
+/* ribbon */
+.rib{background:var(--foot);color:var(--on-foot);font-size:13px;line-height:1.45}
+.rib .wrap{padding-block:9px;display:flex;gap:12px;justify-content:center;align-items:center;text-align:center}
+.rib b{font-weight:500;letter-spacing:.16em;text-transform:uppercase;font-size:10.5px;background:#f4dc7c;color:#1d2116;padding:3px 8px;border-radius:999px;flex:none}
+
+/* header */
+.hdr{position:sticky;top:env(safe-area-inset-top, 0px);z-index:50;background:var(--paper);background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;gap:26px;height:var(--hdr)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.logo span{font:italic 600 31px/1 var(--display);letter-spacing:-.01em}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{text-decoration:none;font-size:15px;font-weight:400;color:var(--ink-2)}
+.nav a:hover{color:var(--matcha)}
+.lang{display:flex;gap:2px;border:1px solid var(--line-2);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;cursor:pointer;font:500 12px/1 var(--sans);letter-spacing:.08em;padding:8px 9px;border-radius:999px;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;background:var(--ink);color:var(--paper);border:1px solid var(--ink);font:500 15px/1.1 var(--sans);text-decoration:none;cursor:pointer;text-align:center;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.btn:hover{background:var(--matcha);border-color:var(--matcha);color:var(--on-matcha);transform:translateY(-1px)}
+.btn.line{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn.line:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.btn.sm{min-height:42px;padding:0 18px;font-size:14px;white-space:nowrap}
+.btn.wide{width:100%}
+@media (max-width:960px){ .nav{display:none} .lang{margin-left:auto} .hdr-in{gap:12px} }
+@media (max-width:400px){ .hdr .btn{padding:0 12px;font-size:13px} .logo span{font-size:27px} .lang button{padding:8px 6px} .hdr-in{gap:10px} }
+@media (max-width:370px){ .logo .ua{display:none} }
+
+/* hero */
+.hero-in{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,64px);align-items:center;padding-block:clamp(48px,7vw,96px) clamp(48px,6vw,80px)}
+.avail{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:400;padding:7px 14px 7px 12px;border:1px solid var(--line-2);border-radius:999px;color:var(--ink-2)}
+.hero h1{font-size:clamp(58px,8.6vw,128px);line-height:.9;margin-top:26px;font-weight:500;letter-spacing:-.02em}
+.hero h1 i{color:var(--matcha);font-weight:500}
+.hero .lead{font-size:19px;margin-top:26px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.eb.top{margin-top:22px}
+.stamp{margin:0;width:100%;max-width:560px;justify-self:end}
+.stamp svg{display:block;width:100%;height:auto;overflow:visible}
+.stamp text{font-family:var(--sans)}
+.stamp .ring{font-weight:600;font-size:15.5px;letter-spacing:.14em}
+.stamp .mono{font-family:var(--display);font-style:italic;font-weight:600;font-size:132px}
+.stamp .city{font-weight:500;font-size:12px;letter-spacing:.32em}
+.stamp .spin{transform-box:view-box;transform-origin:260px 250px;animation:spin 80s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){ .stamp .spin{animation:none} }
+@media (max-width:880px){ .hero-in{grid-template-columns:1fr} .stamp{justify-self:center;max-width:420px} }
+@media (max-width:560px){ .ctas .btn{flex:1 1 220px} }
+
+/* materials marquee */
+.mq{border-block:1px solid var(--line);overflow:hidden;background:var(--butter)}
+.track{display:flex;width:max-content;animation:mq 50s linear infinite}
+.track span{display:flex;align-items:center;gap:26px;padding:16px 13px;font:italic 500 26px/1 var(--display);white-space:nowrap}
+.track span::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--matcha)}
+@keyframes mq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){ .track{animation:none} }
+
+/* work */
+.work-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{border:1px solid var(--line-2);background:transparent;border-radius:999px;padding:9px 16px;font-size:14px;font-weight:400;cursor:pointer;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px;grid-auto-flow:dense}
+.w{min-width:0;display:flex;flex-direction:column;gap:12px}
+.w.wide{grid-column:span 2}
+.w .art{border-radius:20px;overflow:hidden;aspect-ratio:1;max-width:100%;display:grid;place-items:center}
+.w.wide .art{aspect-ratio:2/1}
+.w .art svg{display:block;width:100%;height:100%}
+.st-butter{background:#f6e9ad} .st-matcha{background:#e1ead0} .st-rose{background:#f6e2e4} .st-lilac{background:#e9e4f3} .st-stone{background:#ece8dc}
+.w .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.w .meta b{font-weight:500;color:var(--matcha);text-transform:uppercase;letter-spacing:.14em;font-size:11.5px}
+.w h3{font-size:30px;line-height:1.05}
+.w p{font-size:15.5px;color:var(--ink-2);max-width:46ch}
+.w small{font-size:13px;color:var(--muted)}
+.ph{font-size:12.5px;color:var(--muted);margin-top:28px;display:flex;gap:8px;align-items:center}
+@media (max-width:1000px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:620px){ .grid{grid-template-columns:1fr;gap:28px} .w.wide{grid-column:auto} .w h3{font-size:27px} }
+
+/* drawings: fixed colours, these are objects */
+.f *{vector-effect:non-scaling-stroke}
+.f .o{stroke:#1d2116;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.f .l{fill:none;stroke:#1d2116;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.f .l2{fill:none;stroke:rgba(29,33,22,.38);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.f .lw{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;opacity:.75}
+.f .no{fill:none}
+.f .bu{fill:#f4dc7c} .f .bud{fill:#e2c25a} .f .buh{fill:#fbefb8} .f .wh{fill:#fffdf5} .f .mt{fill:#8fae58} .f .mtd{fill:#6f8f3a} .f .mtl{fill:#c9dba0}
+.f .ro{fill:#ec8fa2} .f .rol{fill:#f6c3ce} .f .li{fill:#cfc3e8} .f .mi{fill:#bfe0cf} .f .pk{fill:#f2c4c8} .f .cd{fill:#f8f2e2} .f .fm{fill:#f39c34} .f .wd{fill:#c99a6b} .f .kr{fill:#ead7b4}
+.f .sh{fill:rgba(29,33,22,.1)} .f .hi{fill:#fff;opacity:.6}
+
+/* services */
+.svc{list-style:none;margin:48px 0 0;padding:0;border-top:1px solid var(--ink)}
+.svc li{display:grid;grid-template-columns:72px minmax(0,1fr) minmax(0,1.1fr);gap:8px 24px;align-items:baseline;padding-block:26px;border-bottom:1px solid var(--line);transition:background .25s}
+.svc li:hover{background:var(--matcha-soft)}
+.svc .n{font:500 13px/1 var(--sans);letter-spacing:.14em;color:var(--matcha);padding-left:4px}
+.svc h3{font-size:clamp(28px,3vw,38px);line-height:1.05}
+.svc p{color:var(--ink-2);font-size:16.5px;max-width:52ch}
+@media (max-width:760px){ .svc li{grid-template-columns:44px minmax(0,1fr)} .svc p{grid-column:2} }
+
+/* process */
+.steps{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
+.steps li{position:relative;padding-top:58px;min-width:0}
+.steps li::before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;top:0;left:0;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#f4dc7c;color:#1d2116;font:500 13px/1 var(--sans)}
+.steps li:not(:last-child)::after{content:"";position:absolute;top:21px;left:54px;right:-12px;border-top:1px dashed var(--line-2)}
+.steps h3{font-size:30px}
+.steps p{color:var(--ink-2);font-size:16px;margin-top:8px}
+@media (max-width:900px){ .steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px} .steps li:nth-child(2)::after{display:none} }
+@media (max-width:520px){ .steps{grid-template-columns:1fr} .steps li::after{display:none} }
+
+/* brief */
+.brief-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:start}
+.brief-grid > *{min-width:0}
+.summary{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px 22px}
+.summary h4{font:500 12px/1.3 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.summary p{font:italic 500 26px/1.25 var(--display);margin-top:10px}
+.ig{display:inline-flex;gap:10px;align-items:center;margin-top:22px;font-size:15px;text-decoration:none;border-bottom:1px solid var(--line-2);padding-bottom:3px}
+.ig:hover{color:var(--matcha);border-color:var(--matcha)}
+.ocard{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:28px 26px}
+form{display:grid;gap:18px}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+legend,.lbl{display:block;font:500 12px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0;margin-bottom:9px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer}
+.chip > span{display:block;padding:9px 15px;border:1px solid var(--line-2);border-radius:999px;font-size:14.5px;line-height:1.25;background:var(--paper)}
+.chip input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip input:focus-visible+span{outline:2px solid var(--matcha);outline-offset:2px}
+input[type=text],input[type=number],input[type=date],textarea{display:block;width:100%;min-height:48px;padding:10px 14px;border:1px solid var(--line-2);background:var(--paper);border-radius:14px;font-size:16px;font-weight:300;-webkit-appearance:none;appearance:none}
+textarea{min-height:92px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--matcha);outline-offset:0;border-color:var(--matcha)}
+.check{display:flex;align-items:center;gap:10px;font-size:15px;cursor:pointer;margin-top:10px}
+.check input{width:19px;height:19px;accent-color:var(--matcha);margin:0}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.err{color:var(--err);font-size:14.5px}
+.res{margin-top:18px;border-radius:18px;padding:18px;background:var(--matcha-soft);border:1px solid var(--matcha)}
+.res h4{font-size:26px}
+.res pre{white-space:pre-wrap;word-break:break-word;font:300 15px/1.55 var(--sans);margin:10px 0 0;color:var(--ink)}
+.res .acts{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.cnote{font-size:13.5px;color:var(--muted);margin-top:12px}
+@media (max-width:880px){ .brief-grid{grid-template-columns:1fr} }
+@media (max-width:520px){ .ocard{padding:22px 18px} .two{grid-template-columns:1fr} }
+
+/* footer */
+.foot{background:var(--foot);color:var(--on-foot);padding-block:72px 40px}
+.foot-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 48px;align-items:end}
+.wm{font:italic 500 clamp(84px,15vw,210px)/.8 var(--display);letter-spacing:-.03em}
+.foot p{color:var(--on-foot-muted);font-size:14.5px;margin-top:24px;display:flex;gap:10px;align-items:center}
+.fnav{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15px}
+.fnav a{text-decoration:none;color:var(--on-foot)}
+.fnav a:hover{color:#f4dc7c}
+@media (max-width:760px){ .foot-in{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="rib"><div class="wrap"><b data-t="rib_tag"></b><span data-t="rib"></span></div></div>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#top" aria-label="Mur Mur"><span>mur mur</span><i class="ua" aria-hidden="true"></i></a>
+    <nav class="nav" aria-label="Menu">
+      <a href="#work" data-t="nav_work"></a><a href="#services" data-t="nav_services"></a><a href="#process" data-t="nav_process"></a><a href="#brief" data-t="nav_brief"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button><button type="button" data-lang="uk">UA</button></div>
+    <a class="btn sm" href="#brief" data-t="hdr_cta"></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div>
+        <p class="avail"><i class="dot"></i><span data-t="avail"></span></p>
+        <p class="eb top" data-t="hero_eb"></p>
+        <h1 data-th="hero_h"></h1>
+        <p class="lead" data-t="hero_lede"></p>
+        <div class="ctas"><a class="btn" href="#brief" data-t="cta_brief"></a><a class="btn line" href="#work" data-t="cta_work"></a></div>
+      </div>
+      <figure class="stamp"><svg id="stamp" viewBox="0 0 520 520" role="img"></svg></figure>
+    </div>
+  </section>
+
+  <div class="mq" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="work-head">
+        <div><p class="eb" data-t="work_eb"></p><h2 class="h2" data-th="work_h"></h2></div>
+        <div class="filters" id="filters" role="group"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+      <p class="ph"><span data-t="ph_note"></span></p>
+    </div>
+  </section>
+
+  <section class="sec alt" id="services">
+    <div class="wrap">
+      <p class="eb" data-t="svc_eb"></p>
+      <h2 class="h2" data-th="svc_h"></h2>
+      <ul class="svc" id="svc"></ul>
+    </div>
+  </section>
+
+  <section class="sec" id="process">
+    <div class="wrap">
+      <p class="eb" data-t="pr_eb"></p>
+      <h2 class="h2" data-th="pr_h"></h2>
+      <ol class="steps" id="steps"></ol>
+    </div>
+  </section>
+
+  <section class="sec alt" id="brief">
+    <div class="wrap brief-grid">
+      <div>
+        <p class="eb" data-t="br_eb"></p>
+        <h2 class="h2" data-th="br_h"></h2>
+        <p class="lead" data-t="br_p"></p>
+        <div class="summary" aria-live="polite"><h4 data-t="b_sum"></h4><p id="sumText"></p></div>
+        <a class="ig" id="igLink" target="_blank" rel="noopener"></a>
+      </div>
+      <div class="ocard">
+        <form id="briefForm" novalidate>
+          <fieldset><legend data-t="b_type"></legend><div class="chips" id="types"></div></fieldset>
+          <div>
+            <div class="two">
+              <div><label class="lbl" for="bDate" data-t="b_date"></label><input type="date" id="bDate" name="date"></div>
+              <div><label class="lbl" for="bScale" data-t="b_scale"></label><input type="number" id="bScale" name="scale" min="1" max="2000" inputmode="numeric"></div>
+            </div>
+            <label class="check"><input type="checkbox" id="bFlex" name="flex"><span data-t="b_flex"></span></label>
+          </div>
+          <fieldset><legend data-t="b_where"></legend><div class="chips" id="places"></div></fieldset>
+          <fieldset><legend data-t="b_budget"></legend><div class="chips" id="budgets"></div></fieldset>
+          <div><label class="lbl" for="bIdea" data-t="b_idea"></label><textarea id="bIdea" name="idea" rows="3" data-tp="b_idea_ph"></textarea></div>
+          <div class="two">
+            <div><label class="lbl" for="bName" data-t="b_name"></label><input type="text" id="bName" name="name" autocomplete="name"></div>
+            <div><label class="lbl" for="bContact" data-t="b_contact"></label><input type="text" id="bContact" name="contact" autocomplete="email"></div>
+          </div>
+          <p class="err" id="bErr" hidden></p>
+          <button class="btn wide" type="submit" data-t="b_send"></button>
+        </form>
+        <div class="res" id="bRes" hidden></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div><div class="wm">mur mur</div><p><i class="ua" aria-hidden="true"></i><span data-t="foot_p"></span></p></div>
+    <nav class="fnav" id="fnav"></nav>
+  </div>
+</footer>
+
+<script>
+/* ===== CONFIG — всё, что меняется под клиента ===== */
+window.SITE = {
+  name: 'Mur Mur',
+  instagram: 'murmur_lisbon',
+  email: '',           // почта студии для брифов
+  formEndpoint: '',    // FormSubmit / Formspree на готовом сайте. В концепте пусто — ничего не уходит
+  studio: '../../'
+};
+/* Работы — по подписям к постам @murmur_lisbon (окт. 2026). Вместо рисунков ставятся их фото */
+window.WORK = [
+  { id: 'bar', cat: 'events', year: 2026, stage: 'st-rose', wide: true, credit: '@centa_project' },
+  { id: 'sea', cat: 'events', year: 2026, stage: 'st-butter' },
+  { id: 'soap', cat: 'props', year: 2026, stage: 'st-lilac' },
+  { id: 'man', cat: 'props', year: 2026, stage: 'st-stone' },
+  { id: 'matcha', cat: 'styling', year: 2026, stage: 'st-matcha' },
+  { id: 'bag', cat: 'events', year: 2026, stage: 'st-butter' },
+  { id: 'candle', cat: 'props', year: 2025, stage: 'st-stone', credit: '@centa_studio' },
+  { id: 'lolli', cat: 'styling', year: 2025, stage: 'st-rose', credit: '@centa_studio' }
+];
+
+const I18N = {
+en: {
+  rib_tag: 'Concept', rib: 'Website proposal for Mur Mur by Orla. Not the official site — drawings stand in for your photos.',
+  nav_work: 'Work', nav_services: 'Services', nav_process: 'Process', nav_brief: 'Contact', hdr_cta: 'Let’s talk',
+  avail: 'Available for projects',
+  hero_eb: 'Props · Concepts · Food styling · Lisbon',
+  hero_h: 'Objects you<br>want to <i>taste</i>.',
+  hero_lede: 'Mur Mur is a Ukrainian studio in Lisbon. We make props, edible installations and food styling for brands, shoots and events — out of butter, sugar, soap, wax and a good idea.',
+  cta_brief: 'Start a project', cta_work: 'See the work',
+  stamp_ring: 'MUR MUR · PROPS · CONCEPTS · FOOD STYLING · ', stamp_city: 'LISBOA', stamp_label: 'A butter stamp embossed with the studio name.',
+  materials: ['butter', 'sugar', 'matcha', 'soap', 'wax', 'chocolate', 'rose', 'bread'],
+  work_eb: 'Selected work', work_h: 'Made to be photographed.<br><i>Some of it, to be eaten.</i>',
+  f_all: 'All', f_props: 'Props', f_styling: 'Food styling', f_events: 'Events',
+  c_props: 'Props', c_styling: 'Food styling', c_events: 'Event', credit: 'Art direction',
+  p_bar_n: 'Dessert bar for a wedding', p_bar_d: 'A whole table of desserts, styled as one composition.',
+  p_sea_n: 'Sea of Butter', p_sea_d: 'A supper evening with a butter-mould workshop and pavlova. Limited seats.',
+  p_soap_n: 'Soap sculptures', p_soap_d: 'Soft geometric forms, carved from soap.',
+  p_man_n: 'Butter mannequin', p_man_d: 'A dress form, sculpted in butter.',
+  p_matcha_n: 'Matcha dessert setting', p_matcha_d: 'Butter and matcha, styled for the camera.',
+  p_bag_n: 'Butter bag & candle holders', p_bag_d: 'Butter, croissant and bread installations for a special brunch.',
+  p_candle_n: 'Candle Cake', p_candle_d: 'A cake built from candles.',
+  p_lolli_n: 'Lollipop bouquet', p_lolli_d: 'Rose-flavoured lollipops, arranged like flowers.',
+  ph_note: 'Drawings show where your project photos will go.',
+  svc_eb: 'What we do', svc_h: 'Five ways to <i>work together</i>.',
+  s1_h: 'Props & sculptures', s1_p: 'Objects made of butter, soap, wax and sugar — for windows, sets and tables.',
+  s2_h: 'Food styling', s2_p: 'Food that holds up under the lights: campaigns, menus, cookbooks, social.',
+  s3_h: 'Event installations', s3_p: 'Dessert bars, brunch tables and edible centrepieces for weddings and launches.',
+  s4_h: 'Concept & art direction', s4_p: 'From the first moodboard to the last crumb — on our own or with your agency.',
+  s5_h: 'Supper evenings', s5_p: 'Small gatherings around one ingredient, like Sea of Butter.',
+  pr_eb: 'How it works', pr_h: 'From a feeling <i>to the last crumb</i>.',
+  st1_h: 'Brief', st1_p: 'Tell us the date, the place and what people should feel.',
+  st2_h: 'Concept', st2_p: 'Moodboard, sketches, materials and a fixed quote.',
+  st3_h: 'Making', st3_p: 'We build the props and test every edible piece.',
+  st4_h: 'On set', st4_p: 'We style, adjust and stay until the last shot or the last guest.',
+  br_eb: 'Start a project', br_h: 'Tell us about <i>your idea</i>.', br_p: 'A few taps — and we’ll come back with questions and a first idea.',
+  b_sum: 'Your brief', b_sum_empty: 'Pick what it is, where and when.',
+  b_type: 'What is it?', t_shoot: 'Photo shoot', t_event: 'Event', t_install: 'Installation', t_props: 'Props only', t_supper: 'Supper evening',
+  b_date: 'Date', b_flex: 'Dates are flexible', b_flex_s: 'flexible dates', b_scale: 'Guests or shots, approx.', b_scale_s: '{n} guests/shots',
+  b_where: 'Where', w_lis: 'Lisbon', w_porto: 'Porto', w_algarve: 'Algarve', w_abroad: 'Outside Portugal',
+  b_budget: 'Budget', bg_1: 'up to €500', bg_2: '€500–1,500', bg_3: '€1,500–5,000', bg_4: '€5,000+', bg_5: 'Not sure yet',
+  b_idea: 'The idea, in a few words', b_idea_ph: 'A brunch for 40 where everything is made of butter…',
+  b_name: 'Name', b_contact: 'Email or Instagram', b_send: 'Send the brief',
+  err: 'Please add your name and a way to reach you.',
+  res_h: 'Brief ready', res_note: 'Concept: nothing was sent. On the final site the brief goes straight to Mur Mur’s inbox.',
+  copy: 'Copy', copied: 'Copied ✓',
+  msg_hi: 'Hi Mur Mur! A new project:', msg_type: 'What', msg_date: 'Date', msg_where: 'Where', msg_scale: 'Guests/shots', msg_budget: 'Budget', msg_idea: 'Idea', msg_name: 'Name', msg_contact: 'Contact',
+  ig_cta: 'Or write to us on Instagram',
+  foot_p: 'Ukrainian props & food-styling studio in Lisbon. Website concept — unofficial.', foot_by: 'Site: Orla web studio'
+},
+pt: {
+  rib_tag: 'Conceito', rib: 'Proposta de site para a Mur Mur, feita pela Orla. Não é o site oficial — os desenhos estão no lugar das vossas fotos.',
+  nav_work: 'Trabalhos', nav_services: 'Serviços', nav_process: 'Processo', nav_brief: 'Contacto', hdr_cta: 'Vamos falar',
+  avail: 'Disponível para projetos',
+  hero_eb: 'Adereços · Conceitos · Food styling · Lisboa',
+  hero_h: 'Objetos que<br>apetece <i>provar</i>.',
+  hero_lede: 'A Mur Mur é um estúdio ucraniano em Lisboa. Criamos adereços, instalações comestíveis e food styling para marcas, sessões fotográficas e eventos — com manteiga, açúcar, sabão, cera e uma boa ideia.',
+  cta_brief: 'Começar um projeto', cta_work: 'Ver trabalhos',
+  stamp_ring: 'MUR MUR · ADEREÇOS · CONCEITOS · FOOD STYLING · ', stamp_city: 'LISBOA', stamp_label: 'Um carimbo de manteiga com o nome do estúdio em relevo.',
+  materials: ['manteiga', 'açúcar', 'matcha', 'sabão', 'cera', 'chocolate', 'rosa', 'pão'],
+  work_eb: 'Trabalhos', work_h: 'Feito para ser fotografado.<br><i>Algum, para ser comido.</i>',
+  f_all: 'Todos', f_props: 'Adereços', f_styling: 'Food styling', f_events: 'Eventos',
+  c_props: 'Adereços', c_styling: 'Food styling', c_events: 'Evento', credit: 'Direção de arte',
+  p_bar_n: 'Mesa de sobremesas para um casamento', p_bar_d: 'Uma mesa inteira de doces, pensada como uma só composição.',
+  p_sea_n: 'Sea of Butter', p_sea_d: 'Um jantar com workshop de moldes de manteiga e pavlova. Lugares limitados.',
+  p_soap_n: 'Esculturas de sabão', p_soap_d: 'Formas geométricas suaves, esculpidas em sabão.',
+  p_man_n: 'Manequim de manteiga', p_man_d: 'Um busto de costura esculpido em manteiga.',
+  p_matcha_n: 'Matcha à mesa', p_matcha_d: 'Manteiga e matcha, preparados para a câmara.',
+  p_bag_n: 'Mala de manteiga e castiçais', p_bag_d: 'Instalações de manteiga, croissants e pão para um brunch especial.',
+  p_candle_n: 'Candle Cake', p_candle_d: 'Um bolo feito de velas.',
+  p_lolli_n: 'Bouquet de chupa-chupas', p_lolli_d: 'Chupa-chupas de rosa, arranjados como flores.',
+  ph_note: 'Os desenhos mostram onde ficam as fotos dos vossos projetos.',
+  svc_eb: 'O que fazemos', svc_h: 'Cinco formas de <i>trabalhar connosco</i>.',
+  s1_h: 'Adereços e esculturas', s1_p: 'Objetos de manteiga, sabão, cera e açúcar — para montras, sets e mesas.',
+  s2_h: 'Food styling', s2_p: 'Comida que aguenta as luzes: campanhas, menus, livros de receitas, redes sociais.',
+  s3_h: 'Instalações para eventos', s3_p: 'Mesas de sobremesas, brunches e centros de mesa comestíveis para casamentos e lançamentos.',
+  s4_h: 'Conceito e direção de arte', s4_p: 'Do primeiro moodboard à última migalha — sozinhos ou com a vossa agência.',
+  s5_h: 'Jantares temáticos', s5_p: 'Pequenos encontros à volta de um ingrediente, como o Sea of Butter.',
+  pr_eb: 'Como funciona', pr_h: 'De uma sensação <i>à última migalha</i>.',
+  st1_h: 'Briefing', st1_p: 'Diga-nos a data, o lugar e o que as pessoas devem sentir.',
+  st2_h: 'Conceito', st2_p: 'Moodboard, esboços, materiais e um orçamento fechado.',
+  st3_h: 'Produção', st3_p: 'Construímos os adereços e testamos cada peça comestível.',
+  st4_h: 'No set', st4_p: 'Montamos, ajustamos e ficamos até à última foto ou ao último convidado.',
+  br_eb: 'Começar um projeto', br_h: 'Conte-nos a sua <i>ideia</i>.', br_p: 'Alguns toques — e respondemos com perguntas e uma primeira ideia.',
+  b_sum: 'O seu briefing', b_sum_empty: 'Escolha o que é, onde e quando.',
+  b_type: 'O que é?', t_shoot: 'Sessão fotográfica', t_event: 'Evento', t_install: 'Instalação', t_props: 'Só adereços', t_supper: 'Jantar temático',
+  b_date: 'Data', b_flex: 'As datas são flexíveis', b_flex_s: 'datas flexíveis', b_scale: 'Convidados ou fotos, aprox.', b_scale_s: '{n} convidados/fotos',
+  b_where: 'Onde', w_lis: 'Lisboa', w_porto: 'Porto', w_algarve: 'Algarve', w_abroad: 'Fora de Portugal',
+  b_budget: 'Orçamento', bg_1: 'até €500', bg_2: '€500–1500', bg_3: '€1500–5000', bg_4: '€5000+', bg_5: 'Ainda não sei',
+  b_idea: 'A ideia, em poucas palavras', b_idea_ph: 'Um brunch para 40 pessoas onde tudo é de manteiga…',
+  b_name: 'Nome', b_contact: 'E-mail ou Instagram', b_send: 'Enviar o briefing',
+  err: 'Indique o nome e um contacto.',
+  res_h: 'Briefing pronto', res_note: 'Conceito: nada foi enviado. No site final, o briefing chega diretamente à Mur Mur.',
+  copy: 'Copiar', copied: 'Copiado ✓',
+  msg_hi: 'Olá Mur Mur! Um novo projeto:', msg_type: 'O quê', msg_date: 'Data', msg_where: 'Onde', msg_scale: 'Convidados/fotos', msg_budget: 'Orçamento', msg_idea: 'Ideia', msg_name: 'Nome', msg_contact: 'Contacto',
+  ig_cta: 'Ou escreva-nos no Instagram',
+  foot_p: 'Estúdio ucraniano de adereços e food styling em Lisboa. Conceito de site — não oficial.', foot_by: 'Site: Orla, estúdio web'
+},
+uk: {
+  rib_tag: 'Концепт', rib: 'Пропозиція сайту для Mur Mur від студії Orla. Не офіційний сайт — малюнки стоять на місці ваших фото.',
+  nav_work: 'Роботи', nav_services: 'Послуги', nav_process: 'Процес', nav_brief: 'Контакт', hdr_cta: 'Написати',
+  avail: 'Відкриті до проєктів',
+  hero_eb: 'Реквізит · Концепції · Фудстайлінг · Лісабон',
+  hero_h: 'Речі, які<br>хочеться <i>скуштувати</i>.',
+  hero_lede: 'Mur Mur — українська студія в Лісабоні. Робимо реквізит, їстівні інсталяції та фудстайлінг для брендів, зйомок і подій — з масла, цукру, мила, воску й гарної ідеї.',
+  cta_brief: 'Почати проєкт', cta_work: 'Дивитися роботи',
+  stamp_ring: 'MUR MUR · РЕКВІЗИТ · КОНЦЕПЦІЇ · ФУДСТАЙЛІНГ · ', stamp_city: 'ЛІСАБОН', stamp_label: 'Печатка на маслі з назвою студії.',
+  materials: ['масло', 'цукор', 'матча', 'мило', 'віск', 'шоколад', 'троянда', 'хліб'],
+  work_eb: 'Роботи', work_h: 'Зроблено, щоб фотографувати.<br><i>Дещо — щоб з’їсти.</i>',
+  f_all: 'Усі', f_props: 'Реквізит', f_styling: 'Фудстайлінг', f_events: 'Події',
+  c_props: 'Реквізит', c_styling: 'Фудстайлінг', c_events: 'Подія', credit: 'Арт-дирекція',
+  p_bar_n: 'Десертний бар для весілля', p_bar_d: 'Цілий стіл десертів як одна композиція.',
+  p_sea_n: 'Sea of Butter', p_sea_d: 'Вечеря з майстер-класом із форм для масла та павловою. Кількість місць обмежена.',
+  p_soap_n: 'Скульптури з мила', p_soap_d: 'М’які геометричні форми, вирізані з мила.',
+  p_man_n: 'Манекен з масла', p_man_d: 'Кравецький манекен, виліплений з вершкового масла.',
+  p_matcha_n: 'Матча на столі', p_matcha_d: 'Масло й матча, підготовлені для камери.',
+  p_bag_n: 'Сумка з масла і свічники', p_bag_d: 'Інсталяції з масла, круасанів і хліба для особливого бранчу.',
+  p_candle_n: 'Candle Cake', p_candle_d: 'Торт, складений зі свічок.',
+  p_lolli_n: 'Букет льодяників', p_lolli_d: 'Льодяники зі смаком троянди, зібрані як квіти.',
+  ph_note: 'Малюнки показують, де стоятимуть фото ваших проєктів.',
+  svc_eb: 'Що ми робимо', svc_h: 'П’ять способів <i>працювати разом</i>.',
+  s1_h: 'Реквізит і скульптури', s1_p: 'Предмети з масла, мила, воску й цукру — для вітрин, зйомок і столів.',
+  s2_h: 'Фудстайлінг', s2_p: 'Їжа, яка витримує світло: кампанії, меню, кулінарні книги, соцмережі.',
+  s3_h: 'Інсталяції для подій', s3_p: 'Десертні бари, бранчі та їстівні композиції для весіль і запусків.',
+  s4_h: 'Концепція та арт-дирекція', s4_p: 'Від першого мудборду до останньої крихти — самостійно або з вашою агенцією.',
+  s5_h: 'Тематичні вечері', s5_p: 'Невеликі зустрічі навколо одного інгредієнта, як Sea of Butter.',
+  pr_eb: 'Як це працює', pr_h: 'Від відчуття <i>до останньої крихти</i>.',
+  st1_h: 'Бриф', st1_p: 'Розкажіть дату, місце і що мають відчути гості.',
+  st2_h: 'Концепція', st2_p: 'Мудборд, ескізи, матеріали й фіксований кошторис.',
+  st3_h: 'Виробництво', st3_p: 'Робимо реквізит і тестуємо кожну їстівну деталь.',
+  st4_h: 'На майданчику', st4_p: 'Ставимо, підправляємо й залишаємося до останнього кадру чи гостя.',
+  br_eb: 'Почати проєкт', br_h: 'Розкажіть про <i>вашу ідею</i>.', br_p: 'Кілька натискань — і ми повернемося з питаннями та першою ідеєю.',
+  b_sum: 'Ваш бриф', b_sum_empty: 'Оберіть, що це, де і коли.',
+  b_type: 'Що це?', t_shoot: 'Фотозйомка', t_event: 'Подія', t_install: 'Інсталяція', t_props: 'Лише реквізит', t_supper: 'Тематична вечеря',
+  b_date: 'Дата', b_flex: 'Дати гнучкі', b_flex_s: 'гнучкі дати', b_scale: 'Гостей або кадрів, приблизно', b_scale_s: '{n} гостей/кадрів',
+  b_where: 'Де', w_lis: 'Лісабон', w_porto: 'Порту', w_algarve: 'Алгарве', w_abroad: 'Поза Португалією',
+  b_budget: 'Бюджет', bg_1: 'до €500', bg_2: '€500–1500', bg_3: '€1500–5000', bg_4: '€5000+', bg_5: 'Ще не знаю',
+  b_idea: 'Ідея кількома словами', b_idea_ph: 'Бранч на 40 гостей, де все зроблено з масла…',
+  b_name: 'Ім’я', b_contact: 'E-mail або Instagram', b_send: 'Надіслати бриф',
+  err: 'Вкажіть ім’я та контакт.',
+  res_h: 'Бриф готовий', res_note: 'Концепт: нічого не надіслано. На готовому сайті бриф одразу потрапить до Mur Mur.',
+  copy: 'Скопіювати', copied: 'Скопійовано ✓',
+  msg_hi: 'Привіт, Mur Mur! Новий проєкт:', msg_type: 'Що', msg_date: 'Дата', msg_where: 'Де', msg_scale: 'Гостей/кадрів', msg_budget: 'Бюджет', msg_idea: 'Ідея', msg_name: 'Ім’я', msg_contact: 'Контакт',
+  ig_cta: 'Або напишіть нам в Instagram',
+  foot_p: 'Українська студія реквізиту й фудстайлінгу в Лісабоні. Концепт сайту — неофіційний.', foot_by: 'Сайт: вебстудія Orla'
+}
+};
+const LOC = { en: 'en-GB', pt: 'pt-PT', uk: 'uk-UA' };
+let lang = (() => {
+  try { const s = localStorage.getItem('murmur-lang'); if (s && I18N[s]) return s; } catch (e) {}
+  const n = (navigator.language || 'en').toLowerCase();
+  if (n.startsWith('pt')) return 'pt';
+  if (n.startsWith('uk')) return 'uk';
+  return 'en';
+})();
+const t = k => (I18N[lang][k] != null ? I18N[lang][k] : (I18N.en[k] != null ? I18N.en[k] : k));
+const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => (o[k] != null ? o[k] : ''));
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const f1 = n => +n.toFixed(1);
+const RAD = Math.PI / 180;
+
+/* ===== the butter stamp (embossed by layering shadow / light / body) ===== */
+function emboss(shapes) {
+  return `<g transform="translate(1.6 1.9)" fill="#d4b246" stroke="#d4b246" opacity=".85">${shapes}</g><g transform="translate(-1.1 -1.2)" fill="#fdf4cb" stroke="#fdf4cb">${shapes}</g><g fill="#f0d46c" stroke="#f0d46c">${shapes}</g>`;
+}
+function stamp() {
+  const cx = 260, cy = 250;
+  let wreath = '';
+  for (let i = 0; i < 24; i++) {
+    const a = i / 24 * 360, x = cx + 116 * Math.cos(a * RAD), y = cy + 116 * Math.sin(a * RAD);
+    wreath += `<ellipse cx="${f1(x)}" cy="${f1(y)}" rx="4.2" ry="11" transform="rotate(${f1(a + 35)} ${f1(x)} ${f1(y)})" stroke="none"/>`;
+    const x2 = cx + 102 * Math.cos((a + 7.5) * RAD), y2 = cy + 102 * Math.sin((a + 7.5) * RAD);
+    wreath += `<circle cx="${f1(x2)}" cy="${f1(y2)}" r="2.2" stroke="none"/>`;
+  }
+  const rings = `<circle cx="${cx}" cy="${cy}" r="182" fill="none" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="136" fill="none" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="88" fill="none" stroke-width="1.6"/>`;
+  const ring = `<text class="ring" stroke="none"><textPath href="#ringPath" textLength="985" lengthAdjust="spacing">${esc(t('stamp_ring'))}</textPath></text>`;  // repeated to fit after measuring, see fitRing()
+  const mono = `<text class="mono" x="${cx}" y="${cy + 24}" text-anchor="middle" stroke="none">mm</text><text class="city" x="${cx + 3}" y="${cy + 58}" text-anchor="middle" stroke="none">${esc(t('stamp_city'))}</text>`;
+  const knife = `<g transform="translate(420 372) rotate(-30)"><path d="M-6 -150 C10 -150 14 -120 12 -40 L-8 -40 Z" fill="#e9ecef" stroke="#1d2116" stroke-width="1.8" stroke-linejoin="round"/><path d="M-8 -40 H12 V-30 H-8 Z" fill="#cfd4d8" stroke="#1d2116" stroke-width="1.8"/><rect x="-9" y="-30" width="22" height="92" rx="10" fill="#c99a6b" stroke="#1d2116" stroke-width="1.8"/><circle cx="2" cy="-12" r="2" fill="#1d2116"/><circle cx="2" cy="44" r="2" fill="#1d2116"/></g>`;
+  $('#stamp').innerHTML = `<defs><radialGradient id="bt" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#fbeaa0"/><stop offset=".7" stop-color="#f2d670"/><stop offset="1" stop-color="#e8c65a"/></radialGradient>
+    <path id="ringPath" d="M${cx} ${cy - 158} A158 158 0 1 1 ${cx - .01} ${cy - 158}"/></defs>
+    <ellipse cx="${cx}" cy="476" rx="186" ry="20" fill="#1d2116" opacity=".1"/>
+    <circle cx="${cx}" cy="${cy + 18}" r="200" fill="#d9b84c" stroke="#1d2116" stroke-width="2"/>
+    <circle cx="${cx}" cy="${cy}" r="200" fill="url(#bt)" stroke="#1d2116" stroke-width="2"/>
+    ${emboss(rings)}${emboss(wreath)}${emboss(mono)}
+    <g class="spin">${emboss(ring)}</g>${knife}`;
+  $('#stamp').setAttribute('aria-label', t('stamp_label'));
+  fitRing();
+}
+function fitRing() {
+  const svg = $('#stamp'), probe = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  probe.setAttribute('class', 'ring'); probe.textContent = t('stamp_ring'); svg.appendChild(probe);
+  const L = probe.getComputedTextLength(); probe.remove();
+  const reps = Math.max(1, Math.round(985 / (L || 985)));
+  svg.querySelectorAll('textPath').forEach(tp => { tp.textContent = t('stamp_ring').repeat(reps); });
+}
+
+/* ===== project drawings ===== */
+const candle = (x, y, h, w) => { w = w || 8; return `<rect class="o cd" x="${f1(x - w / 2)}" y="${f1(y - h)}" width="${w}" height="${h}" rx="2"/><path class="l" d="M${x} ${f1(y - h)}v-5"/><path class="o fm" d="M${x} ${f1(y - h - 20)}C${x + 6} ${f1(y - h - 12)} ${x + 5} ${f1(y - h - 5)} ${x} ${f1(y - h - 5)}C${x - 5} ${f1(y - h - 5)} ${x - 6} ${f1(y - h - 12)} ${x} ${f1(y - h - 20)}Z"/>`; };
+const berry = (x, y, r, c) => `<circle class="o ${c || 'ro'}" cx="${x}" cy="${y}" r="${r}"/><circle class="hi" cx="${f1(x - r * .35)}" cy="${f1(y - r * .35)}" r="${f1(r * .25)}"/>`;
+const pav = (x, y, s) => `<g transform="translate(${x} ${y}) scale(${s})"><ellipse class="o wh" cx="0" cy="8" rx="40" ry="8"/><path class="o wh" d="M-34 4C-36-14-28-22-20-24H20C28-22 36-14 34 4C14 12-14 12-34 4Z"/><path class="l2" d="M-22 4C-24-8-20-16-14-20M0 7V-22M22 4C24-8 20-16 14-20"/><path class="o buh" d="M-26-22C-26-34-12-36-4-32C4-40 22-36 24-24C10-18-12-18-26-22Z"/>${berry(-10, -32, 6)}${berry(8, -34, 5.5, 'rol')}${berry(18, -28, 5)}</g>`;
+function spiral(cx, cy, r) { let d = `M${cx} ${cy}`, rr = r * .14, s = 1; for (let i = 0; i < 6; i++) { d += ` a${f1(rr)} ${f1(rr)} 0 0 1 ${f1(2 * rr * s)} 0`; s = -s; rr *= 1.45; } return `<path class="lw" d="${d}"/>`; }
+const DRAW = {
+  bar() {
+    let s = `<ellipse class="sh" cx="240" cy="214" rx="210" ry="10"/>`;
+    let cloth = 'M44 160H436V196';
+    for (let x = 436; x > 44; x -= 26) cloth += ` q-13 12 -26 0`;
+    s += `<path class="o wh" d="${cloth}Z"/><rect class="o wh" x="38" y="150" width="404" height="12" rx="3"/>`;
+    s += `<rect class="o wh" x="104" y="122" width="12" height="28"/><ellipse class="o wh" cx="110" cy="122" rx="48" ry="7"/><path class="o rol" d="M78 120V84C78 78 142 78 142 84V120C142 126 78 126 78 120Z"/><ellipse class="o pk" cx="110" cy="83" rx="32" ry="7"/>${berry(98, 76, 6)}${berry(112, 74, 5.5, 'rol')}${berry(124, 77, 5)}`;
+    s += `<path class="l" d="M240 150V58"/><ellipse class="o wh" cx="240" cy="146" rx="56" ry="7"/><ellipse class="o wh" cx="240" cy="108" rx="40" ry="6"/><ellipse class="o wh" cx="240" cy="74" rx="24" ry="5"/>`;
+    [[204, 'mtl'], [222, 'rol'], [240, 'bu'], [258, 'mtl'], [276, 'rol']].forEach(([x, c]) => { s += `<rect class="o ${c}" x="${x - 7}" y="132" width="14" height="10" rx="5"/>`; });
+    [[218, 'bu'], [234, 'rol'], [250, 'mtl'], [264, 'bu']].forEach(([x, c]) => { s += `<rect class="o ${c}" x="${x - 6}" y="95" width="12" height="9" rx="4.5"/>`; });
+    s += berry(232, 66, 5) + berry(246, 66, 5, 'rol');
+    s += candle(170, 150, 46) + candle(312, 150, 58) + pav(372, 142, .95);
+    s += `<path class="o wh" d="M418 150V128M406 112C406 124 430 124 430 112Z" /><path class="l" d="M418 128V150M408 150H428"/>`;
+    return s;
+  },
+  sea() {
+    let s = `<path class="o bud" d="M0 170C30 150 50 190 80 170S130 150 160 170S210 190 240 170V240H0Z"/><path class="o bu" d="M0 194C30 176 50 212 80 194S130 176 160 194S210 212 240 194V240H0Z"/><path class="o buh" d="M0 218C30 202 50 234 80 218S130 202 160 218S210 234 240 218V240H0Z"/>`;
+    s += pav(126, 140, 1.25);
+    s += `<g transform="translate(52 70)"><circle class="o bu" r="26"/><circle class="l2" r="19"/><circle class="l2" r="9"/>${[0, 60, 120, 180, 240, 300].map(a => `<ellipse class="bud" cx="${f1(14 * Math.cos(a * RAD))}" cy="${f1(14 * Math.sin(a * RAD))}" rx="2" ry="4" transform="rotate(${a + 90} ${f1(14 * Math.cos(a * RAD))} ${f1(14 * Math.sin(a * RAD))})"/>`).join('')}</g>`;
+    s += candle(196, 92, 36, 7);
+    return s;
+  },
+  soap() {
+    let s = `<ellipse class="sh" cx="120" cy="198" rx="92" ry="8"/><rect class="o wh" x="42" y="176" width="156" height="20" rx="3"/>`;
+    s += `<circle class="o li" cx="78" cy="148" r="28"/><path class="hi" d="M62 136a18 18 0 0 1 14-10a14 14 0 0 0-10 10Z"/>`;
+    s += `<rect class="o mi" x="112" y="150" width="44" height="26" rx="6"/><rect class="o mi" x="118" y="126" width="32" height="24" rx="6"/><rect class="o mi" x="125" y="106" width="18" height="20" rx="6"/>`;
+    s += `<path class="o pk" d="M162 176V136a16 16 0 0 1 32 0V176Z"/><path class="l2" d="M170 176V140a8 8 0 0 1 16 0V176"/>`;
+    return s;
+  },
+  man() {
+    let s = `<ellipse class="sh" cx="120" cy="214" rx="54" ry="6"/><path class="l" d="M120 172V212M98 214L120 200L142 214"/><rect class="o wd" x="116" y="166" width="8" height="20" rx="2"/>`;
+    s += `<path class="o bu" d="M120 40C106 40 98 46 96 56C82 60 74 72 76 86C78 102 88 110 88 124C88 138 80 148 82 168H158C160 148 152 138 152 124C152 110 162 102 164 86C166 72 158 60 144 56C142 46 134 40 120 40Z"/>`;
+    s += `<path class="buh" d="M96 66C88 76 88 92 96 104C100 112 100 122 98 132C94 118 86 108 84 94C82 80 88 70 96 66Z"/><ellipse class="o bud" cx="120" cy="40" rx="14" ry="5"/>`;
+    s += `<path class="l2" d="M120 58V164M104 120C112 126 128 126 136 120M102 84C110 92 130 92 138 84"/>`;
+    return s;
+  },
+  matcha() {
+    let s = `<ellipse class="sh" cx="120" cy="196" rx="100" ry="9"/><ellipse class="o wh" cx="104" cy="176" rx="70" ry="12"/>`;
+    s += `<path class="o wh" d="M56 116C58 152 80 172 104 172C128 172 150 152 152 116Z"/><ellipse class="o mt" cx="104" cy="116" rx="48" ry="10"/><path class="l2" d="M76 116c10-5 20 5 30 0s20-5 30 0"/><path class="lw" d="M88 113c6-3 12 2 18 0"/>`;
+    s += `<ellipse class="o wh" cx="190" cy="184" rx="30" ry="7"/><path class="o bud" d="M172 182V168L182 160H210V174L200 182Z"/><path class="o bu" d="M172 168L182 160H210L200 168Z"/><path class="o buh" d="M172 168H200V182H172Z"/>`;
+    s += `<g transform="translate(36 70) rotate(-24)"><rect class="o wd" x="-5" y="-40" width="10" height="42" rx="4"/><path class="o kr" d="M-12 2H12L16 34H-16Z"/><path class="l2" d="M-8 6L-11 32M-3 6L-4 32M3 6L4 32M8 6L11 32"/></g>`;
+    return s;
+  },
+  bag() {
+    let s = `<ellipse class="sh" cx="120" cy="198" rx="104" ry="9"/>`;
+    s += `<path d="M90 112C90 66 150 66 150 112" fill="none" stroke="#1d2116" stroke-width="11" stroke-linecap="round"/><path d="M90 112C90 66 150 66 150 112" fill="none" stroke="#e2c25a" stroke-width="7.5" stroke-linecap="round"/>`;
+    s += `<path class="o bu" d="M68 112L172 112L184 186Q120 198 56 186Z"/><path class="o bud" d="M64 112Q120 146 176 112L172 104H68Z"/><circle class="o buh" cx="120" cy="128" r="7"/><path class="l2" d="M74 150L100 140M140 172L166 160M76 176L92 170"/>`;
+    s += `<rect class="o bu" x="18" y="166" width="24" height="22" rx="4"/>${candle(30, 166, 30, 7)}<rect class="o bu" x="198" y="160" width="24" height="28" rx="4"/>${candle(210, 160, 38, 7)}`;
+    return s;
+  },
+  candle() {
+    let s = `<ellipse class="sh" cx="120" cy="206" rx="96" ry="8"/><ellipse class="o wh" cx="120" cy="196" rx="88" ry="12"/>`;
+    const R = (() => { let a = 7; return () => { a = (a * 9301 + 49297) % 233280; return a / 233280; }; })();
+    for (let x = 62; x <= 178; x += 11) s += candle(x, 168, 34 + R() * 26, 9);
+    for (let x = 56; x <= 186; x += 10) { const h = 46 + R() * 20, w = 9; s += `<rect class="o cd" x="${x - w / 2}" y="${196 - h}" width="${w}" height="${h}" rx="2"/>`; }
+    s += `<path class="o rol" d="M50 172H190V184H50Z"/>`;
+    return s;
+  },
+  lolli() {
+    let s = `<ellipse class="sh" cx="120" cy="226" rx="40" ry="5"/>`;
+    const pops = [[86, 88, 22, 'ro'], [128, 64, 24, 'rol'], [166, 96, 21, 'ro'], [112, 112, 20, 'rol'], [70, 126, 18, 'rol'], [150, 130, 18, 'ro']];
+    pops.forEach(([x, y]) => { s += `<path class="l" d="M${x} ${y}L120 176"/>`; });
+    pops.forEach(([x, y, r, c]) => { s += `<circle class="o ${c}" cx="${x}" cy="${y}" r="${r}"/>${spiral(x, y, r)}`; });
+    s += `<path class="o wh" d="M80 150L160 150L130 224H110Z"/><path class="l2" d="M92 160L112 220M148 160L128 220"/>`;
+    s += `<path class="o ro" d="M120 176C104 164 96 178 108 182C96 186 104 198 120 186C136 198 144 186 132 182C144 178 136 164 120 176Z"/><circle class="o rol" cx="120" cy="181" r="4"/>`;
+    return s;
+  }
+};
+
+/* ===== render ===== */
+let filter = 'all';
+function renderWork() {
+  const cats = ['all', 'props', 'styling', 'events'];
+  $('#filters').innerHTML = cats.map(c => `<button type="button" data-f="${c}" aria-pressed="${c === filter}">${esc(t('f_' + c))}</button>`).join('');
+  $$('#filters button').forEach(b => { b.onclick = () => { filter = b.dataset.f; renderWork(); }; });
+  $('#grid').innerHTML = WORK.map(w => `<article class="w${w.wide ? ' wide' : ''}"${filter !== 'all' && filter !== w.cat ? ' hidden' : ''}>
+    <div class="art ${w.stage}"><svg class="f" viewBox="0 0 ${w.wide ? 480 : 240} 240" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${DRAW[w.id]()}</svg></div>
+    <p class="meta"><b>${esc(t('c_' + w.cat))}</b><span>${w.year}</span></p>
+    <h3>${esc(t('p_' + w.id + '_n'))}</h3><p>${esc(t('p_' + w.id + '_d'))}</p>${w.credit ? `<small>${esc(t('credit'))} ${esc(w.credit)}</small>` : ''}</article>`).join('');
+}
+function renderLists() {
+  $('#track').innerHTML = [...t('materials'), ...t('materials')].map(m => `<span>${esc(m)}</span>`).join('');
+  $('#svc').innerHTML = [1, 2, 3, 4, 5].map(i => `<li><span class="n">0${i}</span><h3>${esc(t('s' + i + '_h'))}</h3><p>${esc(t('s' + i + '_p'))}</p></li>`).join('');
+  $('#steps').innerHTML = [1, 2, 3, 4].map(i => `<li><h3>${esc(t('st' + i + '_h'))}</h3><p>${esc(t('st' + i + '_p'))}</p></li>`).join('');
+  $('#igLink').href = `https://www.instagram.com/${encodeURIComponent(SITE.instagram)}/`;
+  $('#igLink').textContent = `${t('ig_cta')} · @${SITE.instagram} ↗`;
+  $('#fnav').innerHTML = `<a href="#work">${esc(t('nav_work'))}</a><a href="#services">${esc(t('nav_services'))}</a><a href="#process">${esc(t('nav_process'))}</a><a href="https://www.instagram.com/${encodeURIComponent(SITE.instagram)}/" target="_blank" rel="noopener">Instagram ↗</a><a href="${SITE.studio}" target="_blank" rel="noopener">${esc(t('foot_by'))} ↗</a>`;
+}
+
+/* ===== brief builder ===== */
+const B = { type: 'shoot', where: 'lis', budget: '' };
+const OPTS = { types: ['shoot', 'event', 'install', 'props', 'supper'], places: ['lis', 'porto', 'algarve', 'abroad'], budgets: ['1', '2', '3', '4', '5'] };
+function chipSet(el, name, list, pre, key) {
+  $(el).innerHTML = list.map(v => `<label class="chip"><input type="radio" name="${name}" value="${v}" ${B[key] === v ? 'checked' : ''}><span>${esc(t(pre + v))}</span></label>`).join('');
+  $$(el + ' input').forEach(i => { i.onchange = () => { B[key] = i.value; renderSummary(); }; });
+}
+function renderBrief() {
+  chipSet('#types', 'type', OPTS.types, 't_', 'type');
+  chipSet('#places', 'where', OPTS.places, 'w_', 'where');
+  chipSet('#budgets', 'budget', OPTS.budgets, 'bg_', 'budget');
+  const d = new Date(); $('#bDate').min = d.toISOString().slice(0, 10);
+  renderSummary();
+}
+function dateLabel() {
+  const v = $('#bDate').value, flex = $('#bFlex').checked;
+  let s = '';
+  if (v) { const [y, m, dd] = v.split('-').map(Number); s = new Intl.DateTimeFormat(LOC[lang], { timeZone: 'UTC', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(Date.UTC(y, m - 1, dd, 12))); }
+  if (flex) s = s ? `${s} (${t('b_flex_s')})` : t('b_flex_s');
+  return s;
+}
+function summaryParts() {
+  const p = [];
+  if (B.type) p.push(t('t_' + B.type));
+  if (B.where) p.push(t('w_' + B.where));
+  const d = dateLabel(); if (d) p.push(d);
+  const n = $('#bScale').value; if (n) p.push(fill(t('b_scale_s'), { n }));
+  if (B.budget) p.push(t('bg_' + B.budget));
+  return p;
+}
+function renderSummary() { const p = summaryParts(); $('#sumText').textContent = p.length ? p.join(' · ') : t('b_sum_empty'); }
+['#bDate', '#bScale'].forEach(s => $(s).addEventListener('input', renderSummary));
+$('#bFlex').addEventListener('change', renderSummary);
+$('#briefForm').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const f = ev.target, v = n => f.elements[n].value.trim(), err = $('#bErr');
+  if (!v('name') || !v('contact')) { err.textContent = t('err'); err.hidden = false; return; }
+  err.hidden = true;
+  const lines = [t('msg_hi'), `${t('msg_type')}: ${t('t_' + B.type)}`, `${t('msg_where')}: ${t('w_' + B.where)}`];
+  const d = dateLabel(); if (d) lines.push(`${t('msg_date')}: ${d}`);
+  if (v('scale')) lines.push(`${t('msg_scale')}: ${v('scale')}`);
+  if (B.budget) lines.push(`${t('msg_budget')}: ${t('bg_' + B.budget)}`);
+  if (v('idea')) lines.push(`${t('msg_idea')}: ${v('idea')}`);
+  lines.push(`${t('msg_name')}: ${v('name')}`, `${t('msg_contact')}: ${v('contact')}`);
+  const msg = lines.join('\n'), box = $('#bRes');
+  box.innerHTML = `<h4>${esc(t('res_h'))}</h4><pre>${esc(msg)}</pre><div class="acts"><button type="button" class="btn line sm cpy">${esc(t('copy'))}</button></div><p class="cnote">${esc(t('res_note'))}</p>`;
+  box.hidden = false;
+  const b = box.querySelector('.cpy');
+  b.onclick = () => {
+    const ok = () => { b.textContent = t('copied'); setTimeout(() => { b.textContent = t('copy'); }, 1800); };
+    const sel = () => { const r = document.createRange(); r.selectNodeContents(box.querySelector('pre')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(msg).then(ok, sel); } catch (e) { sel(); }
+  };
+  box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+});
+
+/* ===== i18n & boot ===== */
+function applyTexts() {
+  document.documentElement.lang = lang;
+  $$('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
+  $$('[data-th]').forEach(el => { el.innerHTML = t(el.dataset.th); });
+  $$('[data-tp]').forEach(el => { el.placeholder = t(el.dataset.tp); });
+  $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+}
+function renderAll() { applyTexts(); stamp(); renderLists(); renderWork(); renderBrief(); $('#bRes').hidden = true; }
+$$('.lang button').forEach(b => b.addEventListener('click', () => {
+  lang = b.dataset.lang;
+  try { localStorage.setItem('murmur-lang', lang); } catch (e) {}
+  renderAll();
+}));
+renderAll();
+try { document.fonts.ready.then(fitRing); } catch (e) {}
+</script>
+</body>
+</html>
