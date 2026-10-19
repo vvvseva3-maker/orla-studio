@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Melt Bakery Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&display=swap">
+<style>
+:root{
+  --milk:#fbf8f3; --milk-2:#f4ede3; --pink:#f6ddd6; --card:#fffdf9; --ink:#2a1812; --ink-2:#4f3b31; --muted:#7a665b; --line:#ebdfd2; --line-2:#d5c4b4;
+  --caramel:#c4651f; --caramel-ink:#a5531a; --on-caramel:#fffaf3; --matcha:#55772a; --err:#b3261e; --open:#3f7a2a;
+  --foot:#2a1812; --on-foot:#f6efe6; --on-foot-muted:#bba99c;
+  --display:'Bricolage Grotesque','Avenir Next','Segoe UI',system-ui,sans-serif;
+  --sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --gut-l:max(16px, env(safe-area-inset-left, 0px)); --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  --hdr:66px; --r:22px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --milk:#1a110d; --milk-2:#22170f; --pink:#33211c; --card:#251912; --ink:#f6ece1; --ink-2:#ddcfc2; --muted:#a99689; --line:#3a2a21; --line-2:#56412f;
+  --caramel:#e2893f; --caramel-ink:#f0a35e; --on-caramel:#1a110d; --matcha:#a7c76c; --err:#ff8a80; --open:#8fd16a;
+  --foot:#0f0a07; --on-foot:#efe6dc; --on-foot-muted:#9c8b7f;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --milk:#1a110d; --milk-2:#22170f; --pink:#33211c; --card:#251912; --ink:#f6ece1; --ink-2:#ddcfc2; --muted:#a99689; --line:#3a2a21; --line-2:#56412f;
+  --caramel:#e2893f; --caramel-ink:#f0a35e; --on-caramel:#1a110d; --matcha:#a7c76c; --err:#ff8a80; --open:#8fd16a;
+  --foot:#0f0a07; --on-foot:#efe6dc; --on-foot-muted:#9c8b7f;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 16px + env(safe-area-inset-top, 0px))}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{background:var(--milk);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:60;background:var(--milk)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:700;letter-spacing:-.025em;text-wrap:balance}
+p{margin:0}
+em{font-style:normal;color:var(--caramel-ink)}
+.wrap{max-width:1220px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.eb{font:600 12.5px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--caramel-ink)}
+.h2{font-size:clamp(34px,4.8vw,62px);line-height:1;margin-top:14px;font-weight:800;letter-spacing:-.035em}
+.lead{font-size:18px;color:var(--ink-2);max-width:54ch;margin-top:18px}
+.sec{padding-block:clamp(72px,9vw,120px)}
+.alt{background:var(--milk-2)}
+.pinkbg{background:var(--pink)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+.on .dot{background:var(--open);box-shadow:0 0 0 4px color-mix(in srgb, var(--open) 22%, transparent)}
+
+/* ribbon */
+.rib{background:var(--foot);color:var(--on-foot);font-size:13px;line-height:1.45}
+.rib .wrap{padding-block:9px;display:flex;gap:12px;justify-content:center;align-items:center;text-align:center}
+.rib b{background:var(--caramel);color:var(--on-caramel);font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:999px;flex:none}
+
+/* header */
+.hdr{position:sticky;top:env(safe-area-inset-top, 0px);z-index:50;background:var(--milk)}
+.hdr-in{display:flex;align-items:center;gap:26px;height:var(--hdr)}
+.logo{display:flex;align-items:flex-start;gap:2px;text-decoration:none;flex:none;font:800 30px/1 var(--display);letter-spacing:-.05em}
+.logo svg{width:9px;height:16px;margin-top:17px;fill:var(--caramel)}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:500;font-size:15.5px;color:var(--ink-2)}
+.nav a:hover{color:var(--caramel-ink)}
+.lang{display:flex;gap:2px;background:var(--milk-2);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;cursor:pointer;font:600 12.5px/1 var(--sans);letter-spacing:.06em;padding:8px 10px;border-radius:999px;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--milk)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;background:var(--ink);color:var(--milk);border:2px solid var(--ink);font:600 15.5px/1.1 var(--sans);text-decoration:none;cursor:pointer;text-align:center;transition:background .2s,border-color .2s,color .2s,transform .15s}
+.btn:hover{background:var(--caramel);border-color:var(--caramel);color:var(--on-caramel)}
+.btn:active{transform:translateY(1px)}
+.btn.line{background:transparent;color:var(--ink)}
+.btn.line:hover{background:var(--ink);color:var(--milk);border-color:var(--ink)}
+.btn.sm{min-height:42px;padding:0 18px;font-size:14.5px}
+.btn.wide{width:100%}
+@media (max-width:940px){ .nav{display:none} .lang{margin-left:auto} .hdr-in{gap:12px} }
+@media (max-width:380px){ .hdr .btn{padding:0 14px} .lang button{padding:8px 8px} }
+
+/* glaze */
+.glaze{position:absolute;inset:0 0 auto;line-height:0;pointer-events:none;overflow:hidden}
+.glaze svg{display:block}
+.glaze .band,.glaze .drip path{fill:var(--caramel)}
+.glaze .drip ellipse{fill:#fff;opacity:.28}
+.glaze.milkdrip .band,.glaze.milkdrip .drip path{fill:var(--milk-2)}
+.glaze.milkdrip .drip ellipse{display:none}
+.drip{transform-box:fill-box;transform-origin:50% 0;animation:drip 7s ease-in-out infinite alternate}
+@keyframes drip{from{transform:scaleY(.9)}to{transform:scaleY(1.08)}}
+@media (prefers-reduced-motion: reduce){ .drip{animation:none} }
+
+/* hero */
+.hero{position:relative}
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;padding-block:clamp(84px,10vw,128px) clamp(48px,6vw,80px)}
+.hero h1{font-size:clamp(54px,8.4vw,118px);line-height:.9;font-weight:800;letter-spacing:-.05em;margin-top:20px}
+.hero .lead{font-size:19px;margin-top:24px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.status{display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-weight:600;font-size:15px}
+.facts{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.facts li{font-size:14px;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--milk-2);color:var(--ink-2)}
+.hero-art{margin:0;width:100%;max-width:600px;justify-self:end}
+@media (max-width:880px){ .hero-in{grid-template-columns:1fr} .hero-art{justify-self:center;max-width:480px} }
+@media (max-width:560px){ .ctas .btn{flex:1 1 220px} }
+
+/* food drawings — fixed colours, they are food */
+.f{display:block;width:100%;height:auto;overflow:visible}
+.f *{vector-effect:non-scaling-stroke}
+.f .o{stroke:#2a1812;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.f .l{fill:none;stroke:#2a1812;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.f .l2{fill:none;stroke:rgba(42,24,18,.42);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.f .no{fill:none}
+.f .bk{fill:#e8b366} .f .bkd{fill:#cf8a45} .f .bkl{fill:#f4d394} .f .cr{fill:#fff2dc} .f .wh{fill:#fffdf8}
+.f .ca{fill:#b9611f} .f .rb{fill:#cf3a50} .f .rb2{fill:#e86a7b} .f .bb{fill:#3e3767} .f .lf{fill:#6f9a3a}
+.f .dt{fill:#7a4126} .f .mt{fill:#a8c46a} .f .kr{fill:#e9d2ae} .f .bn{fill:#f6d77a} .f .fm{fill:#f39c34}
+.f .hi{fill:#fff;opacity:.55} .f .fl{fill:#fff8ec;opacity:.7} .f .pk{fill:var(--pink)} .f .cb{fill:var(--caramel)}
+.f .crumb{fill:#cf8a45}
+.badge .spin{transform-box:fill-box;transform-origin:50% 50%;animation:spin 36s linear infinite}
+.badge text{font:700 12.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;fill:var(--on-caramel)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){ .badge .spin{animation:none} }
+
+/* menu + pickup */
+.menu-grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:clamp(32px,5vw,64px);align-items:start}
+.menu-main{min-width:0}
+.sub{font:600 12.5px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:52px}
+.feat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
+.dish{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.dish .art{background:var(--pink);border-radius:16px;aspect-ratio:4/3;display:grid;place-items:center;padding:8px 20%;max-width:100%}
+.dish h3{font-size:24px;line-height:1.1;margin-top:10px}
+.dish p{font-size:15px;color:var(--muted);line-height:1.5;flex:1}
+.dish .row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.price{font:700 18px/1 var(--display);font-variant-numeric:tabular-nums}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:600 11.5px/1 var(--sans);letter-spacing:.04em;padding:5px 9px;border-radius:999px;border:1px solid currentColor;color:var(--matcha);white-space:nowrap}
+.tag.gf{color:var(--caramel-ink)}
+.add{position:relative;width:42px;height:42px;border-radius:50%;border:0;background:var(--ink);color:var(--milk);display:grid;place-items:center;cursor:pointer;flex:none;padding:0;transition:background .2s,transform .15s}
+.add svg{width:15px;height:15px}
+.add:hover{background:var(--caramel);color:var(--on-caramel)}
+.add:active{transform:scale(.94)}
+.add[data-n]:not([data-n="0"])::after{content:attr(data-n);position:absolute;top:-6px;right:-6px;min-width:21px;height:21px;border-radius:11px;background:var(--caramel);color:var(--on-caramel);font:700 11.5px/21px var(--sans);text-align:center;padding:0 5px;border:2px solid var(--milk)}
+.add.sm{width:36px;height:36px}
+.mgroup{margin-top:52px}
+.mgroup h3{font-size:30px;line-height:1.1;font-weight:800;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.mgroup ul{list-style:none;margin:0;padding:0}
+.mi{padding-block:15px;border-bottom:1px solid var(--line)}
+.mi-top{display:flex;align-items:center;gap:12px}
+.mi-n{font:600 19px/1.25 var(--display);letter-spacing:-.01em;min-width:0}
+.dots{flex:1;min-width:12px;border-bottom:2px dotted var(--line-2);align-self:flex-end;margin-bottom:8px}
+.mi-p{font:700 16.5px/1 var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mi-d{font-size:15px;color:var(--muted);margin-top:4px;max-width:52ch;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.mi .nadd{width:36px;flex:none}
+.order{position:sticky;top:calc(var(--hdr) + 20px + env(safe-area-inset-top, 0px));min-width:0}
+.ocard{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:26px 24px}
+.order .ocard{max-height:calc(100vh - var(--hdr) - 40px);overflow:auto;overscroll-behavior:contain}
+.ocard h2{font-size:28px;line-height:1.08;margin-top:10px;font-weight:800}
+.small{font-size:15px;color:var(--muted);margin-top:10px}
+.cart{list-style:none;margin:18px 0 0;padding:0}
+.cart li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);font-size:15px}
+.qty{display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.qty button{width:28px;height:28px;border:1px solid var(--line-2);background:var(--milk);border-radius:50%;cursor:pointer;line-height:1;padding:0}
+.qty button:hover{border-color:var(--ink)}
+.cp{font-variant-numeric:tabular-nums;min-width:54px;text-align:right;font-weight:600}
+.empty{margin-top:18px;padding:16px;border:2px dashed var(--line-2);border-radius:16px;font-size:14.5px;color:var(--muted);text-align:center}
+.total{display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;font-weight:600}
+.total b{font:800 26px/1 var(--display)}
+form{display:grid;gap:14px}
+.ocard form{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+.ocard > form:first-child{margin-top:0;padding-top:0;border-top:0}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+legend,.lbl{display:block;font:600 13px/1.2 var(--sans);color:var(--ink-2);padding:0;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer}
+.chip > span{display:block;padding:9px 14px;border:1.5px solid var(--line-2);border-radius:999px;font-size:14.5px;line-height:1.25;background:var(--milk)}
+.chip input:checked+span{background:var(--ink);color:var(--milk);border-color:var(--ink)}
+.chip input:focus-visible+span{outline:2px solid var(--caramel);outline-offset:2px}
+.chips.col{flex-direction:column}
+.chips.col .chip > span{border-radius:14px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.chips.col .chip small{color:inherit;opacity:.7;font-size:13px;white-space:nowrap}
+input[type=text],input[type=tel],input[type=date],select,textarea{display:block;width:100%;min-height:48px;padding:10px 14px;border:1.5px solid var(--line-2);background:var(--milk);border-radius:14px;font-size:16px;-webkit-appearance:none;appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+textarea{min-height:76px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--caramel);outline-offset:0;border-color:var(--caramel)}
+.check{display:flex;align-items:center;gap:10px;font-size:15px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--caramel);margin:0}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.err{color:var(--err);font-size:14.5px}
+.res{margin-top:18px;border-radius:18px;padding:18px;background:var(--milk-2);border:1.5px solid var(--caramel)}
+.res h4{font-size:22px}
+.res pre{white-space:pre-wrap;word-break:break-word;font:15px/1.55 var(--sans);margin:10px 0 0;color:var(--ink)}
+.res .acts{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.cnote{font-size:13.5px;color:var(--muted);margin-top:12px}
+@media (max-width:1020px){ .menu-grid{grid-template-columns:1fr} .order{position:static} .order .ocard{max-height:none;overflow:visible} }
+@media (max-width:560px){
+  .feat{grid-template-columns:1fr;gap:14px}
+  .dish{display:grid;grid-template-columns:112px minmax(0,1fr);column-gap:16px;row-gap:4px;padding:12px}
+  .dish .art{grid-row:1 / span 3;aspect-ratio:1;padding:10px;align-self:start}
+  .dish > :not(.art){grid-column:2}
+  .dish h3{font-size:21px;margin-top:2px}
+  .dish p{font-size:14px}
+  .mgroup h3{font-size:26px}
+  .mi-n{font-size:17.5px}
+  .ocard{padding:22px 18px;border-radius:24px}
+}
+
+/* cakes */
+.cake-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:start}
+.cake-grid > *{min-width:0}
+.cake-art{max-width:400px;margin:28px 0 0}
+.lead-note{display:flex;gap:12px;align-items:flex-start;margin-top:26px;padding:16px 18px;border-radius:18px;background:var(--card);font-size:15.5px;color:var(--ink-2);max-width:52ch}
+.lead-note b{font:800 22px/1 var(--display);color:var(--caramel-ink);flex:none;margin-top:2px}
+.est{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0 0;border-top:1px solid var(--line)}
+.est b{font:800 30px/1 var(--display)}
+.est small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+@media (max-width:880px){ .cake-grid{grid-template-columns:1fr} .cake-art{max-width:300px} }
+
+/* house */
+.house-grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(32px,5vw,80px);align-items:start}
+.house-grid > *{min-width:0}
+.route{list-style:none;margin:30px 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 0}
+.route li{display:flex;align-items:center;font-weight:600;font-size:15px;color:var(--ink-2)}
+.route li:not(:last-child)::after{content:"";width:18px;border-top:2px dotted var(--line-2);margin-inline:8px}
+.route li:last-child{color:var(--on-caramel);background:var(--caramel);padding:6px 12px;border-radius:999px}
+.team{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.team li{display:grid;grid-template-columns:84px minmax(0,1fr);gap:18px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px 16px 16px}
+.team .ic{background:var(--pink);border-radius:16px;aspect-ratio:1;padding:10px;display:grid;place-items:center}
+.team h3{font-size:22px;font-weight:800}
+.team p{font-size:15.5px;color:var(--ink-2);margin-top:4px}
+.b2b{margin-top:clamp(40px,5vw,64px);background:var(--foot);color:var(--on-foot);border-radius:28px;padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 32px;align-items:center}
+.b2b h3{font-size:clamp(24px,2.6vw,32px);font-weight:800}
+.b2b p{color:var(--on-foot-muted);margin-top:8px;max-width:58ch}
+.b2b .btn{background:var(--caramel);border-color:var(--caramel);color:var(--on-caramel)}
+.b2b .btn:hover{background:var(--on-foot);border-color:var(--on-foot);color:var(--foot)}
+@media (max-width:880px){ .house-grid{grid-template-columns:1fr} .b2b{grid-template-columns:1fr} }
+
+/* visit */
+.vi-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,80px);align-items:start}
+.vi-grid > *{min-width:0}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.info{list-style:none;margin:0;padding:0;background:var(--card);border-radius:28px;border:1px solid var(--line);padding:6px 24px}
+.info li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.info li:last-child{border:0}
+.info .k{font:600 13px/1.9 var(--sans);color:var(--muted)}
+.info .v{font:600 19px/1.4 var(--display);min-width:0;overflow-wrap:anywhere}
+.hrs{display:grid;grid-template-columns:auto auto;justify-content:start;gap:3px 28px;font-weight:500}
+.hrs .today{color:var(--caramel-ink);font-weight:800}
+.hrs .off{color:var(--muted)}
+.info small{display:block;font:500 14.5px/1.4 var(--sans);color:var(--muted);margin-top:8px}
+@media (max-width:860px){ .vi-grid{grid-template-columns:1fr} }
+@media (max-width:480px){ .info li{grid-template-columns:1fr;gap:4px} .info{padding:4px 18px} }
+
+/* footer */
+.foot{position:relative;background:var(--foot);color:var(--on-foot);padding-block:110px 40px}
+.foot-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 48px;align-items:end}
+.wm{font:800 clamp(96px,17vw,230px)/.8 var(--display);letter-spacing:-.06em}
+.foot p{color:var(--on-foot-muted);font-size:14.5px;margin-top:22px}
+.fnav{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15px}
+.fnav a{text-decoration:none;color:var(--on-foot)}
+.fnav a:hover{color:var(--caramel)}
+@media (max-width:760px){ .foot-in{grid-template-columns:1fr} }
+
+/* mobile pickup bar */
+.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:55;padding:14px var(--gut-r) calc(12px + env(safe-area-inset-bottom, 0px)) var(--gut-l);background:linear-gradient(transparent,var(--milk) 40%)}
+.cartbar a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;padding:0 22px;background:var(--ink);color:var(--milk);border-radius:999px;text-decoration:none;font-size:15.5px;font-weight:500;max-width:520px;margin-inline:auto}
+.cartbar b{font-weight:700}
+</style>
+</head>
+<body>
+<div class="rib"><div class="wrap"><b data-t="rib_tag"></b><span data-t="rib"></span></div></div>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#top" aria-label="Melt">melt<svg viewBox="0 0 9 16" aria-hidden="true"><path d="M2 0h5C7 4 9 7 9 11.5A4.5 4.5 0 0 1 0 11.5C0 7 2 4 2 0z"/></svg></a>
+    <nav class="nav" aria-label="Menu">
+      <a href="#menu" data-t="nav_menu"></a><a href="#cakes" data-t="nav_cakes"></a><a href="#house" data-t="nav_house"></a><a href="#visit" data-t="nav_visit"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button></div>
+    <a class="btn sm" href="#order" data-t="hdr_cta"></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="glaze" id="glazeTop" data-seed="7" aria-hidden="true"></div>
+    <div class="wrap hero-in">
+      <div>
+        <p class="eb" data-t="hero_eb"></p>
+        <h1 data-th="hero_h"></h1>
+        <p class="lead" data-t="hero_lede"></p>
+        <div class="ctas"><a class="btn" href="#cakes" data-t="cta_cake"></a><a class="btn line" href="#menu" data-t="cta_menu"></a></div>
+        <p class="status" id="status"><i class="dot"></i><span></span></p>
+        <ul class="facts"><li data-t="f1"></li><li data-t="f2"></li><li data-t="f3"></li></ul>
+      </div>
+      <figure class="hero-art"><svg class="f" id="heroArt" viewBox="0 0 560 520" role="img"></svg></figure>
+    </div>
+  </section>
+
+  <section class="sec alt" id="menu">
+    <div class="wrap menu-grid">
+      <div class="menu-main">
+        <p class="eb" data-t="menu_eb"></p>
+        <h2 class="h2" data-t="menu_h"></h2>
+        <p class="lead" data-t="menu_p"></p>
+        <h3 class="sub" data-t="fav_h"></h3>
+        <div class="feat" id="feat"></div>
+        <div id="mlist"></div>
+      </div>
+      <aside class="order" id="order">
+        <div class="ocard">
+          <p class="eb" data-t="order_eb"></p>
+          <h2 data-t="order_h"></h2>
+          <p class="small" data-t="order_p"></p>
+          <ul class="cart" id="cart"></ul>
+          <p class="empty" id="cartEmpty" data-t="cart_empty"></p>
+          <div class="total" id="totalRow"><span data-t="cart_total"></span><b id="total"></b></div>
+          <form id="orderForm" novalidate>
+            <fieldset><legend data-t="f_day"></legend><div class="chips" id="dayChips"></div></fieldset>
+            <div><label class="lbl" for="oTime" data-t="f_time"></label><select id="oTime" name="time"></select></div>
+            <div class="two">
+              <div><label class="lbl" for="oName" data-t="f_name"></label><input type="text" id="oName" name="name" autocomplete="given-name"></div>
+              <div><label class="lbl" for="oPhone" data-t="f_phone"></label><input type="tel" id="oPhone" name="phone" autocomplete="tel"></div>
+            </div>
+            <p class="err" id="oErr" hidden></p>
+            <button class="btn wide" type="submit" data-t="f_send"></button>
+          </form>
+          <div class="res" id="oRes" hidden></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec pinkbg" id="cakes">
+    <div class="wrap cake-grid">
+      <div>
+        <p class="eb" data-t="cake_eb"></p>
+        <h2 class="h2" data-t="cake_h"></h2>
+        <p class="lead" data-t="cake_p"></p>
+        <p class="lead-note" id="leadNote"></p>
+        <div class="cake-art"><svg class="f" id="cakeArt" viewBox="0 0 240 240" aria-hidden="true"></svg></div>
+      </div>
+      <div class="ocard">
+        <form id="cakeForm" novalidate>
+          <fieldset><legend data-t="k_flavour"></legend><div class="chips" id="flavours"></div></fieldset>
+          <fieldset><legend data-t="k_size"></legend><div class="chips col" id="sizes"></div></fieldset>
+          <label class="check"><input type="checkbox" id="kGf" name="gf"><span data-t="k_gf"></span></label>
+          <div><label class="lbl" for="kText" data-t="k_text"></label><input type="text" id="kText" name="text" maxlength="32" data-tp="k_text_ph"></div>
+          <div class="two">
+            <div><label class="lbl" for="kDate" data-t="k_date"></label><input type="date" id="kDate" name="date"></div>
+            <div><label class="lbl" for="kTime" data-t="f_time"></label><select id="kTime" name="time"></select></div>
+          </div>
+          <div class="two">
+            <div><label class="lbl" for="kName" data-t="f_name"></label><input type="text" id="kName" name="name" autocomplete="name"></div>
+            <div><label class="lbl" for="kPhone" data-t="f_phone"></label><input type="tel" id="kPhone" name="phone" autocomplete="tel"></div>
+          </div>
+          <div class="est"><div><span data-t="k_est"></span><small data-t="k_est_note"></small></div><b id="kEst"></b></div>
+          <p class="err" id="kErr" hidden></p>
+          <button class="btn wide" type="submit" data-t="k_send"></button>
+        </form>
+        <div class="res" id="kRes" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="house">
+    <div class="wrap house-grid">
+      <div>
+        <p class="eb" data-t="house_eb"></p>
+        <h2 class="h2" data-t="house_h"></h2>
+        <p class="lead" data-t="house_p"></p>
+        <ol class="route" id="route"></ol>
+      </div>
+      <ul class="team" id="team"></ul>
+    </div>
+    <div class="wrap">
+      <div class="b2b"><div><h3 data-t="b2b_h"></h3><p data-t="b2b_p"></p></div><a class="btn" id="b2bLink" target="_blank" rel="noopener" data-t="b2b_cta"></a></div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="visit">
+    <div class="wrap vi-grid">
+      <div>
+        <p class="eb" data-t="vi_eb"></p>
+        <h2 class="h2" data-t="vi_h"></h2>
+        <p class="lead" data-t="vi_p"></p>
+        <div class="links" id="links"></div>
+      </div>
+      <ul class="info" id="info"></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="glaze milkdrip" id="glazeFoot" data-seed="21" aria-hidden="true"></div>
+  <div class="wrap foot-in">
+    <div><div class="wm">melt</div><p data-t="foot_p"></p></div>
+    <nav class="fnav" id="fnav"></nav>
+  </div>
+</footer>
+
+<div class="cartbar" id="cartBar" hidden><a href="#order"><span id="cbText"></span><b data-t="cb_go"></b></a></div>
+
+<script>
+/* ===== CONFIG — всё, что меняется под клиента ===== */
+window.SITE = {
+  name: 'Melt',
+  address: 'Av. Costa Pinto 8 (traseiras), 2750-511 Cascais',
+  instagram: 'meltcascais',
+  whatsapp: '',        // номер для заказов без «+». В концепте пусто — ничего не уходит
+  formEndpoint: '',    // FormSubmit / Formspree на готовом сайте
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Melt%20Av.%20Costa%20Pinto%208%20Cascais',
+  hours: [[9,0,16,0], null, [8,0,18,0], [8,0,18,0], [8,0,18,0], [8,0,18,0], [9,0,16,0]], // вс, пн … сб; null = закрыто
+  cakeLeadHours: 48,
+  tz: 'Europe/Lisbon',
+  studio: '../../'
+};
+/* Цены со звёздочкой — из статьи NiT (июль 2026); остальные — пример, сверить с витриной */
+window.MENU = [
+  { id: 'loaf', g: 'bread', price: 5.5, art: 'loaf' },
+  { id: 'half', g: 'bread', price: 3 },
+  { id: 'croissant', g: 'vien', price: 2.4, art: 'croissant' },
+  { id: 'painchoc', g: 'vien', price: 2.8 },
+  { id: 'cruffin', g: 'vien', price: 5.2, art: 'cruffin', real: true },
+  { id: 'almond', g: 'vien', price: 3.8, tags: ['less'] },
+  { id: 'pavlova', g: 'sweet', price: 6.9, art: 'pavlova', real: true, tags: ['less'] },
+  { id: 'medjool', g: 'sweet', price: 2.5, real: true, tags: ['gf'] },
+  { id: 'slice', g: 'sweet', price: 4.5, tags: ['less'] },
+  { id: 'espresso', g: 'drinks', price: 2, real: true },
+  { id: 'cappuccino', g: 'drinks', price: 3.2 },
+  { id: 'matcha', g: 'drinks', price: 5, real: true },
+  { id: 'kombucha', g: 'drinks', price: 4.5 },
+  { id: 'juice', g: 'drinks', price: 4 }
+];
+window.CAKES = {
+  flavours: ['pav', 'choc', 'carrot', 'season'],
+  sizes: [{ id: 's', price: 32 }, { id: 'm', price: 45 }, { id: 'l', price: 62 }],
+  gf: 4
+};
+
+const I18N = {
+pt: {
+  rib_tag: 'Conceito', rib: 'Proposta de site para a Melt, feita pela Orla. Não é o site oficial — textos e alguns preços são de exemplo.',
+  nav_menu: 'Vitrine', nav_cakes: 'Bolos', nav_house: 'A casa', nav_visit: 'Visitar', hdr_cta: 'Reservar',
+  hero_eb: 'Padaria & pastelaria · Cascais',
+  hero_h: 'Menos açúcar.<br><em>Mais sabor.</em>',
+  hero_lede: 'Pão de fermentação natural, croissants laminados à mão e bolos com menos açúcar — numa rua calma de Cascais, longe da confusão.',
+  hero_art: 'Ilustração: croissant, pão de fermentação natural, cruffin de caramelo e tâmaras.',
+  badge: 'menos açúcar · mais sabor · ',
+  cta_cake: 'Encomendar um bolo', cta_menu: 'Ver a vitrine',
+  f1: 'Pão do dia', f2: 'Opções sem glúten', f3: 'Esplanada coberta',
+  st_open: 'Aberto agora · até às {c}', st_later: 'Abrimos hoje às {o}', st_closed: 'Hoje fechado · abrimos {d} às {o}', d_tomorrow: 'amanhã',
+  menu_eb: 'A vitrine', menu_h: 'Tudo feito aqui, todos os dias.',
+  menu_p: 'O açúcar fica em segundo plano, para se sentir a manteiga, a fruta e o grão. Reserve hoje e levante amanhã de manhã — antes que os croissants acabem.',
+  fav_h: 'Os favoritos', g_bread: 'Pão', g_vien: 'Viennoiserie', g_sweet: 'Bolos e doces', g_drinks: 'Café e bebidas',
+  tag_less: 'menos açúcar', tag_gf: 'sem glúten',
+  m_loaf_n: 'Pão de fermentação natural', m_loaf_d: 'Fermentação lenta, crosta estaladiça',
+  m_half_n: 'Meio pão', m_half_d: '',
+  m_croissant_n: 'Croissant', m_croissant_d: 'Massa laminada à mão, muita manteiga',
+  m_painchoc_n: 'Pain au chocolat', m_painchoc_d: '',
+  m_cruffin_n: 'Cruffin de caramelo', m_cruffin_d: 'Massa de croissant em forma de muffin, com caramelo',
+  m_almond_n: 'Croissant de amêndoa', m_almond_d: 'Recheio de amêndoa, menos doce do que o costume',
+  m_pavlova_n: 'Pavlova', m_pavlova_d: 'Merengue estaladiço, natas e frutos vermelhos',
+  m_medjool_n: 'Medjool', m_medjool_d: 'Tâmaras, fruta seca e xarope de ácer',
+  m_slice_n: 'Fatia de bolo do dia', m_slice_d: 'Muda conforme a vitrine',
+  m_espresso_n: 'Espresso', m_espresso_d: 'Café de especialidade',
+  m_cappuccino_n: 'Cappuccino', m_cappuccino_d: '',
+  m_matcha_n: 'Matcha latte', m_matcha_d: '',
+  m_kombucha_n: 'Kombucha', m_kombucha_d: 'Captain Kombucha, linha Electrolyte',
+  m_juice_n: 'Sumo natural', m_juice_d: 'Da fruta do dia',
+  add: 'Adicionar: {n}',
+  order_eb: 'Reservar e levantar', order_h: 'Os croissants esgotam. Reserve os seus.', order_p: 'Toque em + na vitrine e escolha a hora. Guardamos tudo até lá.',
+  cart_empty: 'Ainda vazio — toque em + na vitrine.', cart_total: 'Total', less: 'Menos', more: 'Mais',
+  f_day: 'Dia', f_time: 'Hora', f_name: 'Nome', f_phone: 'Telefone', f_send: 'Reservar',
+  d_today: 'Hoje', d_tom: 'Amanhã', no_slots: 'Sem horários neste dia',
+  err_cart: 'Adicione pelo menos um produto da vitrine.', err_req: 'Preencha o nome, o telefone e a hora.',
+  res_h: 'Pedido pronto', res_note: 'Conceito: nada foi enviado. No site final, o pedido chega à Melt por WhatsApp ou e-mail.',
+  copy: 'Copiar', copied: 'Copiado ✓',
+  msg_hi: 'Olá Melt! Gostaria de reservar para levantar:', msg_total: 'Total', msg_pick: 'Levantamento', msg_name: 'Nome', msg_phone: 'Telefone',
+  cake_eb: 'Bolos por encomenda', cake_h: 'Um bolo para o seu dia.',
+  cake_p: 'Aniversários, batizados, eventos de empresa. A Vanda faz cada bolo à mão, com menos açúcar — e com a precisão de quem passou 20 anos a fazer joias.',
+  lead_note: 'Precisamos de {h} h. A primeira data livre é {d}.',
+  k_flavour: 'Bolo', fl_pav: 'Pavlova de frutos vermelhos', fl_choc: 'Chocolate e avelã', fl_carrot: 'Cenoura e especiarias', fl_season: 'Fruta da época',
+  k_size: 'Tamanho', sz_s: 'Ø 16 cm', sz_m: 'Ø 20 cm', sz_l: 'Ø 24 cm', sz_s_p: '6–8 pessoas', sz_m_p: '10–12 pessoas', sz_l_p: '16–20 pessoas',
+  k_gf: 'Sem glúten (+ €4)', k_text: 'Texto no bolo (opcional)', k_text_ph: 'Parabéns, Marta!',
+  k_date: 'Data de levantamento', k_est: 'Estimativa', k_est_note: 'Preços de exemplo — a Melt confirma o valor.', k_send: 'Pedir este bolo',
+  err_mon: 'À segunda-feira estamos fechados — escolha outro dia.', err_early: 'Precisamos de {h} h: a primeira data livre é {d}.', err_cake: 'Preencha a data, a hora, o nome e o telefone.',
+  msg_cake: 'Olá Melt! Gostaria de encomendar um bolo:', msg_flavour: 'Bolo', msg_size: 'Tamanho', msg_gf: 'Sem glúten: sim', msg_text: 'Texto no bolo', msg_est: 'Estimativa',
+  house_eb: 'A casa', house_h: 'Uma padaria do norte da Europa, em Cascais.',
+  house_p: 'A ideia nasceu de visitas a padarias de Copenhaga, Bratislava, Madrid e Barcelona. Depois, um ano à procura do espaço certo — numa rua tranquila, para quem vive aqui.',
+  route: ['Copenhaga', 'Bratislava', 'Madrid', 'Barcelona', 'Cascais'],
+  t1_h: 'O pão', t1_p: 'Fermentação natural, todos os dias. O nosso padeiro trouxe o ofício da Eslováquia.',
+  t2_h: 'A viennoiserie', t2_p: 'O chef Kerim lamina a massa à mão: croissants clássicos, cruffins e combinações novas.',
+  t3_h: 'Os bolos', t3_p: 'A Vanda trocou 20 anos de joalharia pela pastelaria. A vitrine e as encomendas são dela.',
+  b2b_h: 'Para restaurantes e cafés', b2b_p: 'Já fornecemos pão de fermentação natural a restaurantes de Cascais. Fale connosco para receber a lista e os dias de entrega.', b2b_cta: 'Falar connosco ↗',
+  vi_eb: 'Visitar', vi_h: 'Venha tomar o pequeno-almoço.', vi_p: 'Sala interior e esplanada coberta, fora das ruas mais movimentadas — para ficar com calma.',
+  k_addr: 'Morada', k_hours: 'Horário', k_ig: 'Instagram', closed: 'Fechado', maps: 'Abrir no Google Maps ↗',
+  foot_p: 'Padaria e pastelaria em Cascais. Conceito de site — não oficial.', foot_by: 'Site: Orla, estúdio web',
+  cb_go: 'Ver reserva', cb_items: '{n} itens · {s}', cb_item: '1 item · {s}'
+},
+en: {
+  rib_tag: 'Concept', rib: 'Website proposal for Melt by Orla. Not the official site — copy and some prices are examples.',
+  nav_menu: 'Counter', nav_cakes: 'Cakes', nav_house: 'About', nav_visit: 'Visit', hdr_cta: 'Reserve',
+  hero_eb: 'Bakery & pastry · Cascais',
+  hero_h: 'Less sugar.<br><em>More flavour.</em>',
+  hero_lede: 'Sourdough bread, hand-laminated croissants and cakes with less sugar — on a quiet street in Cascais, away from the crowds.',
+  hero_art: 'Illustration: croissant, sourdough loaf, caramel cruffin and dates.',
+  badge: 'less sugar · more flavour · ',
+  cta_cake: 'Order a cake', cta_menu: 'See the counter',
+  f1: 'Bread baked daily', f2: 'Gluten-free options', f3: 'Covered terrace',
+  st_open: 'Open now · until {c}', st_later: 'Opening today at {o}', st_closed: 'Closed today · opening {d} at {o}', d_tomorrow: 'tomorrow',
+  menu_eb: 'The counter', menu_h: 'Everything made here, every day.',
+  menu_p: 'Sugar takes a back seat so you can taste the butter, the fruit and the grain. Reserve today, pick up tomorrow morning — before the croissants sell out.',
+  fav_h: 'Favourites', g_bread: 'Bread', g_vien: 'Viennoiserie', g_sweet: 'Cakes & sweets', g_drinks: 'Coffee & drinks',
+  tag_less: 'less sugar', tag_gf: 'gluten-free',
+  m_loaf_n: 'Sourdough loaf', m_loaf_d: 'Slow fermentation, crackling crust',
+  m_half_n: 'Half loaf', m_half_d: '',
+  m_croissant_n: 'Croissant', m_croissant_d: 'Hand-laminated dough, plenty of butter',
+  m_painchoc_n: 'Pain au chocolat', m_painchoc_d: '',
+  m_cruffin_n: 'Caramel cruffin', m_cruffin_d: 'Croissant dough baked as a muffin, with caramel',
+  m_almond_n: 'Almond croissant', m_almond_d: 'Almond filling, less sweet than usual',
+  m_pavlova_n: 'Pavlova', m_pavlova_d: 'Crisp meringue, cream and red berries',
+  m_medjool_n: 'Medjool', m_medjool_d: 'Dates, dried fruit and maple syrup',
+  m_slice_n: 'Cake of the day, slice', m_slice_d: 'Changes with the counter',
+  m_espresso_n: 'Espresso', m_espresso_d: 'Speciality coffee',
+  m_cappuccino_n: 'Cappuccino', m_cappuccino_d: '',
+  m_matcha_n: 'Matcha latte', m_matcha_d: '',
+  m_kombucha_n: 'Kombucha', m_kombucha_d: 'Captain Kombucha, Electrolyte range',
+  m_juice_n: 'Fresh juice', m_juice_d: 'From the fruit of the day',
+  add: 'Add: {n}',
+  order_eb: 'Reserve & pick up', order_h: 'The croissants sell out. Reserve yours.', order_p: 'Tap + on the counter and choose a time. We’ll keep it all for you.',
+  cart_empty: 'Still empty — tap + on the counter.', cart_total: 'Total', less: 'Less', more: 'More',
+  f_day: 'Day', f_time: 'Time', f_name: 'Name', f_phone: 'Phone', f_send: 'Reserve',
+  d_today: 'Today', d_tom: 'Tomorrow', no_slots: 'No times left that day',
+  err_cart: 'Add at least one item from the counter.', err_req: 'Please fill in name, phone and time.',
+  res_h: 'Order ready', res_note: 'Concept: nothing was sent. On the final site the order reaches Melt by WhatsApp or email.',
+  copy: 'Copy', copied: 'Copied ✓',
+  msg_hi: 'Hi Melt! I’d like to reserve for pickup:', msg_total: 'Total', msg_pick: 'Pickup', msg_name: 'Name', msg_phone: 'Phone',
+  cake_eb: 'Cakes to order', cake_h: 'A cake for your day.',
+  cake_p: 'Birthdays, christenings, company events. Vanda makes every cake by hand, with less sugar — and with the precision of someone who spent 20 years making jewellery.',
+  lead_note: 'We need {h} h. The first free date is {d}.',
+  k_flavour: 'Cake', fl_pav: 'Red-berry pavlova', fl_choc: 'Chocolate & hazelnut', fl_carrot: 'Carrot & spice', fl_season: 'Fruit of the season',
+  k_size: 'Size', sz_s: 'Ø 16 cm', sz_m: 'Ø 20 cm', sz_l: 'Ø 24 cm', sz_s_p: '6–8 people', sz_m_p: '10–12 people', sz_l_p: '16–20 people',
+  k_gf: 'Gluten-free (+ €4)', k_text: 'Writing on the cake (optional)', k_text_ph: 'Happy birthday, Marta!',
+  k_date: 'Pickup date', k_est: 'Estimate', k_est_note: 'Sample prices — Melt confirms the final price.', k_send: 'Request this cake',
+  err_mon: 'We’re closed on Mondays — please pick another day.', err_early: 'We need {h} h: the first free date is {d}.', err_cake: 'Please fill in date, time, name and phone.',
+  msg_cake: 'Hi Melt! I’d like to order a cake:', msg_flavour: 'Cake', msg_size: 'Size', msg_gf: 'Gluten-free: yes', msg_text: 'Writing', msg_est: 'Estimate',
+  house_eb: 'About', house_h: 'A northern-European bakery, in Cascais.',
+  house_p: 'The idea came from bakeries in Copenhagen, Bratislava, Madrid and Barcelona. Then a year of searching for the right space — on a quiet street, for the people who live here.',
+  route: ['Copenhagen', 'Bratislava', 'Madrid', 'Barcelona', 'Cascais'],
+  t1_h: 'The bread', t1_p: 'Natural fermentation, every day. Our baker brought the craft from Slovakia.',
+  t2_h: 'The viennoiserie', t2_p: 'Chef Kerim laminates the dough by hand: classic croissants, cruffins and new combinations.',
+  t3_h: 'The cakes', t3_p: 'Vanda swapped 20 years of jewellery for pastry. The counter and the cake orders are hers.',
+  b2b_h: 'For restaurants and cafés', b2b_p: 'We already supply sourdough to restaurants in Cascais. Get in touch for the list and delivery days.', b2b_cta: 'Get in touch ↗',
+  vi_eb: 'Visit', vi_h: 'Come for breakfast.', vi_p: 'Indoor room and a covered terrace, away from the busiest streets — made for taking your time.',
+  k_addr: 'Address', k_hours: 'Hours', k_ig: 'Instagram', closed: 'Closed', maps: 'Open in Google Maps ↗',
+  foot_p: 'Bakery and pastry in Cascais. Website concept — unofficial.', foot_by: 'Site: Orla web studio',
+  cb_go: 'View order', cb_items: '{n} items · {s}', cb_item: '1 item · {s}'
+}
+};
+const LOC = { pt: 'pt-PT', en: 'en-GB' };
+let lang = (() => {
+  try { const s = localStorage.getItem('melt-lang'); if (s && I18N[s]) return s; } catch (e) {}
+  return (navigator.language || 'en').toLowerCase().startsWith('pt') ? 'pt' : 'en';
+})();
+const t = k => (I18N[lang][k] != null ? I18N[lang][k] : (I18N.en[k] != null ? I18N.en[k] : k));
+const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => (o[k] != null ? o[k] : ''));
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ===== time (Europe/Lisbon, DST-safe) ===== */
+const TZ = SITE.tz, RAD = Math.PI / 180;
+const partsFmt = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+function tzParts(ms) { const o = {}; partsFmt.formatToParts(new Date(ms)).forEach(p => { o[p.type] = p.value; }); return { y: +o.year, m: +o.month, d: +o.day, h: +o.hour % 24, mi: +o.minute, s: +o.second }; }
+function tzOffset(ms) { const p = tzParts(ms); return Date.UTC(p.y, p.m - 1, p.d, p.h, p.mi, p.s) - Math.floor(ms / 1000) * 1000; }
+function at(day, h, mi) { const g = Date.UTC(day.y, day.m - 1, day.d, h, mi); return g - tzOffset(g); }
+function dayOf(ms) { const p = tzParts(ms); return { y: p.y, m: p.m, d: p.d }; }
+const today = () => dayOf(Date.now());
+function addDays(day, n) { const d = new Date(Date.UTC(day.y, day.m - 1, day.d + n)); return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate() }; }
+const sameDay = (a, b) => a.y === b.y && a.m === b.m && a.d === b.d;
+const isoDay = day => `${day.y}-${String(day.m).padStart(2, '0')}-${String(day.d).padStart(2, '0')}`;
+const parseIso = v => { const [y, m, d] = v.split('-').map(Number); return { y, m, d }; };
+const dow = day => new Date(Date.UTC(day.y, day.m - 1, day.d)).getUTCDay();
+const pad = n => String(n).padStart(2, '0');
+const hhmm = (h, mi) => `${h}:${pad(mi)}`;
+const hoursOf = day => SITE.hours[dow(day)];
+const dayName = (day, opts) => new Intl.DateTimeFormat(LOC[lang], Object.assign({ timeZone: 'UTC' }, opts)).format(new Date(Date.UTC(day.y, day.m - 1, day.d, 12)));
+const eur = v => '€' + (Number.isInteger(v) ? v : v.toFixed(2).replace('.', lang === 'en' ? '.' : ','));
+
+function status() {
+  const n = Date.now(), d = today(), H = hoursOf(d);
+  if (H) {
+    const o = at(d, H[0], H[1]), c = at(d, H[2], H[3]);
+    if (n >= o && n < c) return { k: 'open', H };
+    if (n < o) return { k: 'later', H };
+  }
+  for (let i = 1; i < 8; i++) { const dd = addDays(d, i), HH = hoursOf(dd); if (HH) return { k: 'closed', H: HH, i, day: dd }; }
+  return { k: 'closed', H: null, i: 0 };
+}
+function statusText() {
+  const s = status();
+  if (s.k === 'open') return fill(t('st_open'), { c: hhmm(s.H[2], s.H[3]) });
+  if (s.k === 'later') return fill(t('st_later'), { o: hhmm(s.H[0], s.H[1]) });
+  const d = s.i === 1 ? t('d_tomorrow') : dayName(s.day, { weekday: 'long' });
+  return s.H ? fill(t('st_closed'), { d, o: hhmm(s.H[0], s.H[1]) }) : t('closed');
+}
+
+/* ===== drawings ===== */
+const f1 = n => +n.toFixed(1);
+function rnd(seed) { let a = seed * 9301 + 49297; return () => { a = (a * 9301 + 49297) % 233280; return a / 233280; }; }
+const drop = (x, top, L, r, sw) => `M${f1(x - sw)} ${f1(top)}C${f1(x - r)} ${f1(top + 4)} ${f1(x - r)} ${f1(L - 2 * r)} ${f1(x - r)} ${f1(L - r)}A${f1(r)} ${f1(r)} 0 0 0 ${f1(x + r)} ${f1(L - r)}C${f1(x + r)} ${f1(L - 2 * r)} ${f1(x + r)} ${f1(top + 4)} ${f1(x + sw)} ${f1(top)}Z`;
+let clipN = 0;
+function croissant() {
+  const id = 'cr' + (++clipN);
+  const body = 'M20 142C26 104 58 64 100 62C142 64 174 104 180 142C170 152 154 152 142 144C128 154 114 156 100 156C86 156 72 154 58 144C46 152 30 152 20 142Z';
+  return `<defs><clipPath id="${id}"><path d="${body}"/></clipPath></defs><path class="bk" d="${body}"/>
+<g clip-path="url(#${id})"><path class="bkd" opacity=".6" d="M0 148C40 130 70 134 100 140C130 134 160 130 200 148V200H0Z"/>
+<ellipse class="bkl" cx="100" cy="84" rx="15" ry="10"/><ellipse class="bkl" cx="74" cy="94" rx="10" ry="8" transform="rotate(-22 74 94)"/><ellipse class="bkl" cx="126" cy="94" rx="10" ry="8" transform="rotate(22 126 94)"/>
+<ellipse class="bkl" cx="51" cy="112" rx="7" ry="5.5" transform="rotate(-40 51 112)"/><ellipse class="bkl" cx="149" cy="112" rx="7" ry="5.5" transform="rotate(40 149 112)"/><ellipse class="hi" cx="94" cy="80" rx="6" ry="2.6" transform="rotate(-10 94 80)"/>
+<path class="l" d="M40 96C50 116 50 140 42 160M60 72C72 98 72 132 62 160M86 56C94 90 94 130 86 166M114 56C106 90 106 130 114 166M140 72C128 98 128 132 138 160M160 96C150 116 150 140 158 160"/></g>
+<path class="o no" d="${body}"/>`;
+}
+const cruffin = () => `<path class="o kr" d="M62 122L138 122L128 174Q100 180 72 174Z"/><path class="l2" d="M74 126L79 172M87 126L89 175M100 126V176M113 126L111 175M126 126L121 172"/>
+<path class="o bk" d="M56 124C50 92 72 58 100 56C128 58 150 92 144 124C120 132 80 132 56 124Z"/><path class="l2" d="M64 114C70 88 86 72 100 70M136 114C130 88 114 72 100 70M78 122C80 100 90 86 100 84C110 86 120 100 122 122"/>
+<path class="o ca" d="M70 84C80 70 120 70 130 84C132 92 124 96 118 92C112 100 104 92 98 98C92 92 84 100 78 94C72 98 66 92 70 84Z"/><ellipse class="hi" cx="92" cy="79" rx="7" ry="2.4" transform="rotate(-10 92 79)"/>
+<circle class="wh" cx="72" cy="108" r="1.6"/><circle class="wh" cx="84" cy="116" r="1.4"/><circle class="wh" cx="116" cy="114" r="1.6"/><circle class="wh" cx="132" cy="106" r="1.4"/>`;
+const loaf = () => `<ellipse class="o bkd" cx="100" cy="124" rx="78" ry="48"/><path class="fl" d="M40 114C60 92 88 84 112 86C90 92 64 102 44 122Z"/><ellipse class="fl" cx="130" cy="142" rx="24" ry="7" transform="rotate(-8 130 142)"/>
+<path class="o bkl" d="M42 118C72 88 128 82 164 104C150 104 136 100 120 100C92 100 66 108 42 118Z"/><path class="l2" d="M30 136C60 166 140 168 172 136"/><path class="l2" d="M64 140l10-6M92 150l10-6M122 148l10-6"/>`;
+const rasp = (x, y, r) => { r = r || 9; let s = `<circle class="o rb" cx="${x}" cy="${y}" r="${r}"/>`; [[-.4, -.35], [.35, -.4], [-.45, .25], [.3, .3], [0, 0]].forEach(([a, b]) => { s += `<circle class="rb2" cx="${f1(x + a * r)}" cy="${f1(y + b * r)}" r="${f1(r * .22)}"/>`; }); return s; };
+const bberry = (x, y, r) => `<circle class="o bb" cx="${x}" cy="${y}" r="${r}"/><circle class="hi" cx="${f1(x - r * .35)}" cy="${f1(y - r * .35)}" r="${f1(r * .22)}"/>`;
+const mint = (x, y, rot) => `<path class="o lf" d="M0 0C6-8 18-9 24 0C18 9 6 8 0 0Z" transform="translate(${x} ${y}) rotate(${rot})"/>`;
+const pavlova = () => `<ellipse class="o wh" cx="100" cy="166" rx="86" ry="17"/><path class="o cr" d="M28 158C26 132 34 118 50 112L150 112C166 118 174 132 172 158C140 172 60 172 28 158Z"/>
+<path class="l2" d="M44 158C40 140 46 126 56 118M70 164C66 146 70 130 78 120M100 166V122M130 164C134 146 130 130 122 120M156 158C160 140 154 126 144 118"/>
+<path class="o wh" d="M40 116C40 100 56 94 68 98C74 86 96 82 106 92C116 82 140 88 142 100C156 98 164 108 160 118C120 128 80 128 40 116Z"/>${rasp(76, 100)}${rasp(116, 92)}${rasp(140, 106, 8)}${bberry(98, 106, 7)}${bberry(124, 112, 6.5)}${mint(100, 84, -30)}`;
+const dates = () => `<g transform="rotate(-16 84 104)"><ellipse class="o dt" cx="84" cy="104" rx="44" ry="21"/><path class="l2" d="M52 98C66 92 84 94 98 100M60 112C78 116 96 114 112 108"/><ellipse class="hi" cx="70" cy="96" rx="10" ry="3"/></g>
+<g transform="rotate(12 122 136)"><ellipse class="o dt" cx="122" cy="136" rx="42" ry="20"/><path class="l2" d="M92 132C108 126 124 128 138 134M98 144C114 148 130 146 146 140"/><ellipse class="hi" cx="108" cy="128" rx="9" ry="3"/></g>`;
+function cake() {
+  let s = `<path class="o wh" d="M106 212L100 232H140L134 212Z"/><ellipse class="o wh" cx="120" cy="206" rx="98" ry="14"/>`;
+  s += `<path class="o cr" d="M50 116V188C70 202 170 202 190 188V116Z"/>`;
+  for (let i = 0; i < 9; i++) { const x = 58 + i * 15.5, y = 190 + 9 * Math.sin(Math.acos((x - 120) / 70)); s += `<circle class="o wh" cx="${f1(x)}" cy="${f1(y - 4)}" r="6"/>`; }
+  s += `<ellipse class="o ca" cx="120" cy="116" rx="70" ry="20"/>`;
+  const R = rnd(5);
+  [56, 72, 90, 108, 128, 146, 164, 182].forEach(x => { const y0 = 116 + 20 * Math.sqrt(Math.max(0, 1 - ((x - 120) / 70) ** 2)) - 3, L = y0 + 12 + R() * 34, r = 4.5 + R() * 2; s += `<path class="o ca" d="${drop(x, y0, L, r, r + 3)}"/>`; });
+  s += `<ellipse class="ca" cx="120" cy="116" rx="68.6" ry="18.6"/><ellipse class="hi" cx="96" cy="110" rx="18" ry="3"/>`;
+  s += `<rect class="o bn" x="134" y="70" width="8" height="34" rx="2"/><path class="l2" d="M134 78l8-4M134 88l8-4M134 98l8-4"/><path class="o fm" d="M138 50C147 60 145 68 138 68C131 68 129 60 138 50Z"/>`;
+  s += rasp(98, 106) + rasp(150, 110, 8) + bberry(116, 112, 6.5) + bberry(80, 114, 6) + mint(104, 96, -40);
+  return s;
+}
+const ART = { croissant, cruffin, loaf, pavlova, dates, cake };
+const art = (k, vb) => `<svg class="f" viewBox="${vb || '0 0 200 200'}" aria-hidden="true">${ART[k]()}</svg>`;
+function heroArt() {
+  let s = `<circle class="pk" cx="300" cy="272" r="226"/>`;
+  s += `<g transform="translate(70 70) scale(1.45)">${loaf()}</g>`;
+  s += `<g transform="translate(322 32) scale(1.25)">${cruffin()}</g>`;
+  s += `<g transform="translate(30 300) scale(.95)">${dates()}</g>`;
+  s += `<g transform="translate(150 196) scale(1.7)">${croissant()}</g>`;
+  [[480, 330], [492, 344], [470, 352], [120, 470], [134, 478], [250, 488], [262, 480]].forEach(([x, y], i) => { s += `<circle class="crumb" cx="${x}" cy="${y}" r="${i % 2 ? 2.2 : 3}"/>`; });
+  const txt = t('badge');
+  s += `<g class="badge" transform="translate(104 98)"><circle class="cb o" r="62"/><g class="spin"><path id="bp" class="no" d="M0 -44A44 44 0 1 1 0 44A44 44 0 1 1 0 -44"/><text><textPath href="#bp" textLength="272" lengthAdjust="spacingAndGlyphs">${esc(txt)}</textPath></text></g><g transform="translate(-21 -24) scale(.21)">${croissant()}</g></g>`;
+  $('#heroArt').innerHTML = s;
+  $('#heroArt').setAttribute('aria-label', t('hero_art'));
+}
+
+/* glaze: caramel pouring over the top of the page */
+function glaze(el) {
+  const w = Math.max(320, Math.round(el.getBoundingClientRect().width));
+  if (el.dataset.w === String(w) && el.dataset.l === lang) return;
+  el.dataset.w = w; el.dataset.l = lang;
+  const foot = el.classList.contains('milkdrip');
+  const H = foot ? (w < 600 ? 54 : 78) : (w < 600 ? 62 : 100), band = foot ? 10 : 14;
+  const R = rnd(+el.dataset.seed || 3);
+  let x = 14 + R() * 26, d = '';
+  while (x < w - 12) {
+    const r = 5 + R() * 6, L = band + 14 + Math.pow(R(), 1.5) * (H - band - 18 - r);
+    d += `<g class="drip" style="animation-delay:${(-R() * 7).toFixed(2)}s"><path d="${drop(x, band - 1, L, r, r + 4 + R() * 5)}"/><ellipse cx="${f1(x - r * .35)}" cy="${f1(L - r * 1.15)}" rx="${f1(r * .22)}" ry="${f1(r * .42)}"/></g>`;
+    x += 34 + R() * 84;
+  }
+  el.innerHTML = `<svg width="${w}" height="${H}" viewBox="0 0 ${w} ${H}"><rect class="band" width="${w}" height="${band}"/>${d}</svg>`;
+}
+
+/* ===== cart ===== */
+const PLUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+const cart = new Map();
+const item = id => MENU.find(m => m.id === id);
+const nm = id => t('m_' + id + '_n');
+function addItem(id, dlt) { const q = Math.max(0, (cart.get(id) || 0) + dlt); if (q) cart.set(id, q); else cart.delete(id); renderCart(); }
+function cartSum() { let s = 0, c = 0; cart.forEach((q, id) => { s += q * item(id).price; c += q; }); return { s, c }; }
+function renderCart() {
+  const ul = $('#cart'); ul.innerHTML = '';
+  cart.forEach((q, id) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${esc(nm(id))}</span><span class="qty"><button type="button" aria-label="${esc(t('less'))}">−</button><span>${q}</span><button type="button" aria-label="${esc(t('more'))}">+</button></span><span class="cp">${eur(q * item(id).price)}</span>`;
+    const [m, p] = li.querySelectorAll('button');
+    m.onclick = () => addItem(id, -1); p.onclick = () => addItem(id, 1);
+    ul.appendChild(li);
+  });
+  const { s, c } = cartSum();
+  $('#cartEmpty').hidden = c > 0; $('#totalRow').hidden = c === 0; ul.hidden = c === 0;
+  $('#total').textContent = eur(s);
+  $$('.add[data-id]').forEach(b => { b.dataset.n = cart.get(b.dataset.id) || 0; });
+  $('#cbText').textContent = fill(t(c === 1 ? 'cb_item' : 'cb_items'), { n: c, s: eur(s) });
+  updateBar();
+}
+let orderVisible = false;
+function updateBar() { $('#cartBar').hidden = cartSum().c === 0 || orderVisible; }
+new IntersectionObserver(es => { es.forEach(en => { orderVisible = en.isIntersecting; }); updateBar(); }, { threshold: .05 }).observe($('#order'));
+
+/* ===== menu ===== */
+const tagsHtml = m => (m.tags || []).map(k => `<span class="tag${k === 'gf' ? ' gf' : ''}">${esc(t('tag_' + k))}</span>`).join('');
+function renderMenu() {
+  const addBtn = (m, cls) => `<button type="button" class="add${cls}" data-id="${m.id}" aria-label="${esc(fill(t('add'), { n: nm(m.id) }))}">${PLUS}</button>`;
+  $('#feat').innerHTML = MENU.filter(m => m.art).map(m => `<article class="dish"><div class="art">${art(m.art)}</div><h3>${esc(nm(m.id))}</h3><p>${esc(t('m_' + m.id + '_d'))}</p><div class="row"><span class="price">${eur(m.price)}</span>${addBtn(m, '')}</div></article>`).join('');
+  $('#mlist').innerHTML = ['bread', 'vien', 'sweet', 'drinks'].map(g => `<div class="mgroup"><h3>${esc(t('g_' + g))}</h3><ul>${MENU.filter(m => m.g === g).map(m => {
+    const d = t('m_' + m.id + '_d'), tg = tagsHtml(m);
+    return `<li class="mi"><div class="mi-top"><span class="mi-n">${esc(nm(m.id))}</span><span class="dots"></span><span class="mi-p">${eur(m.price)}</span>${addBtn(m, ' sm')}</div>${d || tg ? `<p class="mi-d">${d ? `<span>${esc(d)}</span>` : ''}${tg}</p>` : ''}</li>`;
+  }).join('')}</ul></div>`).join('');
+  $$('.add[data-id]').forEach(b => { b.onclick = () => addItem(b.dataset.id, 1); });
+}
+
+/* ===== pickup form ===== */
+function slots(day, step, lead) {
+  const H = hoursOf(day); if (!H) return [];
+  const out = [], o = H[0] * 60 + H[1] + step, c = H[2] * 60 + H[3] - step, isT = sameDay(day, today());
+  const p = tzParts(Date.now()), nowM = p.h * 60 + p.mi;
+  for (let m = o; m <= c; m += step) { if (isT && m < nowM + lead) continue; out.push(m); }
+  return out;
+}
+const timeOpts = (list, cur) => list.length ? list.map(m => { const s = hhmm(Math.floor(m / 60), m % 60); return `<option value="${s}" ${s === cur ? 'selected' : ''}>${s}</option>`; }).join('') : `<option value="">${esc(t('no_slots'))}</option>`;
+let pickDays = [];
+function renderDays() {
+  const d0 = today(); pickDays = [];
+  for (let i = 0; i < 10 && pickDays.length < 3; i++) { const d = addDays(d0, i); if (slots(d, 15, 30).length) pickDays.push({ d, i }); }
+  const cur = ($('#dayChips input:checked') || {}).value;
+  $('#dayChips').innerHTML = pickDays.map((x, k) => {
+    const lbl = x.i === 0 ? t('d_today') : x.i === 1 ? t('d_tom') : dayName(x.d, { weekday: 'short', day: 'numeric', month: 'short' });
+    const v = isoDay(x.d);
+    return `<label class="chip"><input type="radio" name="day" value="${v}" ${(cur ? cur === v : k === 0) ? 'checked' : ''}><span>${esc(lbl)}</span></label>`;
+  }).join('');
+  if (!$('#dayChips input:checked') && $('#dayChips input')) $('#dayChips input').checked = true;
+  $$('#dayChips input').forEach(i => { i.onchange = renderTimes; });
+  renderTimes();
+}
+function renderTimes() {
+  const v = ($('#dayChips input:checked') || {}).value, x = pickDays.find(p => isoDay(p.d) === v);
+  $('#oTime').innerHTML = timeOpts(x ? slots(x.d, 15, 30) : [], $('#oTime').value);
+}
+function resultBox(box, msg) {
+  box.innerHTML = `<h4>${esc(t('res_h'))}</h4><pre>${esc(msg)}</pre><div class="acts"><button type="button" class="btn line sm cpy">${esc(t('copy'))}</button></div><p class="cnote">${esc(t('res_note'))}</p>`;
+  box.hidden = false;
+  const b = box.querySelector('.cpy');
+  b.onclick = () => {
+    const ok = () => { b.textContent = t('copied'); setTimeout(() => { b.textContent = t('copy'); }, 1800); };
+    const sel = () => { const r = document.createRange(); r.selectNodeContents(box.querySelector('pre')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(msg).then(ok, sel); } catch (e) { sel(); }
+  };
+  box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+}
+$('#orderForm').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const err = $('#oErr'), f = ev.target, v = n => f.elements[n].value.trim();
+  const { s, c } = cartSum();
+  if (!c) { err.textContent = t('err_cart'); err.hidden = false; return; }
+  if (!v('name') || !v('phone') || !v('time')) { err.textContent = t('err_req'); err.hidden = false; return; }
+  err.hidden = true;
+  const dv = ($('#dayChips input:checked') || {}).value, x = pickDays.find(p => isoDay(p.d) === dv);
+  const dl = x ? (x.i === 0 ? t('d_today').toLowerCase() : x.i === 1 ? t('d_tom').toLowerCase() : dayName(x.d, { weekday: 'long', day: 'numeric', month: 'long' })) : '';
+  const lines = [t('msg_hi')];
+  cart.forEach((q, id) => lines.push(`• ${q}× ${nm(id)} — ${eur(q * item(id).price)}`));
+  lines.push(`${t('msg_total')}: ${eur(s)}`, '', `${t('msg_pick')}: ${dl}, ${v('time')}`, `${t('msg_name')}: ${v('name')}`, `${t('msg_phone')}: ${v('phone')}`);
+  resultBox($('#oRes'), lines.join('\n'));
+});
+
+/* ===== cake orders: lead time, Mondays closed, estimate ===== */
+let flavour = 'pav', size = 'm';
+function earliestCakeDay() {
+  const ready = Date.now() + SITE.cakeLeadHours * 36e5;
+  let d = dayOf(ready);
+  for (let i = 0; i < 14; i++) {
+    const H = hoursOf(d);
+    if (H && ready < at(d, H[2], H[3]) - 30 * 6e4) return d;
+    d = addDays(d, 1);
+    if (hoursOf(d)) return d;
+  }
+  return d;
+}
+const longDay = d => dayName(d, { weekday: 'long', day: 'numeric', month: 'long' });
+function cakeSlots(day) {
+  const H = hoursOf(day); if (!H) return [];
+  const first = earliestCakeDay(), out = [], ready = Date.now() + SITE.cakeLeadHours * 36e5;
+  for (let m = H[0] * 60 + H[1] + 30; m <= H[2] * 60 + H[3] - 30; m += 30) {
+    if (sameDay(day, first) && at(day, Math.floor(m / 60), m % 60) < ready) continue;
+    out.push(m);
+  }
+  return out;
+}
+function renderCakeForm() {
+  const first = earliestCakeDay();
+  $('#leadNote').innerHTML = `<b>${SITE.cakeLeadHours} h</b><span>${esc(fill(t('lead_note'), { h: SITE.cakeLeadHours, d: longDay(first) }))}</span>`;
+  $('#kDate').min = isoDay(first);
+  if (!$('#kDate').value) $('#kDate').value = isoDay(first);
+  $('#flavours').innerHTML = CAKES.flavours.map(k => `<label class="chip"><input type="radio" name="flavour" value="${k}" ${k === flavour ? 'checked' : ''}><span>${esc(t('fl_' + k))}</span></label>`).join('');
+  $('#sizes').innerHTML = CAKES.sizes.map(z => `<label class="chip"><input type="radio" name="size" value="${z.id}" ${z.id === size ? 'checked' : ''}><span><span>${esc(t('sz_' + z.id))} · ${esc(t('sz_' + z.id + '_p'))}</span><small>${eur(z.price)}</small></span></label>`).join('');
+  $$('#flavours input').forEach(i => { i.onchange = () => { flavour = i.value; }; });
+  $$('#sizes input').forEach(i => { i.onchange = () => { size = i.value; renderEstimate(); }; });
+  renderCakeTimes(); renderEstimate();
+}
+function cakeDateCheck() {
+  const v = $('#kDate').value; if (!v) return { ok: false };
+  const d = parseIso(v), first = earliestCakeDay();
+  if (!hoursOf(d)) return { ok: false, msg: t('err_mon') };
+  if (isoDay(d) < isoDay(first)) return { ok: false, msg: fill(t('err_early'), { h: SITE.cakeLeadHours, d: longDay(first) }) };
+  return { ok: true, d };
+}
+function renderCakeTimes() {
+  const c = cakeDateCheck(), err = $('#kErr');
+  if (c.msg) { err.textContent = c.msg; err.hidden = false; } else if ($('#kDate').value) err.hidden = true;
+  $('#kTime').innerHTML = timeOpts(c.ok ? cakeSlots(c.d) : [], $('#kTime').value);
+}
+function cakePrice() { return CAKES.sizes.find(z => z.id === size).price + ($('#kGf').checked ? CAKES.gf : 0); }
+function renderEstimate() { $('#kEst').textContent = '≈ ' + eur(cakePrice()); }
+$('#kDate').addEventListener('input', renderCakeTimes);
+$('#kGf').addEventListener('change', renderEstimate);
+$('#cakeForm').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const f = ev.target, v = n => f.elements[n].value.trim(), err = $('#kErr'), c = cakeDateCheck();
+  if (c.msg) { err.textContent = c.msg; err.hidden = false; return; }
+  if (!c.ok || !v('time') || !v('name') || !v('phone')) { err.textContent = t('err_cake'); err.hidden = false; return; }
+  err.hidden = true;
+  const z = CAKES.sizes.find(s => s.id === size);
+  const lines = [t('msg_cake'), `${t('msg_flavour')}: ${t('fl_' + flavour)}`, `${t('msg_size')}: ${t('sz_' + z.id)} (${t('sz_' + z.id + '_p')})`];
+  if ($('#kGf').checked) lines.push(t('msg_gf'));
+  if (v('text')) lines.push(`${t('msg_text')}: «${v('text')}»`);
+  lines.push(`${t('msg_pick')}: ${longDay(c.d)}, ${v('time')}`, `${t('msg_name')}: ${v('name')}`, `${t('msg_phone')}: ${v('phone')}`, `${t('msg_est')}: ≈ ${eur(cakePrice())}`);
+  resultBox($('#kRes'), lines.join('\n'));
+});
+
+/* ===== house, visit, footer ===== */
+function renderHouse() {
+  $('#route').innerHTML = t('route').map(c => `<li>${esc(c)}</li>`).join('');
+  const icons = ['loaf', 'croissant', 'cake'];
+  $('#team').innerHTML = [1, 2, 3].map(i => `<li><div class="ic">${art(icons[i - 1], icons[i - 1] === 'cake' ? '0 0 240 240' : '0 0 200 200')}</div><div><h3>${esc(t('t' + i + '_h'))}</h3><p>${esc(t('t' + i + '_p'))}</p></div></li>`).join('');
+  $('#b2bLink').href = `https://www.instagram.com/${encodeURIComponent(SITE.instagram)}/`;
+}
+function renderVisit() {
+  const d = today(), w = dow(d), order = [2, 3, 4, 5, 6, 0, 1];
+  const hrs = `<div class="hrs">${order.map(i => { const dd = addDays(d, (i - w + 7) % 7), h = SITE.hours[i], cls = i === w ? 'today' : (h ? '' : 'off'); const n = dayName(dd, { weekday: 'long' }); return `<span class="${cls}">${esc(n.charAt(0).toUpperCase() + n.slice(1))}</span><span class="${cls}">${h ? `${hhmm(h[0], h[1])}–${hhmm(h[2], h[3])}` : esc(t('closed'))}</span>`; }).join('')}</div>`;
+  $('#info').innerHTML = `<li><span class="k">${esc(t('k_addr'))}</span><span class="v">${esc(SITE.address)}</span></li>
+    <li><span class="k">${esc(t('k_hours'))}</span><span class="v">${hrs}<small>${esc(statusText())}</small></span></li>
+    <li><span class="k">${esc(t('k_ig'))}</span><span class="v"><a href="https://www.instagram.com/${encodeURIComponent(SITE.instagram)}/" target="_blank" rel="noopener">@${esc(SITE.instagram)}</a></span></li>`;
+  $('#links').innerHTML = `<a class="btn" href="${SITE.mapsUrl}" target="_blank" rel="noopener">${esc(t('maps'))}</a><a class="btn line" href="#order">${esc(t('hdr_cta'))}</a>`;
+  $('#fnav').innerHTML = `<a href="#menu">${esc(t('nav_menu'))}</a><a href="#cakes">${esc(t('nav_cakes'))}</a><a href="#house">${esc(t('nav_house'))}</a><a href="#visit">${esc(t('nav_visit'))}</a><a href="${SITE.studio}" target="_blank" rel="noopener">${esc(t('foot_by'))} ↗</a>`;
+}
+function renderStatus() {
+  const s = status(), el = $('#status');
+  el.classList.toggle('on', s.k === 'open');
+  el.querySelector('span').textContent = statusText();
+}
+
+/* ===== i18n & boot ===== */
+function applyTexts() {
+  document.documentElement.lang = lang;
+  $$('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
+  $$('[data-th]').forEach(el => { el.innerHTML = t(el.dataset.th); });
+  $$('[data-tp]').forEach(el => { el.placeholder = t(el.dataset.tp); });
+  $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+}
+function renderAll() {
+  applyTexts(); heroArt(); $('#cakeArt').innerHTML = cake(); renderStatus(); renderMenu(); renderCart(); renderDays(); renderCakeForm(); renderHouse(); renderVisit();
+  $('#oRes').hidden = true; $('#kRes').hidden = true;
+  $$('.glaze').forEach(glaze);
+}
+$$('.lang button').forEach(b => b.addEventListener('click', () => {
+  lang = b.dataset.lang;
+  try { localStorage.setItem('melt-lang', lang); } catch (e) {}
+  renderAll();
+}));
+let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => $$('.glaze').forEach(glaze), 150); });
+renderAll();
+setInterval(() => { renderStatus(); renderVisit(); renderDays(); }, 30000);
+</script>
+</body>
+</html>
