@@ -3,10 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Orla Web Studio</title>
+<title>Orla Web Studio — websites for independent businesses in Portugal</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Web design studio for independent businesses in Portugal and across Europe. See a working piece of your site before you pay.">
 <meta name="theme-color" content="#0c0b0a">
+<!-- Google Search Console: paste the <meta name="google-site-verification" …> line here -->
+<!-- SITE ADDRESS: when a custom domain is connected, replace https://vvvseva3-maker.github.io/orla-studio/ here and in sitemap.xml / robots.txt -->
+<link rel="alternate" hreflang="en" href="https://vvvseva3-maker.github.io/orla-studio/">
+<link rel="alternate" hreflang="pt" href="https://vvvseva3-maker.github.io/orla-studio/?lang=pt">
+<link rel="alternate" hreflang="ru" href="https://vvvseva3-maker.github.io/orla-studio/?lang=ru">
+<link rel="alternate" hreflang="x-default" href="https://vvvseva3-maker.github.io/orla-studio/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Orla Web Studio">
+<meta property="og:title" content="Orla Web Studio">
+<meta property="og:description" content="Websites for barbershops, cafés, restaurants and studios in Portugal. See a working piece of your site before you pay.">
+<meta property="og:url" content="https://vvvseva3-maker.github.io/orla-studio/">
+<meta property="og:image" content="https://vvvseva3-maker.github.io/orla-studio/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c0b0a'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%23ece6da' stroke-width='5'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Orla Web Studio",
+  "url": "https://vvvseva3-maker.github.io/orla-studio/",
+  "image": "https://vvvseva3-maker.github.io/orla-studio/assets/og.jpg",
+  "email": "orla.webstudio@gmail.com",
+  "description": "Web design studio for independent businesses in Portugal and across Europe: barbershops, cafés, restaurants, studios.",
+  "areaServed": [{ "@type": "Country", "name": "Portugal" }, { "@type": "Place", "name": "Europe" }],
+  "knowsLanguage": ["en", "pt", "ru"],
+  "serviceType": ["Web design", "Website development", "Landing pages"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=IBM+Plex+Mono:wght@400;500&family=Onest:wght@300;400;500;600&display=swap">
@@ -556,6 +586,8 @@ window.PROJECTS = [
   const S = window.STUDIO;
   const T = {
     en: {
+      metaTitle: 'Orla Web Studio — websites for independent businesses in Portugal',
+      metaDesc: 'Web design studio for independent businesses in Portugal and across Europe. See a working piece of your site before you pay.',
       skip: 'Skip to content', nav1: 'What we do', nav2: 'Work', nav3: 'Process', nav4: 'Contact', menu: 'Menu', close: 'Close',
       heroEyebrow: 'Web studio · Portugal · Worldwide',
       heroTitle: 'A website as good as <em>your work.</em>',
@@ -601,6 +633,8 @@ window.PROJECTS = [
       footTag: 'Websites for independent businesses. Portugal, worldwide.', footSite: 'Site', footTalk: 'Talk to us', footBase: 'Made in Ukraine'
     },
     pt: {
+      metaTitle: 'Orla — estúdio web para negócios independentes em Portugal',
+      metaDesc: 'Sites para barbearias, cafés, restaurantes e estúdios em Portugal. Veja uma parte do seu site a funcionar antes de pagar.',
       skip: 'Saltar para o conteúdo', nav1: 'O que fazemos', nav2: 'Trabalhos', nav3: 'Processo', nav4: 'Contacto', menu: 'Menu', close: 'Fechar',
       heroEyebrow: 'Estúdio web · Portugal · Todo o mundo',
       heroTitle: 'Um site à altura do <em>seu trabalho.</em>',
@@ -646,6 +680,8 @@ window.PROJECTS = [
       footTag: 'Sites para negócios independentes. Portugal, todo o mundo.', footSite: 'Site', footTalk: 'Fale connosco', footBase: 'Feito na Ucrânia'
     },
     ru: {
+      metaTitle: 'Orla — сайты для небольших бизнесов в Португалии',
+      metaDesc: 'Веб-студия: сайты для барбершопов, кафе, ресторанов и студий в Португалии и Европе. Покажем рабочую часть сайта до оплаты.',
       skip: 'Перейти к содержанию', nav1: 'Что мы делаем', nav2: 'Работы', nav3: 'Как работаем', nav4: 'Контакты', menu: 'Меню', close: 'Закрыть',
       heroEyebrow: 'Веб-студия · Португалия · Весь мир',
       heroTitle: 'Сайт, достойный <em>вашего дела.</em>',
@@ -698,8 +734,9 @@ window.PROJECTS = [
 
   let lang = 'en';
   try {
-    const saved = localStorage.getItem('studio-lang');
-    if (saved && T[saved]) lang = saved;
+    const q = new URLSearchParams(location.search).get('lang'), saved = localStorage.getItem('studio-lang');
+    if (q && T[q]) lang = q;
+    else if (saved && T[saved]) lang = saved;
     else { const n = (navigator.language || '').slice(0, 2); if (T[n]) lang = n; }
   } catch (e) {}
 
@@ -743,6 +780,8 @@ window.PROJECTS = [
   function apply() {
     const t = T[lang];
     document.documentElement.lang = lang === 'pt' ? 'pt-PT' : lang;
+    document.title = t.metaTitle;
+    const md = document.querySelector('meta[name="description"]'); if (md) md.content = t.metaDesc;
     $$('[data-t]').forEach(el => { const v = t[el.dataset.t]; if (v != null) el.textContent = v; });
     $$('[data-t-html]').forEach(el => { const v = t[el.dataset.tHtml]; if (v != null) el.innerHTML = v; });
     $$('[data-tp]').forEach(el => { el.placeholder = t[el.dataset.tp] || ''; });

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vvvseva3-maker.github.io/orla-studio/sitemap.xml

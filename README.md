@@ -8,7 +8,8 @@
 | `demos/barbearia/` | Барбершоп: прайс, правила, часы с живым статусом, запись на кресло | PT · EN |
 | `demos/tasca/` | Таверна в Лиссабоне: меню по вкладкам, блюдо дня на доске, бронь стола | PT · EN |
 | `demos/pilates/` | Пилатес-студия: расписание со свободными местами, цены, пробное занятие | PT · EN |
-| `assets/` | Скриншоты демо для экрана телефона в портфолио | |
+| `concepts/leto/` | Концепт для настоящего кафе LETO (Cascais) — для предложения владельцам. Закрыт от Google (`noindex`), на странице плашка «Conceito» | PT · EN · RU |
+| `assets/` | Скриншоты демо для экрана телефона в портфолио, `og.jpg` — картинка для превью ссылки | |
 
 ## Включить сайт по ссылке (GitHub Pages)
 
@@ -18,6 +19,16 @@
    Демо: `…/orla-studio/demos/barbearia/`, `…/demos/tasca/`, `…/demos/pilates/`.
 
 Свой домен потом подключается там же: **Settings → Pages → Custom domain**.
+
+## Чтобы сайт нашёлся в Google
+
+Уже сделано в коде: заголовок и описание на трёх языках, отдельные адреса языков (`?lang=pt`, `?lang=ru`) с `hreflang`, разметка `ProfessionalService`, картинка превью `assets/og.jpg`, `sitemap.xml`, `robots.txt`. Концепты закрыты от индексации.
+
+1. Включи GitHub Pages (раздел выше) и проверь, что сайт открывается.
+2. [Google Search Console](https://search.google.com/search-console) → **Добавить ресурс** → тип **«Префикс URL»** → `https://vvvseva3-maker.github.io/orla-studio/`.
+3. Подтверждение: способ **«Тег HTML»**. Скопируй строку `<meta name="google-site-verification" …>` и вставь её в `index.html` на место комментария `Google Search Console` → залей → нажми **Подтвердить**.
+4. **Файлы Sitemap** → добавь `sitemap.xml`. Затем **Проверка URL** → главная → **Запросить индексирование**.
+5. При подключении своего домена замени `https://vvvseva3-maker.github.io/orla-studio/` на новый адрес в `index.html`, `sitemap.xml`, `robots.txt` и добавь новый ресурс в Search Console.
 
 ## Почта и форма заявки
 
