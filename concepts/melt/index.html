@@ -259,6 +259,54 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--caramel);outline
 .fnav a:hover{color:var(--caramel)}
 @media (max-width:760px){ .foot-in{grid-template-columns:1fr} }
 
+/* lamination: scroll folds the dough in three, three times (1 → 3 → 9 → 27 layers of butter), then bakes it */
+.lam{position:relative;height:340vh}
+.lam-pin{position:sticky;top:calc(var(--hdr) + env(safe-area-inset-top, 0px));height:calc(100vh - var(--hdr));height:calc(100svh - var(--hdr) - env(safe-area-inset-top, 0px));overflow:hidden;display:flex;align-items:center}
+.lam-in{width:100%;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.lam-copy{min-width:0}
+.count{display:flex;align-items:flex-end;gap:16px;margin-top:12px}
+.count b{font:800 clamp(100px,13vw,196px)/.8 var(--display);letter-spacing:-.06em;color:var(--caramel);font-variant-numeric:tabular-nums;min-width:1.15em}
+.count span{font:700 clamp(18px,1.8vw,24px)/1.1 var(--display);letter-spacing:-.02em;max-width:7em;padding-bottom:.35em}
+.lam-step{margin-top:26px;transition:opacity .25s ease,transform .25s ease}
+.lam-step.swap{opacity:0;transform:translateY(6px)}
+.lam-step h3{font-size:clamp(26px,2.6vw,36px);line-height:1.05;font-weight:800;letter-spacing:-.03em}
+.lam-step p{margin-top:8px;color:var(--ink-2);max-width:42ch;min-height:3.2em}
+.lsteps{display:flex;flex-wrap:wrap;gap:6px;margin:24px 0 0;padding:0;list-style:none}
+.lsteps li{font:600 12.5px/1 var(--sans);padding:8px 12px;border-radius:999px;border:1.5px solid var(--line-2);color:var(--muted);transition:background .2s,color .2s,border-color .2s}
+.lsteps li.done{border-color:var(--caramel);color:var(--caramel-ink)}
+.lsteps li.on{background:var(--ink);border-color:var(--ink);color:var(--milk)}
+.lam-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px 16px;margin-top:22px}
+.lam-row .price{font:700 22px/1 var(--display)}
+.lam-cue{margin-top:16px;font-size:14px;color:var(--muted)}
+.lam-art{margin:0;min-width:0}
+.lam-art .f .board{fill:var(--milk-2);stroke:var(--line-2);stroke-width:1.5}
+.lam-art .f .flour{fill:var(--card);opacity:.8}
+.lam-art .f .dg{fill:#f4e2bf}
+.lam-art .f .bt{fill:#f2bf2e}
+.lam-art .f .rp{fill:#e2b07a}
+.lam-art .f .rh{fill:#b97b45}
+.lam-art .f .stm{fill:none;stroke:var(--muted);stroke-width:2.4;stroke-linecap:round}
+.lam-art .raw .bk{fill:#f4dfb6} .lam-art .raw .bkd{fill:#ead0a2} .lam-art .raw .bkl{fill:#f9edd3}
+@media (max-width:860px){
+  .lam{height:320vh}
+  .lam-pin{align-items:flex-start}
+  .lam-in{grid-template-columns:minmax(0,1fr);gap:0;padding-top:12px}
+  .count{margin-top:6px}
+  .count b{font-size:clamp(72px,21vw,104px)}
+  .count span{font-size:17px}
+  .lam-step{margin-top:10px}
+  .lam-step h3{font-size:24px}
+  .lam-step p{font-size:15px;line-height:1.45;min-height:2.9em;margin-top:4px}
+  .lsteps{margin-top:12px}
+  .lsteps{gap:4px}
+  .lsteps li{padding:7px 8px;font-size:11.5px;letter-spacing:-.01em}
+  .lam-row{margin-top:12px}
+  .lam-cue{display:none}
+  .lam-art{width:min(100%, calc((100svh - var(--hdr) - 430px) * 1.36));justify-self:center;margin-top:6px}
+}
+.lam.static{height:auto}
+.lam.static .lam-pin{position:relative;top:0;height:auto;padding-block:clamp(72px,9vw,120px)}
+
 /* mobile pickup bar */
 .cartbar{position:fixed;left:0;right:0;bottom:0;z-index:55;padding:14px var(--gut-r) calc(12px + env(safe-area-inset-bottom, 0px)) var(--gut-l);background:linear-gradient(transparent,var(--milk) 40%)}
 .cartbar a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;padding:0 22px;background:var(--ink);color:var(--milk);border-radius:999px;text-decoration:none;font-size:15.5px;font-weight:500;max-width:520px;margin-inline:auto}
@@ -292,6 +340,22 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--caramel);outline
         <ul class="facts"><li data-t="f1"></li><li data-t="f2"></li><li data-t="f3"></li></ul>
       </div>
       <figure class="hero-art"><svg class="f" id="heroArt" viewBox="0 0 560 520" role="img"></svg></figure>
+    </div>
+  </section>
+
+  <section class="lam" id="layers" aria-labelledby="lamTitle">
+    <div class="lam-pin">
+      <div class="wrap lam-in">
+        <div class="lam-copy">
+          <p class="eb" id="lamTitle" data-t="lam_eb"></p>
+          <p class="count"><b id="lamN">1</b><span id="lamU"></span></p>
+          <div class="lam-step" id="lamStep" aria-live="polite"><h3 id="lamH"></h3><p id="lamP"></p></div>
+          <ol class="lsteps" id="lamSteps"></ol>
+          <div class="lam-row"><span class="price" id="lamPrice"></span><button type="button" class="btn sm line" id="lamAdd"></button></div>
+          <p class="lam-cue" id="lamCue" data-t="lam_cue"></p>
+        </div>
+        <figure class="lam-art"><svg class="f" id="lamArt" viewBox="0 0 600 440" role="img"></svg></figure>
+      </div>
     </div>
   </section>
 
@@ -448,6 +512,13 @@ pt: {
   cta_cake: 'Encomendar um bolo', cta_menu: 'Ver a vitrine',
   f1: 'Pão do dia', f2: 'Opções sem glúten', f3: 'Esplanada coberta',
   st_open: 'Aberto agora · até às {c}', st_later: 'Abrimos hoje às {o}', st_closed: 'Hoje fechado · abrimos {d} às {o}', d_tomorrow: 'amanhã',
+  lam_eb: 'Como nasce um croissant', lam_unit: 'camadas de manteiga', lam_unit1: 'camada de manteiga', lam_cue: 'Deslize para dobrar a massa ↓', lam_add: 'Juntar um croissant ao pedido', lam_in: 'No pedido · {n}', lam_art: 'A massa é dobrada em três, três vezes: 1, 3, 9 e 27 camadas de manteiga. Depois o croissant vai ao forno.',
+  lam_s: ['Manteiga', '1.ª dobra', '2.ª dobra', '3.ª dobra', 'Forno'],
+  lam_h0: 'Manteiga dentro da massa', lam_p0: 'Um bloco de manteiga fria fechado na massa. Por agora, uma camada.',
+  lam_h1: 'Primeira dobra', lam_p1: 'Dobra-se em três e estende-se com o rolo. Três camadas.',
+  lam_h2: 'Segunda dobra', lam_p2: 'Mais uma volta, depois de descansar no frio. Nove.',
+  lam_h3: 'Terceira dobra', lam_p3: 'Vinte e sete camadas de manteiga, finas como papel.',
+  lam_h4: 'Enrolar e ir ao forno', lam_p4: 'No forno, a água da manteiga vira vapor e afasta as camadas. É daí que vem o folhado que estala.',
   menu_eb: 'A vitrine', menu_h: 'Tudo feito aqui, todos os dias.',
   menu_p: 'O açúcar fica em segundo plano, para se sentir a manteiga, a fruta e o grão. Reserve hoje e levante amanhã de manhã — antes que os croissants acabem.',
   fav_h: 'Os favoritos', g_bread: 'Pão', g_vien: 'Viennoiserie', g_sweet: 'Bolos e doces', g_drinks: 'Café e bebidas',
@@ -507,6 +578,13 @@ en: {
   cta_cake: 'Order a cake', cta_menu: 'See the counter',
   f1: 'Bread baked daily', f2: 'Gluten-free options', f3: 'Covered terrace',
   st_open: 'Open now · until {c}', st_later: 'Opening today at {o}', st_closed: 'Closed today · opening {d} at {o}', d_tomorrow: 'tomorrow',
+  lam_eb: 'How a croissant is made', lam_unit: 'layers of butter', lam_unit1: 'layer of butter', lam_cue: 'Scroll to fold the dough ↓', lam_add: 'Add a croissant to your order', lam_in: 'In your order · {n}', lam_art: 'The dough is folded in three, three times: 1, 3, 9 and 27 layers of butter. Then the croissant is baked.',
+  lam_s: ['Butter', '1st fold', '2nd fold', '3rd fold', 'Oven'],
+  lam_h0: 'Butter, wrapped in dough', lam_p0: 'A cold block of butter sealed inside the dough. One layer, for now.',
+  lam_h1: 'First fold', lam_p1: 'Folded in three and rolled out again. Three layers.',
+  lam_h2: 'Second fold', lam_p2: 'Once more, after a rest in the cold. Nine.',
+  lam_h3: 'Third fold', lam_p3: 'Twenty-seven layers of butter, thin as paper.',
+  lam_h4: 'Rolled up and baked', lam_p4: 'In the oven the water in the butter turns to steam and lifts the layers apart. That is where the shatter comes from.',
   menu_eb: 'The counter', menu_h: 'Everything made here, every day.',
   menu_p: 'Sugar takes a back seat so you can taste the butter, the fruit and the grain. Reserve today, pick up tomorrow morning — before the croissants sell out.',
   fav_h: 'Favourites', g_bread: 'Bread', g_vien: 'Viennoiserie', g_sweet: 'Cakes & sweets', g_drinks: 'Coffee & drinks',
@@ -698,6 +776,7 @@ function renderCart() {
   $$('.add[data-id]').forEach(b => { b.dataset.n = cart.get(b.dataset.id) || 0; });
   $('#cbText').textContent = fill(t(c === 1 ? 'cb_item' : 'cb_items'), { n: c, s: eur(s) });
   updateBar();
+  if ($('#lamAdd').textContent) lamBtn();
 }
 let orderVisible = false;
 function updateBar() { $('#cartBar').hidden = cartSum().c === 0 || orderVisible; }
@@ -816,6 +895,7 @@ function renderCakeTimes() {
 }
 function cakePrice() { return CAKES.sizes.find(z => z.id === size).price + ($('#kGf').checked ? CAKES.gf : 0); }
 function renderEstimate() { $('#kEst').textContent = '≈ ' + eur(cakePrice()); }
+$('#lamAdd').addEventListener('click', () => addItem('croissant', 1));
 $('#kDate').addEventListener('input', renderCakeTimes);
 $('#kGf').addEventListener('change', renderEstimate);
 $('#cakeForm').addEventListener('submit', ev => {
@@ -862,8 +942,98 @@ function applyTexts() {
   $$('[data-tp]').forEach(el => { el.placeholder = t(el.dataset.tp); });
   $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
 }
+/* ===== lamination: three letter folds, then the oven ===== */
+const lamRM = matchMedia('(prefers-reduced-motion: reduce)').matches, t_ = k => t(k);
+const LX = 84, LW = 432, LW3 = LW / 3, LYB = 372, LH = 96;   // slab: left, width, a third, bottom on the board, thickness
+const lc = v => Math.max(0, Math.min(1, v)), le = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const LSEG = [0, .12, .34, .56, .78, 1];                    // butter · 1st fold · 2nd · 3rd · oven
+let lamFold = -1, lamSeg = -1, lamP = -1, lamRaf = 0;
+function lamThird(B) {          // one third of the slab in cross-section: dough and butter stripes, B butter layers
+  const n = 2 * B + 1, sh = LH / n;
+  let s = '';
+  for (let i = 0; i < n; i++) s += `<rect class="${i % 2 ? 'bt' : 'dg'}" x="0" y="${(i * sh).toFixed(2)}" width="${LW3.toFixed(2)}" height="${(sh + .4).toFixed(2)}"/>`;
+  return s;
+}
+function lamBuild() {
+  const R = rnd(11);
+  let s = `<rect class="board" x="24" y="40" width="552" height="372" rx="28"/>`;
+  for (let i = 0; i < 70; i++) s += `<circle class="flour" cx="${f1(50 + R() * 500)}" cy="${f1(64 + R() * 324)}" r="${f1(.8 + R() * 2.2)}"/>`;
+  s += `<g id="lamSlab"><g data-j="1"></g><g data-j="2"></g><g data-j="0"></g></g><rect id="lamEdge" class="o no" x="${LX}" y="${LYB - LH}" width="${LW}" height="${LH}" rx="6"/>`;
+  // the rolling pin, seen end-on: it rolls along the top of the dough
+  s += `<g id="lamPin" opacity="0"><circle class="o rp" r="26"/><circle class="o rh" r="8"/><path class="l" d="M0-26V-12"/></g>`;
+  s += `<g id="lamCr" opacity="0"><g transform="translate(300 262) scale(2.25) translate(-100 -110)"><g class="raw">${croissant()}</g><g id="lamBaked" opacity="0">${croissant()}</g></g></g>`;
+  s += `<g id="lamSteam" opacity="0">${[250, 300, 350].map((x, i) => `<path class="stm" pathLength="1" stroke-dasharray=".35 .65" d="M${x} ${168 - (i % 2) * 12}c-14-18 14-30 0-48s14-30 0-48"/>`).join('')}</g>`;
+  $('#lamArt').innerHTML = s;
+  $('#lamArt').setAttribute('aria-label', t('lam_art'));
+  $('#lamSteps').innerHTML = t('lam_s').map((x, i) => `<li data-i="${i}">${esc(x)}</li>`).join('');
+  $('#lamPrice').textContent = `${nm('croissant')} · ${eur(item('croissant').price)}`;
+  lamFold = -1; lamSeg = -1; lamP = -1;
+  lamUpdate(true);
+}
+function lamText(i) {
+  const box = $('#lamStep'), put = () => { $('#lamH').textContent = t('lam_h' + i); $('#lamP').textContent = t('lam_p' + i); };
+  if (lamSeg === -1 || lamRM) { put(); return; }
+  box.classList.add('swap'); clearTimeout(box._t); box._t = setTimeout(() => { put(); box.classList.remove('swap'); }, 170);
+}
+function lamBtn() { const n = cart.get('croissant') || 0; $('#lamAdd').textContent = n ? fill(t('lam_in'), { n }) : t('lam_add'); }
+function lamUpdate(force) {
+  const sec = $('#layers');
+  let p;
+  if (lamRM) { sec.classList.add('static'); p = 1; }
+  else { const hd = $('.hdr').offsetHeight, span = sec.offsetHeight - (innerHeight - hd); p = span > 0 ? lc((hd - sec.getBoundingClientRect().top) / span) : 0; }
+  if (!force && Math.abs(p - lamP) < .0005) return;
+  lamP = p;
+  let seg = 0; while (seg < 4 && p >= LSEG[seg + 1]) seg++;
+  const u = lc((p - LSEG[seg]) / (LSEG[seg + 1] - LSEG[seg]));
+  if (seg !== lamSeg) {
+    lamText(seg); lamSeg = seg;
+    $$('#lamSteps li').forEach(li => { const i = +li.dataset.i; li.classList.toggle('on', i === seg); li.classList.toggle('done', i < seg); });
+  }
+  // which fold is on the board, and how far along it is
+  const f = seg === 0 ? 0 : seg <= 3 ? seg - 1 : 2, t = seg === 0 ? 0 : seg <= 3 ? u : 1;
+  if (f !== lamFold) { lamFold = f; const B = Math.pow(3, f); $$('#lamSlab > g').forEach(g => { g.innerHTML = lamThird(B); }); }
+  const a2 = le(lc(t / .26)), a0 = le(lc((t - .2) / .26)), b = le(lc((t - .52) / .42));
+  const top = LYB - LH;
+  // a third flips over its fold line onto the middle third and climbs onto the stack
+  const pose = (j, a) => {
+    const pivot = j === 2 ? LX + 2 * LW3 : LX + LW3, x0 = LX + j * LW3, lift = Math.sin(Math.PI * a) * 46, rise = (j === 2 ? LH : 2 * LH) * a;
+    return `translate(${pivot.toFixed(1)} 0) scale(${Math.cos(Math.PI * a).toFixed(4)} 1) translate(${(-pivot).toFixed(1)} 0) translate(${x0.toFixed(1)} ${(top - rise - lift).toFixed(1)})`;
+  };
+  const g = $$('#lamSlab > g');
+  g[0].setAttribute('transform', `translate(${(LX + LW3).toFixed(1)} ${top})`);
+  g[1].setAttribute('transform', pose(2, a2));
+  g[2].setAttribute('transform', pose(0, a0));
+  const cx = LX + LW / 2;
+  // rolling out: the stack of three spreads back into one slab
+  const o = seg === 4 ? u : 0, out = le(lc(o / .25));
+  const sx = (1 + 2 * b) * (1 - .4 * out), sy = (1 - 2 * b / 3) * (1 - .4 * out);
+  $('#lamSlab').setAttribute('transform', `translate(${cx} ${LYB}) scale(${sx.toFixed(4)} ${sy.toFixed(4)}) translate(${-cx} ${-LYB})`);
+  $('#lamSlab').setAttribute('opacity', (1 - out).toFixed(3));
+  const pinOn = seg >= 1 && seg <= 3 && t > .5 && t < .98;
+  const px = LX - 40 + (LW + 80) * b, stackTop = LYB - LH * (3 - 2 * b);
+  $('#lamPin').setAttribute('transform', `translate(${px.toFixed(1)} ${(stackTop - 26).toFixed(1)}) rotate(${(b * 700).toFixed(1)})`);
+  // the outline of the whole slab shows only while it lies flat
+  const flat = (seg === 0 || t < .02 || t > .97) && out < .02;
+  $('#lamEdge').setAttribute('opacity', flat ? 1 : 0);
+  $('#lamPin').setAttribute('opacity', pinOn ? Math.min(1, Math.sin(Math.PI * lc((t - .5) / .48)) * 3).toFixed(3) : 0);
+  // the layer counter
+  const n = seg === 0 ? 1 : seg <= 3 ? Math.round(Math.pow(3, f) + (Math.pow(3, f + 1) - Math.pow(3, f)) * b) : 27;
+  $('#lamN').textContent = n;
+  $('#lamU').textContent = t_(n === 1 ? 'lam_unit1' : 'lam_unit');
+  // the oven: the slab gives way to a croissant that turns golden, and steam rises
+  const cin = le(lc((o - .12) / .28)), bake = le(lc((o - .35) / .5)), st = lc((o - .45) / .2);
+  $('#lamCr').setAttribute('opacity', cin.toFixed(3));
+  $('#lamCr').setAttribute('transform', `translate(300 262) scale(${(.75 + .25 * cin).toFixed(4)}) translate(-300 -262)`);
+  $('#lamBaked').setAttribute('opacity', bake.toFixed(3));
+  $('#lamSteam').setAttribute('opacity', lamRM ? 0 : st.toFixed(3));
+  $$('#lamSteam path').forEach((ph, i) => ph.setAttribute('stroke-dashoffset', (-(o * 2.2) - i * .3).toFixed(3)));
+  $('#lamCue').style.opacity = (1 - lc(p / .03)).toFixed(2);
+}
+addEventListener('scroll', () => { if (!lamRaf) lamRaf = requestAnimationFrame(() => { lamRaf = 0; lamUpdate(false); }); }, { passive: true });
+addEventListener('resize', () => lamUpdate(true));
+
 function renderAll() {
-  applyTexts(); heroArt(); $('#cakeArt').innerHTML = cake(); renderStatus(); renderMenu(); renderCart(); renderDays(); renderCakeForm(); renderHouse(); renderVisit();
+  applyTexts(); heroArt(); $('#cakeArt').innerHTML = cake(); renderStatus(); renderMenu(); renderCart(); lamBuild(); lamBtn(); renderDays(); renderCakeForm(); renderHouse(); renderVisit();
   $('#oRes').hidden = true; $('#kRes').hidden = true;
   $$('.glaze').forEach(glaze);
 }

@@ -39,7 +39,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=IBM+Plex+Mono:wght@400;500&family=Onest:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Big+Shoulders+Display:wght@800;900&family=Forum&family=IBM+Plex+Mono:wght@400;500&family=Onest:wght@300;400;500;600&display=swap">
 <style>
 html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 /* Layout: one cast-bronze object lit by a ring of light opens the page; everything after is quiet left-aligned type on warm black, with roman numerals marking the four rooms of the site. */
@@ -127,10 +127,14 @@ nav.main .links .num { font-family: var(--font-mono); font-size: .68rem; color: 
 .overlay ol a span { font-family: var(--font-mono); font-size: .8rem; color: var(--gold); width: 2.4em; flex: none; }
 .overlay .foot { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; }
 
-/* hero */
-.hero { position: relative; overflow: hidden; }
-.hero::before { content: ""; position: absolute; inset: -20% -10% auto 35%; height: 140%; background: radial-gradient(closest-side, rgb(var(--bronze-rgb) / .16), transparent 70%); pointer-events: none; }
-.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: 48px 96px; }
+/* hero: a client's site builds itself from a gold sketch as you scroll (I sketch → II design → III live) */
+.hero { position: relative; height: 300vh; }
+.pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.pin::before { content: ""; position: absolute; inset: -20% -10% auto 35%; height: 140%; background: radial-gradient(closest-side, rgb(var(--bronze-rgb) / .16), transparent 70%); pointer-events: none; }
+.hero-grid { position: relative; z-index: 2; height: 100%; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: 76px 88px; pointer-events: none; }
+.copy { pointer-events: auto; will-change: opacity, transform; }
+.copy.gone { visibility: hidden; }
+.slot { align-self: stretch; }
 .hero h1 { font-size: var(--step-4); line-height: .98; margin-top: 22px; }
 .hero h1 em { font-style: normal; color: var(--gold); }
 .hero .lede { margin-top: 26px; max-width: 44ch; font-size: var(--step-1); color: var(--muted); line-height: 1.55; }
@@ -145,26 +149,163 @@ nav.main .links .num { font-family: var(--font-mono); font-size: .68rem; color: 
 .btn .arr { transition: transform .2s; }
 .btn:hover .arr { transform: translateX(3px); }
 
-.stage { position: relative; aspect-ratio: 1 / 1; max-width: 100%; width: 100%; --p: 0; }
-.halo { position: absolute; inset: 9%; border-radius: 50%; pointer-events: none;
-  background:
-    radial-gradient(closest-side, transparent 80%, rgb(var(--gold-rgb) / .95) 85.5%, rgb(var(--gold-rgb) / .35) 88%, transparent 93%),
-    radial-gradient(closest-side, transparent 55%, rgb(var(--gold-rgb) / .10) 82%, transparent 100%);
-  filter: blur(1.5px) drop-shadow(0 0 18px rgb(var(--gold-rgb) / .55));
-  transform: scale(calc(1 + var(--p) * .3)); opacity: calc(1 - var(--p) * .75);
-}
-.fallback { position: absolute; inset: 31% 22%; border-radius: 52% 48% 50% 50% / 58% 56% 44% 42%;
-  background: radial-gradient(120% 90% at 30% 25%, #f0c98e 0%, #b47c45 22%, #6b4120 52%, #2a170a 80%), #6b4120;
-  box-shadow: inset -18px -22px 40px rgb(0 0 0 / .55), inset 10px 12px 24px rgb(255 220 160 / .25), 0 30px 60px rgb(0 0 0 / .5);
-  transition: opacity .8s ease; }
-canvas#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 1s ease; }
-.stage.gl-on canvas#gl { opacity: 1; }
-.stage.gl-on .fallback { opacity: 0; }
+/* the device: a browser window on wide screens, a phone on narrow ones */
+.rig { position: absolute; left: 0; top: 0; z-index: 1; transform-origin: 50% 50%; will-change: transform; }
+.frame { position: relative; height: 100%; border-radius: 12px; overflow: hidden; background: var(--ink-3); box-shadow: 0 0 0 1px rgb(var(--gold-rgb) / .3), 0 50px 120px rgb(0 0 0 / .6), 0 0 90px rgb(var(--bronze-rgb) / .2); }
+.chrome { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 14px; border-bottom: 1px solid var(--line); }
+.chrome i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); flex: none; }
+.chrome .url { margin-left: 14px; width: min(340px, 50%); height: 20px; border-radius: 99px; background: var(--ink); color: var(--muted); font: 400 10.5px var(--font-mono); letter-spacing: .04em; display: flex; align-items: center; gap: 7px; padding: 0 11px; overflow: hidden; white-space: nowrap; }
+.chrome .url::before { content: ""; width: 6px; height: 7px; border: 1.3px solid var(--dim); border-radius: 1.5px; flex: none; }
+.vp { position: relative; overflow: hidden; }
+.frame.is-phone { border-radius: 42px; padding: 10px; background: linear-gradient(150deg, var(--bezel), var(--ink)); }
+.frame.is-phone .chrome { display: none; }
+.frame.is-phone .vp { border-radius: 32px; height: 100%; }
+.frame.is-phone::after { content: ""; position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 78px; height: 20px; border-radius: 99px; background: var(--ink); z-index: 3; }
+
+/* the client's site, drawn at its own size and scaled to the device */
+.mini { position: absolute; left: 0; top: 0; transform-origin: 0 0; overflow: hidden; color: #efe8dc; font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; font-weight: 400; line-height: 1.4;
+  background-color: var(--ink-2);
+  background-image: linear-gradient(rgb(var(--gold-rgb) / .075) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--gold-rgb) / .075) 1px, transparent 1px);
+  background-size: 32px 32px; }
+.mini .el { position: absolute; --t: 0; opacity: clamp(0, calc(var(--t) * 4), 1); clip-path: inset(-6px calc((1 - var(--t)) * 100%) -6px -6px); }
+.mini .el.v { clip-path: inset(0 0 calc((1 - var(--t)) * 100%) 0); }
+.mini .el::after { content: ""; position: absolute; top: -6px; bottom: -6px; left: calc(var(--t) * 100% - 3px); width: 3px; background: var(--gold); box-shadow: 0 0 16px 2px var(--gold); opacity: calc(var(--t) * (1 - var(--t)) * 4); pointer-events: none; }
+.mini .el.v::after { top: calc(var(--t) * 100% - 3px); bottom: auto; left: 0; width: 100%; height: 3px; }
+.mini .el.pop { clip-path: none; transform: translateY(calc((1 - var(--t)) * -18px)) scale(calc(.96 + var(--t) * .04)); }
+.mini .el.pop::after { display: none; }
+.mini .el.off { display: none; }
+.mini .disp { font-family: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif; text-transform: uppercase; }
+.mini .mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: .16em; }
+.m-bg { background: #16302a; }
+.m-bg::before { content: ""; position: absolute; left: 0; right: 0; top: var(--hb, 76px); height: 1px; background: #2e5246; }
+.m-logo { display: flex; align-items: baseline; gap: 10px; white-space: nowrap; }
+.m-logo b { font: 900 27px/1 "Big Shoulders Display", Impact, sans-serif; text-transform: uppercase; letter-spacing: .02em; }
+.m-logo small { font: 500 10px var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: #c39a56; }
+.m-nav { display: flex; justify-content: flex-end; align-items: center; gap: 30px; font-size: 15px; color: rgb(239 232 220 / .82); }
+.m-hbtn, .m-btn1 { display: grid; place-items: center; background: #c39a56; color: #13201b; font-weight: 600; border-radius: 3px; font-size: 15px; }
+.m-eyebrow { font-size: 13px; color: #c39a56; white-space: nowrap; }
+.m-h1 { font-weight: 900; font-size: 104px; line-height: .9; letter-spacing: .005em; }
+.m-h1 em { font-style: normal; color: #c39a56; }
+.m-lede { font-size: 18px; line-height: 1.5; color: rgb(239 232 220 / .86); }
+.m-btn1 { font-size: 17px; transition: transform .15s ease; }
+.m-btn1.press { transform: scale(.94); }
+.m-btn1::before { content: ""; position: absolute; inset: 0; border-radius: 4px; box-shadow: 0 0 0 0 rgb(195 154 86 / .7); }
+.m-btn1.press::before { animation: ring .7s ease-out; }
+@keyframes ring { to { box-shadow: 0 0 0 22px rgb(195 154 86 / 0); } }
+.m-btn2 { display: grid; place-items: center; border: 1.5px solid rgb(239 232 220 / .4); border-radius: 3px; font-size: 17px; font-weight: 600; }
+.m-pole { display: flex; flex-direction: column; align-items: center; }
+.m-pole .cap { width: 100%; height: 9%; flex: none; border-radius: 50% 50% 8px 8px / 70% 70% 8px 8px; background: linear-gradient(90deg, #8a6a32, #e7c784 45%, #8a6a32); }
+.m-pole .cap:last-child { border-radius: 8px 8px 50% 50% / 8px 8px 70% 70%; }
+.m-pole .glass { position: relative; width: 78%; flex: 1; overflow: hidden; border-radius: 4px; box-shadow: inset -6px 0 10px rgb(0 0 0 / .25), inset 6px 0 8px rgb(255 255 255 / .35); }
+.m-pole .stripes { position: absolute; left: 0; right: 0; top: -60px; bottom: -60px; background: repeating-linear-gradient(-35deg, #f4efe6 0 14px, #a5332b 14px 28px, #f4efe6 28px 42px, #1f4e8c 42px 56px); animation: pole 1.4s linear infinite paused; }
+@keyframes pole { to { transform: translateY(40px); } }
+.mini.live .m-pole .stripes { animation-play-state: running; }
+.m-status { background: #1e3f36; border: 1px solid #2e5246; border-radius: 4px; padding: 20px 22px; display: grid; align-content: start; gap: 4px; }
+.m-status .st { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 600; }
+.m-status .st i { width: 10px; height: 10px; border-radius: 50%; background: #6fcf8e; box-shadow: 0 0 0 0 rgb(111 207 142 / .6); }
+.mini.live .m-status .st i { animation: beat 1.6s ease-out infinite; }
+@keyframes beat { to { box-shadow: 0 0 0 10px rgb(111 207 142 / 0); } }
+.m-status .sub { font-size: 14px; color: rgb(239 232 220 / .7); }
+.m-status dl { margin: 14px 0 0; display: grid; gap: 1px; font-size: 13.5px; }
+.m-status dd + dt { margin-top: 7px; }
+.m-status dt { font: 500 10.5px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: #c39a56; padding-top: 2px; }
+.m-status dd { margin: 0; }
+.m-checker { background: conic-gradient(#13201b 25%, #efe8dc 0 50%, #13201b 0 75%, #efe8dc 0) 0 0 / 26px 26px; }
+.m-prices { background: #f7f2ea; color: #13201b; padding: 22px 64px 0; }
+.m-prices small { display: block; font: 500 12px var(--font-mono); letter-spacing: .18em; text-transform: uppercase; color: #8a6a32; }
+.m-prices ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; }
+.m-prices li { display: flex; align-items: baseline; gap: 10px; padding-block: 12px; border-top: 1px solid #d9cfbf; }
+.m-prices li b { font: 800 27px/1 "Big Shoulders Display", Impact, sans-serif; text-transform: uppercase; white-space: nowrap; }
+.m-prices li i { flex: 1; border-bottom: 2px dotted #d9cfbf; transform: translateY(-5px); }
+.m-prices li span { font: 500 17px var(--font-mono); }
+.m-toast { background: #f7f2ea; color: #13201b; border-radius: 10px; padding: 13px 15px; box-shadow: 0 20px 50px rgb(0 0 0 / .4); display: grid; gap: 3px; }
+.m-toast .tt { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14.5px; white-space: nowrap; }
+.m-toast .tt i { width: 9px; height: 9px; border-radius: 50%; background: #2f9e5b; flex: none; }
+.m-toast .tb { font-size: 13.5px; }
+.m-toast .tc { font: 500 10.5px var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: #8a6a32; }
+.m-cursor { position: absolute; left: 0; top: 0; width: 26px; height: 26px; opacity: 0; pointer-events: none; z-index: 5; filter: drop-shadow(0 3px 6px rgb(0 0 0 / .45)); }
+/* narrow layout of the client's site */
+.mini[data-l="m"] .m-logo b { font-size: 22px; }
+.mini[data-l="m"] .m-logo small { display: none; }
+.mini[data-l="m"] .m-hbtn { font-size: 13px; }
+.mini[data-l="m"] .m-eyebrow { font-size: 11px; letter-spacing: .14em; }
+.mini[data-l="m"] .m-h1 { font-size: 58px; }
+.mini[data-l="m"] .m-lede { font-size: 15px; }
+.mini[data-l="m"] .m-btn1, .mini[data-l="m"] .m-btn2 { font-size: 15px; }
+.mini[data-l="m"] .m-status { padding: 14px 16px; }
+.mini[data-l="m"] .m-status .st { font-size: 16px; }
+.mini[data-l="m"] .m-status .sub { font-size: 12.5px; }
+.mini[data-l="m"] .m-status dl { margin-top: 8px; font-size: 12px; grid-template-columns: auto 1fr; gap: 4px 10px; }
+.mini[data-l="m"] .m-status dd + dt { margin-top: 0; }
+.mini[data-l="m"] .m-status dt { font-size: 9.5px; }
+.mini[data-l="m"] .m-checker { background-size: 22px 22px; }
+.mini[data-l="m"] .m-prices { padding: 16px 18px 0; }
+.mini[data-l="m"] .m-prices small { font-size: 10.5px; }
+.mini[data-l="m"] .m-prices ul { grid-template-columns: minmax(0, 1fr); margin-top: 8px; }
+.mini[data-l="m"] .m-prices li { padding-block: 9px; }
+.mini[data-l="m"] .m-prices li b { font-size: 22px; }
+.mini[data-l="m"] .m-prices li span { font-size: 14px; }
+.mini[data-l="m"] .m-toast { padding: 12px 14px; }
+.mini[data-l="m"] .m-toast .tt { font-size: 14px; }
+.mini[data-l="m"] .m-toast .tb { font-size: 13px; }
+
+/* the sketch: gold hairlines that draw themselves, then give way element by element */
+.sk { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; z-index: 4; }
+.sk g { transition: none; }
+.sk path { fill: none; stroke: var(--gold); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sk path.soft { stroke: rgb(var(--gold-rgb) / .55); }
+.sk path.dash { stroke-dasharray: 5 6; }
+.sk text { fill: var(--gold); font: 500 11px var(--font-mono); letter-spacing: .14em; }
+.sk text.note { fill: var(--fg); font: 400 14px var(--font-body); letter-spacing: 0; }
+.sk rect.plate { fill: var(--ink-2); }
+.sk.draw path.dr { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.15s cubic-bezier(.65, 0, .25, 1) forwards; animation-delay: calc(var(--d, 0) * 1ms); }
+.sk.draw path.dash { opacity: 0; animation: fadein .6s ease forwards; animation-delay: calc(var(--d, 0) * 1ms + 300ms); }
+.sk.draw text, .sk.draw rect.plate { opacity: 0; animation: fadein .5s ease forwards; animation-delay: calc(var(--d, 0) * 1ms + 700ms); }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fadein { to { opacity: 1; } }
+.sk.m path { stroke-width: 1.4; }
+.sk.m text { font-size: 9px; }
+
+/* the three phases along the bottom */
+.phases { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; opacity: 0; pointer-events: none; }
+.phases .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; gap: 28px; align-items: end; padding-block: 0 24px; }
+.ph { display: grid; gap: 9px; color: var(--dim); transition: color .3s; min-width: 0; }
+.ph .lab { display: flex; gap: 10px; align-items: baseline; font: 500 .72rem var(--font-mono); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.ph .lab span { color: var(--dim); transition: color .3s; }
+.ph.on { color: var(--fg); }
+.ph.on .lab span { color: var(--gold); }
+.ph-track { position: relative; height: 1px; background: var(--line); }
+.ph-fill { position: absolute; inset: 0; background: var(--gold); transform-origin: 0 50%; transform: scaleX(var(--f, 0)); box-shadow: 0 0 8px rgb(var(--gold-rgb) / .6); }
+.ph p { font-size: .86rem; line-height: 1.45; color: var(--muted); min-height: 2.9em; opacity: 0; transition: opacity .35s; }
+.ph.on p { opacity: 1; }
+.demo-note { justify-self: end; display: grid; gap: 6px; justify-items: end; text-align: right; font: 400 .72rem var(--font-mono); letter-spacing: .06em; color: var(--dim); pointer-events: auto; }
+.demo-note a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.demo-note a:hover { color: var(--gold); border-color: var(--gold); }
+.cue { position: absolute; z-index: 3; left: 50%; bottom: 22px; transform: translateX(-50%); display: grid; justify-items: center; gap: 10px; font: 500 .68rem var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); white-space: nowrap; pointer-events: none; }
+.cue::after { content: ""; width: 1px; height: 34px; background: linear-gradient(var(--gold), transparent); animation: cue 2.2s ease-in-out infinite; transform-origin: top; }
+@keyframes cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
 @media (max-width: 900px) {
-  .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: 0 64px; }
-  .stage { order: -1; aspect-ratio: 5 / 4; max-height: 56vh; margin-inline: auto; }
+  .hero { height: 280vh; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); align-content: start; align-items: start; gap: 0; padding-block: 76px 0; }
   .hero h1 { margin-top: 14px; }
+  .hero .lede { margin-top: 18px; }
+  .ctas { margin-top: 26px; }
+  .slot { height: 0; }
+  .phases .wrap { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding-block: 0 16px; }
+  .ph p, .demo-note, .cue { display: none; }
+  .ph .lab { font-size: .64rem; letter-spacing: .1em; gap: 6px; }
 }
+@media (max-width: 900px) and (max-height: 760px) {
+  .hero .lede { font-size: 1.06rem; }
+}
+
+/* reduced motion: no pinning; the finished site sits on the tilted device */
+.hero.static { height: auto; }
+.hero.static .pin { position: relative; }
+.hero.static .phases, .hero.static .cue { display: none; }
+@media (prefers-reduced-motion: reduce) { .cue::after { animation: none; } .mini .el::after { display: none; } }
+
 
 /* sections */
 section.block { padding-block: 120px; border-top: 1px solid var(--line); }
@@ -202,13 +343,6 @@ section.block { padding-block: 120px; border-top: 1px solid var(--line); }
 .statement p { margin-top: 32px; max-width: 46ch; color: var(--muted); font-size: var(--step-1); }
 .statement .btn { margin-top: 36px; }
 @media (max-width: 760px) { .statement { padding-block: 96px; } }
-
-/* hero: drag hint */
-.stage.gl-on { cursor: grab; touch-action: pan-y; }
-.stage.dragging { cursor: grabbing; }
-.drag-hint { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); font: 500 .68rem var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); white-space: nowrap; opacity: 0; transition: opacity .6s ease; pointer-events: none; }
-.stage.gl-on .drag-hint { opacity: 1; }
-.stage.touched .drag-hint { opacity: 0; }
 
 /* niches strip */
 .niches { border-top: 1px solid var(--line); overflow: hidden; padding-block: 26px; }
@@ -406,21 +540,36 @@ footer .email { user-select: all; word-break: break-all; }
 
 <main id="main">
   <section class="hero" id="top">
-    <div class="wrap">
-      <div>
-        <span class="eyebrow" data-t="heroEyebrow"></span>
-        <h1 data-t-html="heroTitle"></h1>
-        <p class="lede" data-t-html="heroLede"></p>
-        <div class="ctas">
-          <a class="btn btn-gold" href="#contact"><span data-t="cta1"></span><span class="arr" aria-hidden="true">→</span></a>
-          <a class="btn btn-ghost" href="#work" data-t="cta2"></a>
+    <div class="pin" id="pin">
+      <div class="wrap hero-grid">
+        <div class="copy" id="heroCopy">
+          <span class="eyebrow" data-t="heroEyebrow"></span>
+          <h1 data-t-html="heroTitle"></h1>
+          <p class="lede" data-t-html="heroLede"></p>
+          <div class="ctas">
+            <a class="btn btn-gold" href="#contact"><span data-t="cta1"></span><span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#work" data-t="cta2"></a>
+          </div>
+        </div>
+        <div class="slot" id="heroSlot" aria-hidden="true"></div>
+      </div>
+      <div class="rig" id="rig" role="img" data-ta="rigLabel">
+        <div class="frame" id="frame">
+          <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">barbearia.exemplo</span></div>
+          <div class="vp" id="vp" aria-hidden="true">
+            <div class="mini" id="mini"></div>
+            <svg class="sk" id="sk"></svg>
+          </div>
         </div>
       </div>
-      <div class="stage" id="stage" aria-hidden="true">
-        <div class="halo"></div>
-        <div class="fallback"></div>
-        <canvas id="gl"></canvas>
-        <span class="drag-hint" data-t="dragHint"></span>
+      <div class="cue" id="cue" data-t="cue"></div>
+      <div class="phases" id="phases">
+        <div class="wrap">
+          <div class="ph" data-ph="0"><div class="lab"><span>I</span><b data-t="ph1" style="font-weight:500"></b></div><div class="ph-track"><i class="ph-fill"></i></div><p data-t="ph1d"></p></div>
+          <div class="ph" data-ph="1"><div class="lab"><span>II</span><b data-t="ph2" style="font-weight:500"></b></div><div class="ph-track"><i class="ph-fill"></i></div><p data-t="ph2d"></p></div>
+          <div class="ph" data-ph="2"><div class="lab"><span>III</span><b data-t="ph3" style="font-weight:500"></b></div><div class="ph-track"><i class="ph-fill"></i></div><p data-t="ph3d"></p></div>
+          <div class="demo-note"><span><span data-t="demoOf"></span> Barbearia Exemplo</span><a href="demos/barbearia/" target="_blank" rel="noopener"><span data-t="openSite"></span> ↗</a></div>
+        </div>
       </div>
     </div>
   </section>
@@ -602,14 +751,14 @@ window.PROJECTS = [
       stBody: 'That first look decides a lot. We make it clear, quick to load and true to how you actually work.',
       s2Title: 'Work you can open.', s2Lede: 'This site comes first. The demos after it are made for invented businesses, so no real client is named.',
       tagHere: 'You are here', tagDemo: 'Demo · fictional business', newTab: '(opens in a new tab)',
-      w1: 'This site: a bronze stone in live 3D that you can spin, the portfolio inside a phone and a brief that draws itself as you fill it in. In three languages.',
+      w1: 'This site: a client\'s website that builds itself from a sketch as you scroll, the portfolio inside a phone and a brief that draws itself as you fill it in. In three languages.',
       w2: 'A neighbourhood barbershop in Lisbon: price list, house rules, hours with a live open sign and a chair booking request. In Português and English.',
       w3t: 'Your business next',
       w4: 'A tasca in Alfama: a tabbed menu, the dish of the day on a chalkboard that changes with the weekday, and a table booking request with lunch and dinner times.',
       w5: 'A reformer Pilates studio: class types, a weekly timetable with live spots and filters, prices and a trial class request.',
       kStudio: 'Web studio · this site', kBarber: 'Barbershop · demo', kRest: 'Restaurant · demo', kPilates: 'Pilates studio · demo',
       openSite: 'Open the site', backTop: 'Back to the first screen', scrollHint: 'The screen scrolls by itself. Hover or tap it to stop.',
-      dragHint: 'Drag to turn',
+      cue: 'Scroll to build the site', ph1: 'Sketch', ph1d: 'What your customers look for, in the order they look.', ph2: 'Design', ph2d: 'Your colours, photos, prices and opening hours.', ph3: 'Live', ph3d: 'Booking requests come straight to you.', demoOf: 'Demo, fictional business:', rigLabel: 'A barbershop website being built: first a sketch of the layout, then the finished design, then a booking request arriving.', n1: 'What you do, in one line', n2: 'One tap to book', n3: 'Open or closed, right now', n4: 'Every price in €, every service in minutes',
       niches: ['Barbershops', 'Restaurants', 'Pilates studios', 'Hair salons', 'Bakeries', 'Nail studios', 'Dental clinics', 'Builders', 'Cafés', 'Tattoo studios'],
       fNeeds: 'What should the site have?', wireTitle: 'Your site, as you pick', wireCount: '{n} sections on one page',
       needs: { booking: 'Booking requests', menu: 'Menu or price list', gallery: 'Photo gallery', hours: 'Hours and map', reviews: 'Reviews', shop: 'Online shop', whatsapp: 'WhatsApp button', langs: 'Several languages' },
@@ -649,14 +798,14 @@ window.PROJECTS = [
       stBody: 'Esse primeiro olhar decide muito. Tornamo-lo claro, rápido e fiel à forma como trabalha.',
       s2Title: 'Trabalho que pode abrir.', s2Lede: 'Este site vem primeiro. As demonstrações a seguir são feitas para negócios inventados, por isso nenhum cliente real é nomeado.',
       tagHere: 'Está aqui', tagDemo: 'Demo · negócio fictício', newTab: '(abre num novo separador)',
-      w1: 'Este site: uma pedra de bronze em 3D ao vivo que pode rodar, o portfólio dentro de um telemóvel e um pedido que se desenha enquanto o preenche. Em três línguas.',
+      w1: 'Este site: o site de um cliente que se constrói a partir de um esboço enquanto desliza, o portfólio dentro de um telemóvel e um pedido que se desenha enquanto o preenche. Em três línguas.',
       w2: 'Uma barbearia de bairro em Lisboa: tabela de preços, regras da casa, horário com aviso de aberto ao vivo e pedido de marcação. Em português e inglês.',
       w3t: 'O seu negócio a seguir',
       w4: 'Uma tasca em Alfama: menu por separadores, o prato do dia num quadro que muda com o dia da semana e pedido de reserva com horas de almoço e jantar.',
       w5: 'Um estúdio de Pilates reformer: tipos de aula, horário semanal com lugares ao vivo e filtros, preços e pedido de aula experimental.',
       kStudio: 'Estúdio web · este site', kBarber: 'Barbearia · demo', kRest: 'Restaurante · demo', kPilates: 'Estúdio de Pilates · demo',
       openSite: 'Abrir o site', backTop: 'Voltar ao início', scrollHint: 'O ecrã desliza sozinho. Passe o rato ou toque para parar.',
-      dragHint: 'Arraste para rodar',
+      cue: 'Deslize para construir o site', ph1: 'Esboço', ph1d: 'O que os clientes procuram, pela ordem em que procuram.', ph2: 'Design', ph2d: 'As suas cores, fotos, preços e horário.', ph3: 'No ar', ph3d: 'Os pedidos de marcação chegam diretamente a si.', demoOf: 'Demo, negócio fictício:', rigLabel: 'Um site de barbearia a ser construído: primeiro o esboço, depois o design final, depois chega um pedido de marcação.', n1: 'O que faz, numa frase', n2: 'Marcar com um toque', n3: 'Aberto ou fechado, agora', n4: 'Preços em €, serviços em minutos',
       niches: ['Barbearias', 'Restaurantes', 'Estúdios de Pilates', 'Cabeleireiros', 'Pastelarias', 'Estúdios de unhas', 'Clínicas dentárias', 'Obras', 'Cafés', 'Estúdios de tatuagem'],
       fNeeds: 'O que o site deve ter?', wireTitle: 'O seu site, à medida que escolhe', wireCount: '{n} secções numa página',
       needs: { booking: 'Pedidos de marcação', menu: 'Menu ou preços', gallery: 'Galeria de fotos', hours: 'Horário e mapa', reviews: 'Opiniões', shop: 'Loja online', whatsapp: 'Botão de WhatsApp', langs: 'Várias línguas' },
@@ -696,14 +845,14 @@ window.PROJECTS = [
       stBody: 'Этот первый взгляд решает многое. Мы делаем его понятным, быстрым и похожим на то, как вы работаете на самом деле.',
       s2Title: 'Работы, которые можно открыть.', s2Lede: 'Первым идёт этот сайт. Демо после него сделаны для вымышленных компаний, поэтому реальные клиенты не названы.',
       tagHere: 'Вы здесь', tagDemo: 'Демо · вымышленный бизнес', newTab: '(откроется в новой вкладке)',
-      w1: 'Этот сайт: бронзовый камень в живом 3D, который можно крутить, портфолио внутри телефона и бриф, который рисует сайт, пока вы его заполняете. На трёх языках.',
+      w1: 'Этот сайт: сайт клиента, который собирается из наброска, пока вы листаете, портфолио внутри телефона и бриф, который рисует сайт, пока вы его заполняете. На трёх языках.',
       w2: 'Районный барбершоп в Лиссабоне: прайс, правила заведения, часы работы с живым статусом «открыто» и заявка на запись. На португальском и английском.',
       w3t: 'Ваш бизнес — следующий',
       w4: 'Таверна в Алфаме: меню по вкладкам, блюдо дня на меловой доске, которое меняется по дням недели, и заявка на бронь стола с обеденным и вечерним временем.',
       w5: 'Студия пилатеса на реформерах: виды занятий, недельное расписание со свободными местами и фильтрами, цены и запись на пробное занятие.',
       kStudio: 'Веб-студия · этот сайт', kBarber: 'Барбершоп · демо', kRest: 'Ресторан · демо', kPilates: 'Пилатес-студия · демо',
       openSite: 'Открыть сайт', backTop: 'Наверх', scrollHint: 'Экран листается сам. Наведите или коснитесь, чтобы остановить.',
-      dragHint: 'Потяните, чтобы повернуть',
+      cue: 'Листайте — сайт соберётся', ph1: 'Набросок', ph1d: 'Что ищут ваши клиенты — в том порядке, в каком ищут.', ph2: 'Дизайн', ph2d: 'Ваши цвета, фото, цены и часы работы.', ph3: 'Запуск', ph3d: 'Заявки на запись приходят прямо к вам.', demoOf: 'Демо, вымышленный бизнес:', rigLabel: 'Сайт барбершопа собирается на глазах: сначала набросок, потом готовый дизайн, потом приходит заявка на запись.', n1: 'Чем вы занимаетесь — одной фразой', n2: 'Запись в одно касание', n3: 'Открыто или закрыто — прямо сейчас', n4: 'Цены в €, услуги в минутах',
       niches: ['Барбершопы', 'Рестораны', 'Пилатес-студии', 'Салоны', 'Пекарни', 'Ногтевые студии', 'Стоматологии', 'Строители', 'Кофейни', 'Тату-студии'],
       fNeeds: 'Что должно быть на сайте?', wireTitle: 'Ваш сайт по мере выбора', wireCount: 'Секций на странице: {n}',
       needs: { booking: 'Заявки на запись', menu: 'Меню или прайс', gallery: 'Галерея', hours: 'Часы и карта', reviews: 'Отзывы', shop: 'Интернет-магазин', whatsapp: 'Кнопка WhatsApp', langs: 'Несколько языков' },
@@ -785,9 +934,11 @@ window.PROJECTS = [
     $$('[data-t]').forEach(el => { const v = t[el.dataset.t]; if (v != null) el.textContent = v; });
     $$('[data-t-html]').forEach(el => { const v = t[el.dataset.tHtml]; if (v != null) el.innerHTML = v; });
     $$('[data-tp]').forEach(el => { el.placeholder = t[el.dataset.tp] || ''; });
+    $$('[data-ta]').forEach(el => { el.setAttribute('aria-label', t[el.dataset.ta] || ''); });
     $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
     buildStatement(); renderTypes(); renderContactLabel();
     renderNiches(); renderProjects(); renderNeeds(); renderWire(false);
+    HERO.relabel();
     $('#result').hidden = true; $('#formErr').hidden = true;
   }
 
@@ -989,146 +1140,203 @@ window.PROJECTS = [
     box.hidden = false;
   });
 
+  /* ===== hero: a client's site builds itself from a sketch as you scroll ===== */
+  const HERO = (() => {
+    const hero = $('#top'), pin = $('#pin'), copy = $('#heroCopy'), slot = $('#heroSlot'), rig = $('#rig'), frame = $('#frame'),
+      vp = $('#vp'), mini = $('#mini'), sk = $('#sk'), cue = $('#cue'), phases = $('#phases'), phs = $$('.ph', phases);
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const SIZE = { d: [1280, 800], m: [390, 800] };
+    const PRICES = { d: [['Corte clássico', 15], ['Degradê', 18], ['Barba com toalha', 14], ['Corte e barba', 28]], m: [['Corte clássico', 15], ['Degradê', 18], ['Corte e barba', 28]] };
+    /* the client's site: Barbearia Exemplo, one of our demos. Boxes are [x, y, w, h] on its wide (d) and narrow (m) layout. */
+    const ELS = [
+      { id: 'bg', kind: 'bg', v: true, d: [0, 0, 1280, 640], m: [0, 0, 390, 646] },
+      { id: 'logo', kind: 'logo', label: 'LOGO', d: [64, 21, 300, 34], m: [18, 42, 230, 28], html: '<b>Barbearia Exemplo</b><small>desde 1987</small>' },
+      { id: 'nav', kind: 'nav', label: 'NAV', d: [770, 25, 290, 26], m: null, html: '<span>Serviços</span><span>A casa</span><span>Visitar</span>' },
+      { id: 'hbtn', kind: 'btn', d: [1096, 18, 120, 40], m: [292, 40, 80, 32], html: 'Marcar' },
+      { id: 'eyebrow', kind: 'text', cls: 'mono', lines: [.66], d: [64, 122, 460, 20], m: [18, 106, 330, 16], html: 'Barbearia · Arroios, Lisboa' },
+      { id: 'h1', kind: 'h1', label: 'H1', cls: 'disp', lines: [.82, .85, .84], d: [64, 156, 720, 290], m: [18, 130, 354, 164], html: 'Corte, barba<br>e <em>dois dedos</em><br><em>de conversa.</em>' },
+      { id: 'lede', kind: 'text', label: 'TEXT', lines: [1, .97, .3], d: [64, 470, 540, 60], m: [18, 314, 350, 70], html: 'Três cadeiras, navalha a sério e toalha quente. Marque a sua hora ou passe pela porta quando houver cadeira livre.' },
+      { id: 'btn1', kind: 'btn', label: 'CTA', d: [64, 556, 196, 54], m: [18, 404, 170, 48], html: 'Marcar cadeira' },
+      { id: 'btn2', kind: 'btn', dashed: true, d: [274, 556, 150, 54], m: [200, 404, 140, 48], html: 'Ver preços' },
+      { id: 'pole', kind: 'img', label: 'IMG', d: [890, 150, 66, 330], m: [26, 478, 40, 142], html: '<span class="cap"></span><span class="glass"><span class="stripes"></span></span><span class="cap"></span>' },
+      { id: 'status', kind: 'card', label: 'LIVE', d: [990, 196, 226, 196], m: [84, 478, 288, 142], html: '<p class="st"><i></i>Aberto agora</p><p class="sub">Fecha hoje às 20:00</p><dl><dt>Cadeiras</dt><dd>3 barbeiros</dd><dt>Sem marcação</dt><dd>ter–sex, depois das 15h</dd></dl>' },
+      { id: 'checker', kind: 'band', d: [0, 640, 1280, 26], m: [0, 646, 390, 22] },
+      { id: 'prices', kind: 'list', label: 'PRICES', d: [0, 666, 1280, 134], m: [0, 668, 390, 132],
+        html: l => '<small>Tabela de preços</small><ul>' + PRICES[l].map(([n, e]) => `<li><b>${n}</b><i></i><span>${e} €</span></li>`).join('') + '</ul>' },
+      { id: 'toast', kind: 'toast', pop: true, d: [990, 96, 226, 90], m: [16, 92, 358, 80], html: '<p class="tt"><i></i>Novo pedido de marcação</p><p class="tb">Sábado, 11:30 · Corte e barba</p><p class="tc">pelo site · agora</p>' }
+    ];
+    // notes pencilled on the wide sketch: [key, text x, text y, leader from → to]
+    const NOTES = [
+      ['n1', 560, 137, [548, 132, 500, 168]],
+      ['n2', 448, 589, [440, 583, 428, 583]],
+      ['n3', 990, 182, null],
+      ['n4', 300, 694, [292, 689, 250, 689]]
+    ];
+    let L = null, G = null, p = -1, raf = 0, drew = false, cursor = null;
+    const nodes = {}, groups = {};
+
+    const R = (x, y, w, h, r = 0) => r
+      ? `M${x + r} ${y}H${x + w - r}A${r} ${r} 0 0 1 ${x + w} ${y + r}V${y + h - r}A${r} ${r} 0 0 1 ${x + w - r} ${y + h}H${x + r}A${r} ${r} 0 0 1 ${x} ${y + h - r}V${y + r}A${r} ${r} 0 0 1 ${x + r} ${y}Z`
+      : `M${x} ${y}H${x + w}V${y + h}H${x}Z`;
+    const Ln = (x1, y1, x2, y2) => `M${x1} ${y1}L${x2} ${y2}`;
+    function marks(el, [x, y, w, h]) {
+      const P = [], add = (d, cls = '') => P.push([d, cls]);
+      switch (el.kind) {
+        case 'logo': { const c = h - 6; add(R(x, y + 3, c, c, c / 2)); add(R(x + c + 10, y + h / 2 - 6, w * .62, 12, 6)); break; }
+        case 'nav': for (let i = 0; i < 3; i++) add(R(x + i * w / 3 + 10, y + h / 2 - 4, w / 3 - 26, 8, 4)); break;
+        case 'btn': add(R(x, y, w, h, 6), el.dashed ? 'dash' : ''); add(R(x + w * .22, y + h / 2 - 4, w * .56, 8, 4), 'soft'); break;
+        case 'text': { const lh = h / el.lines.length; el.lines.forEach((f, i) => add(Ln(x, y + lh * (i + .5), x + w * f, y + lh * (i + .5)), i ? 'soft' : '')); break; }
+        case 'h1': { const lh = h / el.lines.length; el.lines.forEach((f, i) => add(R(x, y + i * lh + lh * .16, w * f, lh * .64, 6))); break; }
+        case 'img': add(R(x, y, w, h, 4)); add(Ln(x, y, x + w, y + h), 'soft'); add(Ln(x + w, y, x, y + h), 'soft'); break;
+        case 'card': add(R(x, y, w, h, 4)); add(R(x + 16, y + 20, 11, 11, 5.5)); add(R(x + 36, y + 20, w * .5, 11, 5.5));
+          add(Ln(x + 16, y + 50, x + w * .62, y + 50), 'soft');
+          for (let i = 0; i < 2; i++) { const ry = y + h - 44 + i * 22; add(Ln(x + 16, ry, x + 16 + w * .24, ry), 'soft'); add(Ln(x + 26 + w * .3, ry, x + w * .78, ry), 'soft'); }
+          break;
+        case 'band': add(R(x, y, w, h)); for (let i = 12; i + h < w; i += 26) add(Ln(x + i, y + h, x + i + h, y), 'soft'); break;
+        case 'list': {
+          const pad = L === 'd' ? 64 : 18, cols = L === 'd' ? 2 : 1, gap = 56, cw = (w - pad * 2 - gap * (cols - 1)) / cols;
+          add(Ln(x + pad, y + 28, x + pad + (L === 'd' ? 150 : 120), y + 28));
+          const rows = L === 'd' ? 2 : 3, rh = L === 'd' ? 46 : 42, y0 = y + (L === 'd' ? 66 : 56);
+          for (let c = 0; c < cols; c++) for (let r = 0; r < rows; r++) {
+            const cx = x + pad + c * (cw + gap), ry = y0 + r * rh, nw = cw * (.36 + ((r + c) % 2) * .12);
+            add(R(cx, ry - 7, nw, 14, 4)); add(Ln(cx + nw + 10, ry, cx + cw - 52, ry), 'dash'); add(Ln(cx + cw - 40, ry, cx + cw, ry));
+          }
+          break;
+        }
+      }
+      return P;
+    }
+    function drawSketch() {
+      const [W, H] = SIZE[L], t = T[lang];
+      sk.setAttribute('width', W); sk.setAttribute('height', H); sk.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      sk.classList.toggle('m', L === 'm');
+      let html = '';
+      ELS.forEach((el, i) => {
+        const b = el[L]; if (!b) return;
+        const P = marks(el, b); if (!P.length && !el.label) return;
+        const d0 = 150 + i * 75;
+        html += `<g data-g="${el.id}">` + P.map(([d, cls], j) => `<path class="${cls.includes('dash') ? cls : 'dr ' + cls}" pathLength="1" d="${d}" style="--d:${d0 + j * 45}"/>`).join('');
+        if (el.label) { const ly = b[1] > 18 ? b[1] - 7 : b[1] + b[3] + 14; html += `<text x="${b[0]}" y="${ly}" style="--d:${d0}">${el.label}</text>`; }
+        html += '</g>';
+      });
+      if (L === 'd') {
+        html += '<g data-g="notes">' + NOTES.map(([k, x, y, ln], i) =>
+          (ln ? `<path class="dr soft" pathLength="1" d="${Ln(...ln)}" style="--d:${1300 + i * 120}"/>` : '') +
+          `<rect class="plate" x="${x - 6}" y="${y - 15}" height="21" rx="3" style="--d:${1300 + i * 120}"/><text class="note" x="${x}" y="${y}" style="--d:${1300 + i * 120}">${t[k]}</text>`).join('') + '</g>';
+      }
+      sk.innerHTML = html;
+      sk.classList.toggle('draw', !drew && !reduce);
+      drew = true;
+      $$('g[data-g]', sk).forEach(g => { groups[g.dataset.g] = g; });
+      $$('text.note', sk).forEach(tx => { const pl = tx.previousElementSibling; try { pl.setAttribute('width', tx.getComputedTextLength() + 12); } catch (e) { pl.setAttribute('width', tx.textContent.length * 7.4 + 12); } });
+    }
+    function build(nl) {
+      L = nl;
+      mini.dataset.l = L;
+      mini.style.setProperty('--hb', L === 'd' ? '76px' : '86px');
+      frame.classList.toggle('is-phone', L === 'm');
+      mini.innerHTML = '';
+      for (const k in nodes) delete nodes[k];
+      for (const k in groups) delete groups[k];
+      ELS.forEach(el => {
+        const b = el[L]; if (!b) return;
+        const n = document.createElement('div');
+        n.className = `el m-${el.id}` + (el.v ? ' v' : '') + (el.pop ? ' pop' : '') + (el.cls ? ' ' + el.cls : '');
+        n.style.cssText = `left:${b[0]}px;top:${b[1]}px;width:${b[2]}px;height:${b[3]}px`;
+        n.innerHTML = typeof el.html === 'function' ? el.html(L) : (el.html || '');
+        mini.append(n); nodes[el.id] = n;
+      });
+      cursor = document.createElement('div');
+      cursor.className = 'm-cursor';
+      cursor.innerHTML = L === 'd'
+        ? '<svg viewBox="0 0 26 26" width="26" height="26"><path d="M4 2.5l17 10-7.3 1.7 4.4 8-3.2 1.7-4.4-8.1-5.3 5z" fill="#fff" stroke="#13110f" stroke-width="1.4" stroke-linejoin="round"/></svg>'
+        : '<svg viewBox="0 0 26 26" width="26" height="26"><circle cx="13" cy="13" r="10.5" fill="rgb(255 255 255 / .28)" stroke="#fff" stroke-width="2"/></svg>';
+      mini.append(cursor);
+      drawSketch();
+    }
+    function layout() {
+      const vw = innerWidth, vh = innerHeight, mob = vw <= 900;
+      if ((mob ? 'm' : 'd') !== L) build(mob ? 'm' : 'd');
+      const [W, H] = SIZE[L], chrome = mob ? 0 : 34, bez = mob ? 10 : 0;
+      const top = mob ? 70 : 84, bottom = mob ? 56 : (vh < 760 ? 96 : 116), availH = vh - top - bottom;
+      let fw = mob ? Math.min(vw - 48, 330, (availH - 2 * bez) * W / H + 2 * bez) : Math.min(1160, vw * .86, (availH - chrome) * W / H);
+      const k = (fw - 2 * bez) / W, fh = H * k + chrome + 2 * bez;
+      G = { fw, fh, fx: (vw - fw) / 2, fy: top + (availH - fh) / 2, mob };
+      Object.assign(rig.style, { width: fw + 'px', height: fh + 'px', left: G.fx + 'px', top: G.fy + 'px' });
+      vp.style.height = mob ? '' : (fh - chrome) + 'px';
+      Object.assign(mini.style, { width: W + 'px', height: H + 'px', transform: `scale(${k})` });
+      sk.style.transformOrigin = '0 0'; sk.style.transform = `scale(${k})`;
+      const s = slot.getBoundingClientRect(), pr = pin.getBoundingClientRect();
+      if (!mob) {
+        const w0 = Math.min(s.width * 1.2, 860);
+        G.s0 = w0 / fw; G.x0 = s.left - pr.left + s.width / 2 + 34; G.y0 = s.top - pr.top + s.height / 2 - 6; G.r0 = [12, -24, 2];
+      } else {
+        const w0 = Math.min(vw * .62, 250);
+        G.s0 = w0 / fw; G.x0 = vw / 2 + 8; G.y0 = s.top - pr.top + 26 + fh * G.s0 / 2; G.r0 = [34, 0, -7];
+      }
+      if (reduce) hero.classList.add('static');
+      update(true);
+    }
+    function progress() {
+      const span = hero.offsetHeight - innerHeight;
+      return span > 0 ? clamp(-hero.getBoundingClientRect().top / span) : 0;
+    }
+    function update(force) {
+      if (!G) return;
+      const np = reduce ? 0 : progress();
+      if (!force && Math.abs(np - p) < .0004) return;
+      p = np;
+      const e = ease(clamp(p / .3));
+      const tx = lerp(G.x0 - (G.fx + G.fw / 2), 0, e), ty = lerp(G.y0 - (G.fy + G.fh / 2), 0, e), sc = lerp(G.s0, 1, e);
+      const [ax, ay, az] = G.r0.map(a => (a * (1 - e)).toFixed(2));
+      rig.style.transform = `translate(${tx.toFixed(1)}px, ${ty.toFixed(1)}px) perspective(1800px) rotateX(${ax}deg) rotateY(${ay}deg) rotateZ(${az}deg) scale(${sc.toFixed(4)})`;
+      const c = ease(clamp(p / .13));
+      copy.style.opacity = (1 - c).toFixed(3);
+      copy.style.transform = c ? `translateY(${(-48 * c).toFixed(1)}px)` : '';
+      copy.classList.toggle('gone', c > .98);
+      ELS.forEach((el, i) => {
+        const n = nodes[el.id]; if (!n) return;
+        const t = reduce ? 1 : el.id === 'toast' ? clamp((p - .885) / .06) : clamp((p - (.24 + i * .036)) / .1);
+        n.style.setProperty('--t', t.toFixed(3));
+        const g = groups[el.id]; if (g) g.style.opacity = (1 - t).toFixed(3);
+      });
+      if (groups.notes) groups.notes.style.opacity = reduce ? 0 : (1 - clamp((p - .2) / .06)).toFixed(3);
+      mini.classList.toggle('live', reduce || p > .84);
+      // the visitor's tap on "Marcar cadeira"
+      const b1 = ELS[7][L], [W, H] = SIZE[L];
+      const tx1 = b1[0] + b1[2] * .62, ty1 = b1[1] + b1[3] * .58, m = ease(clamp((p - .8) / .07));
+      const cx = lerp(W * (L === 'd' ? .6 : .7), tx1, m), cy = lerp(H * (L === 'd' ? .9 : .7), ty1, m);
+      const off = L === 'd' ? 0 : 13;
+      cursor.style.transform = `translate(${(cx - off).toFixed(1)}px, ${(cy - off).toFixed(1)}px)`;
+      cursor.style.opacity = reduce ? 0 : (clamp((p - .79) / .02) * (1 - clamp((p - .97) / .03))).toFixed(3);
+      nodes.btn1.classList.toggle('press', !reduce && p > .872 && p < .9);
+      // phases
+      const f = [clamp(p / .22), clamp((p - .24) / .54), clamp((p - .8) / .14)], on = p < .24 ? 0 : p < .8 ? 1 : 2;
+      phs.forEach((ph, i) => { ph.style.setProperty('--f', f[i].toFixed(3)); ph.classList.toggle('on', i === on); });
+      phases.style.opacity = clamp((p - .012) / .04).toFixed(3);
+      cue.style.opacity = (1 - clamp(p / .025)).toFixed(3);
+    }
+    const tick = () => { raf = 0; update(false); };
+    addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(tick); }, { passive: true });
+    let rt = 0;
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 80); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { layout(); if (L === 'd') $$('text.note', sk).forEach(tx => { try { tx.previousElementSibling.setAttribute('width', tx.getComputedTextLength() + 12); } catch (e) {} }); });
+    return {
+      init: layout,
+      relabel() { if (L) { drawSketch(); update(true); } }
+    };
+  })();
+
   apply();
   onScroll();
+  HERO.init();
 })();
 </script>
 
-<script type="importmap">
-{ "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-} }
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
 
-function init() {
-  const stage = document.getElementById('stage');
-  const canvas = document.getElementById('gl');
-  const hero = document.getElementById('top');
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
-  renderer.setClearColor(0x000000, 0);
-
-  const scene = new THREE.Scene();
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-
-  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 60);
-  camera.position.set(0, 0, 7.4);
-
-  /* a sea-polished stone, cast in bronze */
-  let geo = new THREE.IcosahedronGeometry(1, 48);
-  geo.deleteAttribute('normal'); geo.deleteAttribute('uv');
-  geo = mergeVertices(geo);
-  const pos = geo.attributes.position, v = new THREE.Vector3();
-  for (let i = 0; i < pos.count; i++) {
-    v.fromBufferAttribute(pos, i).normalize();
-    const n = 1 + 0.055 * Math.sin(v.x * 2.3 + 0.7) * Math.cos(v.z * 1.9 - 0.4) + 0.035 * Math.sin(v.y * 3.1 + v.x * 1.7) + 0.02 * Math.cos(v.z * 4.2 + v.y * 2.0);
-    pos.setXYZ(i, v.x * n * 1.34, v.y * n * 0.8, v.z * n * 1.04);
-  }
-  geo.computeVertexNormals();
-  const bronze = new THREE.MeshPhysicalMaterial({ color: 0x9a6334, metalness: 1, roughness: 0.27, clearcoat: 0.55, clearcoatRoughness: 0.22, envMapIntensity: 1.15 });
-  const stone = new THREE.Mesh(geo, bronze);
-
-  /* gold orbit with a single bead */
-  const gold = new THREE.MeshStandardMaterial({ color: 0xe4ba6a, metalness: 1, roughness: 0.16, emissive: 0x4a3010, emissiveIntensity: 0.6 });
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.95, 0.013, 12, 300), gold);
-  const bead = new THREE.Mesh(new THREE.SphereGeometry(0.055, 24, 16), gold);
-  ring.add(bead);
-  ring.rotation.set(1.22, 0.18, 0);
-  const pivot = new THREE.Group(); pivot.add(ring);
-
-  const group = new THREE.Group();
-  group.add(stone, pivot);
-  group.rotation.set(0.18, -0.4, -0.08);
-  scene.add(group);
-
-  const key = new THREE.DirectionalLight(0xffe2b8, 2.6); key.position.set(3, 4, 5); scene.add(key);
-  const rim = new THREE.DirectionalLight(0xffb85c, 3.4); rim.position.set(-4, 1.5, -4); scene.add(rim);
-  const under = new THREE.PointLight(0xe4ba6a, 16, 12); under.position.set(0.6, -2.2, 1.2); scene.add(under);
-
-  function resize() {
-    const w = stage.clientWidth, h = stage.clientHeight;
-    if (!w || !h) return;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    const halfTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    const needW = 4.7, needH = 3.9;
-    camera.position.z = Math.max(needH / (2 * halfTan), needW / (2 * halfTan * camera.aspect));
-    camera.updateProjectionMatrix();
-    render();
-  }
-  new ResizeObserver(resize).observe(stage);
-
-  let mx = 0, my = 0, tx = 0, ty = 0;
-  addEventListener('pointermove', (e) => { tx = (e.clientX / innerWidth - 0.5); ty = (e.clientY / innerHeight - 0.5); }, { passive: true });
-
-  /* drag to spin, with inertia */
-  let dragging = false, lastX = 0, spin = 0, vel = 0;
-  stage.addEventListener('pointerdown', (e) => {
-    dragging = true; lastX = e.clientX; vel = 0;
-    stage.setPointerCapture(e.pointerId);
-    stage.classList.add('dragging', 'touched');
-  });
-  stage.addEventListener('pointermove', (e) => {
-    if (!dragging) return;
-    const dx = e.clientX - lastX; lastX = e.clientX;
-    vel = dx * 0.012; spin += vel;
-    if (reduce) render();
-  });
-  const endDrag = () => { dragging = false; stage.classList.remove('dragging'); };
-  stage.addEventListener('pointerup', endDrag);
-  stage.addEventListener('pointercancel', endDrag);
-
-  let visible = true, t = 0, last = performance.now();
-  new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) { last = performance.now(); loop(); } }).observe(stage);
-
-  function scrollP() {
-    const h = hero.offsetHeight || 1;
-    return Math.min(1, Math.max(0, scrollY / h));
-  }
-
-  function render() {
-    const p = scrollP();
-    stage.style.setProperty('--p', p.toFixed(3));
-    mx += (tx - mx) * 0.06; my += (ty - my) * 0.06;
-    if (!dragging && !reduce) { spin += vel; vel *= 0.95; }
-    stone.rotation.y = t * 0.16 + p * 1.8 + spin;
-    stone.rotation.x = Math.sin(t * 0.21) * 0.08;
-    pivot.rotation.y = t * 0.22 + p * 0.9 + spin * 0.45;
-    bead.position.set(Math.cos(t * 0.9) * 1.95, Math.sin(t * 0.9) * 1.95, 0);
-    group.rotation.x = 0.18 + my * 0.25 + p * 0.5;
-    group.rotation.z = -0.08 - mx * 0.18;
-    group.position.y = p * 0.9;
-    renderer.render(scene, camera);
-  }
-
-  function loop() {
-    if (!visible) return;
-    const now = performance.now();
-    if (!reduce) t += Math.min(0.05, (now - last) / 1000);
-    last = now;
-    render();
-    if (!reduce) requestAnimationFrame(loop);
-  }
-  if (reduce) addEventListener('scroll', render, { passive: true });
-
-  resize();
-  loop();
-  requestAnimationFrame(() => stage.classList.add('gl-on'));
-}
-
-try { init(); } catch (e) { /* the CSS stone stays in place */ }
-</script>
 
 </body>
 </html>

@@ -190,6 +190,52 @@ input:focus,textarea:focus{outline:2px solid var(--matcha);outline-offset:0;bord
 @media (max-width:880px){ .brief-grid{grid-template-columns:1fr} }
 @media (max-width:520px){ .ocard{padding:22px 18px} .two{grid-template-columns:1fr} }
 
+/* on set: scroll builds a food-styling shot inside a viewfinder — backdrop, hero, props, tweezers, click */
+.set{position:relative;height:330vh}
+.set-pin{position:sticky;top:calc(var(--hdr) + env(safe-area-inset-top, 0px));height:calc(100vh - var(--hdr));height:calc(100svh - var(--hdr) - env(safe-area-inset-top, 0px));overflow:hidden;display:flex;align-items:center}
+.set-in{width:100%;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,64px);align-items:center}
+.set-copy{min-width:0}
+.set-n{display:flex;align-items:baseline;gap:14px;margin-top:10px}
+.set-n b{font:italic 500 clamp(96px,11vw,168px)/.85 var(--display);color:var(--matcha);letter-spacing:-.04em;font-variant-numeric:lining-nums}
+.set-n span{font:500 13px/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.set-step{margin-top:18px;transition:opacity .25s ease,transform .25s ease}
+.set-step.swap{opacity:0;transform:translateY(6px)}
+.set-step h3{font-size:clamp(34px,3.4vw,48px);line-height:1;font-weight:500}
+.set-step p{margin-top:10px;color:var(--ink-2);max-width:40ch;min-height:3.2em}
+.ssteps{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 0;padding:0;list-style:none}
+.ssteps li{font:500 12.5px/1 var(--sans);padding:8px 12px;border-radius:999px;border:1px solid var(--line-2);color:var(--muted);transition:background .2s,color .2s,border-color .2s}
+.ssteps li.done{border-color:var(--matcha);color:var(--matcha)}
+.ssteps li.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.set-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px 16px;margin-top:24px}
+.set-cue{font-size:14px;color:var(--muted)}
+.set-art{margin:0;min-width:0}
+.set-art svg{display:block;width:100%;height:auto;overflow:visible}
+.set-art .f .bg0{fill:#e6e3d6} .set-art .f .bgb{fill:#f4dc7c} .set-art .f .tbl{fill:#f7f1dc} .set-art .f .tbl2{fill:#efe6c6}
+.set-art .f .lin{fill:#f3eee0} .set-art .f .lns{fill:none;stroke:#8fae58;stroke-width:2}
+.set-art .f .tw{fill:none;stroke:#7f857a;stroke-width:4;stroke-linecap:round} .set-art .f .tw2{fill:none;stroke:#c4c8bf;stroke-width:1.4;stroke-linecap:round}
+.set-art .f .pp{fill:#fffefa;filter:drop-shadow(0 18px 30px rgba(29,33,22,.22))}
+.set-art .f .cap{fill:#1d2116;font:italic 500 26px var(--display)}
+.set-art .f .vf{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;filter:drop-shadow(0 0 2px rgba(0,0,0,.35))}
+.set-art .f .vg{fill:none;stroke:rgba(255,255,255,.55);stroke-width:1}
+.set-art .f .vt{fill:#fff;font:500 15px var(--sans);letter-spacing:.06em;filter:drop-shadow(0 0 1.5px rgba(29,33,22,.55))}
+.set-art .f .vfoc{fill:none;stroke:#fff;stroke-width:2.5}
+.set-art .f .vfoc.ok{stroke:#a9e06a}
+@media (max-width:860px){
+  .set{height:310vh}
+  .set-in{grid-template-columns:minmax(0,1fr);gap:0}
+  .set-n{margin-top:4px}
+  .set-n b{font-size:clamp(68px,20vw,96px)}
+  .set-step{margin-top:6px}
+  .set-step h3{font-size:30px}
+  .set-step p{font-size:15px;line-height:1.45;min-height:2.9em;margin-top:6px}
+  .ssteps{margin-top:12px;gap:4px}
+  .ssteps li{padding:7px 9px;font-size:11.5px}
+  .set-row{display:none}
+  .set-art{width:min(100%, calc((100svh - var(--hdr) - 360px) * 1.25));justify-self:center;margin-top:18px}
+}
+.set.static{height:auto}
+.set.static .set-pin{position:relative;top:0;height:auto;padding-block:clamp(72px,9vw,120px)}
+
 /* footer */
 .foot{background:var(--foot);color:var(--on-foot);padding-block:72px 40px}
 .foot-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px 48px;align-items:end}
@@ -230,6 +276,21 @@ input:focus,textarea:focus{outline:2px solid var(--matcha);outline-offset:0;bord
   </section>
 
   <div class="mq" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <section class="set" id="set" aria-labelledby="setTitle">
+    <div class="set-pin">
+      <div class="wrap set-in">
+        <div class="set-copy">
+          <p class="eb" id="setTitle" data-t="set_eb"></p>
+          <p class="set-n"><b id="setN">01</b><span>/ 05</span></p>
+          <div class="set-step" id="setStep" aria-live="polite"><h3 id="setH"></h3><p id="setP"></p></div>
+          <ol class="ssteps" id="setSteps"></ol>
+          <div class="set-row"><a class="btn sm" href="#brief" data-t="cta_brief"></a><span class="set-cue" id="setCue" data-t="set_cue"></span></div>
+        </div>
+        <figure class="set-art"><svg class="f" id="setArt" viewBox="-30 -30 700 580" role="img"></svg></figure>
+      </div>
+    </div>
+  </section>
 
   <section class="sec" id="work">
     <div class="wrap">
@@ -332,6 +393,13 @@ en: {
   cta_brief: 'Start a project', cta_work: 'See the work',
   stamp_ring: 'MUR MUR · PROPS · CONCEPTS · FOOD STYLING · ', stamp_city: 'LISBOA', stamp_label: 'A butter stamp embossed with the studio name.',
   materials: ['butter', 'sugar', 'matcha', 'soap', 'wax', 'chocolate', 'rose', 'bread'],
+  set_eb: 'How a shot comes together', set_cue: 'Scroll to style the shot ↓', set_cap: 'Matcha & butter · frame 01', set_art: 'A food stylist builds a shot step by step: backdrop and light, a bowl of matcha with butter, candles and berries, one leaf placed with tweezers, then the camera fires.',
+  set_s: ['Backdrop', 'Hero', 'Props', 'Tweezers', 'Click'],
+  set_h0: 'Backdrop and light', set_p0: 'Colour and a soft window light come first, before a single object goes down.',
+  set_h1: 'The hero', set_p1: 'One object carries the picture. Here: a bowl of matcha and a block of butter.',
+  set_h2: 'Props', set_p2: 'Candles, linen, a few berries. Everything else is there to make the hero look better.',
+  set_h3: 'Tweezers', set_p3: 'The last leaf goes on by hand, a millimetre at a time.',
+  set_h4: 'Click', set_p4: 'One frame out of a long day. That is the one that goes to print.',
   work_eb: 'Selected work', work_h: 'Made to be photographed.<br><i>Some of it, to be eaten.</i>',
   f_all: 'All', f_props: 'Props', f_styling: 'Food styling', f_events: 'Events',
   c_props: 'Props', c_styling: 'Food styling', c_events: 'Event', credit: 'Art direction',
@@ -380,6 +448,13 @@ pt: {
   cta_brief: 'Começar um projeto', cta_work: 'Ver trabalhos',
   stamp_ring: 'MUR MUR · ADEREÇOS · CONCEITOS · FOOD STYLING · ', stamp_city: 'LISBOA', stamp_label: 'Um carimbo de manteiga com o nome do estúdio em relevo.',
   materials: ['manteiga', 'açúcar', 'matcha', 'sabão', 'cera', 'chocolate', 'rosa', 'pão'],
+  set_eb: 'Como nasce uma fotografia', set_cue: 'Deslize para montar a cena ↓', set_cap: 'Matcha e manteiga · fotograma 01', set_art: 'Uma food stylist monta a cena passo a passo: fundo e luz, uma taça de matcha com manteiga, velas e bagas, uma folha pousada com pinça, e a câmara dispara.',
+  set_s: ['Fundo', 'Protagonista', 'Adereços', 'Pinça', 'Clique'],
+  set_h0: 'Fundo e luz', set_p0: 'Primeiro a cor e uma luz suave de janela, antes de pousar qualquer objeto.',
+  set_h1: 'O protagonista', set_p1: 'Um objeto segura a imagem. Aqui: uma taça de matcha e um bloco de manteiga.',
+  set_h2: 'Adereços', set_p2: 'Velas, linho, algumas bagas. Tudo o resto existe para o protagonista ficar melhor.',
+  set_h3: 'Pinça', set_p3: 'A última folha vai à mão, milímetro a milímetro.',
+  set_h4: 'Clique', set_p4: 'Uma imagem de um dia inteiro. É essa que vai para impressão.',
   work_eb: 'Trabalhos', work_h: 'Feito para ser fotografado.<br><i>Algum, para ser comido.</i>',
   f_all: 'Todos', f_props: 'Adereços', f_styling: 'Food styling', f_events: 'Eventos',
   c_props: 'Adereços', c_styling: 'Food styling', c_events: 'Evento', credit: 'Direção de arte',
@@ -428,6 +503,13 @@ uk: {
   cta_brief: 'Почати проєкт', cta_work: 'Дивитися роботи',
   stamp_ring: 'MUR MUR · РЕКВІЗИТ · КОНЦЕПЦІЇ · ФУДСТАЙЛІНГ · ', stamp_city: 'ЛІСАБОН', stamp_label: 'Печатка на маслі з назвою студії.',
   materials: ['масло', 'цукор', 'матча', 'мило', 'віск', 'шоколад', 'троянда', 'хліб'],
+  set_eb: 'Як народжується кадр', set_cue: 'Гортайте — зберемо кадр ↓', set_cap: 'Матча й масло · кадр 01', set_art: 'Фудстиліст збирає кадр крок за кроком: фон і світло, чаша матчі з маслом, свічки й ягоди, листочок пінцетом — і камера клацає.',
+  set_s: ['Фон', 'Герой', 'Реквізит', 'Пінцет', 'Клац'],
+  set_h0: 'Фон і світло', set_p0: 'Спершу колір і м’яке світло з вікна — ще до того, як на стіл ляже хоч один предмет.',
+  set_h1: 'Головний герой', set_p1: 'Кадр тримає один предмет. Тут — чаша матчі й брусок масла.',
+  set_h2: 'Реквізит', set_p2: 'Свічки, льон, кілька ягід. Усе інше — щоб герой виглядав краще.',
+  set_h3: 'Пінцет', set_p3: 'Останній листочок кладемо вручну, по міліметру.',
+  set_h4: 'Клац', set_p4: 'Один кадр за довгий день. Саме він іде у друк.',
   work_eb: 'Роботи', work_h: 'Зроблено, щоб фотографувати.<br><i>Дещо — щоб з’їсти.</i>',
   f_all: 'Усі', f_props: 'Реквізит', f_styling: 'Фудстайлінг', f_events: 'Події',
   c_props: 'Реквізит', c_styling: 'Фудстайлінг', c_events: 'Подія', credit: 'Арт-дирекція',
@@ -667,6 +749,102 @@ $('#briefForm').addEventListener('submit', ev => {
   box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
 });
 
+/* ===== on set: the shot builds itself as you scroll ===== */
+const setRM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sc = v => Math.max(0, Math.min(1, v)), se = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const sBack = x => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };   // lands with a small overshoot
+const SSEG = [0, .16, .36, .56, .76, 1];
+const LEAF = [322, 203];                       // where the last leaf lands, on the matcha
+let setSeg = -1, setP = -1, setRaf = 0;
+function setBuild() {
+  const H = 'translate(150 26) scale(1.55)';
+  let s = `<defs><clipPath id="sClip"><rect width="640" height="440" rx="3"/></clipPath>
+    <radialGradient id="sSoft" cx="18%" cy="12%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset=".6" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>`;
+  s += `<g id="sPrint"><rect id="sPaper" class="pp" x="-22" y="-22" width="684" height="552" rx="4" opacity="0"/><text id="sCap" class="cap" x="320" y="496" text-anchor="middle" opacity="0">${esc(t('set_cap'))}</text>`;
+  s += `<g clip-path="url(#sClip)"><rect class="bg0" width="640" height="440"/><rect id="sButter" class="bgb" width="640" height="440" opacity="0"/>`;
+  s += `<path class="tbl" d="M0 300C180 288 460 288 640 300V440H0Z"/><path class="tbl2" d="M0 300C180 288 460 288 640 300V306C460 294 180 294 0 306Z"/>`;
+  s += `<rect id="sLight" width="640" height="440" fill="url(#sSoft)" opacity="0"/>`;
+  // props behind the hero: linen and two candles
+  s += `<g id="sStill" transform="translate(320 300) scale(1.32) translate(-320 -300)">`;
+  s += `<g id="sNap"><path class="o lin" d="M108 334C160 316 250 302 326 306C350 322 366 340 376 362C300 374 220 382 154 390C140 372 124 352 108 334Z"/><path class="lns" d="M122 343C175 326 255 314 330 316M136 357C190 341 268 329 342 330"/></g>`;
+  s += `<g id="sC1">${candle(92, 318, 104, 15)}</g><g id="sC2">${candle(128, 326, 74, 15)}</g>`;
+  // the hero: a bowl of matcha, and a block of butter
+  s += `<g id="sHero"><g transform="${H}"><ellipse class="sh" cx="104" cy="196" rx="84" ry="8"/><ellipse class="o wh" cx="104" cy="176" rx="70" ry="12"/><path class="o wh" d="M56 116C58 152 80 172 104 172C128 172 150 152 152 116Z"/><ellipse class="o mt" cx="104" cy="116" rx="48" ry="10"/><path class="l2" d="M76 116c10-5 20 5 30 0s20-5 30 0"/><path class="lw" d="M88 113c6-3 12 2 18 0"/></g></g>`;
+  s += `<g id="sBut"><g transform="${H}"><ellipse class="sh" cx="192" cy="190" rx="34" ry="5"/><ellipse class="o wh" cx="190" cy="184" rx="30" ry="7"/><path class="o bud" d="M172 182V168L182 160H210V174L200 182Z"/><path class="o bu" d="M172 168L182 160H210L200 168Z"/><path class="o buh" d="M172 168H200V182H172Z"/></g></g>`;
+  // berries
+  [[430, 360, 9, 'ro'], [452, 368, 8, 'rol'], [474, 356, 7.5, 'ro'], [236, 300, 6.5, 'rol']].forEach(([x, y, r, c], i) => { s += `<g class="sBer" data-i="${i}" data-x="${x}" data-y="${y}">${berry(x, y, r, c)}</g>`; });
+  // the last leaf, and the tweezers that place it
+  s += `<g id="sLeaf"><path class="o mtd" d="M0 0C7-9 21-10 28 0C21 10 7 9 0 0Z"/><path class="l2" d="M3 0H24"/></g>`;
+  s += `<g id="sTw"><path class="tw" d="M-4 2L-13-250M4 2L13-250"/><path class="tw2" d="M-6-60L-11-200M6-60L11-200"/><path class="o" d="M-15-250H15V-262H-15Z" fill="#9aa094"/></g>`;
+  s += `</g><rect id="sFlash" width="640" height="440" fill="#fff" opacity="0"/></g></g>`;
+  // the camera's viewfinder
+  const br = (x, y, dx, dy) => `<path class="vf" d="M${x} ${y + dy * 34}V${y}H${x + dx * 34}"/>`;
+  s += `<g id="sVF">${br(22, 22, 1, 1)}${br(618, 22, -1, 1)}${br(22, 418, 1, -1)}${br(618, 418, -1, -1)}`;
+  s += `<path class="vg" d="M213 0V440M427 0V440M0 147H640M0 293H640"/>`;
+  s += `<rect id="sFoc" class="vfoc" x="262" y="140" width="92" height="72"/>`;
+  s += `<text class="vt" x="40" y="404">f/4 · 1/125 · ISO 200</text><text class="vt" x="600" y="404" text-anchor="end">RAW · 01</text></g>`;
+  $('#setArt').innerHTML = s;
+  $('#setArt').setAttribute('aria-label', t('set_art'));
+  $('#setSteps').innerHTML = t('set_s').map((x, i) => `<li data-i="${i}">${esc(x)}</li>`).join('');
+  setSeg = -1; setP = -1;
+  setUpdate(true);
+}
+function setText(i) {
+  const box = $('#setStep'), put = () => { $('#setH').textContent = t('set_h' + i); $('#setP').textContent = t('set_p' + i); $('#setN').textContent = '0' + (i + 1); };
+  if (setSeg === -1 || setRM) { put(); return; }
+  box.classList.add('swap'); clearTimeout(box._t); box._t = setTimeout(() => { put(); box.classList.remove('swap'); }, 170);
+}
+const tr = (el, x, y, extra) => el.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})${extra || ''}`);
+function setUpdate(force) {
+  const sec = $('#set');
+  let p;
+  if (setRM) { sec.classList.add('static'); p = 1; }
+  else { const hd = $('.hdr').offsetHeight, span = sec.offsetHeight - (innerHeight - hd); p = span > 0 ? sc((hd - sec.getBoundingClientRect().top) / span) : 0; }
+  if (!force && Math.abs(p - setP) < .0005) return;
+  setP = p;
+  let seg = 0; while (seg < 4 && p >= SSEG[seg + 1]) seg++;
+  if (seg !== setSeg) {
+    setText(seg); setSeg = seg;
+    $$('#setSteps li').forEach(li => { const i = +li.dataset.i; li.classList.toggle('on', i === seg); li.classList.toggle('done', i < seg); });
+  }
+  const U = i => sc((p - SSEG[i]) / (SSEG[i + 1] - SSEG[i]));   // progress inside step i, 0..1, held at 1 after it
+  // 1 · backdrop and light
+  const u0 = se(sc(U(0) / .8));
+  $('#sButter').setAttribute('opacity', u0.toFixed(3));
+  $('#sLight').setAttribute('opacity', (u0 * .9).toFixed(3));
+  // 2 · the hero slides in, then the butter
+  const u1 = U(1), h = se(sc(u1 / .6)), b = se(sc((u1 - .3) / .55));
+  tr($('#sHero'), 460 * (1 - h), 0); $('#sHero').setAttribute('opacity', sc(h * 3).toFixed(3));
+  tr($('#sBut'), 300 * (1 - b), 0); $('#sBut').setAttribute('opacity', sc(b * 3).toFixed(3));
+  // 3 · props: linen slides under, candles drop in, berries pop
+  const u2 = U(2), nap = se(sc(u2 / .4)), c1 = sBack(sc((u2 - .1) / .35)), c2 = sBack(sc((u2 - .22) / .35));
+  tr($('#sNap'), -360 * (1 - nap), 0); $('#sNap').setAttribute('opacity', sc(nap * 3).toFixed(3));
+  tr($('#sC1'), 0, -420 * (1 - c1)); tr($('#sC2'), 0, -420 * (1 - c2));
+  $$('#setArt .sBer').forEach(g => {
+    const i = +g.dataset.i, x = +g.dataset.x, y = +g.dataset.y, k = sBack(sc((u2 - .5 - i * .1) / .25));
+    g.setAttribute('transform', `translate(${x} ${y}) scale(${Math.max(0, k).toFixed(3)}) translate(${-x} ${-y})`);
+  });
+  // 4 · tweezers bring the last leaf down, let go, and leave
+  const u3 = U(3), down = se(sc(u3 / .45)), up = se(sc((u3 - .58) / .38));
+  const ty = -300 * (1 - down) - 300 * up, open = sc((u3 - .48) / .1) * 4;
+  tr($('#sTw'), LEAF[0] + 14, LEAF[1] + ty, ` rotate(${(-8 + 8 * down).toFixed(2)})`);
+  $('#sTw').querySelectorAll('path')[0].setAttribute('d', `M${(-4 - open).toFixed(1)} 2L-13-250M${(4 + open).toFixed(1)} 2L13-250`);
+  const ly = u3 < .5 ? ty : 0;
+  tr($('#sLeaf'), LEAF[0], LEAF[1] + ly, ` rotate(${(-14 + 14 * down).toFixed(2)})`);
+  $('#sLeaf').setAttribute('opacity', u3 > 0 ? 1 : 0);
+  // 5 · focus, flash, and the frame becomes a print
+  const u4 = U(4), foc = u4 > .06, flash = Math.max(0, 1 - Math.abs(u4 - .22) / .1), pr = se(sc((u4 - .36) / .5));
+  $('#sFoc').classList.toggle('ok', foc);
+  $('#sFlash').setAttribute('opacity', setRM ? 0 : flash.toFixed(3));
+  $('#sVF').setAttribute('opacity', (1 - sc((u4 - .2) / .1)).toFixed(3));
+  $('#sPaper').setAttribute('opacity', pr.toFixed(3));
+  $('#sCap').setAttribute('opacity', sc((u4 - .7) / .2).toFixed(3));
+  $('#sPrint').setAttribute('transform', `translate(320 260) rotate(${(-2.5 * pr).toFixed(2)}) scale(${(1 - .14 * pr).toFixed(4)}) translate(-320 -${(260 + 10 * pr).toFixed(1)})`);
+  const cue = $('#setCue'); if (cue) cue.style.opacity = (1 - sc(p / .03)).toFixed(2);
+}
+addEventListener('scroll', () => { if (!setRaf) setRaf = requestAnimationFrame(() => { setRaf = 0; setUpdate(false); }); }, { passive: true });
+addEventListener('resize', () => setUpdate(true));
+
 /* ===== i18n & boot ===== */
 function applyTexts() {
   document.documentElement.lang = lang;
@@ -675,7 +853,7 @@ function applyTexts() {
   $$('[data-tp]').forEach(el => { el.placeholder = t(el.dataset.tp); });
   $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
 }
-function renderAll() { applyTexts(); stamp(); renderLists(); renderWork(); renderBrief(); $('#bRes').hidden = true; }
+function renderAll() { applyTexts(); stamp(); renderLists(); renderWork(); renderBrief(); setBuild(); $('#bRes').hidden = true; }
 $$('.lang button').forEach(b => b.addEventListener('click', () => {
   lang = b.dataset.lang;
   try { localStorage.setItem('murmur-lang', lang); } catch (e) {}

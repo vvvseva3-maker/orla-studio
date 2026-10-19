@@ -14,7 +14,7 @@
 :root{
   --paper:#fbfaf7; --paper-2:#f3f1ec; --card:#ffffff; --ink:#171614; --ink-2:#3f3b35; --muted:#6d685f; --line:#e3dfd7; --line-2:#cbc6bc;
   --blue:#1f45c4; --on-blue:#ffffff; --blue-soft:rgba(31,69,196,.06);
-  --sun:#f3b52b; --tint:#f8e4b6; --tom:#d8452a; --open:#1e7a48; --err:#b3261e;
+  --sun:#f3b52b; --tint:#f8e4b6; --shade:rgba(40,34,24,.2); --tom:#d8452a; --open:#1e7a48; --err:#b3261e;
   --foot:#161513; --on-foot:#f3f0ea; --on-foot-muted:#a39e94;
   --display:'Prata','Didot','Bodoni 72',Georgia,serif;
   --sans:'Jost','Futura','Avenir Next',system-ui,-apple-system,'Segoe UI',sans-serif;
@@ -24,14 +24,14 @@
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --paper:#121211; --paper-2:#191917; --card:#1c1c1a; --ink:#f0ede6; --ink-2:#d0ccc3; --muted:#9b968c; --line:#2c2b28; --line-2:#45433e;
   --blue:#93a9ff; --on-blue:#0e1222; --blue-soft:rgba(147,169,255,.08);
-  --sun:#f3b52b; --tint:#9a7024; --tom:#ff6f52; --open:#4cc184; --err:#ff8a80;
+  --sun:#f3b52b; --tint:#9a7024; --shade:rgba(0,0,0,.5); --tom:#ff6f52; --open:#4cc184; --err:#ff8a80;
   --foot:#0a0a09; --on-foot:#ece8e0; --on-foot-muted:#8f8a80;
   color-scheme:dark;
 }}
 :root[data-theme="dark"]{
   --paper:#121211; --paper-2:#191917; --card:#1c1c1a; --ink:#f0ede6; --ink-2:#d0ccc3; --muted:#9b968c; --line:#2c2b28; --line-2:#45433e;
   --blue:#93a9ff; --on-blue:#0e1222; --blue-soft:rgba(147,169,255,.08);
-  --sun:#f3b52b; --tint:#9a7024; --tom:#ff6f52; --open:#4cc184; --err:#ff8a80;
+  --sun:#f3b52b; --tint:#9a7024; --shade:rgba(0,0,0,.5); --tom:#ff6f52; --open:#4cc184; --err:#ff8a80;
   --foot:#0a0a09; --on-foot:#ece8e0; --on-foot-muted:#8f8a80;
   color-scheme:dark;
 }
@@ -259,6 +259,50 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--blue);outline-of
 .fnav a:hover{border-color:currentColor}
 @media (max-width:760px){ .foot-in{grid-template-columns:1fr} }
 
+/* a day at LETO: scroll moves the clock from opening to closing; the plate changes and the shadows follow today's sun */
+.day{position:relative;height:330vh}
+.day-pin{position:sticky;top:calc(var(--hdr) + env(safe-area-inset-top, 0px));height:calc(100vh - var(--hdr));height:calc(100svh - var(--hdr) - env(safe-area-inset-top, 0px));overflow:hidden;display:flex;align-items:center}
+.day-in{width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"head art" "ruler art";gap:0 clamp(28px,5vw,80px);align-items:center;align-content:center}
+.day-head{grid-area:head;min-width:0;align-self:end}
+.clock{font:400 clamp(84px,11vw,168px)/.9 var(--display);letter-spacing:-.02em;margin-top:16px;white-space:nowrap}
+.clock i{font-style:normal;color:var(--blue)}
+.moment{margin-top:26px;transition:opacity .25s ease,transform .25s ease}
+.moment.swap{opacity:0;transform:translateY(6px)}
+.moment .mk{font:500 12px/1.3 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.moment h3{font-size:clamp(30px,3.2vw,44px);line-height:1.08;margin-top:10px}
+.moment p{margin-top:10px;color:var(--ink-2);max-width:44ch;min-height:3.2em}
+.moment .row{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;margin-top:18px}
+.moment .price{font:400 26px/1 var(--display)}
+.ruler{grid-area:ruler;min-width:0;max-width:560px;margin-top:clamp(26px,5vh,56px);align-self:start}
+.track{position:relative;height:1px;background:var(--line-2);margin-top:22px}
+.track .tk{position:absolute;top:-4px;width:1px;height:9px;background:var(--line-2)}
+.track .hl{position:absolute;top:14px;transform:translateX(-50%);font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.track .mo{position:absolute;top:-5px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:1.5px solid var(--blue);transform:translateX(-50%);transition:background .2s}
+.track .mo.on{background:var(--blue)}
+.track .sunk{position:absolute;top:-13px;width:26px;height:26px;border-radius:50%;background:var(--sun);border:1.3px solid var(--ink);transform:translateX(-50%);box-shadow:0 0 0 6px rgba(243,181,43,.18)}
+.day-note{position:relative;margin-top:44px;font-size:13.5px;color:var(--muted);min-height:1.5em}
+.day-note span{position:absolute;left:0;top:0;transition:opacity .3s}
+.day-art{grid-area:art;justify-self:center;margin:0;width:min(100%, calc(100svh - var(--hdr) - 96px), 600px)}
+.day-art .ill .tb{fill:var(--card);stroke:var(--line-2);stroke-width:1.35}
+.day-art .ill .sh{fill:var(--shade)}
+@media (max-width:860px){
+  .day{height:300vh}
+  .day-pin{align-items:flex-start}
+  .day-in{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "art" "ruler";gap:0;padding-top:14px}
+  .clock{font-size:clamp(60px,18vw,92px);margin-top:8px}
+  .moment{margin-top:10px}
+  .moment h3{font-size:26px;margin-top:6px}
+  .moment p{font-size:15px;line-height:1.45;min-height:2.9em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .moment .row{margin-top:10px}
+  .moment .price{font-size:22px}
+  .day-art{width:min(100%, calc(100svh - var(--hdr) - 420px), 460px);margin-top:12px}
+  .ruler{margin-top:8px;max-width:none;width:100%}
+  .track .hl:nth-of-type(even){display:none}
+  .day-note{margin-top:38px;font-size:12.5px}
+}
+.day.static{height:auto}
+.day.static .day-pin{position:relative;top:0;height:auto;padding-block:clamp(72px,9vw,120px)}
+
 /* mobile order bar */
 .cartbar{position:fixed;left:0;right:0;bottom:0;z-index:55;padding:14px var(--gut-r) calc(12px + env(safe-area-inset-bottom, 0px)) var(--gut-l);background:linear-gradient(transparent,var(--paper) 40%)}
 .cartbar a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:54px;padding:0 20px;background:var(--ink);color:var(--paper);text-decoration:none;font-size:15px;max-width:520px;margin-inline:auto}
@@ -301,6 +345,28 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--blue);outline-of
   </section>
 
   <div class="calc" data-calc="a" aria-hidden="true"></div>
+
+  <section class="day" id="day" aria-labelledby="dayTitle">
+    <div class="day-pin">
+      <div class="wrap day-in">
+        <div class="day-head">
+          <p class="eb" id="dayTitle" data-t="day_eb"></p>
+          <p class="clock" id="dayClock" aria-live="off">08<i>:</i>00</p>
+          <div class="moment" id="dayMoment" aria-live="polite">
+            <p class="mk" id="dayMk"></p>
+            <h3 id="dayName"></h3>
+            <p id="dayDesc"></p>
+            <div class="row"><span class="price" id="dayPrice"></span><button type="button" class="btn sm line" id="dayAdd"></button></div>
+          </div>
+        </div>
+        <figure class="day-art"><svg class="ill" id="dayArt" viewBox="0 0 520 520" role="img"></svg></figure>
+        <div class="ruler">
+          <div class="track" id="dayTrack"></div>
+          <p class="day-note"><span id="dayCue" data-t="day_cue"></span><span id="dayNote"></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="sec" id="menu">
     <div class="wrap menu-grid">
@@ -419,7 +485,7 @@ window.SITE = {
   address: 'Av. 25 de Abril 890D, 2750-512 Cascais',   // проверить: в Time Out — Av. Gaspar Corte Real 198A, loja 17
   phone: '+351 935 089 901',
   whatsapp: '',        // номер для заказов без «+», напр. '351935089901'. В концепте пусто — ничего не уходит
-  instagram: '',       // ник в Instagram без @
+  instagram: 'leto.cascais',       // ник в Instagram без @
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=LETO%20Caf%C3%A9%20Bar%20Cascais&query_place_id=ChIJN3wVb0nFHg0RjUl0DPzeWa4',
   hours: [[8,0,17,0],[8,0,17,0],[8,0,17,0],[8,0,17,0],[8,0,17,0],[8,0,17,0],[8,0,17,0]], // вс, пн … сб; null = закрыто
   lat: 38.6983, lon: -9.4288, tz: 'Europe/Lisbon',
@@ -452,6 +518,7 @@ pt: {
   cta_menu: 'Ver o menu', cta_order: 'Encomendar para levantar',
   f1: 'Brunch o dia todo', f2: 'Fresco, todas as manhãs', f3: 'Famílias e crianças bem-vindas',
   st_open: 'Aberto agora · até às {c}', st_later: 'Abrimos hoje às {o}', st_closed: 'Fechado · abrimos {d} às {o}', d_tomorrow: 'amanhã',
+  day_eb: 'Um dia no LETO', day_cue: 'Deslize — o dia passa ↓', day_note: 'Sombras com o sol de hoje em Cascais · nasce às {r}, põe-se às {s}', day_add: 'Adicionar à encomenda', day_in: 'Na encomenda · {n}', day_art: 'A mesa do LETO vista de cima. O prato muda ao longo do dia e as sombras seguem o sol de hoje.', dm1: 'Para acordar', dm2: 'Pequeno-almoço a sério', dm3: 'Almoço sem pressa', dm4: 'Syrniki às quatro? Claro.',
   menu_eb: 'Menu', menu_h: 'Pequeno-almoço o dia todo. A sério.',
   menu_p: 'Das {o} às {c}, tudo o que está no menu está disponível. Sem «menu de almoço» e sem hora-limite para as panquecas.',
   ad_open: 'Agora são {t} — ainda dá para tudo, panquecas incluídas.', ad_before: 'Ainda não abrimos. O pequeno-almoço começa às {o} e dura até às {c}.',
@@ -505,6 +572,7 @@ en: {
   cta_menu: 'See the menu', cta_order: 'Order for pickup',
   f1: 'Brunch all day', f2: 'Fresh every morning', f3: 'Families and kids welcome',
   st_open: 'Open now · until {c}', st_later: 'Opening today at {o}', st_closed: 'Closed · opening {d} at {o}', d_tomorrow: 'tomorrow',
+  day_eb: 'A day at LETO', day_cue: 'Scroll — the day goes by ↓', day_note: 'Shadows cast by today’s sun over Cascais · rises {r}, sets {s}', day_add: 'Add to pickup order', day_in: 'In your order · {n}', day_art: 'The LETO table from above. The plate changes through the day and the shadows follow today’s sun.', dm1: 'To wake up', dm2: 'A proper breakfast', dm3: 'Lunch, no rush', dm4: 'Syrniki at four? Of course.',
   menu_eb: 'Menu', menu_h: 'Breakfast all day. Really.',
   menu_p: 'From {o} to {c}, everything on the menu is on. No “lunch menu”, no pancake cut-off.',
   ad_open: 'It’s {t} — everything’s still on, pancakes included.', ad_before: 'Not open yet. Breakfast starts at {o} and runs until {c}.',
@@ -558,6 +626,7 @@ ru: {
   cta_menu: 'Смотреть меню', cta_order: 'Заказать с собой',
   f1: 'Бранч весь день', f2: 'Свежее каждое утро', f3: 'Рады семьям с детьми',
   st_open: 'Открыто · до {c}', st_later: 'Откроемся сегодня в {o}', st_closed: 'Закрыто · откроемся {d} в {o}', d_tomorrow: 'завтра',
+  day_eb: 'День в LETO', day_cue: 'Листайте — день проходит ↓', day_note: 'Тени — от сегодняшнего солнца над Кашкайшем · восход {r}, закат {s}', day_add: 'Добавить в заказ', day_in: 'В заказе · {n}', day_art: 'Стол в LETO сверху. Блюдо меняется в течение дня, а тени идут за сегодняшним солнцем.', dm1: 'Чтобы проснуться', dm2: 'Настоящий завтрак', dm3: 'Обед без спешки', dm4: 'Сырники в четыре? Конечно.',
   menu_eb: 'Меню', menu_h: 'Завтрак весь день. Правда.',
   menu_p: 'С {o} до {c} можно заказать всё, что есть в меню. Никакого «обеденного меню» и дедлайна для сырников.',
   ad_open: 'Сейчас {t} — ещё можно всё, и сырники тоже.', ad_before: 'Мы ещё закрыты. Завтрак начнётся в {o} и продлится до {c}.',
@@ -639,8 +708,9 @@ function sunDay(day) {
   const toMs = J => (J - 2440587.5) * 864e5;
   const atE = h => { const c = (Math.sin(h * RAD) - sp * sd) / (cp * cd); if (c < -1 || c > 1) return null; const w = Math.acos(c) / RAD; return [toMs(Jt - w / 360), toMs(Jt + w / 360)]; };
   const elev = ms => { const H = ((ms / 864e5 + 2440587.5) - Jt) * 360; return Math.asin(sp * sd + cp * cd * Math.cos(H * RAD)) / RAD; };
+  const azim = ms => { const H = (((ms / 864e5 + 2440587.5) - Jt) * 360) * RAD; return (Math.atan2(Math.sin(H), Math.cos(H) * sp - (sd / cd) * cp) / RAD + 540) % 360; };
   const r0 = atE(-0.833);
-  return { noon: toMs(Jt), rise: r0 && r0[0], set: r0 && r0[1], elev };
+  return { noon: toMs(Jt), rise: r0 && r0[0], set: r0 && r0[1], elev, azim };
 }
 const pad = n => String(n).padStart(2, '0');
 const hm = ms => { if (ms == null) return '—'; const p = tzParts(ms); return `${p.h}:${pad(p.mi)}`; };
@@ -809,6 +879,7 @@ function renderCart() {
   $$('.add[data-id]').forEach(b => { b.dataset.n = cart.get(b.dataset.id) || 0; });
   $('#cbText').textContent = fill(t(c === 1 ? 'cb_item' : 'cb_items'), { n: c, s: eur(s) });
   updateBar();
+  if (daySeg > -1) dayBtn();
 }
 let orderVisible = false;
 function updateBar() { $('#cartBar').hidden = cartSum().c === 0 || orderVisible; }
@@ -955,6 +1026,138 @@ function renderVisit() {
 }
 
 /* ===== i18n & boot ===== */
+/* ===== a day at LETO: the clock runs with the scroll, shadows follow today's sun over Cascais ===== */
+const DAY = [{ h: 8, id: 'cap_s', art: 'cappuccino', k: 'dm1' }, { h: 10, id: 'breakfast', art: 'breakfast', k: 'dm2' }, { h: 12.5, id: 'shakshuka', art: 'shakshuka', k: 'dm3' }, { h: 16, id: 'syrniki', art: 'syrniki', k: 'dm4' }];
+const dayRM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PC = [260, 270], PR = 161;                       // plate centre and radius on the 520 table
+let daySeg = -1, dayP = -1, dayRaf = 0, daySun = null;
+const dayEase = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+const dayClamp = v => Math.max(0, Math.min(1, v));
+function dayRange() { const H = hoursOf(today()) || [8, 0, 17, 0]; return [H[0] + H[1] / 60, H[2] + H[3] / 60]; }
+function dayBuild() {
+  const art = $('#dayArt');
+  let s = `<defs><filter id="dSoft" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5"/></filter>
+    <radialGradient id="dLightG" gradientUnits="userSpaceOnUse" cx="260" cy="260" r="430"><stop offset="0" style="stop-color:var(--sun);stop-opacity:.42"/><stop offset=".55" style="stop-color:var(--sun);stop-opacity:.08"/><stop offset="1" style="stop-color:var(--sun);stop-opacity:0"/></radialGradient>
+    <clipPath id="dClip"><circle cx="260" cy="260" r="250"/></clipPath></defs>`;
+  s += `<circle class="tb" cx="260" cy="260" r="250"/>`;
+  s += `<circle id="dLight" cx="260" cy="260" r="250" fill="url(#dLightG)"/>`;
+  // shadows sit on the table, under everything
+  s += `<g clip-path="url(#dClip)"><g filter="url(#dSoft)">`;
+  s += `<circle class="sh" data-sh="glass" data-h="70" cx="372" cy="86" r="30"/>`;
+  s += `<g class="sh" data-sh="glasses" data-h="16"><circle cx="0" cy="0" r="23"/><circle cx="54" cy="0" r="23"/></g>`;
+  DAY.forEach((m, i) => { s += `<circle class="sh" data-sh="p${i}" data-h="14" cx="${PC[0]}" cy="${PC[1]}" r="${PR}"/>`; });
+  s += `</g></g>`;
+  // a glass of water, top right
+  s += `<circle class="p" cx="372" cy="86" r="30"/><circle class="k" cx="372" cy="86" r="24"/><path class="k" d="M356 76q6-9 16-11"/>`;
+  // sunglasses folded on the table, lower left
+  s += `<g id="dGlasses" transform="translate(126 420) rotate(30)"><path class="k" d="M-22-15L62-27M76-15L-8-27"/><circle class="i" cx="0" cy="0" r="23"/><circle class="i" cx="54" cy="0" r="23"/><path class="k" d="M21-6Q27-13 33-6"/><path class="gl" d="M-13-9q4-8 12-10M41-9q4-8 12-10"/></g>`;
+  // one plate per moment of the day
+  DAY.forEach((m, i) => { s += `<g class="dplate" data-i="${i}" opacity="${i ? 0 : 1}"><g transform="translate(${PC[0] - 100 * PR / 92} ${PC[1] - 100 * PR / 92}) scale(${(PR / 92).toFixed(3)})">${ART[m.art]()}</g></g>`; });
+  art.innerHTML = s;
+  art.setAttribute('aria-label', t('day_art'));
+  // ruler: an hour tick each hour, a dot for each moment, and the sun
+  const [h0, h1] = dayRange(), X = h => ((h - h0) / (h1 - h0) * 100).toFixed(2) + '%';
+  let r = '';
+  for (let h = Math.ceil(h0); h <= h1; h++) r += `<i class="tk" style="left:${X(h)}"></i><span class="hl" style="left:${X(h)}">${h}h</span>`;
+  DAY.forEach((m, i) => { r += `<i class="mo" data-i="${i}" style="left:${X(m.h)}"></i>`; });
+  r += `<i class="sunk" id="daySunk"></i>`;
+  $('#dayTrack').innerHTML = r;
+  const sd = sunDay(today());
+  daySun = sd;
+  $('#dayNote').textContent = fill(t('day_note'), { r: hm(sd.rise), s: hm(sd.set) });
+  daySeg = -1; dayP = -1;
+  dayUpdate(true);
+}
+function dayMoment(i) {
+  const m = DAY[i], el = $('#dayMoment'), it = item(m.id);
+  const fillIt = () => {
+    $('#dayMk').textContent = t(m.k);
+    $('#dayName').textContent = nm(m.id);
+    $('#dayDesc').textContent = I18N[lang]['m_' + m.id + '_f'] || t('m_' + m.id + '_d');
+    $('#dayPrice').textContent = eur(it.price);
+    dayBtn();
+  };
+  if (daySeg === -1 || dayRM) { fillIt(); return; }
+  el.classList.add('swap');
+  clearTimeout(el._t); el._t = setTimeout(() => { fillIt(); el.classList.remove('swap'); }, 180);
+}
+function dayBtn() {
+  const i = Math.max(0, daySeg), id = DAY[i].id, n = cart.get(id) || 0, b = $('#dayAdd');
+  if (!b) return;
+  b.textContent = n ? fill(t('day_in'), { n }) : t('day_add');
+}
+function dayTime(p) {
+  const [h0, h1] = dayRange(), n = DAY.length, seg = Math.min(n - 1, Math.floor(p * n)), u = p * n - seg;
+  const from = Math.max(h0, DAY[seg].h), to = seg < n - 1 ? DAY[seg + 1].h : h1;
+  return { seg, u: Math.min(1, u), h: from + (to - from) * Math.min(1, u) };
+}
+function dayUpdate(force) {
+  const sec = $('#day');
+  let p;
+  if (dayRM) {
+    sec.classList.add('static');
+    const tp = tzParts(Date.now()), [h0, h1] = dayRange(), now = tp.h + tp.mi / 60;
+    let seg = 0; DAY.forEach((m, i) => { if (now >= m.h) seg = i; });
+    p = now >= h0 && now < h1 ? (seg + .5) / DAY.length : .5 / DAY.length;
+  } else {
+    const hd = $('.hdr').offsetHeight, span = sec.offsetHeight - (innerHeight - hd);
+    p = span > 0 ? dayClamp((hd - sec.getBoundingClientRect().top) / span) : 0;
+  }
+  if (!force && Math.abs(p - dayP) < .0005) return;
+  dayP = p;
+  const { seg, u, h } = dayTime(p);
+  if (seg !== daySeg) { dayMoment(seg); daySeg = seg; }
+  // clock, rounded to five minutes
+  const mins = Math.round(h * 12) * 5, hh = Math.floor(mins / 60), mm = mins % 60;
+  $('#dayClock').innerHTML = `${pad(hh)}<i>:</i>${pad(mm)}`;
+  // the sun on the ruler
+  const [h0, h1] = dayRange();
+  $('#daySunk').style.left = ((h - h0) / (h1 - h0) * 100).toFixed(2) + '%';
+  $$('#dayTrack .mo').forEach(m => m.classList.toggle('on', +m.dataset.i <= seg));
+  $('#dayCue').style.opacity = dayRM ? 0 : (1 - dayClamp(p / .03)).toFixed(2);
+  $('#dayNote').style.opacity = dayRM ? 1 : dayClamp((p - .02) / .03).toFixed(2);
+  // plates: the previous one lifts away, the next is set down
+  const lift = [];
+  $$('#dayArt .dplate').forEach(g => {
+    const i = +g.dataset.i;
+    let o = 0, sc = 1, rot = 0, up = 0;
+    if (i === seg) {
+      const a = seg === 0 ? 1 : dayEase(dayClamp((u - .1) / .14));
+      o = a; sc = 1.1 - .1 * a; rot = -12 * (1 - a); up = 1 - a;
+    } else if (i === seg - 1) {
+      const a = dayEase(dayClamp(u / .12));
+      o = 1 - a; sc = 1 + .1 * a; rot = 9 * a; up = a;
+    }
+    g.setAttribute('opacity', o.toFixed(3));
+    g.setAttribute('transform', o ? `translate(${PC[0]} ${PC[1]}) rotate(${rot.toFixed(2)}) scale(${sc.toFixed(4)}) translate(${-PC[0]} ${-PC[1]})` : 'translate(9999 0)');
+    lift[i] = { o, up, sc };
+  });
+  // today's sun at this hour
+  const ms = at(today(), Math.floor(h), Math.round((h % 1) * 60) % 60), sd = daySun || sunDay(today());
+  const el = sd.elev(ms), az = sd.azim(ms), up = el > 0;
+  const len = hgt => up ? Math.min(hgt * 3.4, hgt / Math.tan(Math.max(el, 4) * RAD)) : 0;
+  const dx = -Math.sin(az * RAD), dy = Math.cos(az * RAD);
+  $$('#dayArt .sh').forEach(sh => {
+    const k = sh.dataset.sh, hgt = +sh.dataset.h;
+    if (k[0] === 'p') {
+      const L = lift[+k.slice(1)] || { o: 0, up: 0, sc: 1 }, d = len(hgt + 60 * L.up);
+      sh.setAttribute('cx', (PC[0] + dx * d).toFixed(1)); sh.setAttribute('cy', (PC[1] + dy * d).toFixed(1));
+      sh.setAttribute('r', (PR * L.sc).toFixed(1));
+      sh.setAttribute('opacity', (L.o * (up ? 1 : .35)).toFixed(3));
+    } else if (k === 'glass') {
+      const d = len(hgt); sh.setAttribute('cx', (372 + dx * d).toFixed(1)); sh.setAttribute('cy', (86 + dy * d).toFixed(1)); sh.setAttribute('opacity', up ? 1 : .35);
+    } else {
+      const d = len(hgt); sh.setAttribute('transform', `translate(${(126 + dx * d).toFixed(1)} ${(420 + dy * d).toFixed(1)}) rotate(30)`); sh.setAttribute('opacity', up ? 1 : .35);
+    }
+  });
+  // sunlight comes from the sun's side, warmer when it is low
+  const li = $('#dLight'), g = $('#dLightG');
+  g.setAttribute('cx', (260 - dx * 330).toFixed(1)); g.setAttribute('cy', (260 - dy * 330).toFixed(1));
+  li.setAttribute('opacity', up ? (.55 + .45 * (1 - Math.min(1, el / 45))).toFixed(3) : 0);
+}
+addEventListener('scroll', () => { if (!dayRaf) dayRaf = requestAnimationFrame(() => { dayRaf = 0; dayUpdate(false); }); }, { passive: true });
+addEventListener('resize', () => dayUpdate(true));
+
 function applyTexts() {
   document.documentElement.lang = lang;
   $$('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
@@ -963,7 +1166,7 @@ function applyTexts() {
 }
 function tick() { renderStatus(); renderLive(); drawDial(); }
 function renderAll() {
-  applyTexts(); heroArt(); tick(); renderMenu(); renderCart(); renderDays(); renderSunsets(); renderEvTypes(); evSunset(); renderVisit();
+  applyTexts(); heroArt(); tick(); renderMenu(); renderCart(); dayBuild(); renderDays(); renderSunsets(); renderEvTypes(); evSunset(); renderVisit();
   $('#oRes').hidden = true; $('#eRes').hidden = true;
 }
 $$('.lang button').forEach(b => b.addEventListener('click', () => {
@@ -972,6 +1175,7 @@ $$('.lang button').forEach(b => b.addEventListener('click', () => {
   renderAll();
 }));
 $$('[data-calc]').forEach(calcada);
+$('#dayAdd').addEventListener('click', () => addItem(DAY[Math.max(0, daySeg)].id, 1));
 $('#eDate').min = isoDay(today());
 renderAll();
 setInterval(() => { tick(); renderVisit(); renderDays(); }, 30000);
