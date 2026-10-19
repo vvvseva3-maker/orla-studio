@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orla Web Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Web design studio for independent businesses in Portugal and across Europe. See a working piece of your site before you pay.">
+<meta name="theme-color" content="#0c0b0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=IBM+Plex+Mono:wght@400;500&family=Onest:wght@300;400;500;600&display=swap">
+<style>
+html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: one cast-bronze object lit by a ring of light opens the page; everything after is quiet left-aligned type on warm black, with roman numerals marking the four rooms of the site. */
+:root {
+  --ink: #0c0b0a;
+  --ink-2: #13110f;
+  --ink-3: #1b1815;
+  --line: #2c2722;
+  --fg: #eee7dc;
+  --muted: #9a8f83;
+  --dim: #6b625a;
+  --bronze: #b47c45;
+  --gold: #e4ba6a;
+  --gold-rgb: 228 186 106;
+  --bronze-rgb: 180 124 69;
+  --bezel: #2a2520;
+  --ua-blue: #0057b7;
+  --ua-yellow: #ffd700;
+  --font-display: "Forum", "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Onest", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: clamp(1.5rem, 2.4vw, 1.9rem);
+  --step-3: clamp(2.3rem, 5vw, 4rem);
+  --step-4: clamp(2.9rem, 7.4vw, 6.6rem);
+  --radius: 6px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--ink); }
+a { color: inherit; }
+:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+::selection { background: rgb(var(--gold-rgb) / .35); color: var(--fg); }
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -.005em; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); display: inline-flex; gap: 12px; align-items: center; }
+.eyebrow .n { color: var(--dim); }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--gold); color: var(--ink); padding: 8px 12px; z-index: 100; }
+.skip:focus { left: 12px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* header */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; transition: background .3s ease, border-color .3s ease; border-bottom: 1px solid transparent; }
+header.top.solid { background: rgb(12 11 10 / .86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 16px; }
+.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--font-display); font-size: 1.7rem; line-height: 1; letter-spacing: .02em; }
+.logo i { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--gold); box-shadow: 0 0 12px rgb(var(--gold-rgb) / .45), inset 0 0 6px rgb(var(--gold-rgb) / .35); display: block; }
+nav.main { display: flex; align-items: center; gap: 30px; }
+nav.main .links { display: flex; gap: 26px; }
+nav.main .links a { text-decoration: none; font-size: .95rem; color: var(--muted); transition: color .2s; display: inline-flex; gap: 8px; align-items: baseline; }
+nav.main .links a:hover { color: var(--fg); }
+nav.main .links .num { font-family: var(--font-mono); font-size: .68rem; color: var(--dim); }
+.lang { display: inline-flex; gap: 2px; }
+.lang button { appearance: none; border: 1px solid transparent; background: transparent; color: var(--muted); font: 500 .72rem var(--font-mono); letter-spacing: .08em; padding: 6px 8px; border-radius: 99px; cursor: pointer; }
+.lang button:hover { color: var(--fg); }
+.lang button[aria-pressed="true"] { color: var(--ink); background: var(--gold); }
+.menu-btn { display: none; appearance: none; background: transparent; border: 1px solid var(--line); color: var(--fg); font: 500 .78rem var(--font-mono); letter-spacing: .12em; text-transform: uppercase; padding: 9px 14px; border-radius: 99px; cursor: pointer; }
+@media (max-width: 900px) {
+  nav.main .links, nav.main .lang { display: none; }
+  .menu-btn { display: inline-block; }
+}
+.overlay { position: fixed; inset: 0; z-index: 70; background: var(--ink); display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.overlay .wrap { width: 100%; }
+.overlay .bar { display: flex; justify-content: space-between; align-items: center; padding-block: 16px; }
+.overlay ol { list-style: none; margin: 0; padding: 24px 0 0; display: grid; gap: 6px; }
+.overlay ol a { display: flex; align-items: baseline; gap: 18px; text-decoration: none; font-family: var(--font-display); font-size: clamp(2.4rem, 11vw, 3.4rem); line-height: 1.15; border-bottom: 1px solid var(--line); padding-block: 10px; }
+.overlay ol a span { font-family: var(--font-mono); font-size: .8rem; color: var(--gold); width: 2.4em; flex: none; }
+.overlay .foot { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; }
+
+/* hero */
+.hero { position: relative; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: -20% -10% auto 35%; height: 140%; background: radial-gradient(closest-side, rgb(var(--bronze-rgb) / .16), transparent 70%); pointer-events: none; }
+.hero .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: center; padding-block: 48px 96px; }
+.hero h1 { font-size: var(--step-4); line-height: .98; margin-top: 22px; }
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero .lede { margin-top: 26px; max-width: 44ch; font-size: var(--step-1); color: var(--muted); line-height: 1.55; }
+.hero .lede b { color: var(--fg); font-weight: 400; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.btn { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font: 500 .98rem var(--font-body); padding: 15px 24px; border-radius: 99px; border: 1px solid transparent; cursor: pointer; transition: background .2s, color .2s, border-color .2s, transform .15s; }
+.btn:active { transform: translateY(1px); }
+.btn-gold { background: var(--gold); color: var(--ink); }
+.btn-gold:hover { background: var(--fg); }
+.btn-ghost { border-color: var(--line); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--gold); }
+.btn .arr { transition: transform .2s; }
+.btn:hover .arr { transform: translateX(3px); }
+
+.stage { position: relative; aspect-ratio: 1 / 1; max-width: 100%; width: 100%; --p: 0; }
+.halo { position: absolute; inset: 9%; border-radius: 50%; pointer-events: none;
+  background:
+    radial-gradient(closest-side, transparent 80%, rgb(var(--gold-rgb) / .95) 85.5%, rgb(var(--gold-rgb) / .35) 88%, transparent 93%),
+    radial-gradient(closest-side, transparent 55%, rgb(var(--gold-rgb) / .10) 82%, transparent 100%);
+  filter: blur(1.5px) drop-shadow(0 0 18px rgb(var(--gold-rgb) / .55));
+  transform: scale(calc(1 + var(--p) * .3)); opacity: calc(1 - var(--p) * .75);
+}
+.fallback { position: absolute; inset: 31% 22%; border-radius: 52% 48% 50% 50% / 58% 56% 44% 42%;
+  background: radial-gradient(120% 90% at 30% 25%, #f0c98e 0%, #b47c45 22%, #6b4120 52%, #2a170a 80%), #6b4120;
+  box-shadow: inset -18px -22px 40px rgb(0 0 0 / .55), inset 10px 12px 24px rgb(255 220 160 / .25), 0 30px 60px rgb(0 0 0 / .5);
+  transition: opacity .8s ease; }
+canvas#gl { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 1s ease; }
+.stage.gl-on canvas#gl { opacity: 1; }
+.stage.gl-on .fallback { opacity: 0; }
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: 0 64px; }
+  .stage { order: -1; aspect-ratio: 5 / 4; max-height: 56vh; margin-inline: auto; }
+  .hero h1 { margin-top: 14px; }
+}
+
+/* sections */
+section.block { padding-block: 120px; border-top: 1px solid var(--line); }
+@media (max-width: 760px) { section.block { padding-block: 76px; } }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; margin-bottom: 64px; }
+.sec-head h2 { font-size: var(--step-3); line-height: 1.02; margin-top: 18px; }
+.sec-head p { color: var(--muted); max-width: 46ch; justify-self: end; }
+@media (max-width: 860px) { .sec-head { grid-template-columns: minmax(0, 1fr); margin-bottom: 44px; } .sec-head p { justify-self: start; } }
+
+/* services */
+.services { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.services > div { padding: 30px 28px 8px 0; min-width: 0; }
+.services > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+.services h3 { font-size: var(--step-2); line-height: 1.1; margin-bottom: 14px; }
+.services p { color: var(--muted); font-size: .98rem; }
+.services .mark { width: 30px; height: 30px; margin-bottom: 26px; color: var(--gold); }
+@media (max-width: 1000px) {
+  .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .services > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .services > div:nth-child(n+3) { border-top: 1px solid var(--line); margin-top: 24px; }
+}
+@media (max-width: 600px) {
+  .services { grid-template-columns: minmax(0, 1fr); }
+  .services > div, .services > div + div { padding: 26px 0 4px; border-left: 0; }
+  .services > div + div { border-top: 1px solid var(--line); margin-top: 22px; }
+}
+
+/* statement */
+.statement { position: relative; overflow: hidden; padding-block: 150px; border-top: 1px solid var(--line); background: var(--ink-2); }
+.statement::after { content: ""; position: absolute; width: min(70vw, 760px); aspect-ratio: 1; right: -18vw; top: 50%; transform: translateY(-50%); border-radius: 50%; border: 1px solid rgb(var(--gold-rgb) / .22); box-shadow: 0 0 80px rgb(var(--gold-rgb) / .06), inset 0 0 80px rgb(var(--gold-rgb) / .05); pointer-events: none; }
+.statement .wrap { position: relative; z-index: 1; }
+.statement h2 { font-size: clamp(2.2rem, 5.6vw, 4.8rem); line-height: 1.05; max-width: 17ch; }
+.statement h2 .w { color: var(--dim); transition: color .45s ease; }
+.statement h2 .w.lit { color: var(--fg); }
+.statement p { margin-top: 32px; max-width: 46ch; color: var(--muted); font-size: var(--step-1); }
+.statement .btn { margin-top: 36px; }
+@media (max-width: 760px) { .statement { padding-block: 96px; } }
+
+/* hero: drag hint */
+.stage.gl-on { cursor: grab; touch-action: pan-y; }
+.stage.dragging { cursor: grabbing; }
+.drag-hint { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); font: 500 .68rem var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--dim); white-space: nowrap; opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+.stage.gl-on .drag-hint { opacity: 1; }
+.stage.touched .drag-hint { opacity: 0; }
+
+/* niches strip */
+.niches { border-top: 1px solid var(--line); overflow: hidden; padding-block: 26px; }
+.niches .track { display: flex; width: max-content; animation: drift 70s linear infinite; }
+.niches ul { display: flex; list-style: none; margin: 0; padding: 0; }
+.niches li { display: flex; align-items: center; gap: 44px; padding-right: 44px; white-space: nowrap; font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2.3rem); color: var(--dim); }
+.niches li::after { content: ""; width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--gold); box-shadow: 0 0 8px rgb(var(--gold-rgb) / .5); }
+@keyframes drift { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .niches .track { animation: none; } }
+
+/* work: projects shown inside a phone */
+.showcase { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 72px; align-items: start; }
+.proj-list { display: grid; border-top: 1px solid var(--line); }
+.proj { appearance: none; background: transparent; border: 0; border-bottom: 1px solid var(--line); color: var(--muted); text-align: left; padding: 22px 0 22px 26px; cursor: pointer; position: relative; display: grid; gap: 6px; font: inherit; text-decoration: none; transition: color .25s; }
+.proj::before { content: ""; position: absolute; left: 0; top: 22px; bottom: 22px; width: 2px; background: var(--line); transition: background .3s, box-shadow .3s; }
+.proj:hover { color: var(--fg); }
+.proj[aria-selected="true"] { color: var(--fg); }
+.proj[aria-selected="true"]::before { background: var(--gold); box-shadow: 0 0 12px rgb(var(--gold-rgb) / .6); }
+.proj small { font: 500 .7rem var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.proj[aria-selected="true"] small { color: var(--gold); }
+.proj b { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.7rem, 2.8vw, 2.4rem); line-height: 1.05; }
+.proj.next b { color: var(--gold); }
+.proj-desc { margin-top: 26px; color: var(--muted); max-width: 46ch; min-height: 5em; }
+.device { position: sticky; top: 96px; display: grid; gap: 16px; justify-items: center; }
+.phone { position: relative; width: 300px; max-width: 100%; aspect-ratio: 300 / 616; border-radius: 46px; padding: 11px; background: linear-gradient(150deg, var(--bezel), var(--ink)); box-shadow: 0 0 0 1px rgb(var(--gold-rgb) / .3), 0 40px 80px rgb(0 0 0 / .55), 0 0 70px rgb(var(--bronze-rgb) / .2); }
+.notch { position: absolute; top: 21px; left: 50%; transform: translateX(-50%); width: 84px; height: 22px; border-radius: 99px; background: var(--ink); z-index: 2; }
+.screen { width: 100%; height: 100%; border-radius: 36px; overflow: hidden; background: var(--ink-2); scrollbar-width: none; }
+.screen::-webkit-scrollbar { display: none; }
+@media (hover: hover) { .screen { overflow-y: auto; } }
+@media (prefers-reduced-motion: reduce) { .screen { overflow-y: auto; } }
+.screen img { width: 100%; display: block; transition: opacity .3s ease; }
+.screen img.swap { opacity: 0; }
+.device-cap { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.scroll-hint { font: 400 .74rem var(--font-mono); color: var(--dim); text-align: center; max-width: 30ch; }
+@media (max-width: 900px) {
+  .showcase { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .proj-list { display: flex; gap: 8px; overflow-x: auto; border: 0; padding-bottom: 6px; scrollbar-width: none; }
+  .proj-list::-webkit-scrollbar { display: none; }
+  .proj { flex: none; border: 1px solid var(--line); border-radius: 99px; padding: 10px 16px; }
+  .proj::before, .proj small { display: none; }
+  .proj b { font-size: 1.15rem; white-space: nowrap; }
+  .proj[aria-selected="true"] { border-color: rgb(var(--gold-rgb) / .7); }
+  .proj-desc { margin-top: 18px; min-height: 0; }
+  .device { position: static; }
+  .phone { width: min(300px, 78vw); }
+}
+
+/* brief builder */
+.needs { position: relative; display: flex; flex-wrap: wrap; gap: 8px; }
+.needs input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.field .needs label { display: inline-flex; align-items: center; gap: 8px; font: 400 .9rem var(--font-body); letter-spacing: 0; text-transform: none; color: var(--muted); border: 1px solid var(--line); padding: 8px 14px; border-radius: 99px; cursor: pointer; transition: color .2s, border-color .2s, background .2s; }
+.field .needs label::before { content: "+"; font-family: var(--font-mono); color: var(--dim); }
+.field .needs input:checked + label { color: var(--fg); border-color: rgb(var(--gold-rgb) / .6); background: var(--ink-3); }
+.field .needs input:checked + label::before { content: "✓"; color: var(--gold); }
+.field .needs input:focus-visible + label { outline: 1px solid var(--gold); outline-offset: 2px; }
+.wire { margin-top: 40px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 24px; align-items: start; }
+.wire-phone { width: 190px; border-radius: 28px; padding: 8px; background: var(--ink-3); border: 1px solid var(--line); }
+.wire-screen { position: relative; border-radius: 21px; background: var(--ink); padding: 18px 9px 12px; display: grid; gap: 7px; align-content: start; min-height: 360px; }
+.wb { border-radius: 6px; background: var(--ink-3); padding: 7px; display: grid; gap: 4px; transform-origin: top center; }
+.wb.enter { animation: pop .45s cubic-bezier(.2, .8, .2, 1); }
+@keyframes pop { from { transform: scaleY(.4); opacity: .2; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .wb.enter { animation: none; } }
+.wb small { font: 500 .5rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.wb .row { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.bar { height: 5px; border-radius: 3px; background: var(--line); }
+.bar.gold { background: rgb(var(--gold-rgb) / .8); }
+.w30 { width: 30%; } .w45 { width: 45%; } .w60 { width: 60%; } .w80 { width: 80%; } .w100 { width: 100%; }
+.pillbtn { height: 11px; width: 46%; border-radius: 99px; background: var(--gold); }
+.inbar { height: 10px; border-radius: 3px; border: 1px solid var(--line); }
+.g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px; }
+.g3 i { aspect-ratio: 1; background: var(--line); border-radius: 3px; display: block; }
+.g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+.g2 i { aspect-ratio: 1 / .8; background: var(--line); border-radius: 3px; display: block; }
+.map { width: 26px; height: 26px; border-radius: 4px; background: var(--line); display: grid; place-items: center; flex: none; }
+.map::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.stars { font-size: .6rem; color: var(--gold); letter-spacing: .1em; }
+.wa-dot { position: absolute; right: 12px; bottom: 14px; width: 24px; height: 24px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 12px rgb(var(--gold-rgb) / .6); }
+.langs { font: 500 .5rem var(--font-mono); color: var(--gold); letter-spacing: .08em; }
+.wire-cap { display: grid; gap: 8px; padding-top: 6px; }
+.wire-cap b { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; line-height: 1.1; }
+.wire-cap span { color: var(--muted); font-size: .92rem; }
+@media (max-width: 420px) { .wire { grid-template-columns: minmax(0, 1fr); justify-items: start; } }
+
+/* process */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; position: relative; }
+.steps::before { content: ""; position: absolute; left: 22px; right: 0; top: 22px; height: 1px; background: linear-gradient(90deg, var(--gold), rgb(var(--gold-rgb) / .15)); }
+.steps li { position: relative; min-width: 0; }
+.steps .node { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); border: 1px solid var(--gold); color: var(--gold); font: 500 .85rem var(--font-mono); position: relative; z-index: 1; }
+.steps h3 { font-size: var(--step-2); line-height: 1.1; margin: 28px 0 12px; }
+.steps p { color: var(--muted); font-size: .97rem; }
+@media (max-width: 900px) {
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .steps::before { left: 22px; right: auto; top: 22px; bottom: 22px; width: 1px; height: auto; background: linear-gradient(180deg, var(--gold), rgb(var(--gold-rgb) / .15)); }
+  .steps li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 0 22px; }
+  .steps h3 { margin: 8px 0 8px; }
+  .steps p { grid-column: 2; }
+}
+
+/* contact */
+.contact-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 72px; align-items: start; }
+.contact-grid h2 { font-size: var(--step-3); line-height: 1.02; margin-top: 18px; }
+.contact-grid .lede { margin-top: 24px; color: var(--muted); font-size: var(--step-1); max-width: 36ch; }
+.mail { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
+.mail small { font: 500 .72rem var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.mail .row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.mail .addr { font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 2rem); user-select: all; word-break: break-all; }
+.chip { appearance: none; background: transparent; border: 1px solid var(--line); color: var(--muted); font: 500 .72rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 12px; border-radius: 99px; cursor: pointer; }
+.chip:hover { color: var(--fg); border-color: var(--gold); }
+form.project { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 20px; padding: 36px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 10px; }
+.field { display: grid; gap: 8px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label, .field legend { font: 500 .72rem var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 0; }
+.field label .opt { color: var(--dim); text-transform: none; letter-spacing: 0; margin-left: 6px; }
+.field input, .field select, .field textarea {
+  width: 100%; min-width: 0; font: 400 1rem var(--font-body); color: var(--fg); background: var(--ink);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 13px 14px; appearance: none; transition: border-color .2s;
+}
+.field textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
+.field input::placeholder, .field textarea::placeholder { color: var(--dim); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); }
+.field select { background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 19px) 53%, calc(100% - 14px) 53%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 36px; }
+fieldset.field { border: 0; margin: 0; padding: 0; }
+.seg { position: relative; display: inline-flex; border: 1px solid var(--line); border-radius: 99px; padding: 3px; gap: 3px; width: max-content; max-width: 100%; }
+.seg input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.seg label { font: 500 .85rem var(--font-body); letter-spacing: 0; text-transform: none; color: var(--muted); padding: 8px 16px; border-radius: 99px; cursor: pointer; }
+.seg input:checked + label { background: var(--ink-3); color: var(--fg); box-shadow: inset 0 0 0 1px rgb(var(--gold-rgb) / .5); }
+.seg input:focus-visible + label { outline: 1px solid var(--gold); outline-offset: 2px; }
+.err { color: #f2a28f; font-size: .9rem; }
+form.project .btn { justify-self: start; }
+.result { grid-column: 1 / -1; border: 1px solid rgb(var(--gold-rgb) / .45); border-radius: var(--radius); padding: 22px; display: grid; gap: 12px; background: var(--ink); }
+.result strong { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; color: var(--gold); }
+.result p { color: var(--muted); }
+.result textarea { width: 100%; min-height: 150px; font: 400 .9rem var(--font-mono); color: var(--fg); background: var(--ink-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; resize: vertical; }
+.result .row { display: flex; gap: 10px; flex-wrap: wrap; }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; } }
+@media (max-width: 560px) { form.project { grid-template-columns: minmax(0, 1fr); padding: 22px; } }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 32px; padding-block: 56px 48px; }
+footer p { color: var(--muted); font-size: .95rem; margin-top: 14px; max-width: 34ch; }
+footer h4 { margin: 0 0 12px; font: 500 .72rem var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: .95rem; }
+footer ul a { text-decoration: none; color: var(--muted); }
+footer ul a:hover { color: var(--fg); }
+footer .base { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 22px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--dim); font: 400 .78rem var(--font-mono); letter-spacing: .04em; }
+footer .email { user-select: all; word-break: break-all; }
+.made { display: inline-flex; align-items: center; gap: 8px; }
+.made i { width: 14px; height: 10px; border-radius: 2px; background: linear-gradient(var(--ua-blue) 50%, var(--ua-yellow) 50%); display: block; }
+@media (max-width: 760px) { footer .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } footer .wrap > div:first-child { grid-column: 1 / -1; } footer .wrap > div:nth-child(3) { grid-column: 1 / -1; } footer .email { word-break: normal; } }
+</style>
+</head>
+<body>
+
+
+<a class="skip" href="#main" data-t="skip"></a>
+
+<header class="top" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top"><i aria-hidden="true"></i><span data-studio="name"></span></a>
+    <nav class="main" aria-label="Main">
+      <div class="links">
+        <a href="#what-we-do"><span class="num">I</span><span data-t="nav1"></span></a>
+        <a href="#work"><span class="num">II</span><span data-t="nav2"></span></a>
+        <a href="#process"><span class="num">III</span><span data-t="nav3"></span></a>
+        <a href="#contact"><span class="num">IV</span><span data-t="nav4"></span></a>
+      </div>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button><button type="button" data-lang="ru">RU</button>
+      </div>
+      <button class="menu-btn" id="menuOpen" type="button" aria-expanded="false" aria-controls="overlay" data-t="menu"></button>
+    </nav>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#top" data-close><i aria-hidden="true"></i><span data-studio="name"></span></a>
+      <button class="menu-btn" id="menuClose" type="button" data-t="close" style="display:inline-block"></button>
+    </div>
+    <ol>
+      <li><a href="#what-we-do" data-close><span>I</span><b data-t="nav1" style="font-weight:400"></b></a></li>
+      <li><a href="#work" data-close><span>II</span><b data-t="nav2" style="font-weight:400"></b></a></li>
+      <li><a href="#process" data-close><span>III</span><b data-t="nav3" style="font-weight:400"></b></a></li>
+      <li><a href="#contact" data-close><span>IV</span><b data-t="nav4" style="font-weight:400"></b></a></li>
+    </ol>
+    <div class="foot">
+      <span class="email" data-studio="email"></span>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button><button type="button" data-lang="ru">RU</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-t="heroEyebrow"></span>
+        <h1 data-t-html="heroTitle"></h1>
+        <p class="lede" data-t-html="heroLede"></p>
+        <div class="ctas">
+          <a class="btn btn-gold" href="#contact"><span data-t="cta1"></span><span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#work" data-t="cta2"></a>
+        </div>
+      </div>
+      <div class="stage" id="stage" aria-hidden="true">
+        <div class="halo"></div>
+        <div class="fallback"></div>
+        <canvas id="gl"></canvas>
+        <span class="drag-hint" data-t="dragHint"></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="niches" aria-hidden="true"><div class="track"><ul id="niches1"></ul><ul id="niches2"></ul></div></div>
+
+  <section class="block" id="what-we-do">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow"><span class="n">I</span><span data-t="nav1"></span></span><h2 data-t="s1Title"></h2></div>
+        <p data-t="s1Lede"></p>
+      </div>
+      <div class="services">
+        <div>
+          <svg class="mark" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3.5" y="5.5" width="23" height="19" rx="2"/><path d="M3.5 10.5h23M8 15.5h9M8 19.5h14"/></svg>
+          <h3 data-t="v1t"></h3><p data-t="v1"></p>
+        </div>
+        <div>
+          <svg class="mark" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="9" y="2.5" width="12" height="25" rx="2.5"/><path d="M13 24h4"/><path d="M15 8.5l-2.5 5h5L15 18.5" stroke-linejoin="round"/></svg>
+          <h3 data-t="v2t"></h3><p data-t="v2"></p>
+        </div>
+        <div>
+          <svg class="mark" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M5 26.5h20M7 26.5V13.5l8-7 8 7v13"/><rect x="12.5" y="17.5" width="5" height="9"/></svg>
+          <h3 data-t="v3t"></h3><p data-t="v3"></p>
+        </div>
+        <div>
+          <svg class="mark" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="3.5" y="6.5" width="23" height="20" rx="2"/><path d="M3.5 12.5h23M10 3.5v6M20 3.5v6"/><path d="M10.5 19l3 3 6-6" stroke-linejoin="round"/></svg>
+          <h3 data-t="v4t"></h3><p data-t="v4"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement" id="statement">
+    <div class="wrap">
+      <h2 id="stTitle"></h2>
+      <p data-t="stBody"></p>
+      <a class="btn btn-gold" href="#contact"><span data-t="cta1"></span><span class="arr" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow"><span class="n">II</span><span data-t="nav2"></span></span><h2 data-t="s2Title"></h2></div>
+        <p data-t="s2Lede"></p>
+      </div>
+      <div class="showcase">
+        <div>
+          <div class="proj-list" id="projList" role="tablist" aria-label="Projects"></div>
+          <p class="proj-desc" id="projDesc" aria-live="polite"></p>
+        </div>
+        <div class="device">
+          <div class="phone"><div class="notch" aria-hidden="true"></div><div class="screen" id="screen" role="tabpanel"><img id="screenImg" alt=""></div></div>
+          <div class="device-cap"><a class="btn btn-ghost" id="projOpen" href="#top"><span id="projOpenLabel"></span><span class="arr" aria-hidden="true">↗</span></a></div>
+          <p class="scroll-hint" data-t="scrollHint"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="process">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow"><span class="n">III</span><span data-t="nav3"></span></span><h2 data-t="s3Title"></h2></div>
+        <p data-t="s3Lede"></p>
+      </div>
+      <ol class="steps">
+        <li><span class="node">1</span><h3 data-t="p1t"></h3><p data-t="p1"></p></li>
+        <li><span class="node">2</span><h3 data-t="p2t"></h3><p data-t="p2"></p></li>
+        <li><span class="node">3</span><h3 data-t="p3t"></h3><p data-t="p3"></p></li>
+        <li><span class="node">4</span><h3 data-t="p4t"></h3><p data-t="p4"></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="eyebrow"><span class="n">IV</span><span data-t="nav4"></span></span>
+        <h2 data-t="s4Title"></h2>
+        <p class="lede" data-t="s4Lede"></p>
+        <div class="wire">
+          <div class="wire-phone" aria-hidden="true"><div class="wire-screen" id="wire"></div></div>
+          <div class="wire-cap"><b data-t="wireTitle"></b><span id="wireCount"></span></div>
+        </div>
+        <div class="mail">
+          <small data-t="orWrite"></small>
+          <div class="row"><span class="addr" id="mailAddr" data-studio="email"></span><button class="chip" type="button" id="copyMail" data-t="copy"></button></div>
+        </div>
+      </div>
+
+      <form class="project" id="projectForm" novalidate>
+        <div class="field"><label for="fName" data-t="fName"></label><input id="fName" name="name" autocomplete="name"></div>
+        <div class="field"><label for="fBiz" data-t="fBiz"></label><input id="fBiz" name="business" autocomplete="organization"></div>
+        <div class="field"><label for="fType" data-t="fType"></label><select id="fType" name="type"></select></div>
+        <div class="field"><label for="fLink"><span data-t="fLink"></span><span class="opt" data-t="optional"></span></label><input id="fLink" name="link" inputmode="url" placeholder="instagram.com/…"></div>
+        <fieldset class="field full">
+          <legend data-t="fNeeds"></legend>
+          <div class="needs" id="needs"></div>
+        </fieldset>
+        <div class="field full"><label for="fMsg" data-t="fMsg"></label><textarea id="fMsg" name="message" data-tp="fMsgPh"></textarea></div>
+        <fieldset class="field">
+          <legend data-t="fReply"></legend>
+          <div class="seg">
+            <input type="radio" name="via" id="viaEmail" value="email" checked><label for="viaEmail">Email</label>
+            <input type="radio" name="via" id="viaWa" value="whatsapp"><label for="viaWa">WhatsApp</label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="fContact" id="fContactLabel"></label><input id="fContact" name="contact" autocomplete="email"></div>
+        <p class="err field full" id="formErr" hidden></p>
+        <button class="btn btn-gold" type="submit"><span data-t="send"></span><span class="arr" aria-hidden="true">→</span></button>
+        <div class="result" id="result" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top"><i aria-hidden="true"></i><span data-studio="name"></span></a>
+      <p data-t="footTag"></p>
+    </div>
+    <div>
+      <h4 data-t="footSite"></h4>
+      <ul>
+        <li><a href="#what-we-do" data-t="nav1"></a></li>
+        <li><a href="#work" data-t="nav2"></a></li>
+        <li><a href="#process" data-t="nav3"></a></li>
+        <li><a href="#contact" data-t="nav4"></a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-t="footTalk"></h4>
+      <ul>
+        <li class="email" data-studio="email"></li>
+        <li><div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button><button type="button" data-lang="ru">RU</button></div></li>
+      </ul>
+    </div>
+    <div class="base"><span>© <span id="year"></span> <span data-studio="name"></span></span><span class="made"><i aria-hidden="true"></i><span data-t="footBase"></span></span></div>
+  </div>
+</footer>
+
+<script>
+/* ===== Studio settings: change these for your own studio ===== */
+window.STUDIO = {
+  name: 'Orla',
+  email: 'orla.webstudio@gmail.com',
+  whatsapp: '',        // e.g. '351912345678' — adds a "Send on WhatsApp" button to the form result
+  formEndpoint: 'https://formsubmit.co/ajax/orla.webstudio@gmail.com'  // FormSubmit sends each enquiry to the email above; empty = copy-ready message
+};
+window.PROJECTS = [
+  { id: 'orla', self: true, kind: 'kStudio', desc: 'w1', shot: 'assets/work-orla.webp' },
+  { id: 'barbearia', name: 'Barbearia Exemplo', kind: 'kBarber', desc: 'w2', url: 'demos/barbearia/', shot: 'assets/work-barbearia.webp' },
+  { id: 'tasca', name: 'Tasca Exemplo', kind: 'kRest', desc: 'w4', url: 'demos/tasca/', shot: 'assets/work-tasca.webp' },
+  { id: 'pilates', name: 'Estúdio Exemplo Pilates', kind: 'kPilates', desc: 'w5', url: 'demos/pilates/', shot: 'assets/work-pilates.webp' }
+];
+</script>
+
+<script>
+(() => {
+  const S = window.STUDIO;
+  const T = {
+    en: {
+      skip: 'Skip to content', nav1: 'What we do', nav2: 'Work', nav3: 'Process', nav4: 'Contact', menu: 'Menu', close: 'Close',
+      heroEyebrow: 'Web studio · Portugal · Worldwide',
+      heroTitle: 'A website as good as <em>your work.</em>',
+      heroLede: 'We design, write and build websites for barbershops, salons, cafés and other independent businesses. <b>Before you pay anything, you see a working piece of your own site.</b>',
+      cta1: 'Start a project', cta2: 'See the work',
+      s1Title: 'Your whole site, from one studio.', s1Lede: 'You bring the business. We handle the pages, the words, the code and the address people type in.',
+      v1t: 'Design, words and code', v1: 'We plan the pages, write the text and build the site around your own photos, prices and hours.',
+      v2t: 'Fast on a phone', v2: 'Most visitors arrive on a phone. Pages load quickly and are set up so people find you when they search.',
+      v3t: 'Yours to keep', v3: 'The domain is registered in your name. If you ever leave us, the site and the address stay with you.',
+      v4t: 'Bookings and messages', v4: 'Booking requests, WhatsApp, a map and opening hours, so a visitor can act right away.',
+      stTitle: 'People look you up before they call, book or walk in.',
+      stBody: 'That first look decides a lot. We make it clear, quick to load and true to how you actually work.',
+      s2Title: 'Work you can open.', s2Lede: 'This site comes first. The demos after it are made for invented businesses, so no real client is named.',
+      tagHere: 'You are here', tagDemo: 'Demo · fictional business', newTab: '(opens in a new tab)',
+      w1: 'This site: a bronze stone in live 3D that you can spin, the portfolio inside a phone and a brief that draws itself as you fill it in. In three languages.',
+      w2: 'A neighbourhood barbershop in Lisbon: price list, house rules, hours with a live open sign and a chair booking request. In Português and English.',
+      w3t: 'Your business next',
+      w4: 'A tasca in Alfama: a tabbed menu, the dish of the day on a chalkboard that changes with the weekday, and a table booking request with lunch and dinner times.',
+      w5: 'A reformer Pilates studio: class types, a weekly timetable with live spots and filters, prices and a trial class request.',
+      kStudio: 'Web studio · this site', kBarber: 'Barbershop · demo', kRest: 'Restaurant · demo', kPilates: 'Pilates studio · demo',
+      openSite: 'Open the site', backTop: 'Back to the first screen', scrollHint: 'The screen scrolls by itself. Hover or tap it to stop.',
+      dragHint: 'Drag to turn',
+      niches: ['Barbershops', 'Restaurants', 'Pilates studios', 'Hair salons', 'Bakeries', 'Nail studios', 'Dental clinics', 'Builders', 'Cafés', 'Tattoo studios'],
+      fNeeds: 'What should the site have?', wireTitle: 'Your site, as you pick', wireCount: '{n} sections on one page',
+      needs: { booking: 'Booking requests', menu: 'Menu or price list', gallery: 'Photo gallery', hours: 'Hours and map', reviews: 'Reviews', shop: 'Online shop', whatsapp: 'WhatsApp button', langs: 'Several languages' },
+      mNeeds: 'Needs',
+      s3Title: 'From first message to a live site.', s3Lede: 'No long brief and no surprises. This is what happens after you get in touch.',
+      p1t: 'Tell us about the business', p1: 'What you do, where you are online today and what would help most. The form takes about two minutes.',
+      p2t: 'A short call', p2: 'Twenty minutes, at a time that suits you. We ask about your customers and how you work, with no sales pitch.',
+      p3t: 'See it before you pay', p3: 'We build a real piece of your site with your own photos and text, and send you the link.',
+      p4t: 'Live, and looked after', p4: 'We finish the pages, put the site online on a domain in your name and keep it running.',
+      s4Title: 'Tell us what you do.', s4Lede: 'One message is enough to start. The first call takes about twenty minutes.',
+      orWrite: 'Or write to', copy: 'Copy', copied: 'Copied',
+      fName: 'Your name', fBiz: 'Business name', fType: 'Type of business', fLink: 'Current site or Instagram', optional: 'optional',
+      types: { barber: 'Barbershop', salon: 'Hair or nail salon', food: 'Café, bakery or restaurant', beauty: 'Spa or beauty', trade: 'Builder or trade', other: 'Something else' },
+      fMsg: 'What would help most?', fMsgPh: 'More bookings, a menu people can read on a phone, showing up on Google…',
+      fReply: 'How should we reply?', contactEmail: 'Email address', contactWa: 'WhatsApp number',
+      send: 'Send message',
+      errName: 'Add your name so we know who is writing.', errContact: 'Add an email address or WhatsApp number so we can reply.',
+      readyTitle: 'Your message is ready', readyBody: 'Copy it and send it to {email}.', copyMsg: 'Copy message', waSend: 'Send on WhatsApp',
+      sentTitle: 'Message sent', sentBody: 'Thank you. We will reply by {via}.', failBody: 'The message did not go through. Copy it below and send it to {email}.',
+      msgHead: 'New project enquiry', mName: 'Name', mBiz: 'Business', mType: 'Type', mLink: 'Link', mReply: 'Reply by', mMsg: 'Message',
+      footTag: 'Websites for independent businesses. Portugal, worldwide.', footSite: 'Site', footTalk: 'Talk to us', footBase: 'Made in Ukraine'
+    },
+    pt: {
+      skip: 'Saltar para o conteúdo', nav1: 'O que fazemos', nav2: 'Trabalhos', nav3: 'Processo', nav4: 'Contacto', menu: 'Menu', close: 'Fechar',
+      heroEyebrow: 'Estúdio web · Portugal · Todo o mundo',
+      heroTitle: 'Um site à altura do <em>seu trabalho.</em>',
+      heroLede: 'Desenhamos, escrevemos e construímos sites para barbearias, salões, cafés e outros negócios independentes. <b>Antes de pagar seja o que for, vê uma parte real do seu próprio site.</b>',
+      cta1: 'Começar um projeto', cta2: 'Ver trabalhos',
+      s1Title: 'O site inteiro, feito num só estúdio.', s1Lede: 'O negócio é seu. Nós tratamos das páginas, dos textos, do código e do endereço que as pessoas escrevem.',
+      v1t: 'Design, texto e código', v1: 'Planeamos as páginas, escrevemos o texto e construímos o site à volta das suas fotos, preços e horários.',
+      v2t: 'Rápido no telemóvel', v2: 'A maioria das visitas chega pelo telemóvel. As páginas carregam depressa e estão preparadas para aparecer nas pesquisas.',
+      v3t: 'Fica em seu nome', v3: 'O domínio é registado em seu nome. Se um dia mudar de estúdio, o site e o endereço continuam seus.',
+      v4t: 'Marcações e contacto', v4: 'Pedidos de marcação, WhatsApp, mapa e horário, para que quem visita possa agir logo.',
+      stTitle: 'Antes de ligar, marcar ou entrar, as pessoas procuram-no online.',
+      stBody: 'Esse primeiro olhar decide muito. Tornamo-lo claro, rápido e fiel à forma como trabalha.',
+      s2Title: 'Trabalho que pode abrir.', s2Lede: 'Este site vem primeiro. As demonstrações a seguir são feitas para negócios inventados, por isso nenhum cliente real é nomeado.',
+      tagHere: 'Está aqui', tagDemo: 'Demo · negócio fictício', newTab: '(abre num novo separador)',
+      w1: 'Este site: uma pedra de bronze em 3D ao vivo que pode rodar, o portfólio dentro de um telemóvel e um pedido que se desenha enquanto o preenche. Em três línguas.',
+      w2: 'Uma barbearia de bairro em Lisboa: tabela de preços, regras da casa, horário com aviso de aberto ao vivo e pedido de marcação. Em português e inglês.',
+      w3t: 'O seu negócio a seguir',
+      w4: 'Uma tasca em Alfama: menu por separadores, o prato do dia num quadro que muda com o dia da semana e pedido de reserva com horas de almoço e jantar.',
+      w5: 'Um estúdio de Pilates reformer: tipos de aula, horário semanal com lugares ao vivo e filtros, preços e pedido de aula experimental.',
+      kStudio: 'Estúdio web · este site', kBarber: 'Barbearia · demo', kRest: 'Restaurante · demo', kPilates: 'Estúdio de Pilates · demo',
+      openSite: 'Abrir o site', backTop: 'Voltar ao início', scrollHint: 'O ecrã desliza sozinho. Passe o rato ou toque para parar.',
+      dragHint: 'Arraste para rodar',
+      niches: ['Barbearias', 'Restaurantes', 'Estúdios de Pilates', 'Cabeleireiros', 'Pastelarias', 'Estúdios de unhas', 'Clínicas dentárias', 'Obras', 'Cafés', 'Estúdios de tatuagem'],
+      fNeeds: 'O que o site deve ter?', wireTitle: 'O seu site, à medida que escolhe', wireCount: '{n} secções numa página',
+      needs: { booking: 'Pedidos de marcação', menu: 'Menu ou preços', gallery: 'Galeria de fotos', hours: 'Horário e mapa', reviews: 'Opiniões', shop: 'Loja online', whatsapp: 'Botão de WhatsApp', langs: 'Várias línguas' },
+      mNeeds: 'Precisa de',
+      s3Title: 'Da primeira mensagem ao site no ar.', s3Lede: 'Sem questionários longos e sem surpresas. É isto que acontece depois de nos contactar.',
+      p1t: 'Fale-nos do negócio', p1: 'O que faz, onde está online hoje e o que mais ajudaria. O formulário demora cerca de dois minutos.',
+      p2t: 'Uma conversa curta', p2: 'Vinte minutos, à hora que lhe der jeito. Perguntamos pelos seus clientes e pela forma como trabalha, sem conversa de vendas.',
+      p3t: 'Veja antes de pagar', p3: 'Construímos uma parte real do seu site com as suas fotos e textos, e enviamos-lhe o link.',
+      p4t: 'No ar e acompanhado', p4: 'Terminamos as páginas, publicamos o site num domínio em seu nome e mantemo-lo a funcionar.',
+      s4Title: 'Diga-nos o que faz.', s4Lede: 'Uma mensagem chega para começar. A primeira conversa demora cerca de vinte minutos.',
+      orWrite: 'Ou escreva para', copy: 'Copiar', copied: 'Copiado',
+      fName: 'O seu nome', fBiz: 'Nome do negócio', fType: 'Tipo de negócio', fLink: 'Site atual ou Instagram', optional: 'opcional',
+      types: { barber: 'Barbearia', salon: 'Cabeleireiro ou unhas', food: 'Café, pastelaria ou restaurante', beauty: 'Spa ou estética', trade: 'Obras ou serviços técnicos', other: 'Outro' },
+      fMsg: 'O que mais ajudaria?', fMsgPh: 'Mais marcações, um menu legível no telemóvel, aparecer no Google…',
+      fReply: 'Como prefere a resposta?', contactEmail: 'Endereço de email', contactWa: 'Número de WhatsApp',
+      send: 'Enviar mensagem',
+      errName: 'Indique o seu nome para sabermos quem escreve.', errContact: 'Indique um email ou número de WhatsApp para podermos responder.',
+      readyTitle: 'A sua mensagem está pronta', readyBody: 'Copie-a e envie para {email}.', copyMsg: 'Copiar mensagem', waSend: 'Enviar por WhatsApp',
+      sentTitle: 'Mensagem enviada', sentBody: 'Obrigado. Respondemos por {via}.', failBody: 'A mensagem não foi enviada. Copie-a abaixo e envie para {email}.',
+      msgHead: 'Novo pedido de projeto', mName: 'Nome', mBiz: 'Negócio', mType: 'Tipo', mLink: 'Link', mReply: 'Responder por', mMsg: 'Mensagem',
+      footTag: 'Sites para negócios independentes. Portugal, todo o mundo.', footSite: 'Site', footTalk: 'Fale connosco', footBase: 'Feito na Ucrânia'
+    },
+    ru: {
+      skip: 'Перейти к содержанию', nav1: 'Что мы делаем', nav2: 'Работы', nav3: 'Как работаем', nav4: 'Контакты', menu: 'Меню', close: 'Закрыть',
+      heroEyebrow: 'Веб-студия · Португалия · Весь мир',
+      heroTitle: 'Сайт, достойный <em>вашего дела.</em>',
+      heroLede: 'Проектируем, пишем и собираем сайты для барбершопов, салонов, кафе и другого независимого бизнеса. <b>Прежде чем вы что-то заплатите, вы увидите рабочую часть своего сайта.</b>',
+      cta1: 'Начать проект', cta2: 'Смотреть работы',
+      s1Title: 'Весь сайт — в одной студии.', s1Lede: 'От вас — ваше дело. От нас — страницы, тексты, код и адрес, который люди набирают в браузере.',
+      v1t: 'Дизайн, тексты и код', v1: 'Продумываем страницы, пишем тексты и собираем сайт вокруг ваших фото, цен и часов работы.',
+      v2t: 'Быстро на телефоне', v2: 'Большинство посетителей приходят с телефона. Страницы грузятся быстро и настроены так, чтобы вас находили в поиске.',
+      v3t: 'Всё на ваше имя', v3: 'Домен регистрируется на вас. Если когда-нибудь уйдёте от нас, сайт и адрес останутся у вас.',
+      v4t: 'Записи и связь', v4: 'Заявки на запись, WhatsApp, карта и часы работы, чтобы посетитель мог сразу действовать.',
+      stTitle: 'Прежде чем позвонить, записаться или зайти, вас ищут в интернете.',
+      stBody: 'Этот первый взгляд решает многое. Мы делаем его понятным, быстрым и похожим на то, как вы работаете на самом деле.',
+      s2Title: 'Работы, которые можно открыть.', s2Lede: 'Первым идёт этот сайт. Демо после него сделаны для вымышленных компаний, поэтому реальные клиенты не названы.',
+      tagHere: 'Вы здесь', tagDemo: 'Демо · вымышленный бизнес', newTab: '(откроется в новой вкладке)',
+      w1: 'Этот сайт: бронзовый камень в живом 3D, который можно крутить, портфолио внутри телефона и бриф, который рисует сайт, пока вы его заполняете. На трёх языках.',
+      w2: 'Районный барбершоп в Лиссабоне: прайс, правила заведения, часы работы с живым статусом «открыто» и заявка на запись. На португальском и английском.',
+      w3t: 'Ваш бизнес — следующий',
+      w4: 'Таверна в Алфаме: меню по вкладкам, блюдо дня на меловой доске, которое меняется по дням недели, и заявка на бронь стола с обеденным и вечерним временем.',
+      w5: 'Студия пилатеса на реформерах: виды занятий, недельное расписание со свободными местами и фильтрами, цены и запись на пробное занятие.',
+      kStudio: 'Веб-студия · этот сайт', kBarber: 'Барбершоп · демо', kRest: 'Ресторан · демо', kPilates: 'Пилатес-студия · демо',
+      openSite: 'Открыть сайт', backTop: 'Наверх', scrollHint: 'Экран листается сам. Наведите или коснитесь, чтобы остановить.',
+      dragHint: 'Потяните, чтобы повернуть',
+      niches: ['Барбершопы', 'Рестораны', 'Пилатес-студии', 'Салоны', 'Пекарни', 'Ногтевые студии', 'Стоматологии', 'Строители', 'Кофейни', 'Тату-студии'],
+      fNeeds: 'Что должно быть на сайте?', wireTitle: 'Ваш сайт по мере выбора', wireCount: 'Секций на странице: {n}',
+      needs: { booking: 'Заявки на запись', menu: 'Меню или прайс', gallery: 'Галерея', hours: 'Часы и карта', reviews: 'Отзывы', shop: 'Интернет-магазин', whatsapp: 'Кнопка WhatsApp', langs: 'Несколько языков' },
+      mNeeds: 'Нужно',
+      s3Title: 'От первого сообщения до сайта в сети.', s3Lede: 'Без длинных анкет и без сюрпризов. Вот что происходит после того, как вы напишете.',
+      p1t: 'Расскажите о бизнесе', p1: 'Чем занимаетесь, что у вас есть в интернете сейчас и что помогло бы больше всего. Форма займёт около двух минут.',
+      p2t: 'Короткий созвон', p2: 'Двадцать минут в удобное вам время. Спрашиваем о ваших клиентах и о том, как вы работаете, без навязчивых продаж.',
+      p3t: 'Смотрите до оплаты', p3: 'Собираем настоящую часть вашего сайта с вашими фото и текстами и присылаем ссылку.',
+      p4t: 'Запуск и поддержка', p4: 'Доделываем страницы, запускаем сайт на домене, оформленном на вас, и следим, чтобы всё работало.',
+      s4Title: 'Расскажите, чем вы занимаетесь.', s4Lede: 'Для начала достаточно одного сообщения. Первый созвон — около двадцати минут.',
+      orWrite: 'Или напишите на', copy: 'Копировать', copied: 'Скопировано',
+      fName: 'Ваше имя', fBiz: 'Название бизнеса', fType: 'Сфера', fLink: 'Текущий сайт или Instagram', optional: 'необязательно',
+      types: { barber: 'Барбершоп', salon: 'Салон (волосы, ногти)', food: 'Кафе, пекарня или ресторан', beauty: 'Спа или косметология', trade: 'Строительство или мастера', other: 'Другое' },
+      fMsg: 'Что помогло бы больше всего?', fMsgPh: 'Больше записей, меню, которое удобно читать с телефона, появиться в Google…',
+      fReply: 'Как вам ответить?', contactEmail: 'Электронная почта', contactWa: 'Номер WhatsApp',
+      send: 'Отправить',
+      errName: 'Укажите имя, чтобы мы знали, кто пишет.', errContact: 'Укажите почту или номер WhatsApp, чтобы мы могли ответить.',
+      readyTitle: 'Сообщение готово', readyBody: 'Скопируйте его и отправьте на {email}.', copyMsg: 'Скопировать сообщение', waSend: 'Отправить в WhatsApp',
+      sentTitle: 'Сообщение отправлено', sentBody: 'Спасибо. Ответим через {via}.', failBody: 'Сообщение не отправилось. Скопируйте его ниже и отправьте на {email}.',
+      msgHead: 'Новая заявка на проект', mName: 'Имя', mBiz: 'Бизнес', mType: 'Сфера', mLink: 'Ссылка', mReply: 'Ответить через', mMsg: 'Сообщение',
+      footTag: 'Сайты для независимого бизнеса. Португалия и весь мир.', footSite: 'Сайт', footTalk: 'Связаться', footBase: 'Сделано в Украине'
+    }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => o[k] ?? '');
+
+  let lang = 'en';
+  try {
+    const saved = localStorage.getItem('studio-lang');
+    if (saved && T[saved]) lang = saved;
+    else { const n = (navigator.language || '').slice(0, 2); if (T[n]) lang = n; }
+  } catch (e) {}
+
+  $$('[data-studio="name"]').forEach(el => el.textContent = S.name);
+  $$('[data-studio="email"]').forEach(el => el.textContent = S.email);
+  $('#year').textContent = new Date().getFullYear();
+
+  /* statement: one span per word, lit by scroll */
+  function buildStatement() {
+    const h = $('#stTitle');
+    h.innerHTML = '';
+    T[lang].stTitle.split(' ').forEach((w, i, a) => {
+      const s = document.createElement('span'); s.className = 'w'; s.textContent = w;
+      h.append(s); if (i < a.length - 1) h.append(' ');
+    });
+    litWords();
+  }
+  function litWords() {
+    const h = $('#stTitle'), words = $$('.w', h);
+    if (!words.length) return;
+    const r = h.getBoundingClientRect(), vh = innerHeight;
+    const start = vh * 0.92, end = vh * 0.35;
+    const p = Math.min(1, Math.max(0, (start - r.top) / (start - end + r.height * 0.5)));
+    const n = matchMedia('(prefers-reduced-motion: reduce)').matches ? words.length : Math.round(p * words.length);
+    words.forEach((w, i) => w.classList.toggle('lit', i < n));
+  }
+
+  function renderTypes() {
+    const sel = $('#fType'), v = sel.value;
+    sel.innerHTML = Object.entries(T[lang].types).map(([k, l]) => `<option value="${k}">${l}</option>`).join('');
+    if (v) sel.value = v;
+  }
+  function renderContactLabel() {
+    const wa = $('#viaWa').checked, inp = $('#fContact');
+    $('#fContactLabel').textContent = wa ? T[lang].contactWa : T[lang].contactEmail;
+    inp.type = wa ? 'tel' : 'email';
+    inp.autocomplete = wa ? 'tel' : 'email';
+    inp.placeholder = wa ? '+351 9__ ___ ___' : 'name@business.pt';
+  }
+
+  function apply() {
+    const t = T[lang];
+    document.documentElement.lang = lang === 'pt' ? 'pt-PT' : lang;
+    $$('[data-t]').forEach(el => { const v = t[el.dataset.t]; if (v != null) el.textContent = v; });
+    $$('[data-t-html]').forEach(el => { const v = t[el.dataset.tHtml]; if (v != null) el.innerHTML = v; });
+    $$('[data-tp]').forEach(el => { el.placeholder = t[el.dataset.tp] || ''; });
+    $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    buildStatement(); renderTypes(); renderContactLabel();
+    renderNiches(); renderProjects(); renderNeeds(); renderWire(false);
+    $('#result').hidden = true; $('#formErr').hidden = true;
+  }
+
+  /* niches strip */
+  function renderNiches() {
+    const html = T[lang].niches.map(n => `<li>${n}</li>`).join('');
+    $('#niches1').innerHTML = html; $('#niches2').innerHTML = html;
+  }
+
+  /* portfolio in a phone */
+  const P = window.PROJECTS;
+  let current = 0;
+  function renderProjects() {
+    const t = T[lang], list = $('#projList');
+    list.innerHTML = '';
+    P.forEach((p, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'proj'; b.role = 'tab'; b.id = 'proj-' + p.id;
+      b.setAttribute('aria-selected', String(i === current));
+      b.setAttribute('aria-controls', 'screen');
+      b.innerHTML = `<small>${t[p.kind]}</small><b>${p.self ? S.name : p.name}</b>`;
+      b.addEventListener('click', () => selectProject(i));
+      list.append(b);
+    });
+    const next = document.createElement('a');
+    next.className = 'proj next'; next.href = '#contact';
+    next.innerHTML = `<small>${t.nav4}</small><b>${t.w3t} →</b>`;
+    list.append(next);
+    showProject(false);
+  }
+  function selectProject(i) {
+    if (i === current) return;
+    current = i;
+    $$('.proj[role="tab"]').forEach((b, k) => b.setAttribute('aria-selected', String(k === i)));
+    showProject(true);
+  }
+  function showProject(animate) {
+    const t = T[lang], p = P[current], img = $('#screenImg'), screen = $('#screen');
+    $('#projDesc').textContent = t[p.desc];
+    screen.setAttribute('aria-labelledby', 'proj-' + p.id);
+    const open = $('#projOpen');
+    if (p.self) { open.href = '#top'; open.removeAttribute('target'); $('#projOpenLabel').textContent = t.backTop; open.querySelector('.arr').textContent = '↑'; }
+    else { open.href = p.url; open.target = '_blank'; open.rel = 'noopener'; $('#projOpenLabel').textContent = t.openSite; open.querySelector('.arr').textContent = '↗'; }
+    img.alt = (p.self ? S.name : p.name) + ' — ' + t[p.kind];
+    if (img.dataset.src === p.shot) return;
+    const swap = () => { img.src = p.shot; img.dataset.src = p.shot; screen.scrollTop = 0; scrollPos = 0; holdUntil = performance.now() + 1500; img.classList.remove('swap'); };
+    if (animate) { img.classList.add('swap'); setTimeout(swap, 280); } else swap();
+  }
+  // gentle auto-scroll of the phone screen
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let scrollPos = 0, holdUntil = 0, screenVisible = false, hovering = false, lastTick = performance.now();
+  const screenEl = $('#screen');
+  new IntersectionObserver(([e]) => { screenVisible = e.isIntersecting; }).observe(screenEl);
+  screenEl.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') hovering = true; });
+  screenEl.addEventListener('pointerleave', () => { hovering = false; scrollPos = screenEl.scrollTop; });
+  screenEl.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') holdUntil = holdUntil > performance.now() + 1000 ? 0 : performance.now() + 6000; });
+  screenEl.addEventListener('wheel', () => { holdUntil = performance.now() + 3000; scrollPos = screenEl.scrollTop; }, { passive: true });
+  function tick(now) {
+    const dt = Math.min(64, now - lastTick); lastTick = now;
+    if (!reduceMotion && screenVisible && !hovering && now > holdUntil) {
+      const max = screenEl.scrollHeight - screenEl.clientHeight;
+      if (max > 0) {
+        if (Math.abs(screenEl.scrollTop - scrollPos) > 2) scrollPos = screenEl.scrollTop;
+        scrollPos += dt * 0.045;
+        if (scrollPos >= max) { scrollPos = 0; holdUntil = now + 1800; screenEl.scrollTo({ top: 0, behavior: 'smooth' }); }
+        else screenEl.scrollTop = scrollPos;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  /* brief builder */
+  const NEED_KEYS = ['booking', 'menu', 'gallery', 'hours', 'reviews', 'shop', 'whatsapp', 'langs'];
+  const picked = new Set(['booking', 'menu', 'hours', 'whatsapp']);
+  function renderNeeds() {
+    const t = T[lang], box = $('#needs');
+    box.innerHTML = '';
+    NEED_KEYS.forEach(k => {
+      const id = 'need-' + k;
+      const inp = document.createElement('input'); inp.type = 'checkbox'; inp.id = id; inp.value = k; inp.checked = picked.has(k);
+      const lab = document.createElement('label'); lab.htmlFor = id; lab.textContent = t.needs[k];
+      inp.addEventListener('change', () => { inp.checked ? picked.add(k) : picked.delete(k); renderWire(true, inp.checked ? k : null); });
+      box.append(inp, lab);
+    });
+  }
+  const BLOCK = {
+    booking: '<div class="inbar"></div><div class="inbar"></div><div class="pillbtn"></div>',
+    menu: [80, 60, 45].map(w => `<div class="row"><div class="bar w${w}"></div><div class="bar gold w30" style="width:16%"></div></div>`).join(''),
+    gallery: '<div class="g3">' + '<i></i>'.repeat(6) + '</div>',
+    hours: '<div class="row"><div style="display:grid;gap:4px;flex:1"><div class="bar w80"></div><div class="bar w60"></div><div class="bar w80"></div></div><div class="map"></div></div>',
+    reviews: '<span class="stars">★★★★★</span><div class="bar w100"></div><div class="bar w60"></div>',
+    shop: '<div class="g2"><i></i><i></i></div><div class="row"><div class="bar w45"></div><div class="bar gold w30"></div></div>'
+  };
+  function renderWire(animate, added) {
+    const t = T[lang], w = $('#wire');
+    const langs = picked.has('langs') ? `<span class="langs">EN · PT</span>` : '';
+    let html = `<div class="wb"><div class="row"><div class="bar gold w30"></div>${langs}</div></div>`;
+    html += `<div class="wb" style="padding-block:12px"><div class="bar w80" style="height:8px"></div><div class="bar w60" style="height:8px"></div><div class="bar w45"></div><div class="pillbtn" style="margin-top:4px"></div></div>`;
+    let count = 1;
+    NEED_KEYS.forEach(k => {
+      if (!picked.has(k) || !BLOCK[k]) return;
+      count++;
+      html += `<div class="wb${animate && k === added ? ' enter' : ''}"><small>${t.needs[k]}</small>${BLOCK[k]}</div>`;
+    });
+    html += `<div class="wb" style="background:transparent;border-top:1px solid var(--line);border-radius:0"><div class="bar w45"></div></div>`;
+    if (picked.has('whatsapp')) html += `<span class="wa-dot${animate && added === 'whatsapp' ? ' wb enter' : ''}" style="padding:0"></span>`;
+    w.innerHTML = html;
+    $('#wireCount').textContent = fill(t.wireCount, { n: count + 1 });
+  }
+  $$('.lang button').forEach(b => b.addEventListener('click', () => {
+    lang = b.dataset.lang;
+    try { localStorage.setItem('studio-lang', lang); } catch (e) {}
+    apply();
+  }));
+
+  /* header + menu */
+  const hdr = $('#hdr');
+  const onScroll = () => { hdr.classList.toggle('solid', scrollY > 24); litWords(); };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', litWords);
+  const overlay = $('#overlay'), openBtn = $('#menuOpen');
+  const openMenu = () => { overlay.hidden = false; openBtn.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; $('#menuClose').focus(); };
+  const closeMenu = () => { overlay.hidden = true; openBtn.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; };
+  openBtn.addEventListener('click', openMenu);
+  $('#menuClose').addEventListener('click', () => { closeMenu(); openBtn.focus(); });
+  $$('[data-close]', overlay).forEach(a => a.addEventListener('click', closeMenu));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && !overlay.hidden) { closeMenu(); openBtn.focus(); } });
+
+  /* copy helpers */
+  async function copyText(text, btn, fallbackEl) {
+    const label = btn.textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = T[lang].copied;
+      setTimeout(() => btn.textContent = label, 1600);
+    } catch (e) {
+      if (fallbackEl) {
+        if (fallbackEl.select) { fallbackEl.focus(); fallbackEl.select(); }
+        else { const r = document.createRange(); r.selectNodeContents(fallbackEl); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+      }
+    }
+  }
+  $('#copyMail').addEventListener('click', e => copyText(S.email, e.currentTarget, $('#mailAddr')));
+
+  /* project form */
+  $$('input[name="via"]').forEach(r => r.addEventListener('change', renderContactLabel));
+  $('#projectForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const t = T[lang], err = $('#formErr');
+    const d = {
+      name: $('#fName').value.trim(), business: $('#fBiz').value.trim(), type: $('#fType').value,
+      link: $('#fLink').value.trim(), message: $('#fMsg').value.trim(),
+      via: $('#viaWa').checked ? 'WhatsApp' : 'Email', contact: $('#fContact').value.trim()
+    };
+    if (!d.name) { err.textContent = t.errName; err.hidden = false; $('#fName').focus(); return; }
+    const okContact = d.via === 'Email' ? /.+@.+\..+/.test(d.contact) : d.contact.replace(/\D/g, '').length >= 9;
+    if (!okContact) { err.textContent = t.errContact; err.hidden = false; $('#fContact').focus(); return; }
+    err.hidden = true;
+
+    const lines = [`${t.msgHead} — ${S.name}`, '', `${t.mName}: ${d.name}`];
+    if (d.business) lines.push(`${t.mBiz}: ${d.business}`);
+    lines.push(`${t.mType}: ${t.types[d.type]}`);
+    if (d.link) lines.push(`${t.mLink}: ${d.link}`);
+    if (picked.size) lines.push(`${t.mNeeds}: ${NEED_KEYS.filter(k => picked.has(k)).map(k => t.needs[k]).join(', ')}`);
+    lines.push(`${t.mReply}: ${d.via} ${d.contact}`);
+    if (d.message) lines.push('', `${t.mMsg}:`, d.message);
+    const text = lines.join('\n');
+
+    const box = $('#result');
+    box.innerHTML = '';
+    const title = document.createElement('strong');
+    const body = document.createElement('p');
+
+    if (S.formEndpoint) {
+      try {
+        const res = await fetch(S.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ ...d, needs: [...picked].join(', '), lang, _subject: `${t.msgHead} — ${d.business || d.name}`, _template: 'box', _captcha: 'false', message_text: text }) });
+        const j = await res.json().catch(() => ({}));
+        if (res.ok && String(j.success) !== 'false') {
+          title.textContent = t.sentTitle; body.textContent = fill(t.sentBody, { via: d.via });
+          box.append(title, body); box.hidden = false; e.target.reset(); renderContactLabel(); return;
+        }
+      } catch (x) {}
+      title.textContent = t.readyTitle; body.textContent = fill(t.failBody, { email: S.email });
+    } else {
+      title.textContent = t.readyTitle; body.textContent = fill(t.readyBody, { email: S.email });
+    }
+    const ta = document.createElement('textarea'); ta.readOnly = true; ta.value = text; ta.id = 'resultText'; ta.setAttribute('aria-label', t.mMsg);
+    const row = document.createElement('div'); row.className = 'row';
+    const cp = document.createElement('button'); cp.type = 'button'; cp.className = 'chip'; cp.textContent = t.copyMsg;
+    cp.addEventListener('click', () => copyText(text, cp, ta));
+    row.append(cp);
+    if (S.whatsapp) {
+      const wa = document.createElement('a'); wa.className = 'chip'; wa.style.textDecoration = 'none';
+      wa.href = `https://wa.me/${S.whatsapp}?text=${encodeURIComponent(text)}`; wa.target = '_blank'; wa.rel = 'noopener'; wa.textContent = t.waSend;
+      row.append(wa);
+    }
+    box.append(title, body, ta, row);
+    box.hidden = false;
+  });
+
+  apply();
+  onScroll();
+})();
+</script>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js';
+
+function init() {
+  const stage = document.getElementById('stage');
+  const canvas = document.getElementById('gl');
+  const hero = document.getElementById('top');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.05;
+  renderer.setClearColor(0x000000, 0);
+
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 60);
+  camera.position.set(0, 0, 7.4);
+
+  /* a sea-polished stone, cast in bronze */
+  let geo = new THREE.IcosahedronGeometry(1, 48);
+  geo.deleteAttribute('normal'); geo.deleteAttribute('uv');
+  geo = mergeVertices(geo);
+  const pos = geo.attributes.position, v = new THREE.Vector3();
+  for (let i = 0; i < pos.count; i++) {
+    v.fromBufferAttribute(pos, i).normalize();
+    const n = 1 + 0.055 * Math.sin(v.x * 2.3 + 0.7) * Math.cos(v.z * 1.9 - 0.4) + 0.035 * Math.sin(v.y * 3.1 + v.x * 1.7) + 0.02 * Math.cos(v.z * 4.2 + v.y * 2.0);
+    pos.setXYZ(i, v.x * n * 1.34, v.y * n * 0.8, v.z * n * 1.04);
+  }
+  geo.computeVertexNormals();
+  const bronze = new THREE.MeshPhysicalMaterial({ color: 0x9a6334, metalness: 1, roughness: 0.27, clearcoat: 0.55, clearcoatRoughness: 0.22, envMapIntensity: 1.15 });
+  const stone = new THREE.Mesh(geo, bronze);
+
+  /* gold orbit with a single bead */
+  const gold = new THREE.MeshStandardMaterial({ color: 0xe4ba6a, metalness: 1, roughness: 0.16, emissive: 0x4a3010, emissiveIntensity: 0.6 });
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.95, 0.013, 12, 300), gold);
+  const bead = new THREE.Mesh(new THREE.SphereGeometry(0.055, 24, 16), gold);
+  ring.add(bead);
+  ring.rotation.set(1.22, 0.18, 0);
+  const pivot = new THREE.Group(); pivot.add(ring);
+
+  const group = new THREE.Group();
+  group.add(stone, pivot);
+  group.rotation.set(0.18, -0.4, -0.08);
+  scene.add(group);
+
+  const key = new THREE.DirectionalLight(0xffe2b8, 2.6); key.position.set(3, 4, 5); scene.add(key);
+  const rim = new THREE.DirectionalLight(0xffb85c, 3.4); rim.position.set(-4, 1.5, -4); scene.add(rim);
+  const under = new THREE.PointLight(0xe4ba6a, 16, 12); under.position.set(0.6, -2.2, 1.2); scene.add(under);
+
+  function resize() {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    const halfTan = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    const needW = 4.7, needH = 3.9;
+    camera.position.z = Math.max(needH / (2 * halfTan), needW / (2 * halfTan * camera.aspect));
+    camera.updateProjectionMatrix();
+    render();
+  }
+  new ResizeObserver(resize).observe(stage);
+
+  let mx = 0, my = 0, tx = 0, ty = 0;
+  addEventListener('pointermove', (e) => { tx = (e.clientX / innerWidth - 0.5); ty = (e.clientY / innerHeight - 0.5); }, { passive: true });
+
+  /* drag to spin, with inertia */
+  let dragging = false, lastX = 0, spin = 0, vel = 0;
+  stage.addEventListener('pointerdown', (e) => {
+    dragging = true; lastX = e.clientX; vel = 0;
+    stage.setPointerCapture(e.pointerId);
+    stage.classList.add('dragging', 'touched');
+  });
+  stage.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX; lastX = e.clientX;
+    vel = dx * 0.012; spin += vel;
+    if (reduce) render();
+  });
+  const endDrag = () => { dragging = false; stage.classList.remove('dragging'); };
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+
+  let visible = true, t = 0, last = performance.now();
+  new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) { last = performance.now(); loop(); } }).observe(stage);
+
+  function scrollP() {
+    const h = hero.offsetHeight || 1;
+    return Math.min(1, Math.max(0, scrollY / h));
+  }
+
+  function render() {
+    const p = scrollP();
+    stage.style.setProperty('--p', p.toFixed(3));
+    mx += (tx - mx) * 0.06; my += (ty - my) * 0.06;
+    if (!dragging && !reduce) { spin += vel; vel *= 0.95; }
+    stone.rotation.y = t * 0.16 + p * 1.8 + spin;
+    stone.rotation.x = Math.sin(t * 0.21) * 0.08;
+    pivot.rotation.y = t * 0.22 + p * 0.9 + spin * 0.45;
+    bead.position.set(Math.cos(t * 0.9) * 1.95, Math.sin(t * 0.9) * 1.95, 0);
+    group.rotation.x = 0.18 + my * 0.25 + p * 0.5;
+    group.rotation.z = -0.08 - mx * 0.18;
+    group.position.y = p * 0.9;
+    renderer.render(scene, camera);
+  }
+
+  function loop() {
+    if (!visible) return;
+    const now = performance.now();
+    if (!reduce) t += Math.min(0.05, (now - last) / 1000);
+    last = now;
+    render();
+    if (!reduce) requestAnimationFrame(loop);
+  }
+  if (reduce) addEventListener('scroll', render, { passive: true });
+
+  resize();
+  loop();
+  requestAnimationFrame(() => stage.classList.add('gl-on'));
+}
+
+try { init(); } catch (e) { /* the CSS stone stays in place */ }
+</script>
+
+</body>
+</html>

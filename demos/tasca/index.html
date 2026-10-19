@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tasca Exemplo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Tasca Exemplo — demo site for a fictional Lisbon tasca: menu, dish of the day and table booking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Figtree:wght@400;500;600;700&family=Gloock&display=swap">
+<style>
+html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: a tiled tasca wall. White glazed ground, cobalt azulejo skirting between rooms, a chalkboard for the dish of the day, and a menu read like a paper card. */
+:root {
+  --tile: #f6f6f3;
+  --paper: #ffffff;
+  --cobalt: #1d3f8f;
+  --cobalt-2: #2b55b3;
+  --ink: #17203a;
+  --muted: #59617a;
+  --wine: #8a1f33;
+  --slate: #232a2c;
+  --chalk: #f1eee4;
+  --chalk-dim: #b9b8ad;
+  --line: #dde1ea;
+  --wood: #6d4a2f;
+  --font-display: "Gloock", "Bodoni 72", Didot, Georgia, serif;
+  --font-body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --font-chalk: "Caveat", "Bradley Hand", "Segoe Print", cursive;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2.2rem, 4.8vw, 3.6rem);
+  --step-4: clamp(2.8rem, 7vw, 5.6rem);
+  --radius: 4px;
+  --azulejo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' fill='%23f6f6f3'/%3E%3Cg fill='none' stroke='%231d3f8f' stroke-width='2.2'%3E%3Ccircle cx='0' cy='0' r='17'/%3E%3Ccircle cx='56' cy='0' r='17'/%3E%3Ccircle cx='0' cy='56' r='17'/%3E%3Ccircle cx='56' cy='56' r='17'/%3E%3Cpath d='M28 11 L45 28 L28 45 L11 28 Z'/%3E%3C/g%3E%3Cg fill='%231d3f8f'%3E%3Ccircle cx='28' cy='28' r='6'/%3E%3Ccircle cx='28' cy='3' r='2.6'/%3E%3Ccircle cx='28' cy='53' r='2.6'/%3E%3Ccircle cx='3' cy='28' r='2.6'/%3E%3Ccircle cx='53' cy='28' r='2.6'/%3E%3C/g%3E%3Cg fill='%232b55b3' opacity='.55'%3E%3Ccircle cx='0' cy='0' r='8'/%3E%3Ccircle cx='56' cy='0' r='8'/%3E%3Ccircle cx='0' cy='56' r='8'/%3E%3Ccircle cx='56' cy='56' r='8'/%3E%3C/g%3E%3C/svg%3E");
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--tile); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--paper); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--cobalt-2); outline-offset: 3px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; line-height: 1.02; text-wrap: balance; }
+h2 { font-size: var(--step-3); }
+p { margin: 0; }
+.eyebrow { font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--cobalt); }
+
+.ribbon { background: var(--cobalt); color: var(--tile); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.ribbon .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 7px; }
+
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--paper); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.logo { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.logo .tile { width: 30px; height: 30px; background: var(--azulejo) center / 30px 30px; border: 1.5px solid var(--cobalt); border-radius: 3px; flex: none; }
+.logo b { font-family: var(--font-display); font-weight: 400; font-size: 1.55rem; line-height: 1; }
+nav.main { display: flex; align-items: center; gap: 22px; }
+nav.main a { text-decoration: none; font-size: .95rem; font-weight: 500; color: var(--muted); }
+nav.main a:hover { color: var(--cobalt); }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
+.lang button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 600 .74rem var(--font-body); padding: 6px 10px; cursor: pointer; letter-spacing: .06em; }
+.lang button[aria-pressed="true"] { background: var(--cobalt); color: var(--tile); }
+.btn { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; font: 600 .98rem var(--font-body); padding: 14px 22px; border-radius: 99px; border: 1.5px solid transparent; transition: background .15s, color .15s, border-color .15s; }
+.btn-cobalt { background: var(--cobalt); color: var(--tile); }
+.btn-cobalt:hover { background: var(--ink); }
+.btn-line { border-color: var(--cobalt); color: var(--cobalt); }
+.btn-line:hover { background: var(--cobalt); color: var(--tile); }
+nav.main .btn { padding: 9px 16px; font-size: .88rem; color: var(--tile); }
+nav.main .btn:hover { color: var(--tile); }
+@media (max-width: 820px) { nav.main a.hide-sm { display: none; } }
+
+/* hero */
+.hero { background: var(--paper); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 56px; align-items: center; padding-block: 64px 72px; }
+.hero h1 { font-size: var(--step-4); margin-top: 18px; }
+.hero h1 em { font-style: normal; color: var(--cobalt); }
+.hero .lede { margin-top: 22px; max-width: 44ch; font-size: var(--step-1); color: var(--muted); }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.status { margin-top: 28px; display: flex; align-items: center; gap: 10px; font-size: .95rem; color: var(--muted); }
+.status .dot { width: 9px; height: 9px; border-radius: 50%; background: #c9a227; flex: none; box-shadow: 0 0 0 4px rgba(201,162,39,.18); }
+.status .dot.open { background: #2f9e5b; box-shadow: 0 0 0 4px rgba(47,158,91,.18); }
+.status b { color: var(--ink); font-weight: 600; }
+
+.board { background: var(--slate); color: var(--chalk); border: 12px solid var(--wood); border-radius: 6px; padding: 26px 28px 30px; box-shadow: inset 0 0 40px rgba(0,0,0,.45), 0 18px 40px rgba(23,32,58,.18); position: relative; transform: rotate(-1.2deg); }
+.board::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 80% at 20% 10%, rgba(255,255,255,.06), transparent 60%); pointer-events: none; }
+.board .k { font-family: var(--font-chalk); font-size: 1.5rem; color: var(--chalk-dim); line-height: 1; }
+.board .dish { font-family: var(--font-chalk); font-weight: 700; font-size: clamp(2.2rem, 4.5vw, 3rem); line-height: 1.02; margin-top: 8px; }
+.board .note { font-family: var(--font-chalk); font-size: 1.35rem; color: var(--chalk-dim); margin-top: 8px; line-height: 1.15; }
+.board hr { border: 0; border-top: 2px dashed rgba(241,238,228,.35); margin: 18px 0; }
+.board .menu-do-dia { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-family: var(--font-chalk); font-size: 1.45rem; line-height: 1.15; }
+.board .menu-do-dia b { font-size: 2rem; white-space: nowrap; }
+@media (max-width: 880px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-block: 44px 56px; } .board { transform: none; } }
+
+.skirting { height: 56px; background: var(--azulejo) 0 0 / 56px 56px; border-block: 3px solid var(--cobalt); }
+
+section.block { padding-block: 88px; }
+@media (max-width: 760px) { section.block { padding-block: 60px; } }
+.head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
+.head p { max-width: 44ch; color: var(--muted); }
+.head .eyebrow { display: block; margin-bottom: 12px; }
+
+/* menu */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.tabs button { appearance: none; cursor: pointer; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); font: 600 .95rem var(--font-body); padding: 10px 18px; border-radius: 99px; }
+.tabs button:hover { border-color: var(--cobalt); }
+.tabs button[aria-selected="true"] { background: var(--cobalt); border-color: var(--cobalt); color: var(--tile); }
+.card-menu { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 36px; box-shadow: 0 1px 0 var(--line); }
+.card-menu ul { list-style: none; margin: 0; padding: 0; }
+.card-menu li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; padding-block: 20px; border-bottom: 1px dashed var(--line); }
+.card-menu li:last-child { border-bottom: 0; }
+.card-menu h3 { font-size: 1.45rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.card-menu .price { font-family: var(--font-display); font-size: 1.35rem; color: var(--cobalt); font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+.card-menu .desc { color: var(--muted); font-size: .97rem; grid-column: 1 / -1; max-width: 62ch; }
+.pill { font: 700 .66rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; border: 1px solid currentColor; color: var(--muted); }
+.pill.v { color: #2f7d4f; }
+.pill.season { color: var(--wine); }
+@media (max-width: 600px) { .card-menu { padding: 4px 18px; } }
+
+/* week */
+.week-sec { background: var(--paper); border-block: 1px solid var(--line); }
+.week { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.day { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 16px 20px; background: var(--tile); min-width: 0; }
+.day small { display: block; font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.day p { font-family: var(--font-display); font-size: 1.25rem; line-height: 1.12; margin-top: 10px; }
+.day.today { background: var(--slate); border-color: var(--slate); color: var(--chalk); }
+.day.today small { color: var(--chalk-dim); }
+.day.today p { font-family: var(--font-chalk); font-weight: 700; font-size: 1.7rem; line-height: 1; }
+.week-note { margin-top: 22px; color: var(--muted); font-size: .95rem; }
+@media (max-width: 980px) { .week { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .week { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* house */
+.house { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.house > div { min-width: 0; border-top: 3px solid var(--cobalt); padding-top: 18px; }
+.house h3 { font-size: 1.4rem; margin-bottom: 10px; }
+.house p { color: var(--muted); font-size: .96rem; }
+@media (max-width: 960px) { .house { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 540px) { .house { grid-template-columns: minmax(0, 1fr); } }
+
+/* visit + booking */
+.visit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
+.hours { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; margin-top: 24px; }
+.hours th, .hours td { text-align: left; padding: 11px 0; border-bottom: 1px solid var(--line); font-weight: 400; vertical-align: top; }
+.hours td { text-align: right; color: var(--muted); }
+.hours tr.today th, .hours tr.today td { color: var(--cobalt); font-weight: 600; }
+.addr { margin-top: 26px; display: grid; gap: 4px; }
+.addr strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; }
+.addr span { color: var(--muted); }
+form.book { background: var(--paper); border: 1px solid var(--line); border-top: 6px solid var(--cobalt); border-radius: var(--radius); padding: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+form.book h3 { grid-column: 1 / -1; font-size: 2rem; }
+.full { grid-column: 1 / -1; }
+.field { display: grid; gap: 6px; min-width: 0; border: 0; margin: 0; padding: 0; }
+.field label, .field legend { font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 0; }
+.field input, .field select, .field textarea { width: 100%; min-width: 0; font: 400 1rem var(--font-body); color: var(--ink); background: var(--tile); border: 1.5px solid var(--line); border-radius: var(--radius); padding: 12px; appearance: none; }
+.field textarea { resize: vertical; min-height: 80px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--cobalt); }
+.field select { background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 52%, calc(100% - 13px) 52%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 32px; }
+.stepper { display: flex; align-items: center; border: 1.5px solid var(--line); border-radius: var(--radius); background: var(--tile); width: max-content; }
+.stepper button { appearance: none; border: 0; background: transparent; font: 600 1.3rem var(--font-body); width: 46px; height: 46px; cursor: pointer; color: var(--cobalt); }
+.stepper button:disabled { color: var(--line); cursor: default; }
+.stepper output { min-width: 3ch; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+.seg { position: relative; display: inline-flex; gap: 4px; border: 1.5px solid var(--line); border-radius: 99px; padding: 3px; width: max-content; max-width: 100%; background: var(--tile); }
+.seg input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; margin: 0; pointer-events: none; }
+.seg label { font: 600 .9rem var(--font-body); letter-spacing: 0; text-transform: none; color: var(--muted); padding: 8px 16px; border-radius: 99px; cursor: pointer; }
+.seg input:checked + label { background: var(--cobalt); color: var(--tile); }
+.seg input:focus-visible + label { outline: 2px solid var(--cobalt-2); outline-offset: 2px; }
+.hint { font-size: .86rem; color: var(--muted); }
+.err { font-size: .9rem; color: var(--wine); }
+form.book .btn { justify-self: start; }
+.done { border: 1.5px solid var(--cobalt); border-radius: var(--radius); padding: 18px 20px; display: grid; gap: 6px; background: var(--tile); }
+.done strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; color: var(--cobalt); }
+@media (max-width: 900px) { .visit { grid-template-columns: minmax(0, 1fr); gap: 44px; } }
+@media (max-width: 560px) { form.book { grid-template-columns: minmax(0, 1fr); padding: 22px; } }
+
+footer { background: var(--cobalt); color: var(--tile); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 32px; font-size: .92rem; }
+footer b { font-family: var(--font-display); font-weight: 400; font-size: 1.4rem; }
+footer .demo { opacity: .8; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+
+<div class="ribbon"><div class="wrap"><span data-t="ribbon"></span><a href="../../" data-t="ribbon2" style="text-decoration:none"></a></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="tile" aria-hidden="true"></span><b>Tasca Exemplo</b></a>
+    <nav class="main" aria-label="Main">
+      <a class="hide-sm" href="#menu" data-t="nav1"></a>
+      <a class="hide-sm" href="#semana" data-t="nav2"></a>
+      <a class="hide-sm" href="#visitar" data-t="nav3"></a>
+      <a class="btn btn-cobalt" href="#reservar" data-t="navBook"></a>
+      <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button></div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-t="heroEyebrow"></span>
+        <h1 data-t-html="heroTitle"></h1>
+        <p class="lede" data-t="heroLede"></p>
+        <div class="ctas">
+          <a class="btn btn-cobalt" href="#reservar" data-t="ctaBook"></a>
+          <a class="btn btn-line" href="#menu" data-t="ctaMenu"></a>
+        </div>
+        <p class="status" aria-live="polite"><span class="dot" id="dot"></span><span id="statusText"></span></p>
+      </div>
+      <aside class="board" aria-labelledby="boardDish">
+        <div class="k" id="boardKicker"></div>
+        <div class="dish" id="boardDish"></div>
+        <div class="note" id="boardNote"></div>
+        <hr>
+        <div class="menu-do-dia"><span data-t="menuDia"></span><b>13,50 €</b></div>
+      </aside>
+    </div>
+  </section>
+  <div class="skirting" aria-hidden="true"></div>
+
+  <section class="block" id="menu">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow" data-t="menuEyebrow"></span><h2 data-t="menuTitle"></h2></div>
+        <p data-t="menuLede"></p>
+      </div>
+      <div class="tabs" role="tablist" id="tabs" aria-label="Menu"></div>
+      <div class="card-menu" role="tabpanel" id="menuPanel"><ul id="menuList"></ul></div>
+    </div>
+  </section>
+
+  <section class="block week-sec" id="semana">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow" data-t="weekEyebrow"></span><h2 data-t="weekTitle"></h2></div>
+        <p data-t="weekLede"></p>
+      </div>
+      <div class="week" id="week"></div>
+      <p class="week-note" data-t="weekNote"></p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><div><span class="eyebrow" data-t="houseEyebrow"></span><h2 data-t="houseTitle"></h2></div></div>
+      <div class="house">
+        <div><h3 data-t="h1t"></h3><p data-t="h1"></p></div>
+        <div><h3 data-t="h2t"></h3><p data-t="h2"></p></div>
+        <div><h3 data-t="h3t"></h3><p data-t="h3"></p></div>
+        <div><h3 data-t="h4t"></h3><p data-t="h4"></p></div>
+      </div>
+    </div>
+  </section>
+  <div class="skirting" aria-hidden="true"></div>
+
+  <section class="block" id="visitar">
+    <div class="wrap visit">
+      <div>
+        <span class="eyebrow" data-t="visitEyebrow"></span>
+        <h2 data-t="visitTitle" style="margin-top:12px"></h2>
+        <table class="hours"><tbody id="hours"></tbody></table>
+        <div class="addr">
+          <strong>Beco Exemplo, 7</strong>
+          <span>1100-000 Lisboa · Alfama</span>
+          <span>+351 218 000 000</span>
+        </div>
+      </div>
+      <form class="book" id="reservar" novalidate>
+        <h3 data-t="bookTitle"></h3>
+        <div class="field"><label for="bDay" data-t="fDay"></label><input id="bDay" type="date"></div>
+        <div class="field"><label for="bTime" data-t="fTime"></label><select id="bTime"></select></div>
+        <div class="field">
+          <label id="bPeopleLabel" data-t="fPeople"></label>
+          <div class="stepper" role="group" aria-labelledby="bPeopleLabel">
+            <button type="button" id="pMinus" aria-label="−">−</button><output id="bPeople" aria-live="polite">2</output><button type="button" id="pPlus" aria-label="+">+</button>
+          </div>
+          <span class="hint" id="groupHint" hidden></span>
+        </div>
+        <fieldset class="field">
+          <legend data-t="fWhere"></legend>
+          <div class="seg">
+            <input type="radio" name="where" id="wIn" value="sala" checked><label for="wIn" data-t="inside"></label>
+            <input type="radio" name="where" id="wOut" value="esplanada"><label for="wOut" data-t="terrace"></label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="bName" data-t="fName"></label><input id="bName" autocomplete="name"></div>
+        <div class="field"><label for="bPhone" data-t="fPhone"></label><input id="bPhone" type="tel" autocomplete="tel" placeholder="+351 9__ ___ ___"></div>
+        <div class="field full"><label for="bNote" data-t="fNote"></label><textarea id="bNote" data-tp="fNotePh"></textarea></div>
+        <p class="err full" id="bErr" hidden></p>
+        <button class="btn btn-cobalt" type="submit" data-t="send"></button>
+        <div class="done full" id="done" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Tasca Exemplo</b><br><span data-t="footAddr"></span></div>
+    <div class="demo" data-t="footDemo"></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Sunday = 0. Each day: list of [open, close] in minutes.
+  const HOURS = { 0: [[720, 960]], 1: [], 2: [[720, 930], [1140, 1380]], 3: [[720, 930], [1140, 1380]], 4: [[720, 930], [1140, 1380]], 5: [[720, 930], [1140, 1380]], 6: [[720, 930], [1140, 1380]] };
+  const DISH = {
+    0: { pt: ['Arroz de marisco', 'Para dois, ao almoço de domingo'], en: ['Seafood rice', 'For two, Sunday lunch only'] },
+    2: { pt: ['Feijoada à transmontana', 'Feijão, enchidos e arroz branco'], en: ['Trás-os-Montes bean stew', 'Beans, cured sausages and white rice'] },
+    3: { pt: ['Arroz de pato', 'No forno, com chouriço por cima'], en: ['Duck rice', 'Oven-baked, with chouriço on top'] },
+    4: { pt: ['Bacalhau com grão', 'Salt cod, chickpeas, ovo e azeite'], en: ['Salt cod with chickpeas', 'Egg, onion and olive oil'] },
+    5: { pt: ['Caldeirada de peixe', 'O peixe que chegou de manhã'], en: ['Fish stew', 'Made with the morning’s catch'] },
+    6: { pt: ['Cozido à portuguesa', 'Carnes, enchidos e legumes cozidos'], en: ['Portuguese boiled dinner', 'Meats, sausages and vegetables'] }
+  };
+  const MENU = {
+    petiscos: [
+      ['Pão, azeitonas e manteiga', 'Bread, olives and butter', 'O couvert. Só se paga se comer.', 'The couvert. You only pay if you eat it.', 2.5, []],
+      ['Pica-pau do lombo', 'Pica-pau beef strips', 'Tiras de vazia em molho de alho, com pickles.', 'Beef strips in garlic sauce, with pickles.', 8.5, []],
+      ['Amêijoas à Bulhão Pato', 'Bulhão Pato clams', 'Alho, coentros, azeite e limão. Peça mais pão.', 'Garlic, coriander, olive oil and lemon. Ask for more bread.', 13.5, []],
+      ['Peixinhos da horta', 'Peixinhos da horta', 'Feijão-verde em polme, frito na hora.', 'Green beans in batter, fried to order.', 6, ['v']],
+      ['Chouriço assado', 'Flame-grilled chouriço', 'Na assadeira de barro, à mesa.', 'In the clay dish, lit at the table.', 7, []],
+      ['Queijo de Azeitão', 'Azeitão cheese', 'Amanteigado, com marmelada da casa.', 'Soft and buttery, with our quince paste.', 9, ['v']]
+    ],
+    peixe: [
+      ['Sardinhas assadas', 'Grilled sardines', 'Com salada de pimentos e batata cozida.', 'With roasted pepper salad and boiled potatoes.', 13, ['season']],
+      ['Dourada grelhada', 'Grilled sea bream', 'Inteira, com legumes salteados.', 'Whole, with sautéed vegetables.', 16.5, []],
+      ['Polvo à lagareiro', 'Octopus lagareiro', 'Assado no forno, batata a murro e muito azeite.', 'Oven-roasted, crushed potatoes and plenty of olive oil.', 19.5, []],
+      ['Bacalhau à Brás', 'Bacalhau à Brás', 'Bacalhau desfiado, batata palha, ovo e azeitona.', 'Shredded salt cod, matchstick potatoes, egg and olives.', 14.5, []]
+    ],
+    carne: [
+      ['Bitoque da casa', 'House steak', 'Bife, ovo estrelado, batata frita e arroz.', 'Steak, fried egg, chips and rice.', 13, []],
+      ['Secretos de porco preto', 'Black pork secretos', 'Grelhados no carvão, com migas.', 'Charcoal-grilled, with bread migas.', 16, []],
+      ['Frango no churrasco', 'Charcoal chicken', 'Meio frango. Piri-piri à parte.', 'Half a chicken. Piri-piri on the side.', 11, []]
+    ],
+    doces: [
+      ['Arroz doce', 'Rice pudding', 'Com canela, como em casa da avó.', 'With cinnamon, as at grandma’s.', 4.5, ['v']],
+      ['Mousse de chocolate', 'Chocolate mousse', 'Feita de manhã, servida em taça.', 'Made in the morning, served in a bowl.', 4.5, ['v']],
+      ['Pudim flan', 'Caramel flan', 'Caramelo escuro, pouco doce.', 'Dark caramel, not too sweet.', 4.5, ['v']],
+      ['Pastéis de nata (2)', 'Custard tarts (2)', 'Da pastelaria do outro lado da rua.', 'From the bakery across the street.', 3, ['v']]
+    ],
+    vinhos: [
+      ['Vinho da casa, copo', 'House wine, glass', 'Tinto ou branco, de Lisboa.', 'Red or white, from the Lisbon region.', 3.5, []],
+      ['Vinho da casa, jarro ½ L', 'House wine, ½ L jug', 'O mesmo, para partilhar.', 'The same, to share.', 8, []],
+      ['Vinho verde, garrafa', 'Vinho verde, bottle', 'Fresco e leve, bom com o peixe.', 'Fresh and light, good with fish.', 16, []],
+      ['Douro tinto, garrafa', 'Douro red, bottle', 'Para a carne e para a conversa.', 'For the meat and the conversation.', 22, []],
+      ['Imperial', 'Draught beer', '20 cl, bem tirada.', '20 cl, properly poured.', 2, []],
+      ['Ginjinha', 'Ginjinha', 'Licor de ginja, com ou sem elas.', 'Sour cherry liqueur, with or without the cherries.', 2.5, []]
+    ]
+  };
+  const T = {
+    pt: {
+      ribbon: 'Demo · negócio fictício', ribbon2: 'Site feito pela Orla',
+      nav1: 'Menu', nav2: 'Pratos do dia', nav3: 'Visitar', navBook: 'Reservar',
+      heroEyebrow: 'Tasca · Alfama, Lisboa',
+      heroTitle: 'Peixe na brasa, vinho da casa e <em>mesa para todos.</em>',
+      heroLede: 'Cozinha de tasca há três gerações: petiscos para partilhar, o peixe que chegou de manhã e um prato do dia diferente em cada dia da semana.',
+      ctaBook: 'Reservar mesa', ctaMenu: 'Ver o menu',
+      openNow: 'Aberto agora', closedNow: 'Fechado agora', until: 'até às {t}', opens: 'abre {d} às {t}', today: 'hoje', tomorrow: 'amanhã',
+      boardToday: 'Hoje · {d}', boardClosed: 'Hoje estamos fechados', boardClosedNote: 'Volte amanhã: {dish}', menuDia: 'Menu do dia: sopa, prato, bebida e café',
+      menuEyebrow: 'A carta', menuTitle: 'Menu', menuLede: 'Preços com IVA. Peça meia dose em qualquer prato de peixe ou carne.',
+      tabs: { petiscos: 'Petiscos', peixe: 'Peixe', carne: 'Carne', doces: 'Sobremesas', vinhos: 'Vinhos e bebidas' },
+      pillV: 'vegetariano', pillSeason: 'jun–set',
+      weekEyebrow: 'De terça a domingo', weekTitle: 'Pratos do dia', weekLede: 'Ao almoço, com sopa, bebida e café, por 13,50 €. Quando acaba, acabou.',
+      weekNote: 'Segunda-feira estamos fechados.',
+      houseEyebrow: 'Antes de vir', houseTitle: 'Como é a tasca',
+      h1t: 'Mesas partilhadas', h1: 'Ao almoço juntamos mesas. Se preferir ficar sozinho, diga-nos ao reservar.',
+      h2t: 'Couvert à vontade', h2: 'O pão e as azeitonas chegam à mesa. Se não tocar, não paga.',
+      h3t: 'Grupos', h3: 'Reservas online até 10 pessoas. Para grupos maiores ou jantares de empresa, ligue-nos.',
+      h4t: 'Pagamento', h4: 'MB WAY, Multibanco, cartão ou numerário. Divisão da conta sem problema.',
+      visitEyebrow: 'Horário e morada', visitTitle: 'Visitar',
+      days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'], daysShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'], closed: 'Fechado',
+      bookTitle: 'Reservar mesa', fDay: 'Dia', fTime: 'Hora', fPeople: 'Pessoas', fWhere: 'Onde', inside: 'Sala', terrace: 'Esplanada',
+      fName: 'Nome', fPhone: 'Telemóvel', fNote: 'Alguma nota?', fNotePh: 'Aniversário, cadeira de bebé, alergias…',
+      lunch: 'Almoço', dinner: 'Jantar', pickDay: 'Escolha primeiro o dia', closedDay: 'Fechado neste dia', noSlots: 'Sem horas livres hoje',
+      group: 'Para mais de 10 pessoas, ligue-nos: +351 218 000 000.',
+      errDay: 'Escolha um dia e uma hora.', errName: 'Indique o nome e o telemóvel para confirmarmos.',
+      send: 'Pedir reserva', doneTitle: 'Pedido registado', doneLine: 'Mesa para {n} na {where}, {day} às {time}, em nome de {name}.', doneDemo: 'Isto é uma demonstração: nenhum pedido foi enviado.',
+      footAddr: 'Beco Exemplo, 7 · Alfama, Lisboa', footDemo: 'Demonstração · negócio fictício · site pela Orla'
+    },
+    en: {
+      ribbon: 'Demo · fictional business', ribbon2: 'Site made by Orla',
+      nav1: 'Menu', nav2: 'Dishes of the day', nav3: 'Visit', navBook: 'Book',
+      heroEyebrow: 'Tasca · Alfama, Lisbon',
+      heroTitle: 'Grilled fish, house wine and <em>a table for everyone.</em>',
+      heroLede: 'Three generations of tasca cooking: small plates to share, fish that came in this morning and a different dish of the day for every day of the week.',
+      ctaBook: 'Book a table', ctaMenu: 'See the menu',
+      openNow: 'Open now', closedNow: 'Closed now', until: 'until {t}', opens: 'opens {d} at {t}', today: 'today', tomorrow: 'tomorrow',
+      boardToday: 'Today · {d}', boardClosed: 'We are closed today', boardClosedNote: 'Come back tomorrow: {dish}', menuDia: 'Lunch menu: soup, dish, drink and coffee',
+      menuEyebrow: 'The card', menuTitle: 'Menu', menuLede: 'Prices include VAT. Any fish or meat dish comes as a half portion too.',
+      tabs: { petiscos: 'Small plates', peixe: 'Fish', carne: 'Meat', doces: 'Desserts', vinhos: 'Wine and drinks' },
+      pillV: 'vegetarian', pillSeason: 'Jun–Sep',
+      weekEyebrow: 'Tuesday to Sunday', weekTitle: 'Dishes of the day', weekLede: 'At lunch, with soup, a drink and coffee, for €13.50. When it runs out, it runs out.',
+      weekNote: 'We are closed on Mondays.',
+      houseEyebrow: 'Before you come', houseTitle: 'How the tasca works',
+      h1t: 'Shared tables', h1: 'At lunch we put tables together. If you would rather sit on your own, tell us when you book.',
+      h2t: 'Couvert, your call', h2: 'Bread and olives arrive at the table. If you leave them, you do not pay.',
+      h3t: 'Groups', h3: 'Book online for up to 10 people. For larger groups or company dinners, call us.',
+      h4t: 'Paying', h4: 'MB WAY, Multibanco, card or cash. Splitting the bill is fine.',
+      visitEyebrow: 'Hours and address', visitTitle: 'Visit',
+      days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], closed: 'Closed',
+      bookTitle: 'Book a table', fDay: 'Day', fTime: 'Time', fPeople: 'People', fWhere: 'Where', inside: 'Inside', terrace: 'Terrace',
+      fName: 'Name', fPhone: 'Mobile', fNote: 'Anything we should know?', fNotePh: 'Birthday, high chair, allergies…',
+      lunch: 'Lunch', dinner: 'Dinner', pickDay: 'Pick a day first', closedDay: 'Closed on this day', noSlots: 'No times left today',
+      group: 'For more than 10 people, call us: +351 218 000 000.',
+      errDay: 'Pick a day and a time.', errName: 'Add your name and mobile so we can confirm.',
+      send: 'Request a table', doneTitle: 'Request received', doneLine: 'Table for {n}, {where}, {day} at {time}, under {name}.', doneDemo: 'This is a demo: no request was sent.',
+      footAddr: 'Beco Exemplo, 7 · Alfama, Lisbon', footDemo: 'Demo · fictional business · site by Orla'
+    }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => o[k]);
+  const eur = (v, l) => l === 'pt' ? v.toFixed(2).replace('.', ',') + ' €' : '€' + v.toFixed(2);
+
+  let lang = 'pt', tab = 'petiscos', people = 2;
+  try { const s = localStorage.getItem('tasca-lang'); if (s && T[s]) lang = s; else if (!(navigator.language || '').startsWith('pt')) lang = 'en'; } catch (e) {}
+
+  function now() {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Lisbon', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+    const g = t => +parts.find(p => p.type === t).value;
+    const d = new Date(Date.UTC(g('year'), g('month') - 1, g('day')));
+    return { dow: d.getUTCDay(), min: g('hour') * 60 + g('minute'), iso: d.toISOString().slice(0, 10) };
+  }
+
+  function renderStatus() {
+    const t = T[lang], n = now();
+    const shift = HOURS[n.dow].find(([a, b]) => n.min >= a && n.min < b);
+    $('#dot').classList.toggle('open', !!shift);
+    const s = $('#statusText');
+    s.innerHTML = '';
+    const b = document.createElement('b');
+    b.textContent = shift ? t.openNow : t.closedNow;
+    let rest = '';
+    if (shift) rest = fill(t.until, { t: fmt(shift[1]) });
+    else {
+      for (let i = 0; i < 8; i++) {
+        const dow = (n.dow + i) % 7;
+        const next = HOURS[dow].find(([a]) => i > 0 || a > n.min);
+        if (next) { rest = fill(t.opens, { d: i === 0 ? t.today : i === 1 ? t.tomorrow : t.days[dow].toLowerCase(), t: fmt(next[0]) }); break; }
+      }
+    }
+    s.append(b, ' · ' + rest);
+  }
+
+  function renderBoard() {
+    const t = T[lang], n = now(), d = DISH[n.dow];
+    if (d) {
+      $('#boardKicker').textContent = fill(t.boardToday, { d: t.days[n.dow].toLowerCase() });
+      $('#boardDish').textContent = d[lang][0];
+      $('#boardNote').textContent = d[lang][1];
+    } else {
+      const next = DISH[(n.dow + 1) % 7];
+      $('#boardKicker').textContent = t.days[n.dow];
+      $('#boardDish').textContent = t.boardClosed;
+      $('#boardNote').textContent = fill(t.boardClosedNote, { dish: next[lang][0] });
+    }
+  }
+
+  function renderTabs() {
+    const t = T[lang];
+    $('#tabs').innerHTML = '';
+    Object.keys(MENU).forEach(k => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.role = 'tab'; b.id = 'tab-' + k;
+      b.setAttribute('aria-selected', String(k === tab));
+      b.setAttribute('aria-controls', 'menuPanel');
+      b.tabIndex = k === tab ? 0 : -1;
+      b.textContent = t.tabs[k];
+      b.addEventListener('click', () => { tab = k; renderTabs(); renderMenu(); });
+      b.addEventListener('keydown', e => {
+        const keys = Object.keys(MENU), i = keys.indexOf(tab);
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          tab = keys[(i + (e.key === 'ArrowRight' ? 1 : keys.length - 1)) % keys.length];
+          renderTabs(); renderMenu(); $('#tab-' + tab).focus();
+        }
+      });
+      $('#tabs').append(b);
+    });
+    $('#menuPanel').setAttribute('aria-labelledby', 'tab-' + tab);
+  }
+
+  function renderMenu() {
+    const t = T[lang], pt = lang === 'pt';
+    $('#menuList').innerHTML = MENU[tab].map(([npt, nen, dpt, den, price, tags]) => {
+      const pills = tags.map(x => `<span class="pill ${x}">${x === 'v' ? t.pillV : t.pillSeason}</span>`).join('');
+      return `<li><h3>${pt ? npt : nen}${pills}</h3><span class="price">${eur(price, lang)}</span><p class="desc">${pt ? dpt : den}</p></li>`;
+    }).join('');
+  }
+
+  function renderWeek() {
+    const t = T[lang], n = now();
+    $('#week').innerHTML = [2, 3, 4, 5, 6, 0].map(d => `<div class="day${d === n.dow ? ' today' : ''}"><small>${t.days[d]}${d === n.dow ? ' · ' + t.today : ''}</small><p>${DISH[d][lang][0]}</p></div>`).join('');
+  }
+
+  function renderHours() {
+    const t = T[lang], n = now();
+    $('#hours').innerHTML = [1, 2, 3, 4, 5, 6, 0].map(d => {
+      const h = HOURS[d];
+      const v = h.length ? h.map(([a, b]) => fmt(a) + '–' + fmt(b)).join('<br>') : t.closed;
+      return `<tr class="${d === n.dow ? 'today' : ''}"><th scope="row">${t.days[d]}</th><td>${v}</td></tr>`;
+    }).join('');
+  }
+
+  function renderSlots() {
+    const t = T[lang], dayEl = $('#bDay'), sel = $('#bTime'), prev = sel.value;
+    if (!dayEl.value) { sel.innerHTML = `<option value="">${t.pickDay}</option>`; sel.disabled = true; return; }
+    const [y, m, d] = dayEl.value.split('-').map(Number);
+    const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+    const n = now();
+    const groups = HOURS[dow].map(([a, b], i) => {
+      const opts = [];
+      for (let x = a; x <= b - 90; x += 30) { if (dayEl.value === n.iso && x <= n.min + 30) continue; opts.push(fmt(x)); }
+      return opts.length ? `<optgroup label="${a < 1000 ? t.lunch : t.dinner}">${opts.map(o => `<option>${o}</option>`).join('')}</optgroup>` : '';
+    }).join('');
+    if (!HOURS[dow].length) { sel.innerHTML = `<option value="">${t.closedDay}</option>`; sel.disabled = true; return; }
+    if (!groups) { sel.innerHTML = `<option value="">${t.noSlots}</option>`; sel.disabled = true; return; }
+    sel.disabled = false; sel.innerHTML = groups;
+    if (prev && [...sel.options].some(o => o.value === prev)) sel.value = prev;
+  }
+
+  function renderPeople() {
+    $('#bPeople').textContent = people;
+    $('#pMinus').disabled = people <= 1;
+    $('#pPlus').disabled = people >= 10;
+    const h = $('#groupHint');
+    h.hidden = people < 10; h.textContent = T[lang].group;
+  }
+
+  function apply() {
+    const t = T[lang];
+    document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en';
+    $$('[data-t]').forEach(el => { const v = t[el.dataset.t]; if (v != null) el.textContent = v; });
+    $$('[data-t-html]').forEach(el => { const v = t[el.dataset.tHtml]; if (v != null) el.innerHTML = v; });
+    $$('[data-tp]').forEach(el => el.placeholder = t[el.dataset.tp] || '');
+    $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    $('#pMinus').setAttribute('aria-label', lang === 'pt' ? 'Menos uma pessoa' : 'One person fewer');
+    $('#pPlus').setAttribute('aria-label', lang === 'pt' ? 'Mais uma pessoa' : 'One more person');
+    renderStatus(); renderBoard(); renderTabs(); renderMenu(); renderWeek(); renderHours(); renderSlots(); renderPeople();
+    $('#done').hidden = true; $('#bErr').hidden = true;
+  }
+
+  $$('.lang button').forEach(b => b.addEventListener('click', () => { lang = b.dataset.lang; try { localStorage.setItem('tasca-lang', lang); } catch (e) {} apply(); }));
+  $('#bDay').min = now().iso;
+  $('#bDay').addEventListener('change', renderSlots);
+  $('#pMinus').addEventListener('click', () => { people = Math.max(1, people - 1); renderPeople(); });
+  $('#pPlus').addEventListener('click', () => { people = Math.min(10, people + 1); renderPeople(); });
+
+  $('#reservar').addEventListener('submit', e => {
+    e.preventDefault();
+    const t = T[lang], err = $('#bErr');
+    if (!$('#bDay').value || !$('#bTime').value || $('#bTime').disabled) { err.textContent = t.errDay; err.hidden = false; $('#bDay').focus(); return; }
+    const name = $('#bName').value.trim(), phone = $('#bPhone').value.replace(/\D/g, '');
+    if (!name || phone.length < 9) { err.textContent = t.errName; err.hidden = false; (name ? $('#bPhone') : $('#bName')).focus(); return; }
+    err.hidden = true;
+    const [y, m, d] = $('#bDay').value.split('-').map(Number);
+    const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+    const where = $('#wOut').checked ? t.terrace.toLowerCase() : t.inside.toLowerCase();
+    const box = $('#done'); box.innerHTML = '';
+    const s = document.createElement('strong'); s.textContent = t.doneTitle;
+    const p = document.createElement('p'); p.textContent = fill(t.doneLine, { n: people, where, day: `${t.daysShort[dow]} ${String(d).padStart(2, '0')}/${String(m).padStart(2, '0')}`, time: $('#bTime').value, name });
+    const q = document.createElement('p'); q.className = 'hint'; q.textContent = t.doneDemo;
+    box.append(s, p, q); box.hidden = false;
+  });
+
+  apply();
+  setInterval(() => { renderStatus(); }, 60000);
+})();
+</script>
+
+</body>
+</html>

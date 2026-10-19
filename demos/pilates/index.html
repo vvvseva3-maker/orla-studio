@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estúdio Exemplo Pilates</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Estúdio Exemplo — demo site for a fictional reformer Pilates studio in Lisbon: classes, live timetable with spots, prices and a trial class request.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<style>
+html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: a quiet studio floor in pale sage. The reformer's orange spring is the only loud thing on the page; the timetable is the working heart. */
+:root {
+  --bg: #edf0ec;
+  --paper: #f8f9f6;
+  --ink: #1a231f;
+  --muted: #59645d;
+  --moss: #2d4a3d;
+  --moss-2: #3d5e4f;
+  --spring: #de5328;
+  --spring-soft: #f7dccf;
+  --line: #d4dad3;
+  --full: #9aa39d;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, Menlo, monospace;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2.2rem, 4.6vw, 3.5rem);
+  --step-4: clamp(2.8rem, 7vw, 5.8rem);
+  --radius: 14px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--spring); outline-offset: 3px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; line-height: 1.04; text-wrap: balance; letter-spacing: -.01em; }
+h1 em, h2 em { font-style: italic; color: var(--spring); }
+h2 { font-size: var(--step-3); }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; color: var(--moss-2); display: block; margin-bottom: 14px; }
+
+.ribbon { background: var(--moss); color: var(--paper); font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+.ribbon .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-block: 7px; }
+
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(237, 240, 236, .9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo svg { width: 34px; height: 18px; color: var(--spring); flex: none; }
+.logo b { font-family: var(--font-display); font-weight: 500; font-size: 1.45rem; line-height: 1; }
+.logo b i { font-weight: 400; color: var(--muted); }
+nav.main { display: flex; align-items: center; gap: 22px; }
+nav.main a { text-decoration: none; font-size: .95rem; color: var(--muted); }
+nav.main a:hover { color: var(--ink); }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 99px; overflow: hidden; background: var(--paper); }
+.lang button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 500 .72rem var(--font-mono); padding: 6px 10px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; cursor: pointer; font: 600 .98rem var(--font-body); padding: 14px 22px; border-radius: 99px; border: 1.5px solid transparent; transition: background .15s, color .15s, border-color .15s; }
+.btn-spring { background: var(--spring); color: #fff; }
+.btn-spring:hover { background: var(--ink); }
+.btn-line { border-color: var(--ink); color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: var(--paper); }
+nav.main .btn { padding: 9px 16px; font-size: .88rem; color: #fff; }
+@media (max-width: 860px) { nav.main a.hide-sm { display: none; } }
+
+/* hero */
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 64px 80px; }
+.hero h1 { font-size: var(--step-4); }
+.hero .lede { margin-top: 24px; max-width: 44ch; font-size: var(--step-1); color: var(--muted); }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; padding: 0; list-style: none; }
+.facts li { font: 500 .78rem var(--font-mono); letter-spacing: .04em; padding: 6px 12px; border: 1px solid var(--line); border-radius: 99px; background: var(--paper); }
+.reformer { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 28px 24px 20px; }
+.reformer svg { width: 100%; height: auto; display: block; overflow: visible; }
+.reformer .cap { display: flex; justify-content: space-between; margin-top: 12px; font: 500 .74rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.reformer .cap .breath span { transition: color .4s; }
+.carriage { animation: glide 5s ease-in-out infinite alternate; }
+.coil { transform-box: fill-box; transform-origin: left center; animation: stretch 5s ease-in-out infinite alternate; }
+@keyframes glide { from { transform: translateX(0); } to { transform: translateX(120px); } }
+@keyframes stretch { from { transform: scaleX(1); } to { transform: scaleX(2); } }
+.b-in { animation: inhale 10s ease-in-out infinite; }
+.b-out { animation: exhale 10s ease-in-out infinite; }
+@keyframes inhale { 0%, 45% { color: var(--spring); } 55%, 100% { color: var(--line); } }
+@keyframes exhale { 0%, 45% { color: var(--line); } 55%, 100% { color: var(--spring); } }
+@media (prefers-reduced-motion: reduce) { .carriage, .coil, .b-in, .b-out { animation: none; } }
+@media (max-width: 880px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-block: 44px 56px; } }
+
+section.block { padding-block: 88px; }
+@media (max-width: 760px) { section.block { padding-block: 60px; } }
+.head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+.head p { max-width: 44ch; color: var(--muted); }
+
+/* classes */
+.classes { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.cls { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.cls .meta { display: flex; justify-content: space-between; gap: 8px; font: 500 .74rem var(--font-mono); color: var(--muted); }
+.lvl { display: inline-flex; gap: 3px; align-items: center; }
+.lvl i { width: 7px; height: 7px; border-radius: 50%; background: var(--line); display: block; }
+.lvl i.on { background: var(--spring); }
+.cls h3 { font-size: 1.5rem; }
+.cls p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 1060px) { .classes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .classes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .classes { grid-template-columns: minmax(0, 1fr); } }
+
+/* timetable */
+.tt-sec { background: var(--paper); border-block: 1px solid var(--line); }
+.tt-controls { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.days, .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.days button, .filters button { appearance: none; cursor: pointer; font: 500 .9rem var(--font-body); padding: 9px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+.days button { display: grid; justify-items: center; gap: 0; padding: 8px 14px; min-width: 58px; }
+.days button small { font: 500 .66rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.days button[aria-pressed="true"], .filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.days button[aria-pressed="true"] small { color: var(--spring-soft); }
+.tt { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.tt li { display: grid; grid-template-columns: 76px minmax(0, 1.4fr) minmax(0, 1fr) auto; gap: 16px; align-items: center; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.tt .time { font: 500 1.15rem var(--font-mono); font-variant-numeric: tabular-nums; }
+.tt .what b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; display: block; line-height: 1.1; }
+.tt .what span { color: var(--muted); font-size: .9rem; }
+.spots { display: grid; gap: 6px; font-size: .88rem; color: var(--muted); min-width: 0; }
+.spots .dots { display: flex; gap: 4px; flex-wrap: wrap; }
+.spots .dots i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--moss-2); display: block; }
+.spots .dots i.taken { background: var(--moss-2); }
+.spots.is-full .dots i { border-color: var(--full); background: var(--full); }
+.tt .btn { padding: 10px 16px; font-size: .88rem; }
+.tt .btn.wait { background: transparent; color: var(--muted); border-color: var(--line); }
+.tt .past { opacity: .5; }
+.tt-empty { padding: 30px 0; color: var(--muted); border-bottom: 1px solid var(--line); }
+@media (max-width: 720px) {
+  .tt li { grid-template-columns: 64px minmax(0, 1fr); gap: 8px 14px; }
+  .tt .spots { grid-column: 2; }
+  .tt .btn { grid-column: 2; justify-self: start; }
+}
+
+/* prices */
+.prices { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.plan { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 22px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.plan.first { background: var(--moss); border-color: var(--moss); color: var(--paper); }
+.plan.first .per, .plan.first p { color: #c9d6cf; }
+.plan small { font: 500 .74rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+.plan.first small { color: var(--spring-soft); }
+.plan .amount { font-family: var(--font-display); font-size: 3rem; line-height: 1; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.plan .per { font: 500 .82rem var(--font-mono); color: var(--muted); }
+.plan p { color: var(--muted); font-size: .94rem; margin-top: 6px; }
+.prices-note { margin-top: 20px; color: var(--muted); font-size: .95rem; }
+@media (max-width: 980px) { .prices { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .prices { grid-template-columns: minmax(0, 1fr); } }
+
+/* first class */
+.first-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; align-items: start; }
+.tips { display: grid; gap: 0; margin-top: 28px; border-top: 1px solid var(--line); }
+.tips div { padding-block: 18px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; }
+.tips svg { width: 22px; height: 22px; color: var(--spring); margin-top: 3px; }
+.tips b { font-weight: 600; display: block; }
+.tips span { color: var(--muted); font-size: .95rem; }
+.addr { margin-top: 30px; display: grid; gap: 4px; font-size: .95rem; color: var(--muted); }
+.addr strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; color: var(--ink); }
+form.trial { background: var(--paper); border: 1px solid var(--line); border-radius: 22px; padding: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+form.trial h3 { grid-column: 1 / -1; font-size: 2rem; }
+form.trial h3 + p { grid-column: 1 / -1; color: var(--muted); margin-top: -8px; }
+.full { grid-column: 1 / -1; }
+.field { display: grid; gap: 6px; min-width: 0; border: 0; margin: 0; padding: 0; }
+.field label, .field legend { font: 500 .74rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 0; }
+.field input, .field select, .field textarea { width: 100%; min-width: 0; font: 400 1rem var(--font-body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; appearance: none; }
+.field textarea { resize: vertical; min-height: 80px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--spring); }
+.field select { background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 52%, calc(100% - 13px) 52%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 32px; }
+.seg { position: relative; display: flex; flex-wrap: wrap; gap: 6px; }
+.seg input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; margin: 0; pointer-events: none; }
+.seg label { font: 500 .9rem var(--font-body); letter-spacing: 0; text-transform: none; color: var(--ink); padding: 9px 14px; border: 1px solid var(--line); border-radius: 99px; cursor: pointer; background: var(--bg); }
+.seg input:checked + label { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.seg input:focus-visible + label { outline: 2px solid var(--spring); outline-offset: 2px; }
+.err { color: #b3361a; font-size: .9rem; }
+form.trial .btn { justify-self: start; }
+.done { border: 1.5px solid var(--moss); border-radius: 12px; padding: 18px 20px; display: grid; gap: 6px; background: var(--bg); }
+.done strong { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; color: var(--moss); }
+.done .demo { color: var(--muted); font-size: .9rem; }
+@media (max-width: 900px) { .first-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; } }
+@media (max-width: 560px) { form.trial { grid-template-columns: minmax(0, 1fr); padding: 22px; } }
+
+footer { background: var(--ink); color: #c7cfca; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-block: 32px; font-size: .92rem; }
+footer b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; color: var(--paper); }
+footer .demo { font: 500 .74rem var(--font-mono); letter-spacing: .06em; color: var(--spring-soft); }
+</style>
+</head>
+<body>
+
+
+<div class="ribbon"><div class="wrap"><span data-t="ribbon"></span><a href="../../" data-t="ribbon2" style="text-decoration:none"></a></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg viewBox="0 0 34 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9h4l2.5-6 4 12 4-12 4 12 4-12 2.5 6h5"/></svg>
+      <b>Estúdio Exemplo <i>Pilates</i></b>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a class="hide-sm" href="#aulas" data-t="nav1"></a>
+      <a class="hide-sm" href="#horario" data-t="nav2"></a>
+      <a class="hide-sm" href="#precos" data-t="nav3"></a>
+      <a class="btn btn-spring" href="#primeira" data-t="navTrial"></a>
+      <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button></div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow" data-t="heroEyebrow"></span>
+        <h1 data-t-html="heroTitle"></h1>
+        <p class="lede" data-t="heroLede"></p>
+        <div class="ctas">
+          <a class="btn btn-spring" href="#primeira" data-t="ctaTrial"></a>
+          <a class="btn btn-line" href="#horario" data-t="ctaTimetable"></a>
+        </div>
+        <ul class="facts"><li data-t="f1"></li><li data-t="f2"></li><li data-t="f3"></li></ul>
+      </div>
+      <div class="reformer" aria-hidden="true">
+        <svg viewBox="0 0 480 200">
+          <rect x="14" y="150" width="452" height="8" rx="4" fill="#d4dad3"/>
+          <rect x="30" y="158" width="10" height="30" rx="3" fill="#2d4a3d"/>
+          <rect x="440" y="158" width="10" height="30" rx="3" fill="#2d4a3d"/>
+          <rect x="26" y="70" width="14" height="80" rx="6" fill="#2d4a3d"/>
+          <rect x="18" y="62" width="30" height="12" rx="6" fill="#3d5e4f"/>
+          <g class="coil">
+            <path d="M40 112 l6 -10 l8 20 l8 -20 l8 20 l8 -20 l8 20 l8 -20 l8 20 l8 -20 l8 20 l8 -20 l8 20 l8 -20 l6 10" fill="none" stroke="#de5328" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+            <path d="M40 132 l6 -10 l8 20 l8 -20 l8 20 l8 -20 l8 20 l8 -20 l8 20 l8 -20 l8 20 l8 -20 l8 20 l8 -20 l6 10" fill="none" stroke="#e98c64" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          </g>
+          <g class="carriage">
+            <rect x="160" y="96" width="170" height="44" rx="10" fill="#2d4a3d"/>
+            <rect x="166" y="90" width="158" height="14" rx="7" fill="#3d5e4f"/>
+            <rect x="294" y="62" width="22" height="30" rx="6" fill="#3d5e4f"/>
+            <circle cx="182" cy="146" r="6" fill="#1a231f"/>
+            <circle cx="308" cy="146" r="6" fill="#1a231f"/>
+          </g>
+          <rect x="430" y="40" width="10" height="110" rx="5" fill="#2d4a3d"/>
+          <path d="M435 40 v-14" stroke="#2d4a3d" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div class="cap"><span data-t="reformerCap"></span><span class="breath"><span class="b-in" data-t="inhale"></span> · <span class="b-out" data-t="exhale"></span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="aulas">
+    <div class="wrap">
+      <div class="head"><div><span class="eyebrow" data-t="clsEyebrow"></span><h2 data-t-html="clsTitle"></h2></div><p data-t="clsLede"></p></div>
+      <div class="classes" id="classes"></div>
+    </div>
+  </section>
+
+  <section class="block tt-sec" id="horario">
+    <div class="wrap">
+      <div class="head"><div><span class="eyebrow" data-t="ttEyebrow"></span><h2 data-t="ttTitle"></h2></div><p data-t="ttLede"></p></div>
+      <div class="tt-controls">
+        <div class="days" id="days" role="group" aria-label="Day"></div>
+        <div class="filters" id="filters" role="group" aria-label="Class type"></div>
+      </div>
+      <ul class="tt" id="tt"></ul>
+    </div>
+  </section>
+
+  <section class="block" id="precos">
+    <div class="wrap">
+      <div class="head"><div><span class="eyebrow" data-t="prEyebrow"></span><h2 data-t="prTitle"></h2></div><p data-t="prLede"></p></div>
+      <div class="prices">
+        <div class="plan first"><small data-t="pl1k"></small><div class="amount">15 €</div><span class="per" data-t="pl1per"></span><p data-t="pl1"></p></div>
+        <div class="plan"><small data-t="pl2k"></small><div class="amount">72 €</div><span class="per" data-t="pl2per"></span><p data-t="pl2"></p></div>
+        <div class="plan"><small data-t="pl3k"></small><div class="amount">128 €</div><span class="per" data-t="pl3per"></span><p data-t="pl3"></p></div>
+        <div class="plan"><small data-t="pl4k"></small><div class="amount">165 €</div><span class="per" data-t="pl4per"></span><p data-t="pl4"></p></div>
+      </div>
+      <p class="prices-note" data-t="prNote"></p>
+    </div>
+  </section>
+
+  <section class="block tt-sec" id="primeira">
+    <div class="wrap first-grid">
+      <div>
+        <span class="eyebrow" data-t="fcEyebrow"></span>
+        <h2 data-t-html="fcTitle"></h2>
+        <div class="tips">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 3h6v8l5 3v4a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-6l2-2z"/></svg><p><b data-t="t1t"></b><span data-t="t1"></span></p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p><b data-t="t2t"></b><span data-t="t2"></span></p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M10 14l4 4M14 14l-4 4"/></svg><p><b data-t="t3t"></b><span data-t="t3"></span></p></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg><p><b data-t="t4t"></b><span data-t="t4"></span></p></div>
+        </div>
+        <div class="addr">
+          <strong>Rua Exemplo, 40</strong>
+          <span>1350-000 Lisboa · Campo de Ourique</span>
+          <span data-t="hoursLine"></span>
+          <span>+351 213 000 000</span>
+        </div>
+      </div>
+      <form class="trial" id="trialForm" novalidate>
+        <h3 data-t="formTitle"></h3>
+        <p data-t="formLede"></p>
+        <div class="field full"><label for="tClass" data-t="fClass"></label><select id="tClass"></select></div>
+        <div class="field"><label for="tName" data-t="fName"></label><input id="tName" autocomplete="name"></div>
+        <div class="field"><label for="tPhone" data-t="fPhone"></label><input id="tPhone" type="tel" autocomplete="tel" placeholder="+351 9__ ___ ___"></div>
+        <fieldset class="field full">
+          <legend data-t="fExp"></legend>
+          <div class="seg">
+            <input type="radio" name="exp" id="e0" value="0" checked><label for="e0" data-t="exp0"></label>
+            <input type="radio" name="exp" id="e1" value="1"><label for="e1" data-t="exp1"></label>
+            <input type="radio" name="exp" id="e2" value="2"><label for="e2" data-t="exp2"></label>
+          </div>
+        </fieldset>
+        <div class="field full"><label for="tNote" data-t="fNote"></label><textarea id="tNote" data-tp="fNotePh"></textarea></div>
+        <p class="err full" id="tErr" hidden></p>
+        <button class="btn btn-spring" type="submit" data-t="send"></button>
+        <div class="done full" id="done" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Estúdio Exemplo</b><br><span data-t="footAddr"></span></div>
+    <div class="demo" data-t="footDemo"></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const CLASSES = {
+    fund: { min: 50, lvl: 1, cap: 6, kind: 'reformer', pt: ['Reformer Fundamentos', 'Para quem começa: respiração, alinhamento e as molas certas para o seu corpo.'], en: ['Reformer Foundations', 'For beginners: breathing, alignment and the right springs for your body.'] },
+    flow: { min: 50, lvl: 2, cap: 6, kind: 'reformer', pt: ['Reformer Flow', 'Sequências contínuas, mais ritmo e mais força. Depois de 8 aulas de Fundamentos.'], en: ['Reformer Flow', 'Continuous sequences, more pace and more strength. After 8 Foundations classes.'] },
+    mat: { min: 50, lvl: 0, cap: 10, kind: 'mat', pt: ['Mat Pilates', 'No tapete, com bola, anel e banda elástica. Todos os níveis.'], en: ['Mat Pilates', 'On the mat, with ball, ring and band. All levels.'] },
+    natal: { min: 45, lvl: 0, cap: 4, kind: 'natal', pt: ['Pré e pós-natal', 'Com autorização do seu médico. Grupos de quatro, ritmo calmo.'], en: ['Pre and postnatal', 'With your doctor’s approval. Groups of four, at a gentle pace.'] },
+    priv: { min: 55, lvl: 0, cap: 1, kind: 'reformer', pt: ['Aula privada', 'Só você e o instrutor. Boa para lesões ou objetivos concretos.'], en: ['Private session', 'Just you and the instructor. Good for injuries or specific goals.'] }
+  };
+  // Monday = 1 … Saturday = 6: [time, class, instructor, booked]
+  const WEEK = {
+    1: [['07:30', 'fund', 'Inês', 4], ['09:00', 'flow', 'Inês', 6], ['12:30', 'mat', 'Marta', 3], ['18:30', 'fund', 'João', 5], ['19:30', 'flow', 'João', 2]],
+    2: [['08:00', 'flow', 'Marta', 3], ['10:00', 'natal', 'Marta', 1], ['13:00', 'mat', 'João', 6], ['18:00', 'flow', 'Inês', 6], ['19:15', 'fund', 'Inês', 4]],
+    3: [['07:30', 'fund', 'João', 2], ['09:00', 'flow', 'Marta', 5], ['12:30', 'mat', 'Inês', 8], ['18:30', 'flow', 'João', 6], ['19:30', 'fund', 'Marta', 3]],
+    4: [['08:00', 'flow', 'Inês', 4], ['10:00', 'natal', 'Marta', 3], ['13:00', 'mat', 'Marta', 5], ['18:00', 'fund', 'João', 1], ['19:15', 'flow', 'João', 5]],
+    5: [['07:30', 'flow', 'Marta', 6], ['09:00', 'fund', 'Inês', 2], ['12:30', 'mat', 'João', 4], ['18:00', 'flow', 'Inês', 3]],
+    6: [['09:00', 'flow', 'Marta', 5], ['10:15', 'fund', 'Marta', 2], ['11:30', 'mat', 'João', 9]]
+  };
+  const T = {
+    pt: {
+      ribbon: 'Demo · negócio fictício', ribbon2: 'Site feito pela Orla',
+      nav1: 'Aulas', nav2: 'Horário', nav3: 'Preços', navTrial: 'Primeira aula',
+      heroEyebrow: 'Pilates reformer · Campo de Ourique, Lisboa',
+      heroTitle: 'Força que se nota <em>na forma como está de pé.</em>',
+      heroLede: 'Aulas de reformer em grupos de seis, com instrutores que corrigem cada movimento. Venha experimentar uma aula antes de decidir.',
+      ctaTrial: 'Marcar aula experimental · 15 €', ctaTimetable: 'Ver horário',
+      f1: 'Máx. 6 por aula', f2: '50 minutos', f3: 'Reformer e mat',
+      reformerCap: 'Reformer · mola média', inhale: 'inspire', exhale: 'expire',
+      clsEyebrow: 'Tipos de aula', clsTitle: 'Escolha <em>o seu ritmo.</em>', clsLede: 'Se é a primeira vez, comece por Fundamentos. Ajudamos a escolher na aula experimental.',
+      lvl0: 'todos', lvl: 'nível {n}',
+      ttEyebrow: 'Esta semana', ttTitle: 'Horário', ttLede: 'Os lugares atualizam ao minuto. Quando uma aula enche, entra na lista de espera.',
+      all: 'Todas', kinds: { reformer: 'Reformer', mat: 'Mat', natal: 'Pré-natal' },
+      daysShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'], days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+      today: 'hoje', with: 'com {who}', left: '{n} de {cap} lugares livres', leftOne: '1 lugar livre', full: 'Cheia', book: 'Reservar', wait: 'Lista de espera', none: 'Sem aulas com este filtro neste dia.',
+      prEyebrow: 'Preços', prTitle: 'Sem matrícula, sem fidelização', prLede: 'Os packs começam a contar na primeira aula. Pode pausar por férias ou lesão.',
+      pl1k: 'Primeira vez', pl1per: '1 aula', pl1: 'Qualquer aula de grupo. Só uma por pessoa.',
+      pl2k: 'Pack 4', pl2per: '18 € por aula', pl2: 'Válido 5 semanas.',
+      pl3k: 'Pack 8', pl3per: '16 € por aula', pl3: 'Válido 10 semanas. O mais escolhido.',
+      pl4k: 'Mensal', pl4per: 'Ilimitado', pl4: 'Até uma aula por dia. Renova todos os meses.',
+      prNote: 'Aula privada: 50 €. Pack de 5 privadas: 225 €. Preços com IVA.',
+      fcEyebrow: 'Primeira aula', fcTitle: 'O que precisa <em>de saber.</em>',
+      t1t: 'Meias antiderrapantes', t1: 'Obrigatórias no reformer. Se não tiver, vendemos na receção por 8 €.',
+      t2t: 'Chegue 10 minutos antes', t2: 'Para conhecer o aparelho e ajustar as molas consigo.',
+      t3t: 'Cancelar até 12 h antes', t3: 'Depois disso a aula conta como dada, para libertar o lugar a outra pessoa.',
+      t4t: 'Lesões ou gravidez', t4: 'Diga-nos ao marcar. Adaptamos os exercícios ou sugerimos uma aula privada.',
+      hoursLine: 'Seg–Sex 07:00–21:00 · Sáb 08:30–13:00',
+      formTitle: 'Marcar aula experimental', formLede: '15 €, pagos no estúdio. Confirmamos por SMS.',
+      fClass: 'Aula', fName: 'Nome', fPhone: 'Telemóvel', fExp: 'Já fez Pilates?', exp0: 'Nunca', exp1: 'Algumas vezes', exp2: 'Regularmente',
+      fNote: 'Lesões, gravidez ou outra nota', fNotePh: 'Opcional',
+      err: 'Indique o nome e o telemóvel para confirmarmos.', noOpen: 'Sem aulas com lugar esta semana',
+      send: 'Marcar aula', doneTitle: 'Pedido registado', doneLine: '{cls}, {day} às {time}, com {who}. Até lá, {name}.', doneDemo: 'Isto é uma demonstração: nenhum pedido foi enviado.',
+      footAddr: 'Rua Exemplo, 40 · Campo de Ourique, Lisboa', footDemo: 'Demonstração · negócio fictício · site pela Orla'
+    },
+    en: {
+      ribbon: 'Demo · fictional business', ribbon2: 'Site made by Orla',
+      nav1: 'Classes', nav2: 'Timetable', nav3: 'Prices', navTrial: 'First class',
+      heroEyebrow: 'Reformer Pilates · Campo de Ourique, Lisbon',
+      heroTitle: 'Strength you notice <em>in the way you stand.</em>',
+      heroLede: 'Reformer classes in groups of six, with instructors who correct every movement. Try one class before you decide.',
+      ctaTrial: 'Book a trial class · €15', ctaTimetable: 'See the timetable',
+      f1: 'Max 6 per class', f2: '50 minutes', f3: 'Reformer and mat',
+      reformerCap: 'Reformer · medium spring', inhale: 'breathe in', exhale: 'breathe out',
+      clsEyebrow: 'Class types', clsTitle: 'Pick <em>your pace.</em>', clsLede: 'New to Pilates? Start with Foundations. We help you choose in the trial class.',
+      lvl0: 'all', lvl: 'level {n}',
+      ttEyebrow: 'This week', ttTitle: 'Timetable', ttLede: 'Spots update by the minute. When a class fills up, join the waiting list.',
+      all: 'All', kinds: { reformer: 'Reformer', mat: 'Mat', natal: 'Prenatal' },
+      daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      today: 'today', with: 'with {who}', left: '{n} of {cap} spots free', leftOne: '1 spot free', full: 'Full', book: 'Book', wait: 'Waiting list', none: 'No classes with this filter on this day.',
+      prEyebrow: 'Prices', prTitle: 'No sign-up fee, no contract', prLede: 'Packs start on your first class. You can pause them for holidays or injury.',
+      pl1k: 'First time', pl1per: '1 class', pl1: 'Any group class. One per person.',
+      pl2k: '4-pack', pl2per: '€18 per class', pl2: 'Valid for 5 weeks.',
+      pl3k: '8-pack', pl3per: '€16 per class', pl3: 'Valid for 10 weeks. The one most people pick.',
+      pl4k: 'Monthly', pl4per: 'Unlimited', pl4: 'Up to one class a day. Renews every month.',
+      prNote: 'Private session: €50. 5 private sessions: €225. Prices include VAT.',
+      fcEyebrow: 'First class', fcTitle: 'What to <em>know.</em>',
+      t1t: 'Grip socks', t1: 'Required on the reformer. If you have none, we sell them at the desk for €8.',
+      t2t: 'Arrive 10 minutes early', t2: 'Time to meet the machine and set the springs with you.',
+      t3t: 'Cancel up to 12 h before', t3: 'After that the class counts as taken, so the spot can go to someone else.',
+      t4t: 'Injury or pregnancy', t4: 'Tell us when you book. We adapt the exercises or suggest a private session.',
+      hoursLine: 'Mon–Fri 07:00–21:00 · Sat 08:30–13:00',
+      formTitle: 'Book a trial class', formLede: '€15, paid at the studio. We confirm by text.',
+      fClass: 'Class', fName: 'Name', fPhone: 'Mobile', fExp: 'Done Pilates before?', exp0: 'Never', exp1: 'A few times', exp2: 'Regularly',
+      fNote: 'Injuries, pregnancy or anything else', fNotePh: 'Optional',
+      err: 'Add your name and mobile so we can confirm.', noOpen: 'No classes with spots this week',
+      send: 'Book class', doneTitle: 'Request received', doneLine: '{cls}, {day} at {time}, with {who}. See you then, {name}.', doneDemo: 'This is a demo: no request was sent.',
+      footAddr: 'Rua Exemplo, 40 · Campo de Ourique, Lisbon', footDemo: 'Demo · fictional business · site by Orla'
+    }
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => o[k]);
+  const toMin = s => { const [h, m] = s.split(':').map(Number); return h * 60 + m; };
+
+  function now() {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Lisbon', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+    const wd = parts.find(p => p.type === 'weekday').value;
+    return { dow: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(wd), min: +parts.find(p => p.type === 'hour').value * 60 + +parts.find(p => p.type === 'minute').value };
+  }
+  const n0 = now();
+  let lang = 'pt', day = n0.dow === 0 ? 1 : n0.dow, kind = 'all', chosen = null;
+  try { const s = localStorage.getItem('pilates-lang'); if (s && T[s]) lang = s; else if (!(navigator.language || '').startsWith('pt')) lang = 'en'; } catch (e) {}
+
+  function isPast(d, time) { const n = now(); if (n.dow === 0) return false; return d < n.dow || (d === n.dow && toMin(time) <= n.min); }
+
+  function renderClasses() {
+    const t = T[lang];
+    $('#classes').innerHTML = Object.values(CLASSES).map(c => {
+      const dots = c.lvl ? `<span class="lvl" title="${fill(t.lvl, { n: c.lvl })}">${[1, 2, 3].map(i => `<i class="${i <= c.lvl ? 'on' : ''}"></i>`).join('')}</span>` : `<span>${t.lvl0}</span>`;
+      return `<div class="cls"><div class="meta"><span>${c.min} min</span>${dots}</div><h3>${c[lang][0]}</h3><p>${c[lang][1]}</p></div>`;
+    }).join('');
+  }
+
+  function renderDays() {
+    const t = T[lang], n = now();
+    $('#days').innerHTML = '';
+    [1, 2, 3, 4, 5, 6].forEach(d => {
+      const b = document.createElement('button'); b.type = 'button';
+      b.setAttribute('aria-pressed', String(d === day));
+      b.innerHTML = `${t.daysShort[d]}<small>${d === n.dow ? t.today : '&nbsp;'}</small>`;
+      b.setAttribute('aria-label', t.days[d]);
+      b.addEventListener('click', () => { day = d; renderDays(); renderTT(); });
+      $('#days').append(b);
+    });
+    $('#filters').innerHTML = '';
+    [['all', t.all], ...Object.entries(t.kinds)].forEach(([k, l]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = l;
+      b.setAttribute('aria-pressed', String(k === kind));
+      b.addEventListener('click', () => { kind = k; renderDays(); renderTT(); });
+      $('#filters').append(b);
+    });
+  }
+
+  function renderTT() {
+    const t = T[lang];
+    const rows = WEEK[day].filter(([, c]) => kind === 'all' || CLASSES[c].kind === kind);
+    const ul = $('#tt'); ul.innerHTML = '';
+    if (!rows.length) { const li = document.createElement('li'); li.className = 'tt-empty'; li.style.display = 'block'; li.textContent = t.none; ul.append(li); return; }
+    rows.forEach(([time, c, who, booked]) => {
+      const cl = CLASSES[c], cap = cl.cap, free = cap - booked, past = isPast(day, time);
+      const li = document.createElement('li');
+      const dots = cap <= 6 ? `<span class="dots" aria-hidden="true">${Array.from({ length: cap }, (_, i) => `<i class="${i < booked ? 'taken' : ''}"></i>`).join('')}</span>` : '';
+      const label = free <= 0 ? t.full : free === 1 ? t.leftOne : fill(t.left, { n: free, cap });
+      li.innerHTML = `<span class="time${past ? ' past' : ''}">${time}</span><span class="what${past ? ' past' : ''}"><b>${cl[lang][0]}</b><span>${fill(t.with, { who })} · ${cl.min} min</span></span><span class="spots${free <= 0 ? ' is-full' : ''}${past ? ' past' : ''}">${dots}<span>${label}</span></span>`;
+      const btn = document.createElement('a'); btn.href = '#primeira';
+      btn.className = 'btn ' + (free <= 0 ? 'btn-line wait' : 'btn-spring');
+      btn.textContent = free <= 0 ? t.wait : t.book;
+      if (past) { btn.setAttribute('aria-disabled', 'true'); btn.style.visibility = 'hidden'; }
+      btn.addEventListener('click', () => { chosen = `${day}|${time}`; renderSelect(); });
+      li.append(btn); ul.append(li);
+    });
+  }
+
+  function renderSelect() {
+    const t = T[lang], sel = $('#tClass'), prev = chosen || sel.value;
+    const opts = [];
+    [1, 2, 3, 4, 5, 6].forEach(d => WEEK[d].forEach(([time, c, who, booked]) => {
+      if (isPast(d, time) || c === 'priv') return;
+      const full = booked >= CLASSES[c].cap;
+      opts.push(`<option value="${d}|${time}"${full ? ' disabled' : ''}>${t.daysShort[d]} ${time} · ${CLASSES[c][lang][0]} · ${who}${full ? ' · ' + t.full : ''}</option>`);
+    }));
+    sel.innerHTML = opts.length ? opts.join('') : `<option value="">${t.noOpen}</option>`;
+    if (prev && [...sel.options].some(o => o.value === prev && !o.disabled)) sel.value = prev;
+    else { const first = [...sel.options].find(o => !o.disabled); if (first) sel.value = first.value; }
+  }
+
+  function apply() {
+    const t = T[lang];
+    document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en';
+    $$('[data-t]').forEach(el => { const v = t[el.dataset.t]; if (v != null) el.textContent = v; });
+    $$('[data-t-html]').forEach(el => { const v = t[el.dataset.tHtml]; if (v != null) el.innerHTML = v; });
+    $$('[data-tp]').forEach(el => el.placeholder = t[el.dataset.tp] || '');
+    $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    renderClasses(); renderDays(); renderTT(); renderSelect();
+    $('#done').hidden = true; $('#tErr').hidden = true;
+  }
+  $$('.lang button').forEach(b => b.addEventListener('click', () => { lang = b.dataset.lang; try { localStorage.setItem('pilates-lang', lang); } catch (e) {} apply(); }));
+
+  $('#trialForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const t = T[lang], err = $('#tErr');
+    const name = $('#tName').value.trim(), phone = $('#tPhone').value.replace(/\D/g, '');
+    if (!$('#tClass').value || !name || phone.length < 9) { err.textContent = t.err; err.hidden = false; (name ? $('#tPhone') : $('#tName')).focus(); return; }
+    err.hidden = true;
+    const [d, time] = $('#tClass').value.split('|');
+    const row = WEEK[d].find(r => r[0] === time);
+    const box = $('#done'); box.innerHTML = '';
+    const s = document.createElement('strong'); s.textContent = t.doneTitle;
+    const p = document.createElement('p'); p.textContent = fill(t.doneLine, { cls: CLASSES[row[1]][lang][0], day: t.days[+d].toLowerCase(), time, who: row[2], name: name.split(' ')[0] });
+    const q = document.createElement('p'); q.className = 'demo'; q.textContent = t.doneDemo;
+    box.append(s, p, q); box.hidden = false;
+  });
+
+  apply();
+  setInterval(() => { renderTT(); }, 60000);
+})();
+</script>
+
+</body>
+</html>

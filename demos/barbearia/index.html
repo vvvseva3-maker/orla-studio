@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Barbearia Exemplo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Barbearia Exemplo — demo site for a fictional neighbourhood barbershop in Lisbon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: shop-sign hero on bottle green, then a printed price list on bone paper; checker-floor dividers between rooms. */
+:root {
+  --green: #16302a;
+  --green-2: #1e3f36;
+  --bone: #efe8dc;
+  --paper: #f7f2ea;
+  --ink: #13201b;
+  --muted: #56645d;
+  --brass: #c39a56;
+  --brass-ink: #8a6a32;
+  --red: #a5332b;
+  --line: #d9cfbf;
+  --line-dark: #2e5246;
+  --font-display: "Big Shoulders Display", "Oswald", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step-0: 1rem;
+  --step-1: 1.2rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2.2rem, 5vw, 3.4rem);
+  --step-4: clamp(3.2rem, 9vw, 7rem);
+  --radius: 4px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--green); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+.wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-display); text-transform: uppercase; line-height: .92; margin: 0; text-wrap: balance; letter-spacing: .005em; }
+h2 { font-size: var(--step-3); font-weight: 800; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
+
+/* demo ribbon */
+.ribbon { background: var(--brass); color: var(--ink); font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+.ribbon .wrap { display: flex; justify-content: space-between; gap: 12px; padding-block: 7px; flex-wrap: wrap; }
+
+/* header */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--green); color: var(--bone); border-bottom: 1px solid var(--line-dark); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+.logo { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.logo b { font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; text-transform: uppercase; letter-spacing: .02em; line-height: 1; }
+.logo small { font-family: var(--font-mono); font-size: .68rem; color: var(--brass); letter-spacing: .1em; text-transform: uppercase; }
+nav.main { display: flex; align-items: center; gap: 22px; }
+nav.main a { text-decoration: none; font-size: .92rem; opacity: .85; }
+nav.main a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+.lang { display: inline-flex; border: 1px solid var(--line-dark); border-radius: 99px; overflow: hidden; }
+.lang button { appearance: none; border: 0; background: transparent; color: var(--bone); font: 500 .74rem var(--font-mono); padding: 6px 10px; cursor: pointer; letter-spacing: .06em; }
+.lang button[aria-pressed="true"] { background: var(--bone); color: var(--green); }
+.book-top { display: none; }
+@media (max-width: 760px) {
+  nav.main a:not(.book-top) { display: none; }
+  .book-top { display: inline-block; }
+}
+@media (max-width: 480px) {
+  header.top .wrap { gap: 10px; }
+  .logo { min-width: 0; }
+  .logo b { font-size: 1.3rem; }
+  .logo small { display: none; }
+  nav.main { gap: 10px; flex: none; }
+}
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  font: 600 .95rem var(--font-body); text-decoration: none; cursor: pointer;
+  padding: 14px 22px; border-radius: var(--radius); border: 1px solid transparent;
+  transition: transform .15s ease, background .15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn-brass { background: var(--brass); color: var(--ink); }
+.btn-brass:hover { background: var(--bone); }
+.btn-line { border-color: var(--line-dark); color: var(--bone); }
+.btn-line:hover { border-color: var(--bone); }
+nav.main .book-top { padding: 8px 14px; font-size: .85rem; opacity: 1; }
+
+/* hero */
+.hero { background: var(--green); color: var(--bone); overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 72px 80px; }
+.hero h1 { font-size: var(--step-4); font-weight: 900; margin-top: 18px; }
+.hero h1 em { font-style: normal; color: var(--brass); }
+.hero .lede { margin-top: 22px; max-width: 46ch; font-size: var(--step-1); color: #cfd8d2; }
+.hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.eyebrow.on-green { color: var(--brass); }
+
+.sign { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 28px; align-items: center; justify-self: end; }
+.pole { width: 54px; height: 300px; display: grid; grid-template-rows: 26px 1fr 26px; }
+.pole .cap { background: linear-gradient(90deg, #8a6a32, var(--brass) 40%, #f1d9a6 55%, var(--brass) 70%, #7b5d2a); border-radius: 27px 27px 6px 6px; }
+.pole .cap.b { border-radius: 6px 6px 27px 27px; }
+.pole .glass {
+  margin: 0 5px; border-radius: 3px; position: relative; overflow: hidden;
+  background: repeating-linear-gradient(-28deg, var(--red) 0 16px, var(--bone) 16px 32px, #2b5fa0 32px 48px, var(--bone) 48px 64px);
+  background-size: 100% 145px;
+  animation: spin 2.4s linear infinite;
+  box-shadow: inset 8px 0 14px rgba(0,0,0,.35), inset -8px 0 14px rgba(0,0,0,.35);
+}
+.pole .glass::after { content: ""; position: absolute; inset: 0 55% 0 18%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.45), rgba(255,255,255,0)); }
+@keyframes spin { to { background-position: 0 -145px; } }
+@media (prefers-reduced-motion: reduce) { .pole .glass { animation: none; } }
+
+.status { border: 1px solid var(--line-dark); background: var(--green-2); border-radius: var(--radius); padding: 22px; min-width: 0; max-width: 300px; }
+.status .now { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.05rem; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--brass); box-shadow: 0 0 0 4px rgba(195,154,86,.2); flex: none; }
+.dot.open { background: #6fbf8e; box-shadow: 0 0 0 4px rgba(111,191,142,.22); }
+.status .next { margin-top: 6px; color: #b9c6bf; font-size: .92rem; }
+.status dl { margin: 18px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: .9rem; }
+.status dt { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--brass); padding-top: 2px; }
+.status dd { margin: 0; color: var(--bone); }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-block: 44px 52px; }
+  .sign { justify-self: stretch; grid-template-columns: auto minmax(0, 1fr); gap: 20px; }
+  .pole { height: 190px; width: 44px; }
+  .status { max-width: none; }
+}
+
+/* checker floor divider */
+.floor { height: 28px; background: repeating-conic-gradient(var(--ink) 0 25%, var(--bone) 0 50%) 0 0 / 28px 28px; }
+
+/* sections */
+section.block { padding-block: 88px; }
+@media (max-width: 760px) { section.block { padding-block: 60px; } }
+.head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
+.head p { max-width: 44ch; color: var(--muted); }
+.eyebrow.on-paper { color: var(--brass-ink); display: block; margin-bottom: 12px; }
+
+/* price list */
+.prices { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; }
+.prices li { padding-block: 20px; border-top: 1px solid var(--line); min-width: 0; }
+.prices .row { display: flex; align-items: baseline; gap: 10px; }
+.prices h3 { font-size: 1.7rem; font-weight: 800; flex: none; max-width: 70%; }
+.prices .leader { flex: 1 1 auto; border-bottom: 2px dotted var(--line); transform: translateY(-5px); min-width: 16px; }
+.prices .price { font-family: var(--font-mono); font-weight: 500; font-size: 1.15rem; font-variant-numeric: tabular-nums; flex: none; }
+.prices .meta { display: flex; justify-content: space-between; gap: 16px; margin-top: 6px; color: var(--muted); font-size: .93rem; }
+.prices .min { font-family: var(--font-mono); font-size: .8rem; color: var(--brass-ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .prices { grid-template-columns: minmax(0, 1fr); } .prices h3 { font-size: 1.45rem; } }
+
+/* how the shop works */
+.house { background: var(--bone); }
+.rules { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.rules > div { border-top: 3px solid var(--green); padding-top: 18px; min-width: 0; }
+.rules h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 10px; }
+.rules p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 980px) { .rules { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .rules { grid-template-columns: minmax(0, 1fr); gap: 26px; } }
+
+/* team */
+.team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.barber { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 18px; align-items: center; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+.mono { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--green); color: var(--brass); font-family: var(--font-display); font-weight: 900; font-size: 2rem; border: 3px double var(--brass); }
+.barber h3 { font-size: 1.5rem; font-weight: 800; }
+.barber p { color: var(--muted); font-size: .93rem; margin-top: 4px; }
+@media (max-width: 900px) { .team { grid-template-columns: minmax(0, 1fr); } }
+
+/* visit */
+.visit-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 56px; align-items: start; }
+.hours { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.hours th, .hours td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--line); font-weight: 400; }
+.hours td { text-align: right; font-family: var(--font-mono); font-size: .95rem; }
+.hours tr.today th, .hours tr.today td { font-weight: 600; color: var(--green); }
+.hours tr.today th::after { content: attr(data-today); margin-left: 8px; font: 500 .68rem var(--font-mono); letter-spacing: .08em; text-transform: uppercase; background: var(--green); color: var(--bone); padding: 2px 6px; border-radius: 3px; vertical-align: 2px; }
+.addr { margin-top: 28px; display: grid; gap: 6px; }
+.addr strong { font-family: var(--font-display); text-transform: uppercase; font-size: 1.5rem; font-weight: 800; }
+.addr span { color: var(--muted); }
+.pay { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.pay span { font: 500 .78rem var(--font-mono); letter-spacing: .06em; border: 1px solid var(--line); border-radius: 99px; padding: 5px 11px; }
+
+/* booking */
+form.book { background: var(--green); color: var(--bone); border-radius: var(--radius); padding: 32px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+form.book h3 { grid-column: 1 / -1; font-size: 2rem; font-weight: 900; }
+form.book .full { grid-column: 1 / -1; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label { font: 500 .74rem var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--brass); }
+.field input, .field select {
+  width: 100%; min-width: 0; font: 400 1rem var(--font-body); color: var(--ink); background: var(--paper);
+  border: 1px solid transparent; border-radius: var(--radius); padding: 12px 12px; appearance: none;
+}
+.field select { background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 18px) 52%, calc(100% - 13px) 52%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 32px; }
+.field input:focus, .field select:focus { outline: 2px solid var(--brass); outline-offset: 1px; }
+.field .hint { font-size: .84rem; color: #b9c6bf; }
+.field .err { font-size: .84rem; color: #f0b3a6; }
+form.book .btn { justify-self: start; }
+.note { font-size: .84rem; color: #b9c6bf; grid-column: 1 / -1; }
+.done { grid-column: 1 / -1; border: 1px solid var(--brass); border-radius: var(--radius); padding: 20px; display: grid; gap: 8px; }
+.done strong { font-family: var(--font-display); text-transform: uppercase; font-size: 1.6rem; color: var(--brass); }
+@media (max-width: 900px) { .visit-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; } }
+@media (max-width: 560px) { form.book { grid-template-columns: minmax(0, 1fr); padding: 22px; } }
+
+footer { background: var(--ink); color: #c9cfca; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; padding-block: 36px; font-size: .9rem; }
+footer b { font-family: var(--font-display); text-transform: uppercase; font-size: 1.3rem; color: var(--bone); }
+footer .demo { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .06em; color: var(--brass); }
+</style>
+</head>
+<body>
+
+
+<div class="ribbon"><div class="wrap"><span data-t="ribbon"></span><a href="../../" data-t="ribbon2" style="text-decoration:none"></a></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Barbearia Exemplo"><b>Barbearia Exemplo</b><small data-t="since"></small></a>
+    <nav class="main" aria-label="Main">
+      <a href="#servicos" data-t="nav1"></a>
+      <a href="#casa" data-t="nav2"></a>
+      <a href="#visita" data-t="nav3"></a>
+      <a class="btn btn-brass book-top" href="#marcar" data-t="navBook"></a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow on-green" data-t="heroEyebrow"></span>
+        <h1 data-t-html="heroTitle"></h1>
+        <p class="lede" data-t="heroLede"></p>
+        <div class="ctas">
+          <a class="btn btn-brass" href="#marcar" data-t="ctaBook"></a>
+          <a class="btn btn-line" href="#servicos" data-t="ctaPrices"></a>
+        </div>
+      </div>
+      <div class="sign">
+        <div class="pole" aria-hidden="true"><div class="cap"></div><div class="glass"></div><div class="cap b"></div></div>
+        <div class="status" aria-live="polite">
+          <div class="now"><span class="dot" id="dot"></span><span id="nowText"></span></div>
+          <p class="next" id="nextText"></p>
+          <dl>
+            <dt data-t="chairsLabel"></dt><dd data-t="chairs"></dd>
+            <dt data-t="walkLabel"></dt><dd data-t="walk"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="floor" aria-hidden="true"></div>
+
+  <section class="block" id="servicos">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow on-paper" data-t="svcEyebrow"></span><h2 data-t="svcTitle"></h2></div>
+        <p data-t="svcLede"></p>
+      </div>
+      <ul class="prices" id="priceList"></ul>
+    </div>
+  </section>
+
+  <section class="block house" id="casa">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow on-paper" data-t="houseEyebrow"></span><h2 data-t="houseTitle"></h2></div>
+      </div>
+      <div class="rules">
+        <div><h3 data-t="r1t"></h3><p data-t="r1"></p></div>
+        <div><h3 data-t="r2t"></h3><p data-t="r2"></p></div>
+        <div><h3 data-t="r3t"></h3><p data-t="r3"></p></div>
+        <div><h3 data-t="r4t"></h3><p data-t="r4"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="equipa">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow on-paper" data-t="teamEyebrow"></span><h2 data-t="teamTitle"></h2></div>
+      </div>
+      <div class="team">
+        <div class="barber"><div class="mono" aria-hidden="true">R</div><div><h3>Rui</h3><p data-t="b1"></p></div></div>
+        <div class="barber"><div class="mono" aria-hidden="true">T</div><div><h3>Tiago</h3><p data-t="b2"></p></div></div>
+        <div class="barber"><div class="mono" aria-hidden="true">D</div><div><h3>Duarte</h3><p data-t="b3"></p></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="floor" aria-hidden="true"></div>
+
+  <section class="block" id="visita">
+    <div class="wrap visit-grid">
+      <div>
+        <span class="eyebrow on-paper" data-t="visitEyebrow"></span>
+        <h2 data-t="visitTitle" style="margin-bottom:28px"></h2>
+        <table class="hours" id="hours"><tbody></tbody></table>
+        <div class="addr">
+          <strong>Rua Exemplo, 12</strong>
+          <span>1000-000 Lisboa · Arroios</span>
+          <span>+351 210 000 000</span>
+        </div>
+        <div class="pay"><span>MB WAY</span><span data-t="payCard"></span><span data-t="payCash"></span></div>
+      </div>
+
+      <form class="book" id="marcar" novalidate>
+        <h3 data-t="bookTitle"></h3>
+        <div class="field full">
+          <label for="svc" data-t="fSvc"></label>
+          <select id="svc" name="svc"></select>
+        </div>
+        <div class="field">
+          <label for="barber" data-t="fBarber"></label>
+          <select id="barber" name="barber"></select>
+        </div>
+        <div class="field">
+          <label for="day" data-t="fDay"></label>
+          <input id="day" name="day" type="date">
+          <span class="err" id="dayErr" hidden></span>
+        </div>
+        <div class="field">
+          <label for="time" data-t="fTime"></label>
+          <select id="time" name="time"></select>
+        </div>
+        <div class="field">
+          <label for="name" data-t="fName"></label>
+          <input id="name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field full">
+          <label for="phone" data-t="fPhone"></label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+351 9__ ___ ___">
+          <span class="err" id="formErr" hidden></span>
+        </div>
+        <button class="btn btn-brass" type="submit" data-t="send"></button>
+        <p class="note" data-t="bookNote"></p>
+        <div class="done" id="done" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Barbearia Exemplo</b><br><span data-t="footAddr"></span></div>
+    <div class="demo" data-t="footDemo"></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const SERVICES = [
+    { id: 'classic', min: 30, eur: 15, pt: ['Corte clássico', 'Tesoura e máquina, lavagem incluída'], en: ['Classic cut', 'Scissors and clippers, wash included'] },
+    { id: 'fade', min: 40, eur: 18, pt: ['Degradê', 'Fade à máquina com acabamento à navalha'], en: ['Skin fade', 'Clipper fade finished with a straight razor'] },
+    { id: 'beard', min: 30, eur: 14, pt: ['Barba com toalha quente', 'Navalha, toalha quente e óleo'], en: ['Hot towel shave', 'Straight razor, hot towel and oil'] },
+    { id: 'combo', min: 60, eur: 28, pt: ['Corte e barba', 'O corte clássico e a barba completa'], en: ['Cut and beard', 'The classic cut and a full beard'] },
+    { id: 'kids', min: 25, eur: 11, pt: ['Corte criança', 'Até aos 12 anos'], en: ['Kids cut', 'Up to 12 years old'] },
+    { id: 'tidy', min: 15, eur: 7, pt: ['Contornos', 'Pescoço, patilhas e linha da barba'], en: ['Line-up', 'Neck, sideburns and beard line'] }
+  ];
+  // Sunday = 0. Hours as [open, close] in minutes.
+  const HOURS = { 0: null, 1: null, 2: [600, 1200], 3: [600, 1200], 4: [600, 1200], 5: [600, 1200], 6: [540, 1080] };
+  const T = {
+    pt: {
+      ribbon: 'Demo · negócio fictício', ribbon2: 'Site feito pela Orla',
+      since: 'desde 1987', nav1: 'Serviços', nav2: 'A casa', nav3: 'Visitar', navBook: 'Marcar',
+      heroEyebrow: 'Barbearia · Arroios, Lisboa',
+      heroTitle: 'Corte, barba e <em>dois dedos de conversa.</em>',
+      heroLede: 'Três cadeiras, navalha a sério e toalha quente. Marque a sua hora ou passe pela porta quando houver cadeira livre.',
+      ctaBook: 'Marcar cadeira', ctaPrices: 'Ver preços',
+      chairsLabel: 'Cadeiras', chairs: '3 barbeiros', walkLabel: 'Sem marcação', walk: 'ter–sex, depois das 15:00',
+      openNow: 'Aberto agora', closedNow: 'Fechado agora', closesAt: 'Fecha às {t}', opensAt: 'Abre {d} às {t}', today: 'hoje', tomorrow: 'amanhã',
+      svcEyebrow: 'Tabela de preços', svcTitle: 'Serviços', svcLede: 'Preços com IVA. O tempo indicado é o que fica na cadeira.',
+      houseEyebrow: 'Antes de vir', houseTitle: 'Como funciona a casa',
+      r1t: 'Marcação ou porta aberta', r1: 'Com marcação, a cadeira é sua à hora certa. Sem marcação, de terça a sexta à tarde, atendemos por ordem de chegada.',
+      r2t: 'Chegue cinco minutos antes', r2: 'Dá tempo para pendurar o casaco e dizer como quer o corte.',
+      r3t: 'Atrasos', r3: 'Guardamos a hora durante dez minutos. Depois disso, tentamos encaixar noutra hora do mesmo dia.',
+      r4t: 'Pagamento', r4: 'MB WAY, cartão ou numerário. Não pedimos sinal para marcar.',
+      teamEyebrow: 'A equipa', teamTitle: 'Quem corta',
+      b1: 'Cortes clássicos e de tesoura. Vinte anos nesta cadeira.', b2: 'Degradês e cortes curtos à máquina.', b3: 'Barbas, navalha e toalha quente.',
+      visitEyebrow: 'Horário e morada', visitTitle: 'Visitar',
+      days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'], daysShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'],
+      closed: 'Fechado', todayTag: 'hoje',
+      payCard: 'Cartão', payCash: 'Numerário',
+      bookTitle: 'Pedir marcação', fSvc: 'Serviço', fBarber: 'Barbeiro', anyBarber: 'Quem estiver livre', fDay: 'Dia', fTime: 'Hora', fName: 'Nome', fPhone: 'Telemóvel',
+      noSlots: 'Fechado neste dia', pickDay: 'Escolha primeiro o dia',
+      dayClosed: 'Estamos fechados ao domingo e à segunda.', dayPast: 'Escolha um dia a partir de hoje.',
+      needAll: 'Preencha o nome e o telemóvel para confirmarmos por SMS.',
+      send: 'Pedir marcação', bookNote: 'Confirmamos por SMS no próprio dia.',
+      doneTitle: 'Pedido registado', doneDemo: 'Isto é uma demonstração: nenhum pedido foi enviado.',
+      doneLine: '{svc} com {barber}, {day} às {time}.',
+      footAddr: 'Rua Exemplo, 12 · 1000-000 Lisboa', footDemo: 'Demonstração · negócio fictício · site pela Orla'
+    },
+    en: {
+      ribbon: 'Demo · fictional business', ribbon2: 'Site made by Orla',
+      since: 'since 1987', nav1: 'Services', nav2: 'The shop', nav3: 'Visit', navBook: 'Book',
+      heroEyebrow: 'Barbershop · Arroios, Lisbon',
+      heroTitle: 'A cut, a shave and <em>a bit of a chat.</em>',
+      heroLede: 'Three chairs, a proper straight razor and hot towels. Book your time, or walk in when a chair is free.',
+      ctaBook: 'Book a chair', ctaPrices: 'See prices',
+      chairsLabel: 'Chairs', chairs: '3 barbers', walkLabel: 'Walk-ins', walk: 'Tue–Fri, after 15:00',
+      openNow: 'Open now', closedNow: 'Closed now', closesAt: 'Closes at {t}', opensAt: 'Opens {d} at {t}', today: 'today', tomorrow: 'tomorrow',
+      svcEyebrow: 'Price list', svcTitle: 'Services', svcLede: 'Prices include VAT. The time shown is how long you spend in the chair.',
+      houseEyebrow: 'Before you come', houseTitle: 'How the shop works',
+      r1t: 'Booked or walk in', r1: 'With a booking, the chair is yours at your time. Without one, Tuesday to Friday afternoons, we take people in order of arrival.',
+      r2t: 'Arrive five minutes early', r2: 'Time to hang up your coat and tell us how you want the cut.',
+      r3t: 'Running late', r3: 'We hold your time for ten minutes. After that we try to fit you in later the same day.',
+      r4t: 'Paying', r4: 'MB WAY, card or cash. No deposit needed to book.',
+      teamEyebrow: 'The team', teamTitle: 'Who cuts',
+      b1: 'Classic and scissor cuts. Twenty years in this chair.', b2: 'Fades and short clipper cuts.', b3: 'Beards, razor work and hot towels.',
+      visitEyebrow: 'Hours and address', visitTitle: 'Visit',
+      days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      closed: 'Closed', todayTag: 'today',
+      payCard: 'Card', payCash: 'Cash',
+      bookTitle: 'Request a booking', fSvc: 'Service', fBarber: 'Barber', anyBarber: 'Whoever is free', fDay: 'Day', fTime: 'Time', fName: 'Name', fPhone: 'Mobile',
+      noSlots: 'Closed on this day', pickDay: 'Pick a day first',
+      dayClosed: 'We are closed on Sunday and Monday.', dayPast: 'Pick a day from today onwards.',
+      needAll: 'Add your name and mobile so we can confirm by text.',
+      send: 'Request booking', bookNote: 'We confirm by text on the same day.',
+      doneTitle: 'Request received', doneDemo: 'This is a demo: no request was sent.',
+      doneLine: '{svc} with {barber}, {day} at {time}.',
+      footAddr: 'Rua Exemplo, 12 · 1000-000 Lisbon', footDemo: 'Demo · fictional business · site by Orla'
+    }
+  };
+  let lang = 'pt';
+  try { const s = localStorage.getItem('bx-lang'); if (s && T[s]) lang = s; } catch (e) {}
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const fmt = (m) => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+  const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => o[k]);
+
+  function lisbonNow() {
+    const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Lisbon', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date());
+    const g = (t) => +parts.find(p => p.type === t).value;
+    const d = new Date(Date.UTC(g('year'), g('month') - 1, g('day')));
+    return { dow: d.getUTCDay(), min: g('hour') * 60 + g('minute'), iso: d.toISOString().slice(0, 10) };
+  }
+
+  function renderStatus() {
+    const t = T[lang], n = lisbonNow(), h = HOURS[n.dow];
+    const open = h && n.min >= h[0] && n.min < h[1];
+    $('#dot').classList.toggle('open', !!open);
+    $('#nowText').textContent = open ? t.openNow : t.closedNow;
+    if (open) { $('#nextText').textContent = fill(t.closesAt, { t: fmt(h[1]) }); return; }
+    for (let i = 0; i < 8; i++) {
+      const dow = (n.dow + i) % 7, hh = HOURS[dow];
+      if (!hh || (i === 0 && n.min >= hh[0])) continue;
+      const d = i === 0 ? t.today : i === 1 ? t.tomorrow : t.days[dow].toLowerCase();
+      $('#nextText').textContent = fill(t.opensAt, { d: lang === 'en' && i > 1 ? t.days[dow] : d, t: fmt(hh[0]) });
+      break;
+    }
+  }
+
+  function renderPrices() {
+    $('#priceList').innerHTML = SERVICES.map(s => {
+      const [name, desc] = s[lang];
+      return `<li><div class="row"><h3>${name}</h3><span class="leader"></span><span class="price">${s.eur} €</span></div><div class="meta"><span>${desc}</span><span class="min">${s.min} min</span></div></li>`;
+    }).join('');
+  }
+
+  function renderHours() {
+    const t = T[lang], n = lisbonNow();
+    const order = [1, 2, 3, 4, 5, 6, 0];
+    $('#hours tbody').innerHTML = order.map(d => {
+      const h = HOURS[d];
+      const today = d === n.dow;
+      return `<tr class="${today ? 'today' : ''}"><th scope="row" ${today ? `data-today="${t.todayTag}"` : ''}>${t.days[d]}</th><td>${h ? fmt(h[0]) + '–' + fmt(h[1]) : t.closed}</td></tr>`;
+    }).join('');
+  }
+
+  function renderForm() {
+    const t = T[lang];
+    const svc = $('#svc'), barber = $('#barber');
+    const sv = svc.value, bv = barber.value;
+    svc.innerHTML = SERVICES.map(s => `<option value="${s.id}">${s[lang][0]} · ${s.min} min · ${s.eur} €</option>`).join('');
+    barber.innerHTML = `<option value="any">${t.anyBarber}</option><option value="Rui">Rui</option><option value="Tiago">Tiago</option><option value="Duarte">Duarte</option>`;
+    if (sv) svc.value = sv;
+    if (bv) barber.value = bv;
+    const day = $('#day');
+    day.min = lisbonNow().iso;
+    renderSlots();
+  }
+
+  function renderSlots() {
+    const t = T[lang], dayEl = $('#day'), time = $('#time'), err = $('#dayErr');
+    const prev = time.value;
+    err.hidden = true;
+    if (!dayEl.value) { time.innerHTML = `<option value="">${t.pickDay}</option>`; time.disabled = true; return; }
+    const [y, m, d] = dayEl.value.split('-').map(Number);
+    const dow = new Date(Date.UTC(y, m - 1, d)).getUTCDay();
+    const h = HOURS[dow];
+    const n = lisbonNow();
+    if (dayEl.value < n.iso) { err.textContent = t.dayPast; err.hidden = false; }
+    if (!h) { time.innerHTML = `<option value="">${t.noSlots}</option>`; time.disabled = true; err.textContent = t.dayClosed; err.hidden = false; return; }
+    const s = SERVICES.find(x => x.id === $('#svc').value) || SERVICES[0];
+    const slots = [];
+    for (let mm = h[0]; mm + s.min <= h[1]; mm += 30) {
+      if (dayEl.value === n.iso && mm <= n.min + 30) continue;
+      slots.push(fmt(mm));
+    }
+    time.disabled = slots.length === 0;
+    time.innerHTML = slots.length ? slots.map(x => `<option>${x}</option>`).join('') : `<option value="">${t.noSlots}</option>`;
+    if (prev && slots.includes(prev)) time.value = prev;
+  }
+
+  function apply() {
+    const t = T[lang];
+    document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en';
+    document.querySelectorAll('[data-t]').forEach(el => { const v = t[el.dataset.t]; if (v != null) el.textContent = v; });
+    document.querySelectorAll('[data-t-html]').forEach(el => { const v = t[el.dataset.tHtml]; if (v != null) el.innerHTML = v; });
+    document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    renderStatus(); renderPrices(); renderHours(); renderForm();
+    if (!$('#done').hidden) $('#done').hidden = true;
+  }
+
+  document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => {
+    lang = b.dataset.lang;
+    try { localStorage.setItem('bx-lang', lang); } catch (e) {}
+    apply();
+  }));
+  $('#day').addEventListener('change', renderSlots);
+  $('#svc').addEventListener('change', renderSlots);
+
+  $('#marcar').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const t = T[lang], err = $('#formErr');
+    const name = $('#name').value.trim(), phone = $('#phone').value.trim();
+    if (!$('#day').value || !$('#time').value || $('#time').disabled) { err.textContent = t.pickDay; err.hidden = false; $('#day').focus(); return; }
+    if (!name || phone.replace(/\D/g, '').length < 9) { err.textContent = t.needAll; err.hidden = false; (name ? $('#phone') : $('#name')).focus(); return; }
+    err.hidden = true;
+    const s = SERVICES.find(x => x.id === $('#svc').value);
+    const [y, m, d] = $('#day').value.split('-').map(Number);
+    const dt = new Date(Date.UTC(y, m - 1, d));
+    const dayLabel = t.daysShort[dt.getUTCDay()] + ' ' + String(d).padStart(2, '0') + '/' + String(m).padStart(2, '0');
+    const b = $('#barber').value === 'any' ? t.anyBarber.toLowerCase() : $('#barber').value;
+    const done = $('#done');
+    done.innerHTML = '';
+    const st = document.createElement('strong'); st.textContent = t.doneTitle;
+    const p1 = document.createElement('p'); p1.textContent = fill(t.doneLine, { svc: s[lang][0], barber: b, day: dayLabel, time: $('#time').value });
+    const p2 = document.createElement('p'); p2.className = 'note'; p2.textContent = t.doneDemo;
+    done.append(st, p1, p2);
+    done.hidden = false;
+  });
+
+  apply();
+  setInterval(renderStatus, 60000);
+})();
+</script>
+
+</body>
+</html>
