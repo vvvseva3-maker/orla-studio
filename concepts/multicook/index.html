@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Multicook de Cascais Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: flour-white kitchen page with a red cross-stitch band between rooms; a scroll scene shapes a varenyk,
+   the freezer list says what is in today, the order becomes a Telegram message, and a timer cooks it at home. */
+:root{
+  --paper:#f8f6f1; --paper-2:#efebe2; --frost:#e2ebf1; --frost-ink:#2f5a78; --card:#fffefb; --ink:#1c1d2b; --ink-2:#3f4152; --muted:#6c6d7a; --line:#e6e1d6; --line-2:#cfc8b9;
+  --red:#c2362b; --red-ink:#a52b22; --on-red:#fff8f2; --open:#2f7a46; --err:#b3261e;
+  --foot:#1c1d2b; --on-foot:#f3efe6; --on-foot-muted:#a9a8b2;
+  --display:'Unbounded','Arial Black','Segoe UI',system-ui,sans-serif;
+  --sans:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --gut-l:max(16px, env(safe-area-inset-left, 0px)); --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  --hdr:66px; --r:22px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#121319; --paper-2:#191b23; --frost:#18242f; --frost-ink:#9cc4e0; --card:#1d1f28; --ink:#f2eee6; --ink-2:#d6d2c8; --muted:#9e9ca4; --line:#2c2e38; --line-2:#454755;
+  --red:#ff7563; --red-ink:#ff9384; --on-red:#1a0f0d; --open:#6fcf8e; --err:#ff8a80;
+  --foot:#0b0c10; --on-foot:#efebe2; --on-foot-muted:#97969f;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#121319; --paper-2:#191b23; --frost:#18242f; --frost-ink:#9cc4e0; --card:#1d1f28; --ink:#f2eee6; --ink-2:#d6d2c8; --muted:#9e9ca4; --line:#2c2e38; --line-2:#454755;
+  --red:#ff7563; --red-ink:#ff9384; --on-red:#1a0f0d; --open:#6fcf8e; --err:#ff8a80;
+  --foot:#0b0c10; --on-foot:#efebe2; --on-foot-muted:#97969f;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 16px + env(safe-area-inset-top, 0px))}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:60;background:var(--paper)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+em{font-style:normal;color:var(--red)}
+.wrap{max-width:1220px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
+.eb{font:700 12px/1.3 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--red-ink)}
+.h2{font-size:clamp(32px,4.4vw,56px);line-height:1.02;margin-top:14px}
+.lead{font-size:18px;color:var(--ink-2);max-width:54ch;margin-top:18px}
+.sec{padding-block:clamp(72px,9vw,120px)}
+.alt{background:var(--paper-2)}
+
+/* ribbon */
+.rib{background:var(--foot);color:var(--on-foot);font-size:13px;line-height:1.45}
+.rib .wrap{padding-block:9px;display:flex;gap:12px;justify-content:center;align-items:center;text-align:center}
+.rib b{background:var(--red);color:var(--on-red);font-weight:700;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:4px;flex:none}
+
+/* header */
+.hdr{position:sticky;top:env(safe-area-inset-top, 0px);z-index:50;background:var(--paper);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;gap:26px;height:var(--hdr)}
+.logo{display:flex;align-items:baseline;gap:8px;text-decoration:none;flex:none}
+.logo b{font:800 21px/1 var(--display);letter-spacing:-.03em}
+.logo b i{font-style:normal;color:var(--red)}
+.logo small{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;gap:24px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink-2)}
+.nav a:hover{color:var(--red-ink)}
+.lang{display:flex;gap:2px;background:var(--paper-2);border-radius:8px;padding:3px}
+.lang button{border:0;background:none;cursor:pointer;font:700 12px/1 var(--sans);letter-spacing:.06em;padding:8px 9px;border-radius:6px;color:var(--muted)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:12px;background:var(--ink);color:var(--paper);border:2px solid var(--ink);font:700 15.5px/1.1 var(--sans);text-decoration:none;cursor:pointer;text-align:center;transition:background .2s,border-color .2s,color .2s,transform .15s}
+.btn:hover{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.btn:active{transform:translateY(1px)}
+.btn.line{background:transparent;color:var(--ink)}
+.btn.line:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.red{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.btn.red:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn.sm{min-height:42px;padding:0 16px;font-size:14.5px}
+.btn.wide{width:100%}
+.btn svg{width:18px;height:18px;flex:none}
+@media (max-width:980px){ .nav{display:none} .lang{margin-left:auto} .hdr-in{gap:10px} }
+@media (max-width:420px){ .logo small{display:none} .hdr .btn{padding:0 12px} .lang button{padding:8px 7px} }
+
+/* cross-stitch band: red and ink crosses, a rhombus and a little star repeating */
+.stitch{height:var(--sh,66px);line-height:0;overflow:hidden;background:var(--paper)}
+.stitch svg{display:block;width:100%;height:100%}
+.stitch .sr{stroke:var(--red)} .stitch .sk{stroke:var(--ink)}
+.stitch path{fill:none;stroke-width:1.6;stroke-linecap:round}
+
+/* hero */
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;padding-block:clamp(56px,8vw,104px) clamp(44px,6vw,72px)}
+.hero h1{font-size:clamp(38px,5vw,68px);line-height:1;font-weight:800;letter-spacing:-.035em;margin-top:20px}
+.hero .lead{font-size:19px;margin-top:24px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.facts{list-style:none;padding:0;margin:26px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.facts li{font-size:14px;font-weight:600;padding:6px 12px;border-radius:8px;background:var(--paper-2);color:var(--ink-2)}
+.facts li.fz{background:var(--frost);color:var(--frost-ink)}
+.hero-art{margin:0;width:100%;max-width:600px;justify-self:end}
+@media (max-width:880px){ .hero-in{grid-template-columns:1fr} .hero-art{justify-self:center;max-width:470px} }
+@media (max-width:560px){ .ctas .btn{flex:1 1 220px} }
+
+/* food drawings: fixed colours, they are food */
+.f{display:block;width:100%;height:auto;overflow:visible}
+.f *{vector-effect:non-scaling-stroke}
+.f .o{stroke:#26252f;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.f .l{fill:none;stroke:#26252f;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.f .l2{fill:none;stroke:rgba(38,37,47,.38);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.f .no{fill:none}
+.f .dg{fill:#f8ead0} .f .dg2{fill:#ecd5aa} .f .wd{fill:#dca86e} .f .wd2{fill:#c98d50} .f .wg{fill:none;stroke:#b67a41;stroke-width:1.2;stroke-linecap:round}
+.f .fl{fill:#fffdf8} .f .ch{fill:#b51f30} .f .chd{fill:#7d1220} .f .gr{fill:#6f9a3a} .f .grl{fill:none;stroke:#5f8a2c;stroke-width:1.6;stroke-linecap:round}
+.f .cr{fill:#fffcf4} .f .bl{fill:#2c4f93} .f .bll{fill:#dfe7f5} .f .sy{fill:#e4a55c} .f .syl{fill:#f4c886} .f .kr{fill:#d9b98a}
+.f .gl{fill:rgba(220,236,246,.35);stroke:#26252f;stroke-width:2} .f .wa{fill:#cfe2ec} .f .wa2{fill:none;stroke:#9cc2d6;stroke-width:1.6}
+.f .st{fill:#c5c9cf} .f .std{fill:#8e949c} .f .stm{fill:none;stroke:var(--muted);stroke-width:2.4;stroke-linecap:round}
+.f .hi{fill:#fff;opacity:.55} .f .tag{fill:#fffdf6} .f .tagt{fill:#26252f;font:700 13px var(--sans);letter-spacing:.04em} .f .tagr{fill:#c2362b;font:800 22px var(--display)}
+.f .ring{fill:none;stroke:var(--line-2);stroke-width:5} .f .ringf{fill:none;stroke:var(--red);stroke-width:5;stroke-linecap:round}
+.f .tt{fill:var(--ink);font:800 30px var(--display);letter-spacing:-.02em} .f .ts{fill:var(--muted);font:600 13px var(--sans)}
+
+/* the scroll scene: one varenyk, from dough to pot */
+.vk{position:relative;height:330vh}
+.vk-pin{position:sticky;top:calc(var(--hdr) + env(safe-area-inset-top, 0px));height:calc(100vh - var(--hdr));height:calc(100svh - var(--hdr) - env(safe-area-inset-top, 0px));overflow:hidden;display:flex;align-items:center}
+.vk-in{width:100%;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,64px);align-items:center}
+.vk-copy{min-width:0}
+.vk-n{display:flex;align-items:baseline;gap:10px;margin-top:12px}
+.vk-n b{font:800 clamp(84px,10vw,150px)/.85 var(--display);letter-spacing:-.06em;color:var(--red)}
+.vk-n span{font:700 14px/1 var(--sans);color:var(--muted);letter-spacing:.08em}
+.vk-step{margin-top:20px;transition:opacity .25s ease,transform .25s ease}
+.vk-step.swap{opacity:0;transform:translateY(6px)}
+.vk-step h3{font-size:clamp(24px,2.5vw,34px);line-height:1.08}
+.vk-step p{margin-top:10px;color:var(--ink-2);max-width:42ch;min-height:3.2em}
+.vsteps{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 0;padding:0;list-style:none}
+.vsteps li{font:700 12.5px/1 var(--sans);padding:8px 11px;border-radius:7px;border:1.5px solid var(--line-2);color:var(--muted);transition:background .2s,color .2s,border-color .2s}
+.vsteps li.done{border-color:var(--red);color:var(--red-ink)}
+.vsteps li.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.vk-cue{margin-top:20px;font-size:14px;color:var(--muted)}
+.vk-art{margin:0;min-width:0}
+.vk-art .f .board{fill:var(--paper-2);stroke:var(--line-2);stroke-width:1.5}
+.vk-art .f .flour{fill:var(--card);opacity:.85}
+@media (max-width:860px){
+  .vk{height:310vh}
+  .vk-in{grid-template-columns:minmax(0,1fr);gap:0}
+  .vk-n{margin-top:4px}
+  .vk-n b{font-size:clamp(60px,18vw,88px)}
+  .vk-step{margin-top:8px}
+  .vk-step h3{font-size:23px}
+  .vk-step p{font-size:15px;line-height:1.45;min-height:2.9em;margin-top:6px}
+  .vsteps{margin-top:12px;gap:4px}
+  .vsteps li{padding:7px 8px;font-size:11.5px}
+  .vk-cue{display:none}
+  .vk-art{width:min(100%, calc((100svh - var(--hdr) - 360px) * 1.36));justify-self:center;margin-top:14px}
+}
+.vk.static{height:auto}
+.vk.static .vk-pin{position:relative;top:0;height:auto;padding-block:clamp(72px,9vw,120px)}
+
+/* freezer list + order */
+.menu-grid{display:grid;grid-template-columns:minmax(0,1fr) 384px;gap:clamp(32px,5vw,64px);align-items:start}
+.menu-main{min-width:0}
+.mtools{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;margin-top:30px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tabs button{border:1.5px solid var(--line-2);background:var(--card);border-radius:8px;padding:9px 13px;font:700 14px/1 var(--sans);cursor:pointer;color:var(--ink-2)}
+.tabs button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.toggle{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:600;cursor:pointer}
+.toggle input{width:20px;height:20px;accent-color:var(--red);margin:0}
+.mgroup{margin-top:38px}
+.mgroup h3{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:24px;line-height:1.1;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.mgroup h3 small{font:600 13px var(--sans);color:var(--muted);letter-spacing:0}
+.mgroup ul{list-style:none;margin:0;padding:0}
+.mi{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding-block:15px;border-bottom:1px solid var(--line)}
+.mi-n{font:700 17.5px/1.3 var(--sans);letter-spacing:-.005em;min-width:0}
+.mi-meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-top:6px;font-size:14px;color:var(--muted)}
+.mi-r{display:flex;align-items:center;gap:14px}
+.mi-p{font:700 16px/1 var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.tg{font:700 11.5px/1 var(--sans);letter-spacing:.02em;padding:5px 8px;border-radius:6px;white-space:nowrap;border:1px solid var(--line-2);color:var(--ink-2)}
+.tg.in{background:color-mix(in srgb, var(--open) 14%, transparent);border-color:transparent;color:var(--open)}
+.tg.ord{color:var(--muted)}
+.tg.fz{background:var(--frost);border-color:transparent;color:var(--frost-ink)}
+.tg.nw{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.tg.np,.tg.lim{border-style:dashed}
+.add{position:relative;width:42px;height:42px;border-radius:10px;border:0;background:var(--ink);color:var(--paper);display:grid;place-items:center;cursor:pointer;flex:none;padding:0;transition:background .2s,transform .15s}
+.add svg{width:15px;height:15px}
+.add:hover{background:var(--red);color:var(--on-red)}
+.add:active{transform:scale(.94)}
+.add[data-n]:not([data-n="0"])::after{content:attr(data-n);position:absolute;top:-7px;right:-7px;min-width:21px;height:21px;border-radius:11px;background:var(--red);color:var(--on-red);font:800 11.5px/21px var(--sans);text-align:center;padding:0 5px;border:2px solid var(--paper)}
+.ckl{font-weight:700;font-size:13.5px;color:var(--red-ink);text-decoration:none;white-space:nowrap}
+.ckl:hover{text-decoration:underline}
+.partners{margin-top:30px;padding:16px 18px;border-radius:14px;background:var(--paper-2);font-size:15px;color:var(--ink-2)}
+.order{position:sticky;top:calc(var(--hdr) + 20px + env(safe-area-inset-top, 0px));min-width:0}
+.ocard{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px 24px}
+.order .ocard{max-height:calc(100vh - var(--hdr) - 40px);overflow:auto;overscroll-behavior:contain}
+.ocard h2{font-size:24px;line-height:1.1;margin-top:10px}
+.small{font-size:15px;color:var(--muted);margin-top:10px}
+.cart{list-style:none;margin:18px 0 0;padding:0}
+.cart li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);font-size:15px}
+.qty{display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.qty button{width:28px;height:28px;border:1px solid var(--line-2);background:var(--paper);border-radius:7px;cursor:pointer;line-height:1;padding:0}
+.qty button:hover{border-color:var(--ink)}
+.cp{font-variant-numeric:tabular-nums;min-width:54px;text-align:right;font-weight:700}
+.empty{margin-top:18px;padding:16px;border:2px dashed var(--line-2);border-radius:14px;font-size:14.5px;color:var(--muted);text-align:center}
+.total{display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;font-weight:700}
+.total b{font:800 24px/1 var(--display)}
+form{display:grid;gap:14px}
+.ocard form{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+legend,.lbl{display:block;font:700 13px/1.2 var(--sans);color:var(--ink-2);padding:0;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer}
+.chip > span{display:block;padding:9px 13px;border:1.5px solid var(--line-2);border-radius:9px;font-size:14.5px;line-height:1.25;background:var(--paper)}
+.chip input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip input:focus-visible+span{outline:2px solid var(--red);outline-offset:2px}
+.chip input:disabled+span{opacity:.4;text-decoration:line-through}
+input[type=text],input[type=tel],select{display:block;width:100%;min-height:48px;padding:10px 14px;border:1.5px solid var(--line-2);background:var(--paper);border-radius:11px;font-size:16px;-webkit-appearance:none;appearance:none}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+input:focus,select:focus{outline:2px solid var(--red);outline-offset:0;border-color:var(--red)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.note{font-size:13.5px;color:var(--muted)}
+.err{color:var(--err);font-size:14.5px}
+.res{margin-top:18px;border-radius:16px;padding:18px;background:var(--paper-2);border:1.5px solid var(--red)}
+.res h4{font-size:19px}
+.res pre{white-space:pre-wrap;word-break:break-word;font:15px/1.55 var(--sans);margin:10px 0 0;color:var(--ink)}
+.res .acts{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.cnote{font-size:13.5px;color:var(--muted);margin-top:12px}
+@media (max-width:1020px){ .menu-grid{grid-template-columns:1fr} .order{position:static} .order .ocard{max-height:none;overflow:visible} }
+@media (max-width:560px){ .mi-n{font-size:16.5px} .ocard{padding:22px 18px} .mgroup h3{font-size:21px} .mi-r{gap:10px} }
+
+/* kitchen timer */
+.cook-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:center}
+.cook-grid > *{min-width:0}
+.ctypes{margin-top:28px}
+.csteps{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:12px;counter-reset:s}
+.csteps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:14px;align-items:start;font-size:16.5px;color:var(--ink-2)}
+.csteps li::before{counter-increment:s;content:counter(s);width:34px;height:34px;border-radius:9px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font:800 14px/1 var(--display)}
+.timer{display:grid;justify-items:center;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:clamp(22px,4vw,40px)}
+.timer svg{width:min(100%,300px);height:auto}
+.timer .acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.timer .done{font:700 18px/1.3 var(--display);color:var(--open);min-height:1.3em;text-align:center}
+@media (max-width:880px){ .cook-grid{grid-template-columns:1fr} }
+
+/* telegram + visit */
+.tg-card{background:var(--foot);color:var(--on-foot);border-radius:28px;padding:clamp(26px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px 48px;align-items:center;position:relative;overflow:hidden}
+.tg-card .eb{color:#ff9384}
+.tg-card h2{font-size:clamp(28px,3.6vw,46px);line-height:1.05;margin-top:12px}
+.tg-card p{color:var(--on-foot-muted);margin-top:14px;max-width:48ch}
+.tg-card .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.tg-card .btn{background:var(--on-foot);border-color:var(--on-foot);color:var(--foot)}
+.tg-card .btn:hover{background:#c2362b;border-color:#c2362b;color:#fff8f2}
+.tg-card .btn.line{background:transparent;color:var(--on-foot);border-color:rgba(243,239,230,.35)}
+.facts2{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.facts2 li{display:grid;grid-template-columns:104px minmax(0,1fr);gap:4px 14px;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.06)}
+.facts2 b{font:700 12px/1.4 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#ff9384}
+.facts2 span{font-size:15.5px;user-select:all}
+@media (max-width:880px){ .tg-card{grid-template-columns:1fr} }
+
+/* footer */
+.foot{background:var(--foot);color:var(--on-foot);padding-block:56px 40px}
+.foot-in{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 48px;align-items:end}
+.wm{font:800 clamp(44px,8vw,110px)/.9 var(--display);letter-spacing:-.05em}
+.wm i{font-style:normal;color:#ff7563}
+.foot p{color:var(--on-foot-muted);font-size:14.5px;margin-top:18px}
+.fnav{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15px}
+.fnav a{text-decoration:none;color:var(--on-foot)}
+.fnav a:hover{color:#ff9384}
+@media (max-width:760px){ .foot-in{grid-template-columns:1fr} }
+
+/* phone order bar */
+.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:55;padding:14px var(--gut-r) calc(12px + env(safe-area-inset-bottom, 0px)) var(--gut-l);background:linear-gradient(transparent,var(--paper) 40%)}
+.cartbar a{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;padding:0 20px;background:var(--ink);color:var(--paper);text-decoration:none;font-size:15px;max-width:520px;margin-inline:auto;border-radius:14px}
+.cartbar b{font-weight:800}
+</style>
+</head>
+<body>
+<div class="rib"><div class="wrap"><b data-t="rib_tag"></b><span data-t="rib"></span></div></div>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#top" aria-label="Multicook de Cascais"><b>Multi<i>cook</i></b><small>de Cascais</small></a>
+    <nav class="nav" aria-label="Menu">
+      <a href="#menu" data-t="nav_menu"></a><a href="#make" data-t="nav_make"></a><a href="#cook" data-t="nav_cook"></a><a href="#visit" data-t="nav_visit"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="uk">UA</button><button type="button" data-lang="pt">PT</button><button type="button" data-lang="en">EN</button></div>
+    <a class="btn sm" href="#order" data-t="hdr_cta"></a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-in">
+      <div>
+        <p class="eb" data-t="hero_eb"></p>
+        <h1 data-th="hero_h"></h1>
+        <p class="lead" data-t="hero_lede"></p>
+        <div class="ctas"><a class="btn red" href="#menu" data-t="cta_menu"></a><a class="btn line" href="#order" data-t="cta_order"></a></div>
+        <ul class="facts"><li class="fz" data-t="f1"></li><li data-t="f2"></li><li data-t="f3"></li></ul>
+      </div>
+      <figure class="hero-art"><svg class="f" id="heroArt" viewBox="0 0 560 520" role="img"></svg></figure>
+    </div>
+  </section>
+
+  <div class="stitch" data-stitch aria-hidden="true"></div>
+
+  <section class="vk" id="make" aria-labelledby="vkTitle">
+    <div class="vk-pin">
+      <div class="wrap vk-in">
+        <div class="vk-copy">
+          <p class="eb" id="vkTitle" data-t="vk_eb"></p>
+          <p class="vk-n"><b id="vkN">01</b><span>/ 05</span></p>
+          <div class="vk-step" id="vkStep" aria-live="polite"><h3 id="vkH"></h3><p id="vkP"></p></div>
+          <ol class="vsteps" id="vkSteps"></ol>
+          <p class="vk-cue" id="vkCue" data-t="vk_cue"></p>
+        </div>
+        <figure class="vk-art"><svg class="f" id="vkArt" viewBox="0 0 600 440" role="img"></svg></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="menu">
+    <div class="wrap menu-grid">
+      <div class="menu-main">
+        <p class="eb" data-t="menu_eb"></p>
+        <h2 class="h2" data-t="menu_h"></h2>
+        <p class="lead" data-t="menu_p"></p>
+        <div class="mtools">
+          <div class="tabs" id="tabs" role="group"></div>
+          <label class="toggle"><input type="checkbox" id="onlyIn"><span data-t="only_in"></span></label>
+        </div>
+        <div id="mlist"></div>
+        <p class="partners" data-t="partners"></p>
+      </div>
+      <aside class="order" id="order">
+        <div class="ocard">
+          <p class="eb" data-t="order_eb"></p>
+          <h2 data-t="order_h"></h2>
+          <p class="small" data-t="order_p"></p>
+          <ul class="cart" id="cart"></ul>
+          <p class="empty" id="cartEmpty" data-t="cart_empty"></p>
+          <div class="total" id="totalRow"><span data-t="cart_total"></span><b id="total"></b></div>
+          <form id="orderForm" novalidate>
+            <fieldset><legend data-t="f_how"></legend><div class="chips" id="howChips"></div></fieldset>
+            <div id="areaRow" hidden><label class="lbl" for="oArea" data-t="f_area"></label><select id="oArea" name="area"></select></div>
+            <fieldset><legend data-t="f_day"></legend><div class="chips" id="dayChips"></div></fieldset>
+            <p class="note" id="leadNote" hidden></p>
+            <div><label class="lbl" for="oTime" data-t="f_time"></label><select id="oTime" name="time"></select></div>
+            <div class="two">
+              <div><label class="lbl" for="oName" data-t="f_name"></label><input type="text" id="oName" name="name" autocomplete="given-name"></div>
+              <div><label class="lbl" for="oContact" data-t="f_contact"></label><input type="text" id="oContact" name="contact" autocomplete="tel"></div>
+            </div>
+            <p class="err" id="oErr" hidden></p>
+            <button class="btn wide red" type="submit" data-t="f_send"></button>
+          </form>
+          <div class="res" id="oRes" hidden></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="stitch" data-stitch aria-hidden="true"></div>
+
+  <section class="sec" id="cook">
+    <div class="wrap cook-grid">
+      <div>
+        <p class="eb" data-t="cook_eb"></p>
+        <h2 class="h2" data-t="cook_h"></h2>
+        <p class="lead" data-t="cook_p"></p>
+        <div class="chips ctypes" id="cookTypes" role="radiogroup"></div>
+        <ol class="csteps" id="cookSteps"></ol>
+        <p class="note" style="margin-top:18px" data-t="t_note"></p>
+      </div>
+      <div class="timer">
+        <svg class="f" id="timerArt" viewBox="0 0 300 300" aria-hidden="true"></svg>
+        <p class="done" id="tDone" aria-live="polite"></p>
+        <div class="acts"><button type="button" class="btn red" id="tGo"></button><button type="button" class="btn line" id="tReset" data-t="t_reset"></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="visit">
+    <div class="wrap">
+      <div class="tg-card">
+        <div>
+          <p class="eb" data-t="tg_eb"></p>
+          <h2 data-t="tg_h"></h2>
+          <p data-t="tg_p"></p>
+          <div class="acts" id="tgLinks"></div>
+        </div>
+        <ul class="facts2" id="facts2"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="stitch" data-stitch aria-hidden="true"></div>
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div>
+      <div class="wm">Multi<i>cook</i></div>
+      <p data-t="foot_tag"></p>
+    </div>
+    <nav class="fnav" aria-label="Footer">
+      <a href="#menu" data-t="nav_menu"></a><a href="#make" data-t="nav_make"></a><a href="#cook" data-t="nav_cook"></a><a href="#visit" data-t="nav_visit"></a><a id="studioLink" target="_blank" rel="noopener" data-t="foot_studio"></a>
+    </nav>
+  </div>
+</footer>
+
+<div class="cartbar" id="cartBar" hidden><a href="#order"><span id="cbText"></span><b data-t="cb_go"></b></a></div>
+
+<script>
+/* ===== CONFIG — все, что меняется под клиента ===== */
+window.SITE = {
+  name: 'Multicook de Cascais',
+  shopTelegram: 'multicook_shop',            // чат для заказов (из канала)
+  channelTelegram: 'multicook_de_cascais',   // канал с новинками и дегустациями
+  whatsapp: '',
+  address: '',                               // адрес самовывоза — уточнить у владельца
+  hours: [[10,0,19,0],[10,0,19,0],[10,0,19,0],[10,0,19,0],[10,0,19,0],[10,0,19,0],[10,0,19,0]], // ПРИМЕР: вс, пн … сб
+  areas: ['Cascais', 'Estoril', 'Parede', 'Carcavelos', 'Alcabideche'],                     // ПРИМЕР зон доставки
+  tz: 'Europe/Lisbon',
+  studio: '../../'
+};
+/* Ассортимент — по постам канала (окт. 2026). Цены и вес — ПРИМЕР, сверить с владельцем.
+   in: true — «є сьогодні», false — под заказ за день. cook — какой таймер показать. */
+const M = (id, g, w, price, cook, inToday, tags, n) => ({ id, g, w, price, cook, in: inToday, tags, n });
+window.MENU = [
+  M('var_pm', 'var', [500, 'g'], 7.5, 'var', true, [], ['Вареники з картоплею і білими грибами', 'Varenyky de batata e cogumelos porcini', 'Varenyky with potato and porcini']),
+  M('var_ch', 'var', [500, 'g'], 8.5, 'var', true, [], ['Вареники з вишнею', 'Varenyky de ginja', 'Cherry varenyky']),
+  M('var_sk', 'var', [500, 'g'], 7.5, 'var', false, [], ['Вареники з картоплею і шкварками', 'Varenyky de batata com torresmos', 'Varenyky with potato and crackling']),
+  M('var_cb', 'var', [500, 'g'], 7, 'var', true, [], ['Вареники з капустою', 'Varenyky de couve', 'Cabbage varenyky']),
+  M('var_sw', 'var', [500, 'g'], 7.5, 'var', false, [], ['Вареники з солодким сиром', 'Varenyky de requeijão doce', 'Sweet curd cheese varenyky']),
+  M('pel_3', 'pel', [500, 'g'], 9, 'pel', true, [], ['Пельмені «Три м’яса»', 'Pelmeni «Três carnes»', '“Three meats” pelmeni']),
+  M('pel_rb', 'pel', [500, 'g'], 10, 'pel', false, ['nw'], ['Пельмені з кроликом', 'Pelmeni de coelho', 'Rabbit pelmeni']),
+  M('khin', 'pel', [6, 'pc'], 8, 'khin', true, [], ['Хінкалі зі свининою', 'Khinkali de porco', 'Pork khinkali']),
+  M('rav_5', 'pel', [400, 'g'], 8.5, 'var', true, [], ['Равіолі «П’ять сирів»', 'Ravioli «Cinco queijos»', 'Five-cheese ravioli']),
+  M('rav_tr', 'pel', [400, 'g'], 10.5, 'var', false, ['nw', 'lim'], ['Равіолі з трюфелем', 'Ravioli de trufa', 'Truffle ravioli']),
+  M('mly_cm', 'mly', [4, 'pc'], 7, 'mly', true, [], ['Млинці з куркою і грибами', 'Crepes de frango e cogumelos', 'Crêpes with chicken and mushrooms']),
+  M('mly_cs', 'mly', [4, 'pc'], 6.5, 'mly', true, [], ['Млинці з сиром і полуницею', 'Crepes de requeijão e morango', 'Crêpes with curd cheese and strawberry']),
+  M('mly_sl', 'mly', [4, 'pc'], 8.5, 'mly', false, [], ['Млинці з лососем і шпинатом', 'Crepes de salmão e espinafres', 'Crêpes with salmon and spinach']),
+  M('syr', 'mly', [6, 'pc'], 6.5, 'syr', true, [], ['Сирники', 'Syrnyky (panquecas de requeijão)', 'Syrnyky (curd cheese pancakes)']),
+  M('syr_rs', 'mly', [6, 'pc'], 7, 'syr', false, ['nw'], ['Сирники з рікотою і шпинатом', 'Syrnyky de ricota e espinafres', 'Ricotta and spinach syrnyky']),
+  M('hol', 'main', [4, 'pc'], 9, 'hol', true, [], ['Голубці', 'Golubtsi (couve recheada)', 'Holubtsi (cabbage rolls)']),
+  M('lyu', 'main', [4, 'pc'], 9.5, 'kot', true, ['np', 'nw'], ['Люля-кебаб з ягнятини', 'Lula kebab de borrego', 'Lamb lyulya kebab']),
+  M('kord', 'main', [2, 'pc'], 7.5, 'kot', false, [], ['Кордон блю', 'Cordon bleu', 'Cordon bleu']),
+  M('kot_t', 'main', [4, 'pc'], 7.5, 'kot', true, ['np'], ['Котлети з індички', 'Hambúrgueres caseiros de peru', 'Turkey cutlets']),
+  M('zr', 'main', [4, 'pc'], 6.5, 'syr', false, [], ['Картопляні зрази з м’ясом', 'Zrazy de batata com carne', 'Potato zrazy with meat']),
+  M('per', 'main', [4, 'pc'], 8.5, 'hol', false, [], ['Перець фарширований', 'Pimentos recheados', 'Stuffed peppers']),
+  M('bor', 'soup', [1, 'l'], 7, 'bor', true, [], ['Борщ «Червоний»', 'Borsch «Vermelho»', '“Red” borscht']),
+  M('fry', 'soup', [1, 'kit'], 6, null, false, [], ['Набір для супу з фрикадельками', 'Kit de sopa com almôndegas', 'Meatball soup kit'])
+];
+const GROUPS = ['var', 'pel', 'mly', 'main', 'soup'];
+const COOK = { var: 4, pel: 6, khin: 12, mly: 4, syr: 4, hol: 40, kot: 25, bor: 10 };   // хвилини на таймері (ПРИКЛАД)
+const LI = { uk: 0, pt: 1, en: 2 };
+
+const I18N = {
+uk: {
+  rib_tag: 'Концепт', rib: 'Пропозиція сайту для Multicook de Cascais від студії Orla. Не офіційний сайт — ціни, вага й час для прикладу.',
+  nav_menu: 'Меню', nav_make: 'Як ліпимо', nav_cook: 'Як готувати', nav_visit: 'Контакти', hdr_cta: 'Замовити',
+  hero_eb: 'Домашні продукти · Кашкайш',
+  hero_h: 'Вечеря, як удома.<br><em>За 10 хвилин.</em>',
+  hero_lede: 'Вареники, пельмені, млинці, голубці й сирники — ліпимо в Кашкайші й заморожуємо. Вам лишається тільки зварити.',
+  hero_art: 'Дошка з варениками й пельменями, мисочка сметани, вишні та кріп.',
+  tag_a: 'домашнє', tag_b: '−18 °C',
+  cta_menu: 'Що є сьогодні', cta_order: 'Замовити',
+  f1: 'Заморожено одразу після ліплення', f2: 'Самовивіз і доставка', f3: 'Є позиції без свинини',
+  vk_eb: 'Як ліпимо', vk_cue: 'Гортайте — зліпимо вареник ↓',
+  vk_art: 'Вареник крок за кроком: кружечок тіста, вишнева начинка, складаємо навпіл, защипуємо край, варимо.',
+  vk_s: ['Тісто', 'Начинка', 'Складаємо', 'Защипуємо', 'Варимо'],
+  vk_h0: 'Тісто й склянка', vk_p0: 'Тонко розкачане тісто, а кружечки вирізаємо звичайною склянкою.',
+  vk_h1: 'Ложка начинки', vk_p1: 'Вишня, картопля з грибами, капуста чи сир — рівно стільки, щоб вареник закрився.',
+  vk_h2: 'Складаємо навпіл', vk_p2: 'Півмісяць — класична форма вареника.',
+  vk_h3: 'Защипуємо руками', vk_p3: 'Край защипуємо пальцями, щоб начинка лишилася всередині.',
+  vk_h4: 'Вам лишається зварити', vk_p4: 'Ми заморожуємо, а вдома — окріп: спливли, і ще 4 хвилини.',
+  vk_after: 'після спливання',
+  menu_eb: 'Меню', menu_h: 'Що є в морозилці', menu_p: '«Є сьогодні» — можна забрати вже сьогодні. Решту зробимо під замовлення за день.',
+  only_in: 'Тільки те, що є сьогодні', all: 'Усе',
+  g_var: 'Вареники', g_pel: 'Пельмені, хінкалі, равіолі', g_mly: 'Млинці й сирники', g_main: 'Другі страви', g_soup: 'Супи',
+  tg_in: 'Є сьогодні', tg_ord: 'Під замовлення', tg_np: 'Без свинини', tg_nw: 'Новинка', tg_lim: 'Мало',
+  u_g: 'г', u_pc: 'шт', u_l: 'л', u_kit: 'набір',
+  cook_min: '{m} хв', cook_how: 'Як готувати: {n}',
+  partners: 'Ще в нас: ковбаси, крупи, соуси, солодощі, напої й морозиво від партнерів.',
+  none_in: 'Сьогодні з цієї групи нічого немає — замовте на завтра.',
+  add: 'Додати: {n}', less: 'Менше', more: 'Більше',
+  order_eb: 'Замовлення', order_h: 'Збираємо пакунок', order_p: 'Додайте позиції — ми підготуємо повідомлення для Telegram.',
+  cart_empty: 'Поки порожньо. Натисніть «+» біля страви.', cart_total: 'Орієнтовно',
+  f_how: 'Як отримати', how_pick: 'Самовивіз', how_del: 'Доставка', f_area: 'Район доставки',
+  areas: ['Кашкайш', 'Ешторіл', 'Пареде', 'Каркавелуш', 'Алкабідеше'],
+  f_day: 'День', f_time: 'Час', d_today: 'Сьогодні', d_tom: 'Завтра', no_slots: 'Немає вільного часу',
+  lead_note: 'У пакунку є позиції під замовлення — найближче завтра.',
+  f_name: 'Ім’я', f_contact: 'Телефон або @нік у Telegram', f_send: 'Підготувати повідомлення',
+  err_cart: 'Додайте хоча б одну позицію.', err_req: 'Вкажіть ім’я, контакт і час.',
+  res_h: 'Повідомлення готове', copy: 'Скопіювати', copied: 'Скопійовано', res_tg: 'Відкрити @{h}',
+  res_note: 'Це концепт — нічого не надіслано. На робочому сайті текст скопіюється, а кнопка відкриє чат у Telegram.',
+  msg_hi: 'Вітаю! Хочу замовити:', msg_total: 'Орієнтовно', msg_how: 'Отримання', msg_when: 'Коли', msg_name: 'Ім’я', msg_contact: 'Контакт',
+  cb_items: '{n} поз. · {s}', cb_go: 'До замовлення',
+  cook_eb: 'Як готувати', cook_h: 'З морозилки — на тарілку', cook_p: 'Оберіть, що готуєте, і запустіть таймер: він підкаже, коли виймати.',
+  ct_var: 'Вареники', ct_pel: 'Пельмені', ct_khin: 'Хінкалі', ct_mly: 'Млинці', ct_syr: 'Сирники', ct_hol: 'Голубці', ct_kot: 'Котлети, люля', ct_bor: 'Борщ',
+  cs_var: ['Закип’ятіть воду й посоліть.', 'Киньте вареники замороженими й одразу помішайте.', 'Коли спливуть — варіть ще 4 хвилини.'],
+  cs_pel: ['Закип’ятіть воду, посоліть, додайте лавровий лист.', 'Киньте пельмені замороженими, помішайте.', 'Після спливання — ще 6 хвилин.'],
+  cs_khin: ['Закип’ятіть багато води.', 'Опускайте хінкалі по одному.', 'Варіть 12 хвилин після закипання.'],
+  cs_mly: ['Розігрійте сковороду з краплею олії.', 'Кладіть млинці замороженими, вогонь середній.', 'По 4 хвилини з кожного боку.'],
+  cs_syr: ['Сковорода, трохи олії, середній вогонь.', 'Сирники — одразу з морозилки.', 'По 4 хвилини з кожного боку, до золотистого.'],
+  cs_hol: ['Викладіть голубці в каструлю.', 'Залийте соусом або водою з томатом.', 'Тушкуйте 40 хвилин під кришкою.'],
+  cs_kot: ['Розігрійте духовку до 180 °C.', 'Викладіть на деко з папером.', 'Запікайте 25 хвилин.'],
+  cs_bor: ['Перелийте борщ у каструлю.', 'Нагрівайте на середньому вогні, не доводячи до кипіння.', '10 хвилин — і подавайте зі сметаною.'],
+  tl_var: 'після спливання', tl_pel: 'після спливання', tl_khin: 'після закипання', tl_mly: 'з кожного боку', tl_syr: 'з кожного боку', tl_hol: 'під кришкою', tl_kot: 'у духовці', tl_bor: 'на вогні',
+  t_start: 'Старт', t_pause: 'Пауза', t_resume: 'Далі', t_reset: 'Скинути', t_done: 'Готово! Смачного.',
+  t_note: 'Час — для прикладу; точний буде на пачці.',
+  tg_eb: 'Ми в Telegram', tg_h: 'Новинки й дегустації — першими в каналі',
+  tg_p: 'У каналі пишемо, що сьогодні є в морозилці, і запрошуємо на дегустації новинок. Замовлення — у чаті.',
+  tg_sub: 'Канал', tg_write: 'Написати в чат',
+  k_order: 'Замовлення', k_news: 'Новинки', k_where: 'Де', k_del: 'Доставка',
+  where: 'Кашкайш · адресу самовивозу надішлемо в чаті',
+  foot_tag: 'Магазин домашніх продуктів у Кашкайші.', foot_studio: 'Концепт сайту — Orla ↗'
+},
+pt: {
+  rib_tag: 'Conceito', rib: 'Proposta de site para a Multicook de Cascais, feita pela Orla. Não é o site oficial — preços, pesos e tempos de exemplo.',
+  nav_menu: 'Menu', nav_make: 'Como fazemos', nav_cook: 'Como preparar', nav_visit: 'Contactos', hdr_cta: 'Encomendar',
+  hero_eb: 'Comida caseira ucraniana · Cascais',
+  hero_h: 'Jantar como em casa.<br><em>Em 10 minutos.</em>',
+  hero_lede: 'Varenyky, pelmeni, crepes, golubtsi e syrnyky — feitos em Cascais e congelados. Em casa, só falta cozer.',
+  hero_art: 'Tábua com varenyky e pelmeni, uma taça de natas ácidas, ginjas e endro.',
+  tag_a: 'caseiro', tag_b: '−18 °C',
+  cta_menu: 'O que há hoje', cta_order: 'Encomendar',
+  f1: 'Congelado logo depois de feito', f2: 'Levantamento e entrega', f3: 'Opções sem porco',
+  vk_eb: 'Como fazemos', vk_cue: 'Deslize para fazer um varenyk ↓',
+  vk_art: 'Um varenyk passo a passo: círculo de massa, recheio de ginja, dobrar ao meio, fechar a borda, cozer.',
+  vk_s: ['Massa', 'Recheio', 'Dobrar', 'Fechar', 'Cozer'],
+  vk_h0: 'Massa e um copo', vk_p0: 'Massa estendida bem fina; os círculos cortam-se com um copo, como em casa.',
+  vk_h1: 'Uma colher de recheio', vk_p1: 'Ginja, batata com cogumelos, couve ou requeijão — o suficiente para fechar.',
+  vk_h2: 'Dobrar ao meio', vk_p2: 'A meia-lua é a forma clássica do varenyk.',
+  vk_h3: 'Fechar à mão', vk_p3: 'A borda fecha-se com os dedos, para o recheio ficar lá dentro.',
+  vk_h4: 'Em casa, só cozer', vk_p4: 'Nós congelamos; em casa: água a ferver, vêm ao de cima, e mais 4 minutos.',
+  vk_after: 'depois de subirem',
+  menu_eb: 'Menu', menu_h: 'O que há no congelador', menu_p: '«Há hoje» — pode levar já hoje. O resto fazemos por encomenda, de um dia para o outro.',
+  only_in: 'Só o que há hoje', all: 'Tudo',
+  g_var: 'Varenyky', g_pel: 'Pelmeni, khinkali e ravioli', g_mly: 'Crepes e syrnyky', g_main: 'Pratos', g_soup: 'Sopas',
+  tg_in: 'Há hoje', tg_ord: 'Por encomenda', tg_np: 'Sem porco', tg_nw: 'Novidade', tg_lim: 'Poucas',
+  u_g: 'g', u_pc: 'un.', u_l: 'l', u_kit: 'kit',
+  cook_min: '{m} min', cook_how: 'Como preparar: {n}',
+  partners: 'Temos também enchidos, cereais, molhos, doces, bebidas e gelados de parceiros.',
+  none_in: 'Hoje não há nada deste grupo — encomende para amanhã.',
+  add: 'Adicionar: {n}', less: 'Menos', more: 'Mais',
+  order_eb: 'Encomenda', order_h: 'A sua encomenda', order_p: 'Junte produtos — preparamos a mensagem para o Telegram.',
+  cart_empty: 'Ainda vazio. Toque em «+» ao lado de um prato.', cart_total: 'Aproximadamente',
+  f_how: 'Como receber', how_pick: 'Levantar', how_del: 'Entrega', f_area: 'Zona de entrega',
+  areas: ['Cascais', 'Estoril', 'Parede', 'Carcavelos', 'Alcabideche'],
+  f_day: 'Dia', f_time: 'Hora', d_today: 'Hoje', d_tom: 'Amanhã', no_slots: 'Sem horas livres',
+  lead_note: 'Há produtos por encomenda — o mais cedo é amanhã.',
+  f_name: 'Nome', f_contact: 'Telefone ou @utilizador do Telegram', f_send: 'Preparar mensagem',
+  err_cart: 'Junte pelo menos um produto.', err_req: 'Indique nome, contacto e hora.',
+  res_h: 'Mensagem pronta', copy: 'Copiar', copied: 'Copiado', res_tg: 'Abrir @{h}',
+  res_note: 'Isto é um conceito — nada foi enviado. No site real, o texto é copiado e o botão abre a conversa no Telegram.',
+  msg_hi: 'Olá! Gostaria de encomendar:', msg_total: 'Aproximadamente', msg_how: 'Receber', msg_when: 'Quando', msg_name: 'Nome', msg_contact: 'Contacto',
+  cb_items: '{n} prod. · {s}', cb_go: 'Ver encomenda',
+  cook_eb: 'Como preparar', cook_h: 'Do congelador para o prato', cook_p: 'Escolha o que vai preparar e ligue o temporizador: ele avisa quando tirar.',
+  ct_var: 'Varenyky', ct_pel: 'Pelmeni', ct_khin: 'Khinkali', ct_mly: 'Crepes', ct_syr: 'Syrnyky', ct_hol: 'Golubtsi', ct_kot: 'Hambúrgueres, kebab', ct_bor: 'Borsch',
+  cs_var: ['Ferva água com sal.', 'Junte os varenyky ainda congelados e mexa logo.', 'Quando subirem, mais 4 minutos.'],
+  cs_pel: ['Ferva água com sal e uma folha de louro.', 'Junte os pelmeni congelados e mexa.', 'Depois de subirem, mais 6 minutos.'],
+  cs_khin: ['Ferva bastante água.', 'Junte os khinkali um a um.', '12 minutos depois de voltar a ferver.'],
+  cs_mly: ['Aqueça a frigideira com um fio de óleo.', 'Os crepes vão congelados, lume médio.', '4 minutos de cada lado.'],
+  cs_syr: ['Frigideira, um pouco de óleo, lume médio.', 'Os syrnyky vão diretos do congelador.', '4 minutos de cada lado, até dourarem.'],
+  cs_hol: ['Ponha os golubtsi num tacho.', 'Cubra com molho ou água com tomate.', '40 minutos em lume brando, tapados.'],
+  cs_kot: ['Aqueça o forno a 180 °C.', 'Tabuleiro com papel vegetal.', '25 minutos no forno.'],
+  cs_bor: ['Passe o borsch para um tacho.', 'Aqueça em lume médio, sem deixar ferver.', '10 minutos — e sirva com natas ácidas.'],
+  tl_var: 'depois de subirem', tl_pel: 'depois de subirem', tl_khin: 'depois de ferver', tl_mly: 'de cada lado', tl_syr: 'de cada lado', tl_hol: 'tapados', tl_kot: 'no forno', tl_bor: 'no lume',
+  t_start: 'Iniciar', t_pause: 'Pausa', t_resume: 'Continuar', t_reset: 'Repor', t_done: 'Pronto! Bom apetite.',
+  t_note: 'Tempos de exemplo; o tempo certo vem na embalagem.',
+  tg_eb: 'Estamos no Telegram', tg_h: 'Novidades e provas — primeiro no canal',
+  tg_p: 'No canal dizemos o que há hoje no congelador e convidamos para provas das novidades. Encomendas — na conversa.',
+  tg_sub: 'Canal', tg_write: 'Escrever no chat',
+  k_order: 'Encomendas', k_news: 'Novidades', k_where: 'Onde', k_del: 'Entregas',
+  where: 'Cascais · a morada de levantamento enviamos na conversa',
+  foot_tag: 'Loja de comida caseira ucraniana em Cascais.', foot_studio: 'Conceito de site — Orla ↗'
+},
+en: {
+  rib_tag: 'Concept', rib: 'Website proposal for Multicook de Cascais by Orla. Not the official site — prices, weights and times are examples.',
+  nav_menu: 'Menu', nav_make: 'How we make them', nav_cook: 'How to cook', nav_visit: 'Contact', hdr_cta: 'Order',
+  hero_eb: 'Ukrainian home cooking · Cascais',
+  hero_h: 'Dinner like at home.<br><em>In 10 minutes.</em>',
+  hero_lede: 'Varenyky, pelmeni, crêpes, holubtsi and syrnyky — made in Cascais and frozen. All that’s left is to cook them.',
+  hero_art: 'A board of varenyky and pelmeni, a bowl of sour cream, cherries and dill.',
+  tag_a: 'homemade', tag_b: '−18 °C',
+  cta_menu: 'What’s in today', cta_order: 'Order',
+  f1: 'Frozen right after they are made', f2: 'Pickup and delivery', f3: 'Pork-free options',
+  vk_eb: 'How we make them', vk_cue: 'Scroll to make a varenyk ↓',
+  vk_art: 'A varenyk step by step: a circle of dough, cherry filling, folded in half, edge pinched, boiled.',
+  vk_s: ['Dough', 'Filling', 'Fold', 'Pinch', 'Boil'],
+  vk_h0: 'Dough and a glass', vk_p0: 'Thinly rolled dough, with circles cut out using an ordinary glass.',
+  vk_h1: 'A spoonful of filling', vk_p1: 'Cherry, potato and mushroom, cabbage or curd cheese — just enough to close it.',
+  vk_h2: 'Fold in half', vk_p2: 'The half-moon is the classic varenyk shape.',
+  vk_h3: 'Pinched by hand', vk_p3: 'The edge is pinched with fingers so the filling stays inside.',
+  vk_h4: 'All you do is boil', vk_p4: 'We freeze them. At home: boiling water, they float up, four more minutes.',
+  vk_after: 'after they float',
+  menu_eb: 'Menu', menu_h: 'What’s in the freezer', menu_p: '“In today” means you can take it today. The rest we make to order, with a day’s notice.',
+  only_in: 'Only what’s in today', all: 'All',
+  g_var: 'Varenyky', g_pel: 'Pelmeni, khinkali and ravioli', g_mly: 'Crêpes and syrnyky', g_main: 'Mains', g_soup: 'Soups',
+  tg_in: 'In today', tg_ord: 'To order', tg_np: 'No pork', tg_nw: 'New', tg_lim: 'Few left',
+  u_g: 'g', u_pc: 'pcs', u_l: 'l', u_kit: 'kit',
+  cook_min: '{m} min', cook_how: 'How to cook: {n}',
+  partners: 'We also stock sausages, grains, sauces, sweets, drinks and ice cream from partners.',
+  none_in: 'Nothing from this group today — order it for tomorrow.',
+  add: 'Add: {n}', less: 'Less', more: 'More',
+  order_eb: 'Order', order_h: 'Your bag', order_p: 'Add items and we’ll prepare a Telegram message.',
+  cart_empty: 'Empty so far. Tap “+” next to a dish.', cart_total: 'Approx.',
+  f_how: 'How to get it', how_pick: 'Pickup', how_del: 'Delivery', f_area: 'Delivery area',
+  areas: ['Cascais', 'Estoril', 'Parede', 'Carcavelos', 'Alcabideche'],
+  f_day: 'Day', f_time: 'Time', d_today: 'Today', d_tom: 'Tomorrow', no_slots: 'No times left',
+  lead_note: 'Your bag has made-to-order items — tomorrow at the earliest.',
+  f_name: 'Name', f_contact: 'Phone or Telegram @username', f_send: 'Prepare message',
+  err_cart: 'Add at least one item.', err_req: 'Add your name, a contact and a time.',
+  res_h: 'Your message is ready', copy: 'Copy', copied: 'Copied', res_tg: 'Open @{h}',
+  res_note: 'This is a concept — nothing was sent. On the real site the text is copied and the button opens the Telegram chat.',
+  msg_hi: 'Hi! I’d like to order:', msg_total: 'Approx.', msg_how: 'Getting it', msg_when: 'When', msg_name: 'Name', msg_contact: 'Contact',
+  cb_items: '{n} items · {s}', cb_go: 'To your order',
+  cook_eb: 'How to cook', cook_h: 'From freezer to plate', cook_p: 'Pick what you’re cooking and start the timer — it tells you when to take it out.',
+  ct_var: 'Varenyky', ct_pel: 'Pelmeni', ct_khin: 'Khinkali', ct_mly: 'Crêpes', ct_syr: 'Syrnyky', ct_hol: 'Holubtsi', ct_kot: 'Cutlets, kebab', ct_bor: 'Borscht',
+  cs_var: ['Bring salted water to the boil.', 'Add the varenyky frozen and stir straight away.', 'Once they float, four more minutes.'],
+  cs_pel: ['Boil salted water with a bay leaf.', 'Add the pelmeni frozen and stir.', 'Once they float, six more minutes.'],
+  cs_khin: ['Boil plenty of water.', 'Lower the khinkali in one at a time.', '12 minutes after it boils again.'],
+  cs_mly: ['Heat a pan with a drop of oil.', 'Crêpes go in frozen, medium heat.', '4 minutes on each side.'],
+  cs_syr: ['Pan, a little oil, medium heat.', 'Syrnyky go straight from the freezer.', '4 minutes each side, until golden.'],
+  cs_hol: ['Put the holubtsi in a pot.', 'Cover with sauce or water with tomato.', 'Simmer 40 minutes, lid on.'],
+  cs_kot: ['Heat the oven to 180 °C.', 'Lay them on a tray with baking paper.', 'Bake for 25 minutes.'],
+  cs_bor: ['Pour the borscht into a pot.', 'Warm over medium heat without boiling.', '10 minutes — serve with sour cream.'],
+  tl_var: 'after they float', tl_pel: 'after they float', tl_khin: 'after the boil', tl_mly: 'each side', tl_syr: 'each side', tl_hol: 'lid on', tl_kot: 'in the oven', tl_bor: 'on the hob',
+  t_start: 'Start', t_pause: 'Pause', t_resume: 'Resume', t_reset: 'Reset', t_done: 'Done! Enjoy.',
+  t_note: 'Times are examples; the exact one is on the pack.',
+  tg_eb: 'We’re on Telegram', tg_h: 'New dishes and tastings — first on the channel',
+  tg_p: 'On the channel we post what’s in the freezer today and invite you to tastings of new dishes. Orders go through the chat.',
+  tg_sub: 'Channel', tg_write: 'Message the chat',
+  k_order: 'Orders', k_news: 'News', k_where: 'Where', k_del: 'Delivery',
+  where: 'Cascais · we send the pickup address in the chat',
+  foot_tag: 'Ukrainian home food shop in Cascais.', foot_studio: 'Website concept — Orla ↗'
+}
+};
+const LOC = { uk: 'uk-UA', pt: 'pt-PT', en: 'en-GB' };
+let lang = (() => {
+  try { const q = new URLSearchParams(location.search).get('lang'); if (q && I18N[q]) return q; } catch (e) {}
+  try { const s = localStorage.getItem('mc-lang'); if (s && I18N[s]) return s; } catch (e) {}
+  const n = (navigator.language || 'uk').toLowerCase();
+  if (n.startsWith('pt')) return 'pt';
+  if (n.startsWith('en')) return 'en';
+  return 'uk';
+})();
+const t = k => (I18N[lang][k] != null ? I18N[lang][k] : (I18N.uk[k] != null ? I18N.uk[k] : k));
+const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => (o[k] != null ? o[k] : ''));
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const f1 = n => +n.toFixed(1);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = v => Math.max(0, Math.min(1, v)), ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+function rnd(seed) { let a = seed * 9301 + 49297; return () => { a = (a * 9301 + 49297) % 233280; return a / 233280; }; }
+
+/* ===== time (Europe/Lisbon) ===== */
+const partsFmt = new Intl.DateTimeFormat('en-GB', { timeZone: SITE.tz, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' });
+function tzParts(ms) { const o = {}; partsFmt.formatToParts(new Date(ms)).forEach(p => { o[p.type] = p.value; }); return { y: +o.year, m: +o.month, d: +o.day, h: +o.hour % 24, mi: +o.minute, s: +o.second }; }
+const today = () => { const p = tzParts(Date.now()); return { y: p.y, m: p.m, d: p.d }; };
+function addDays(day, n) { const d = new Date(Date.UTC(day.y, day.m - 1, day.d + n)); return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate() }; }
+const isoDay = day => `${day.y}-${String(day.m).padStart(2, '0')}-${String(day.d).padStart(2, '0')}`;
+const dow = day => new Date(Date.UTC(day.y, day.m - 1, day.d)).getUTCDay();
+const pad = n => String(n).padStart(2, '0');
+const hhmm = (h, mi) => `${h}:${pad(mi)}`;
+const dayName = (day, opts) => new Intl.DateTimeFormat(LOC[lang], Object.assign({ timeZone: 'UTC' }, opts)).format(new Date(Date.UTC(day.y, day.m - 1, day.d, 12)));
+const eur = v => '€' + (Number.isInteger(v) ? v : v.toFixed(2).replace('.', lang === 'en' ? '.' : ','));
+const item = id => MENU.find(m => m.id === id);
+const nm = id => item(id).n[LI[lang]];
+const wt = m => `${m.w[0]} ${t('u_' + m.w[1])}`;
+
+/* ===== drawings ===== */
+function crimpArc(r, ry, n, out, down) {     // scalloped half-ellipse from (-r,0) to (r,0); up by default
+  const sg = down ? 1 : -1;
+  let d = `M${-r} 0`;
+  for (let i = 1; i <= n; i++) {
+    const a1 = Math.PI * (1 - i / n), am = Math.PI * (1 - (i - .5) / n);
+    d += ` Q${f1(r * out * Math.cos(am))} ${f1(sg * ry * out * Math.sin(am))} ${f1(r * Math.cos(a1))} ${f1(sg * ry * Math.sin(a1))}`;
+  }
+  return d;
+}
+function varenyk(x, y, r, rot, cls) {
+  const ry = r * .8;
+  return `<g transform="translate(${x} ${y}) rotate(${rot})"><path class="o ${cls || 'dg'}" d="${crimpArc(r, ry, 12, 1.09)} Q0 ${f1(r * .12)} ${-r} 0Z"/>
+<path class="l2" d="M${f1(-r * .78)} ${f1(-ry * .04)}A${f1(r * .78)} ${f1(ry * .74)} 0 0 1 ${f1(r * .78)} ${f1(-ry * .04)}"/><ellipse class="hi" cx="${f1(-r * .2)}" cy="${f1(-ry * .5)}" rx="${f1(r * .26)}" ry="${f1(ry * .1)}"/></g>`;
+}
+const pelmen = (x, y, s, rot) => `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})"><path class="o dg" d="M-12 3C-14-9-4-14 0-13C4-14 14-9 12 3C16 5 16 10 10 10C6 14-6 14-10 10C-16 10-16 5-12 3Z"/><path class="l2" d="M-8 4C-4 7 4 7 8 4"/></g>`;
+const cherry = (x, y, r, stem) => `${stem ? `<path class="l" d="M${x} ${f1(y - r)}q4-${f1(r)} ${f1(r * 1.3)}-${f1(r * 1.5)}"/>` : ''}<circle class="o ch" cx="${x}" cy="${y}" r="${r}"/><circle class="hi" cx="${f1(x - r * .35)}" cy="${f1(y - r * .35)}" r="${f1(r * .25)}"/>`;
+const dill = (x, y, rot) => { let s = `<g transform="translate(${x} ${y}) rotate(${rot})"><path class="grl" d="M0 0C10-20 14-44 12-70"/>`; for (let i = 1; i < 7; i++) { const yy = -i * 10, xx = Math.sin(i * .4) * 6 + 2; s += `<path class="grl" d="M${f1(xx)} ${yy}l-12-8M${f1(xx)} ${yy}l12-6M${f1(xx)} ${yy}l-6-12"/>`; } return s + '</g>'; };
+function heroArt() {
+  const R = rnd(4);
+  let s = `<g transform="rotate(-5 280 270)"><rect class="o wd" x="56" y="96" width="430" height="350" rx="30"/><rect class="o wd2" x="480" y="236" width="64" height="70" rx="22"/><circle class="o wd" cx="520" cy="271" r="10"/>`;
+  [130, 180, 236, 300, 360, 410].forEach((y, i) => { s += `<path class="wg" d="M${76 + i % 3 * 8} ${y}C180 ${y - 8 + i % 2 * 12} 300 ${y + 10} ${462 - i % 2 * 10} ${y - 4}"/>`; });
+  s += `</g>`;
+  for (let i = 0; i < 90; i++) { const a = R() * 6.28, d = Math.sqrt(R()) * 120; s += `<circle class="fl" opacity=".75" cx="${f1(180 + Math.cos(a) * d * 1.2)}" cy="${f1(220 + Math.sin(a) * d * .7)}" r="${f1(.8 + R() * 2.4)}"/>`; }
+  [[160, 228, -6], [264, 218, 4], [368, 226, -3], [178, 334, 5, 'dg2'], [282, 326, -4], [386, 336, 3]].forEach(([x, y, r, c]) => { s += varenyk(x, y, 50, r, c); });
+  [[112, 406, 1.7, 20], [146, 420, 1.6, -15], [108, 440, 1.5, 40], [148, 452, 1.6, 0]].forEach(([x, y, k, r]) => { s += pelmen(x, y, k, r); });
+  s += `<g transform="translate(470 104)"><circle class="o bl" r="56"/><circle class="o bll" r="47"/><circle class="o cr" r="40"/><path class="l2" d="M-22-6q12-10 28-2"/><g transform="rotate(-38)"><rect class="o st" x="20" y="-6" width="96" height="12" rx="6"/><ellipse class="o st" cx="12" cy="0" rx="20" ry="13"/></g></g>`;
+  s += cherry(430, 420, 12, 1) + cherry(456, 432, 11, 1) + cherry(442, 402, 10);
+  s += dill(70, 170, 28) + dill(96, 156, 52);
+  s += `<g transform="translate(300 470) rotate(-7)"><path class="l" d="M-70-8C-110-30-120-60-100-80"/><rect class="o tag" x="-62" y="-34" width="132" height="68" rx="6"/><circle class="o no" cx="-48" cy="0" r="5"/><text class="tagr" x="12" y="2" text-anchor="middle">${esc(t('tag_b'))}</text><text class="tagt" x="12" y="22" text-anchor="middle">${esc(t('tag_a'))}</text></g>`;
+  $('#heroArt').innerHTML = s;
+  $('#heroArt').setAttribute('aria-label', t('hero_art'));
+}
+
+/* cross-stitch band: one rhombus with a cross inside, one little star, borders of single stitches */
+const MOTIF = [
+  '......R...........',
+  '.....RKR.........',
+  '....RK.KR....R...',
+  '...RK.R.KR..RKR..',
+  '..RK.RKR.KR..R...',
+  '...RK.R.KR.......',
+  '....RK.KR........',
+  '.....RKR.........',
+  '......R..........'
+];
+function stitch(el) {
+  const c = innerWidth < 600 ? 5 : 6, W = 18, Hh = MOTIF.length + 4;
+  let p = '';
+  const x = (cx, cy, k) => { const a = cx * c + 1, b = cy * c + 1, e = c - 2; p += `<path class="${k === 'R' ? 'sr' : 'sk'}" d="M${a} ${b}l${e} ${e}M${a + e} ${b}l${-e} ${e}"/>`; };
+  for (let i = 0; i < W; i += 2) { x(i, 0, 'K'); x(i + 1, Hh - 1, 'K'); }
+  MOTIF.forEach((row, ry) => [...row.padEnd(W, '.')].slice(0, W).forEach((ch, cx) => { if (ch === 'R' || ch === 'K') x(cx, ry + 2, ch); }));
+  const id = 'st' + Math.round(Math.random() * 1e6);
+  el.style.setProperty('--sh', (Hh * c + 12) + 'px');
+  el.innerHTML = `<svg aria-hidden="true"><defs><pattern id="${id}" width="${W * c}" height="${Hh * c}" patternUnits="userSpaceOnUse" y="6">${p}</pattern></defs><rect width="100%" height="100%" fill="url(#${id})"/></svg>`;
+}
+
+/* ===== the scroll scene: one varenyk, from dough to pot ===== */
+const VSEG = [0, .2, .38, .56, .76, 1];
+const VC = [300, 206], VR = 106;
+let vkSeg = -1, vkP = -1, vkRaf = 0;
+function vkBuild() {
+  const R = rnd(9), [cx, cy] = VC;
+  let s = `<rect class="board" x="24" y="24" width="552" height="392" rx="26"/>`;
+  for (let i = 0; i < 60; i++) s += `<circle class="flour" cx="${f1(46 + R() * 508)}" cy="${f1(46 + R() * 348)}" r="${f1(.8 + R() * 2.2)}"/>`;
+  s += `<g id="vSheet"><rect class="o dg" x="88" y="62" width="424" height="300" rx="32"/>`;
+  for (let i = 0; i < 30; i++) s += `<circle class="fl" cx="${f1(108 + R() * 384)}" cy="${f1(80 + R() * 264)}" r="${f1(.8 + R() * 1.8)}"/>`;
+  s += `</g>`;
+  s += `<g id="vVk"><g id="vDisc" opacity="0"><path class="dg" d="M${cx - VR} ${cy}A${VR} ${VR} 0 0 0 ${cx + VR} ${cy}Z"/><path class="l" d="M${cx - VR} ${cy}A${VR} ${VR} 0 0 0 ${cx + VR} ${cy}"/>`;
+  s += `<g id="vFill">${cherry(cx - 20, cy + 34, 17)}${cherry(cx + 18, cy + 38, 16)}${cherry(cx, cy + 16, 16)}</g>`;
+  s += `<g id="vTop"><path id="vTopP" class="dg" d="M${cx - VR} ${cy}A${VR} ${VR} 0 0 1 ${cx + VR} ${cy}Z"/><path class="l" d="M${cx - VR} ${cy}A${VR} ${VR} 0 0 1 ${cx + VR} ${cy}"/></g><path id="vFold" class="l" opacity="0" d="M${cx - VR} ${cy}H${cx + VR}"/></g>`;
+  // the pinched edge, revealed as the fingers go round
+  s += `<path id="vCrimpF" class="o dg" opacity="0" transform="translate(${cx} ${cy})" d="${crimpArc(VR, VR, 14, 1.08, true)}Z"/>`;
+  s += `<path id="vCrimp" class="l" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="translate(${cx} ${cy})" d="${crimpArc(VR * .93, VR * .93, 14, 1.06, true)}"/>`;
+  s += `<path class="l2" id="vSeam" opacity="0" d="M${cx - VR * .8} ${cy + 4}A${VR * .8} ${VR * .72} 0 0 0 ${cx + VR * .8} ${cy + 4}"/>`;
+  s += `<g id="vFingers" opacity="0"><ellipse class="o kr" cx="-10" cy="0" rx="14" ry="20"/><ellipse class="o kr" cx="15" cy="5" rx="13" ry="19"/></g></g>`;
+  s += `<circle id="vCut" class="l" cx="${cx}" cy="${cy}" r="${VR}" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 ${cx} ${cy})"/>`;
+  s += `<g id="vGlass" opacity="0"><circle class="gl" r="${VR + 6}"/><circle class="l2" r="${VR - 6}"/><ellipse class="hi" cx="-40" cy="-46" rx="22" ry="7" transform="rotate(-35 -40 -46)"/></g>`;
+  s += `<g id="vSpoon" opacity="0"><rect class="o st" x="22" y="-6" width="150" height="12" rx="6"/><ellipse class="o st" rx="34" ry="24"/><ellipse class="o std" rx="26" ry="17" opacity=".35"/></g>`;
+  // the pot, seen from above
+  s += `<g id="vPot" opacity="0"><rect class="o std" x="${cx - 206}" y="${cy - 15}" width="42" height="30" rx="10"/><rect class="o std" x="${cx + 164}" y="${cy - 15}" width="42" height="30" rx="10"/><circle class="o st" cx="${cx}" cy="${cy}" r="172"/><circle class="o wa" cx="${cx}" cy="${cy}" r="158"/>`;
+  s += [0, 1, 2].map(i => `<circle class="wa2" data-rp="${i}" cx="${cx}" cy="${cy}" r="40"/>`).join('');
+  s += `<g id="vTimer" transform="translate(522 76)"><circle r="44" class="o cr"/><text class="tt" text-anchor="middle" y="6" style="font-size:22px" id="vTT">4:00</text><text class="ts" text-anchor="middle" y="24" style="font-size:9.5px" id="vTS"></text></g></g>`;
+  s += `<g id="vSteam" opacity="0">${[250, 300, 350].map((x, i) => `<path class="stm" pathLength="1" stroke-dasharray=".35 .65" d="M${x} ${132 - (i % 2) * 14}c-14-18 14-30 0-48s14-30 0-48"/>`).join('')}</g>`;
+  $('#vkArt').innerHTML = s;
+  // the pot sits under the varenyk once it goes in
+  const art = $('#vkArt'); art.insertBefore($('#vPot'), $('#vVk'));
+  $('#vkArt').setAttribute('aria-label', t('vk_art'));
+  $('#vkSteps').innerHTML = t('vk_s').map((x, i) => `<li data-i="${i}">${esc(x)}</li>`).join('');
+  $('#vTS').textContent = t('vk_after');
+  vkSeg = -1; vkP = -1;
+  vkUpdate(true);
+}
+function vkText(i) {
+  const box = $('#vkStep'), put = () => { $('#vkH').textContent = t('vk_h' + i); $('#vkP').textContent = t('vk_p' + i); $('#vkN').textContent = '0' + (i + 1); };
+  if (vkSeg === -1 || RM) { put(); return; }
+  box.classList.add('swap'); clearTimeout(box._t); box._t = setTimeout(() => { put(); box.classList.remove('swap'); }, 170);
+}
+const at2 = (el, k, v) => el.setAttribute(k, typeof v === 'number' ? v.toFixed(3) : v);
+function vkUpdate(force) {
+  const sec = $('#make');
+  let p;
+  if (RM) { sec.classList.add('static'); p = 1; }
+  else { const hd = $('.hdr').offsetHeight, span = sec.offsetHeight - (innerHeight - hd); p = span > 0 ? clamp((hd - sec.getBoundingClientRect().top) / span) : 0; }
+  if (!force && Math.abs(p - vkP) < .0005) return;
+  vkP = p;
+  let seg = 0; while (seg < 4 && p >= VSEG[seg + 1]) seg++;
+  if (seg !== vkSeg) {
+    vkText(seg); vkSeg = seg;
+    $$('#vkSteps li').forEach(li => { const i = +li.dataset.i; li.classList.toggle('on', i === seg); li.classList.toggle('done', i < seg); });
+  }
+  const U = i => clamp((p - VSEG[i]) / (VSEG[i + 1] - VSEG[i]));
+  const [cx, cy] = VC;
+  // 1 · a glass cuts a circle out of the dough
+  const u0 = U(0), gin = ease(clamp(u0 / .35)), press = clamp((u0 - .35) / .15), gout = ease(clamp((u0 - .7) / .25)), cut = ease(clamp((u0 - .4) / .3));
+  const gx = cx + 220 * (1 - gin) + 240 * gout, gy = cy - 170 * (1 - gin) - 200 * gout;
+  at2($('#vGlass'), 'transform', `translate(${f1(gx)} ${f1(gy)}) scale(${(1 - .04 * Math.sin(Math.PI * press)).toFixed(3)})`);
+  at2($('#vGlass'), 'opacity', seg === 0 ? clamp(gin * 3) * (1 - gout) : 0);
+  at2($('#vCut'), 'stroke-dashoffset', 1 - cut);
+  at2($('#vCut'), 'opacity', seg === 0 && u0 < .98 ? 1 : 0);
+  const sheetOff = ease(clamp((u0 - .72) / .26));
+  at2($('#vSheet'), 'opacity', 1 - sheetOff);
+  at2($('#vDisc'), 'opacity', cut > .98 || seg > 0 ? 1 : 0);
+  // 2 · a spoonful of cherries
+  const u1 = U(1), sin_ = ease(clamp(u1 / .4)), drop = ease(clamp((u1 - .35) / .3)), sout = ease(clamp((u1 - .62) / .33));
+  at2($('#vSpoon'), 'transform', `translate(${f1(cx + 20 + 260 * (1 - sin_) + 260 * sout)} ${f1(cy - 70 - 160 * (1 - sin_) - 140 * sout)}) rotate(${f1(-18 + 30 * drop)})`);
+  at2($('#vSpoon'), 'opacity', seg === 1 ? clamp(sin_ * 3) * (1 - sout) : 0);
+  at2($('#vFill'), 'opacity', drop > 0 || seg > 1 ? 1 : 0);
+  at2($('#vFill'), 'transform', `translate(${f1(30 * (1 - drop))} ${f1(-90 * (1 - drop))}) translate(${cx} ${cy + 24}) scale(${(.6 + .4 * drop).toFixed(3)}) translate(${-cx} ${-cy - 24})`);
+  // 3 · fold the top half over
+  const a = ease(clamp(U(2) / .85)), k = Math.cos(Math.PI * a);
+  at2($('#vTop'), 'transform', `translate(0 ${cy}) scale(1 ${k.toFixed(4)}) translate(0 ${-cy})`);
+  $('#vTopP').setAttribute('class', a > .5 ? 'dg2' : 'dg');
+  at2($('#vFold'), 'opacity', a > .5 ? 1 : 0);
+  const turn = 180 * ease(clamp((U(2) - .84) / .16)), pv = [cx, cy + VR * .42];
+  // 4 · pinch the edge
+  const c = ease(clamp(U(3) / .85)), cf = clamp((U(3) - .82) / .16);
+  at2($('#vCrimp'), 'stroke-dashoffset', 1 - c);
+  at2($('#vCrimp'), 'opacity', seg >= 3 ? 1 : 0);
+  at2($('#vCrimpF'), 'opacity', seg >= 3 ? cf : 0);
+  at2($('#vSeam'), 'opacity', seg >= 3 ? cf : 0);
+  const ang = Math.PI * (1 - c), fx = cx + VR * Math.cos(ang), fy = cy + VR * Math.sin(ang);
+  at2($('#vFingers'), 'transform', `translate(${f1(fx)} ${f1(fy + 6)}) rotate(${f1(ang * 57.3 - 90)})`);
+  at2($('#vFingers'), 'opacity', seg === 3 && U(3) < .9 ? clamp(U(3) * 8) : 0);
+  // 5 · into the pot: it sinks, floats up, and the countdown runs
+  const u4 = seg === 4 ? U(4) : 0, pot = ease(clamp(u4 / .25)), mv = ease(clamp((u4 - .08) / .32)), sink = clamp((u4 - .4) / .12), flt = ease(clamp((u4 - .52) / .16));
+  at2($('#vPot'), 'opacity', pot);
+  const sc = 1 - .45 * mv - .05 * sink + .05 * flt;
+  at2($('#vVk'), 'transform', `translate(${cx} ${cy + 24}) scale(${sc.toFixed(3)}) translate(${-cx} ${-cy - 24}) rotate(${turn.toFixed(2)} ${pv[0]} ${f1(pv[1])})`);
+  at2($('#vVk'), 'opacity', 1 - .35 * sink + .35 * flt);
+  $$('#vkArt [data-rp]').forEach((ci, i) => { const w = clamp((u4 - .5 - i * .08) / .4); ci.setAttribute('r', f1(40 + 100 * w)); ci.setAttribute('opacity', (flt * (1 - w)).toFixed(3)); });
+  const left = Math.round(240 * (1 - clamp((u4 - .6) / .4)));
+  $('#vTT').textContent = `${Math.floor(left / 60)}:${pad(left % 60)}`;
+  at2($('#vTimer'), 'opacity', clamp((u4 - .5) / .1));
+  at2($('#vSteam'), 'opacity', RM ? 0 : clamp((u4 - .3) / .2));
+  $$('#vSteam path').forEach((ph, i) => ph.setAttribute('stroke-dashoffset', (-(u4 * 2.2) - i * .3).toFixed(3)));
+  $('#vkCue').style.opacity = (1 - clamp(p / .03)).toFixed(2);
+}
+addEventListener('scroll', () => { if (!vkRaf) vkRaf = requestAnimationFrame(() => { vkRaf = 0; vkUpdate(false); }); }, { passive: true });
+addEventListener('resize', () => vkUpdate(true));
+
+/* ===== freezer list ===== */
+const PLUS = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+const PLANE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4L3 11l6 2 2 6 3-4 4 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 13l8-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+let tab = 'all';
+function renderMenu() {
+  const only = $('#onlyIn').checked;
+  $('#tabs').innerHTML = ['all', ...GROUPS].map(g => `<button type="button" data-g="${g}" aria-pressed="${g === tab}">${esc(g === 'all' ? t('all') : t('g_' + g))}</button>`).join('');
+  $$('#tabs button').forEach(b => { b.onclick = () => { tab = b.dataset.g; renderMenu(); }; });
+  $('#mlist').innerHTML = GROUPS.filter(g => tab === 'all' || tab === g).map(g => {
+    const all = MENU.filter(m => m.g === g), list = all.filter(m => !only || m.in);
+    const rows = list.map(m => {
+      const tags = [`<span class="tg ${m.in ? 'in' : 'ord'}">${esc(t(m.in ? 'tg_in' : 'tg_ord'))}</span>`].concat(m.tags.map(k => `<span class="tg ${k}">${esc(t('tg_' + k))}</span>`));
+      const ck = m.cook ? `<a href="#cook" class="ckl" data-ck="${m.cook}" aria-label="${esc(fill(t('cook_how'), { n: nm(m.id) }))}">⏱ ${esc(fill(t('cook_min'), { m: COOK[m.cook] }))}</a>` : '';
+      return `<li class="mi"><div><p class="mi-n">${esc(nm(m.id))}</p><div class="mi-meta"><span>${esc(wt(m))}</span>${tags.join('')}${ck}</div></div>
+        <div class="mi-r"><span class="mi-p">${eur(m.price)}</span><button type="button" class="add" data-id="${m.id}" aria-label="${esc(fill(t('add'), { n: nm(m.id) }))}">${PLUS}</button></div></li>`;
+    }).join('');
+    const inN = all.filter(m => m.in).length;
+    return `<div class="mgroup"><h3>${esc(t('g_' + g))}<small>${inN}/${all.length} · ${esc(t('tg_in'))}</small></h3><ul>${rows || `<li class="mi"><p class="note">${esc(t('none_in'))}</p></li>`}</ul></div>`;
+  }).join('');
+  $$('.add[data-id]').forEach(b => { b.onclick = () => addItem(b.dataset.id, 1); });
+  $$('.ckl').forEach(a => { a.onclick = () => { ckType = a.dataset.ck; ckReset(); renderCook(); }; });
+  renderCart();
+}
+$('#onlyIn').addEventListener('change', renderMenu);
+
+/* ===== bag + Telegram message ===== */
+const cart = new Map();
+function addItem(id, dlt) { const q = Math.max(0, (cart.get(id) || 0) + dlt); if (q) cart.set(id, q); else cart.delete(id); renderCart(); renderDays(); }
+function cartSum() { let s = 0, c = 0; cart.forEach((q, id) => { s += q * item(id).price; c += q; }); return { s, c }; }
+function renderCart() {
+  const ul = $('#cart'); ul.innerHTML = '';
+  cart.forEach((q, id) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${esc(nm(id))}</span><span class="qty"><button type="button" aria-label="${esc(t('less'))}">−</button><span>${q}</span><button type="button" aria-label="${esc(t('more'))}">+</button></span><span class="cp">${eur(q * item(id).price)}</span>`;
+    const [m, pl] = li.querySelectorAll('button');
+    m.onclick = () => addItem(id, -1); pl.onclick = () => addItem(id, 1);
+    ul.appendChild(li);
+  });
+  const { s, c } = cartSum();
+  $('#cartEmpty').hidden = c > 0; $('#totalRow').hidden = c === 0; ul.hidden = c === 0;
+  $('#total').textContent = eur(s);
+  $$('.add[data-id]').forEach(b => { b.dataset.n = cart.get(b.dataset.id) || 0; });
+  $('#cbText').textContent = fill(t('cb_items'), { n: c, s: eur(s) });
+  updateBar();
+}
+let orderVisible = false;
+function updateBar() { $('#cartBar').hidden = cartSum().c === 0 || orderVisible; }
+new IntersectionObserver(es => { es.forEach(en => { orderVisible = en.isIntersecting; }); updateBar(); }, { threshold: .05 }).observe($('#order'));
+let how = 'pick';
+function renderHow() {
+  $('#howChips').innerHTML = ['pick', 'del'].map(k => `<label class="chip"><input type="radio" name="how" value="${k}" ${k === how ? 'checked' : ''}><span>${esc(t('how_' + k))}</span></label>`).join('');
+  $$('#howChips input').forEach(i => { i.onchange = () => { how = i.value; $('#areaRow').hidden = how !== 'del'; }; });
+  const cur = $('#oArea').value;
+  $('#oArea').innerHTML = t('areas').map((a, i) => `<option value="${i}">${esc(a)}</option>`).join('');
+  if (cur) $('#oArea').value = cur;
+  $('#areaRow').hidden = how !== 'del';
+}
+function slots(day, lead) {
+  const H = SITE.hours[dow(day)]; if (!H) return [];
+  const out = [], o = H[0] * 60 + H[1], c = H[2] * 60 + H[3] - 30, isT = isoDay(day) === isoDay(today());
+  const p = tzParts(Date.now()), nowM = p.h * 60 + p.mi;
+  for (let m = o; m <= c; m += 30) { if (isT && m < nowM + lead) continue; out.push(m); }
+  return out;
+}
+let pickDays = [];
+function needsDay() { let n = false; cart.forEach((q, id) => { if (!item(id).in) n = true; }); return n; }
+function renderDays() {
+  const d0 = today(), late = needsDay(); pickDays = [];
+  for (let i = 0; i < 10 && pickDays.length < 4; i++) { const d = addDays(d0, i); if (slots(d, 60).length) pickDays.push({ d, i, off: late && i === 0 }); }
+  const cur = ($('#dayChips input:checked') || {}).value;
+  $('#dayChips').innerHTML = pickDays.map(x => {
+    const lbl = x.i === 0 ? t('d_today') : x.i === 1 ? t('d_tom') : dayName(x.d, { weekday: 'short', day: 'numeric', month: 'short' });
+    return `<label class="chip"><input type="radio" name="day" value="${isoDay(x.d)}" ${x.off ? 'disabled' : ''} ${cur === isoDay(x.d) && !x.off ? 'checked' : ''}><span>${esc(lbl)}</span></label>`;
+  }).join('');
+  if (!$('#dayChips input:checked')) { const f = $('#dayChips input:not(:disabled)'); if (f) f.checked = true; }
+  $$('#dayChips input').forEach(i => { i.onchange = renderTimes; });
+  $('#leadNote').hidden = !(late && pickDays.length && pickDays[0].i === 0);
+  $('#leadNote').textContent = t('lead_note');
+  renderTimes();
+}
+function renderTimes() {
+  const v = ($('#dayChips input:checked') || {}).value, x = pickDays.find(p => isoDay(p.d) === v), cur = $('#oTime').value;
+  const list = x ? slots(x.d, 60) : [];
+  $('#oTime').innerHTML = list.length ? list.map(m => { const s = hhmm(Math.floor(m / 60), m % 60); return `<option value="${s}" ${s === cur ? 'selected' : ''}>${s}</option>`; }).join('') : `<option value="">${esc(t('no_slots'))}</option>`;
+}
+function resultBox(box, msg) {
+  const h = SITE.shopTelegram;
+  box.innerHTML = `<h4>${esc(t('res_h'))}</h4><pre>${esc(msg)}</pre><div class="acts"><button type="button" class="btn line sm cpy">${esc(t('copy'))}</button>${h ? `<a class="btn sm red" href="https://t.me/${encodeURIComponent(h)}" target="_blank" rel="noopener">${PLANE}${esc(fill(t('res_tg'), { h }))}</a>` : ''}</div><p class="cnote">${esc(t('res_note'))}</p>`;
+  box.hidden = false;
+  const b = box.querySelector('.cpy');
+  b.onclick = () => {
+    const ok = () => { b.textContent = t('copied'); setTimeout(() => { b.textContent = t('copy'); }, 1800); };
+    const sel = () => { const r = document.createRange(); r.selectNodeContents(box.querySelector('pre')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText(msg).then(ok, sel); } catch (e) { sel(); }
+  };
+  box.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'nearest' });
+}
+$('#orderForm').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const err = $('#oErr'), f = ev.target, v = n => f.elements[n].value.trim();
+  const { s, c } = cartSum();
+  if (!c) { err.textContent = t('err_cart'); err.hidden = false; return; }
+  if (!v('name') || !v('contact') || !v('time')) { err.textContent = t('err_req'); err.hidden = false; return; }
+  err.hidden = true;
+  const dv = ($('#dayChips input:checked') || {}).value, x = pickDays.find(p => isoDay(p.d) === dv);
+  const dl = x ? (x.i === 0 ? t('d_today').toLowerCase() : x.i === 1 ? t('d_tom').toLowerCase() : dayName(x.d, { weekday: 'long', day: 'numeric', month: 'long' })) : '';
+  const lines = [t('msg_hi')];
+  cart.forEach((q, id) => lines.push(`• ${q}× ${nm(id)} (${wt(item(id))}) — ${eur(q * item(id).price)}`));
+  lines.push(`${t('msg_total')}: ${eur(s)}`, '', `${t('msg_how')}: ${t('how_' + how).toLowerCase()}${how === 'del' ? ' — ' + t('areas')[+$('#oArea').value] : ''}`, `${t('msg_when')}: ${dl}, ${v('time')}`, `${t('msg_name')}: ${v('name')}`, `${t('msg_contact')}: ${v('contact')}`);
+  resultBox($('#oRes'), lines.join('\n'));
+});
+
+/* ===== kitchen timer ===== */
+let ckType = 'var', tTotal = COOK.var * 60, tLeft = tTotal, tRun = false, tLast = 0, tAud = null;
+function renderCook() {
+  $('#cookTypes').innerHTML = Object.keys(COOK).map(k => `<label class="chip"><input type="radio" name="ck" value="${k}" ${k === ckType ? 'checked' : ''}><span>${esc(t('ct_' + k))}</span></label>`).join('');
+  $$('#cookTypes input').forEach(i => { i.onchange = () => { ckType = i.value; ckReset(); renderCook(); }; });
+  $('#cookSteps').innerHTML = t('cs_' + ckType).map(x => `<li>${esc(x)}</li>`).join('');
+  ckDraw();
+}
+function ckDraw() {
+  const C = 2 * Math.PI * 118, f = tTotal ? tLeft / tTotal : 0, sec = Math.ceil(tLeft);
+  $('#timerArt').innerHTML = `<circle class="ring" cx="150" cy="150" r="118"/><circle class="ringf" cx="150" cy="150" r="118" stroke-dasharray="${f1(C)}" stroke-dashoffset="${f1(C * (1 - f))}" transform="rotate(-90 150 150)"/>
+    <text class="tt" x="150" y="160" text-anchor="middle" style="font-size:54px">${Math.floor(sec / 60)}:${pad(sec % 60)}</text><text class="ts" x="150" y="194" text-anchor="middle" style="font-size:15px">${esc(t('tl_' + ckType))}</text>`;
+  $('#tGo').textContent = tRun ? t('t_pause') : tLeft < tTotal && tLeft > 0 ? t('t_resume') : t('t_start');
+}
+function ckReset() { tRun = false; tTotal = COOK[ckType] * 60; tLeft = tTotal; $('#tDone').textContent = ''; ckDraw(); }
+function ckTick(now) {
+  if (!tRun) return;
+  tLeft = Math.max(0, tLeft - (now - tLast) / 1000); tLast = now;
+  if (tLeft <= 0) {
+    tRun = false; $('#tDone').textContent = t('t_done');
+    try { if (tAud) { [0, .35, .7].forEach(d => { const o = tAud.createOscillator(), g = tAud.createGain(); o.frequency.value = 880; g.gain.setValueAtTime(.0001, tAud.currentTime + d); g.gain.exponentialRampToValueAtTime(.25, tAud.currentTime + d + .02); g.gain.exponentialRampToValueAtTime(.0001, tAud.currentTime + d + .25); o.connect(g).connect(tAud.destination); o.start(tAud.currentTime + d); o.stop(tAud.currentTime + d + .3); }); } } catch (e) {}
+    try { navigator.vibrate && navigator.vibrate([200, 100, 200]); } catch (e) {}
+  }
+  ckDraw();
+  if (tRun) requestAnimationFrame(ckTick);
+}
+$('#tGo').addEventListener('click', () => {
+  try { tAud = tAud || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
+  if (tLeft <= 0) ckReset();
+  tRun = !tRun; $('#tDone').textContent = '';
+  if (tRun) { tLast = performance.now(); requestAnimationFrame(ckTick); }
+  ckDraw();
+});
+$('#tReset').addEventListener('click', ckReset);
+
+/* ===== Telegram, contacts, footer ===== */
+function renderVisit() {
+  const sh = SITE.shopTelegram, ch = SITE.channelTelegram;
+  $('#tgLinks').innerHTML = (ch ? `<a class="btn" href="https://t.me/${encodeURIComponent(ch)}" target="_blank" rel="noopener">${PLANE}${esc(t('tg_sub'))} @${esc(ch)}</a>` : '') + (sh ? `<a class="btn line" href="https://t.me/${encodeURIComponent(sh)}" target="_blank" rel="noopener">${esc(t('tg_write'))} ↗</a>` : '');
+  const rows = [[t('k_order'), sh ? '@' + sh : ''], [t('k_news'), ch ? '@' + ch : ''], [t('k_where'), SITE.address || t('where')], [t('k_del'), t('areas').join(' · ')]];
+  $('#facts2').innerHTML = rows.filter(r => r[1]).map(([k, v]) => `<li><b>${esc(k)}</b><span>${esc(v)}</span></li>`).join('');
+  $('#studioLink').href = SITE.studio;
+}
+
+/* ===== i18n & boot ===== */
+function applyTexts() {
+  document.documentElement.lang = LOC[lang].slice(0, 2) === 'pt' ? 'pt-PT' : lang;
+  $$('[data-t]').forEach(el => { const v = t(el.dataset.t); if (typeof v === 'string') el.textContent = v; });
+  $$('[data-th]').forEach(el => { el.innerHTML = t(el.dataset.th); });
+  $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+}
+function renderAll() {
+  applyTexts(); heroArt(); vkBuild(); renderMenu(); renderHow(); renderDays(); renderCook(); renderVisit();
+  $('#oRes').hidden = true;
+}
+$$('.lang button').forEach(b => b.addEventListener('click', () => {
+  lang = b.dataset.lang;
+  try { localStorage.setItem('mc-lang', lang); } catch (e) {}
+  renderAll();
+}));
+$$('[data-stitch]').forEach(stitch);
+let sw = innerWidth;
+addEventListener('resize', () => { if ((innerWidth < 600) !== (sw < 600)) { sw = innerWidth; $$('[data-stitch]').forEach(stitch); } });
+renderAll();
+setInterval(renderDays, 60000);
+</script>
+</body>
+</html>
