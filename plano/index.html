@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Plano de Negócios Orla</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Plano de negócios da Orla, estúdio web em Cascais. Informática de Gestão, Módulo 1: Criação de uma empresa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Forum&family=IBM+Plex+Mono:wght@400;500&family=Onest:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: one long column of eight numbered chapters (the eight points of the assignment).
+   Each chapter is a row: a rail with the roman numeral and title on the left, the content on the right.
+   A gold coastline (the "orla") runs under the hero. Dark, like the Orla studio site. */
+:root {
+  --ink: #0c0b0a;
+  --ink-2: #13110f;
+  --ink-3: #1b1815;
+  --line: #2c2722;
+  --fg: #eee7dc;
+  --muted: #9a8f83;
+  --dim: #6b625a;
+  --bronze: #b47c45;
+  --gold: #e4ba6a;
+  --gold-rgb: 228 186 106;
+  --bar: #4a433c;
+  --neg: #d98b72;
+  --font-display: "Forum", "Cormorant Garamond", "Times New Roman", serif;
+  --font-body: "Onest", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: clamp(1.6rem, 2.6vw, 2.1rem);
+  --step-3: clamp(2.2rem, 4.6vw, 3.4rem);
+  --step-4: clamp(2.7rem, 6.6vw, 5.6rem);
+  --radius: 6px;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--ink); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--ink);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--ink); }
+a { color: inherit; text-underline-offset: 3px; text-decoration-color: rgb(var(--gold-rgb) / .5); }
+a:hover { text-decoration-color: var(--gold); }
+:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+::selection { background: rgb(var(--gold-rgb) / .35); color: var(--fg); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -.005em; line-height: 1.08; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+b, strong { font-weight: 500; }
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.eyebrow { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+.mono { font-family: var(--font-mono); }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* header */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgb(12 11 10 / .88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 14px; }
+.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--font-display); font-size: 1.6rem; line-height: 1; letter-spacing: .02em; }
+.logo i { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--gold); box-shadow: 0 0 12px rgb(var(--gold-rgb) / .45), inset 0 0 6px rgb(var(--gold-rgb) / .35); display: block; }
+.logo small { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-left: 4px; }
+nav.toc { display: flex; gap: 4px; }
+nav.toc a { text-decoration: none; font-family: var(--font-mono); font-size: .72rem; color: var(--muted); padding: 6px 8px; border-radius: 99px; letter-spacing: .06em; }
+nav.toc a:hover { color: var(--ink); background: var(--gold); }
+@media (max-width: 860px) { nav.toc { display: none; } }
+
+/* hero */
+.hero { padding-block: clamp(56px, 9vw, 112px) 0; position: relative; }
+.hero .eyebrow { display: block; margin-bottom: 22px; }
+.hero h1 { font-size: var(--step-4); max-width: 15ch; }
+.hero h1 em { font-style: normal; color: var(--gold); }
+.lede { margin-top: 26px; max-width: 46ch; font-size: clamp(1.25rem, 1.75vw, 1.55rem); font-weight: 400; color: var(--fg); line-height: 1.5; }
+.lede b { color: var(--fg); font-weight: 400; }
+.coast { margin-top: clamp(20px, 3vw, 40px); position: relative; height: clamp(230px, 28vw, 420px); -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%); }
+.coast svg { position: absolute; left: 0; top: 50%; transform: translateY(-50%); display: block; width: 100%; height: auto; overflow: visible; transition: opacity .8s ease; }
+.coast canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; opacity: 0; transition: opacity 1.2s ease; }
+.coast.is-3d canvas { opacity: 1; }
+.coast.is-3d svg { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .coast canvas, .coast svg { transition: none; } }
+.coast .shore { fill: none; stroke: var(--gold); stroke-width: 1.4; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 6px rgb(var(--gold-rgb) / .45)); }
+.coast .sea { fill: none; stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.coast .pin { fill: var(--ink); stroke: var(--gold); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.coast-cap { position: absolute; z-index: 1; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--fg); white-space: nowrap; padding: 3px 8px; border-radius: 99px; background: rgb(12 11 10 / .72); }
+.ficha { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 28px; }
+.ficha div { padding: 18px 16px 18px 0; display: grid; gap: 4px; align-content: start; }
+.ficha div + div { padding-left: 16px; border-left: 1px solid var(--line); }
+.ficha dt, .ficha .k { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.ficha .v { font-family: var(--font-display); font-size: 1.65rem; line-height: 1.1; }
+.ficha .v small { font-family: var(--font-body); font-size: .85rem; color: var(--muted); }
+@media (max-width: 640px) {
+  .ficha { grid-template-columns: 1fr 1fr; }
+  .ficha div { padding: 14px 12px 14px 0; border-left: 0 !important; border-bottom: 1px solid var(--line); }
+  .ficha div + div { padding-left: 0; }
+  .ficha div:nth-child(even) { padding-left: 14px; border-left: 1px solid var(--line) !important; }
+  .ficha div:nth-last-child(-n+1) { border-bottom: 0; }
+}
+
+/* chapters */
+.ch { padding-block: clamp(64px, 8vw, 104px); border-top: 1px solid var(--line); }
+.ch > .wrap { display: grid; grid-template-columns: minmax(200px, 270px) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); }
+.rail { align-self: start; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 92px); display: grid; gap: 14px; }
+.rail .rn { font-family: var(--font-display); font-size: 3.4rem; line-height: .9; color: var(--gold); }
+.rail h2 { font-size: var(--step-2); }
+.rail .task { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); line-height: 1.5; }
+.body { display: grid; gap: 40px; min-width: 0; }
+.body > * { min-width: 0; }
+.lead { font-family: var(--font-display); font-size: var(--step-3); line-height: 1.12; max-width: 24ch; text-wrap: balance; }
+.lead.small { font-size: var(--step-2); max-width: 32ch; }
+.prose { max-width: 64ch; display: grid; gap: 14px; color: var(--muted); }
+.prose b { color: var(--fg); }
+h3 { font-size: 1.55rem; margin-bottom: 14px; }
+h3 .eyebrow { display: block; margin-bottom: 8px; font-size: .68rem; }
+@media (max-width: 860px) {
+  .ch > .wrap { grid-template-columns: 1fr; }
+  .rail { position: static; grid-template-columns: auto 1fr; align-items: end; column-gap: 18px; }
+  .rail .rn { grid-row: span 2; font-size: 3rem; }
+}
+
+/* the text that opens each chapter */
+.say { display: grid; gap: .7em; max-width: 40ch; padding-left: clamp(16px, 2vw, 24px); border-left: 1px solid var(--gold); }
+.say p { font-size: clamp(1.25rem, 1.75vw, 1.55rem); line-height: 1.5; font-weight: 400; color: var(--fg); text-wrap: pretty; }
+.say b { color: var(--gold); font-weight: 500; }
+.say.big p { font-family: var(--font-display); font-size: var(--step-3); line-height: 1.12; font-weight: 400; }
+.say.big { max-width: 26ch; }
+
+/* lists */
+.ticks { list-style: none; display: grid; gap: 12px; }
+.ticks li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; color: var(--muted); }
+.ticks li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1px solid var(--gold); margin-top: .62em; }
+.ticks li b { color: var(--fg); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+@media (max-width: 700px) { .two { grid-template-columns: 1fr; } }
+.steps { list-style: none; counter-reset: s; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--gold); }
+.steps li { counter-increment: s; padding: 18px 18px 0 0; display: grid; gap: 8px; align-content: start; position: relative; color: var(--muted); font-size: .98rem; }
+.steps li::before { content: "0" counter(s); font-family: var(--font-mono); font-size: .72rem; color: var(--gold); letter-spacing: .1em; }
+.steps li::after { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--ink); border: 1.5px solid var(--gold); }
+.steps b { color: var(--fg); font-weight: 400; font-family: var(--font-display); font-size: 1.3rem; line-height: 1.15; }
+@media (max-width: 760px) {
+  .steps { grid-template-columns: 1fr; border-top: 0; border-left: 1px solid var(--gold); }
+  .steps li { padding: 0 0 22px 22px; }
+  .steps li::after { top: 4px; left: -5px; }
+}
+.proof { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline; background: var(--ink-2); color: var(--muted); font-size: .98rem; }
+.proof a { color: var(--gold); }
+
+/* name */
+.dict { border-left: 1px solid var(--gold); padding: 6px 0 6px clamp(18px, 3vw, 32px); display: grid; gap: 12px; }
+.dict .word { font-family: var(--font-display); font-size: clamp(4.2rem, 12vw, 8.5rem); line-height: .9; letter-spacing: .01em; }
+.dict .ph { font-family: var(--font-mono); font-size: .82rem; color: var(--muted); letter-spacing: .06em; }
+.dict ol { padding-left: 1.4em; display: grid; gap: 6px; color: var(--muted); max-width: 56ch; }
+.dict ol li::marker { color: var(--gold); font-family: var(--font-mono); font-size: .85em; }
+.dict i { font-style: normal; color: var(--fg); }
+
+/* mission */
+.values { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.values div { padding: 20px 20px 4px 0; display: grid; gap: 6px; align-content: start; }
+.values b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; color: var(--fg); }
+.values p { color: var(--muted); font-size: .98rem; }
+
+@media (max-width: 1060px) { .values { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .values { grid-template-columns: 1fr; } }
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stat { padding: 22px 20px 20px 0; display: grid; gap: 6px; align-content: start; }
+.stat .v { font-family: var(--font-display); font-size: clamp(2rem, 3.4vw, 2.7rem); line-height: 1; color: var(--fg); font-variant-numeric: tabular-nums; }
+.stat .v small { font-size: .5em; color: var(--muted); }
+.stat p { color: var(--muted); font-size: .92rem; line-height: 1.45; }
+.stat .src { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+.stat .src a { color: var(--dim); }
+.note { color: var(--muted); font-size: .95rem; max-width: 64ch; }
+
+/* tables */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--font-mono); font-weight: 400; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); background: var(--ink-2); white-space: nowrap; }
+td { color: var(--muted); }
+td:first-child { color: var(--fg); }
+tr:last-child td { border-bottom: 0; }
+td.n, th.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr.total td { color: var(--fg); background: var(--ink-2); font-weight: 500; }
+tr.pick td { background: rgb(var(--gold-rgb) / .07); }
+tr.pick td:first-child { box-shadow: inset 3px 0 0 var(--gold); }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink); background: var(--gold); padding: 2px 7px; border-radius: 99px; margin-left: 6px; vertical-align: 2px; }
+.wide table { min-width: 720px; }
+
+/* swot */
+.swot { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.swot div { padding: 18px 20px 20px; border-color: var(--line); display: grid; gap: 10px; align-content: start; }
+.swot div:nth-child(1), .swot div:nth-child(2) { border-bottom: 1px solid var(--line); }
+.swot div:nth-child(odd) { border-right: 1px solid var(--line); }
+.swot .q { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+.swot .q span { color: var(--dim); }
+.swot ul { list-style: none; display: grid; gap: 6px; color: var(--muted); font-size: .95rem; }
+.swot li::before { content: "— "; color: var(--dim); }
+@media (max-width: 640px) {
+  .swot { grid-template-columns: 1fr; }
+  .swot div { border-right: 0 !important; border-bottom: 1px solid var(--line); }
+  .swot div:last-child { border-bottom: 0; }
+}
+
+/* services */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.plan { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 20px; display: grid; gap: 12px; align-content: start; background: var(--ink-2); }
+.plan.main { border-color: rgb(var(--gold-rgb) / .55); }
+.plan .k { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); display: flex; justify-content: space-between; gap: 10px; }
+.plan h4 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1.1; }
+.plan .price { font-family: var(--font-display); font-size: 2.6rem; line-height: 1; color: var(--gold); font-variant-numeric: tabular-nums; }
+.plan .price small { font-family: var(--font-body); font-size: .9rem; color: var(--muted); }
+.plan p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 860px) { .plans { grid-template-columns: 1fr; } }
+
+/* goals */
+.goals { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--gold); position: relative; }
+.goals li { padding: 20px 20px 0 0; display: grid; gap: 8px; align-content: start; position: relative; }
+.goals li::after { content: ""; position: absolute; top: -6px; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--ink); border: 1.5px solid var(--gold); }
+.goals li:last-child::after { background: var(--gold); box-shadow: 0 0 12px rgb(var(--gold-rgb) / .6); }
+.goals .d { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+.goals b { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; line-height: 1.1; }
+.goals p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 760px) {
+  .goals { grid-template-columns: 1fr; border-top: 0; border-left: 1px solid var(--gold); }
+  .goals li { padding: 0 0 22px 24px; }
+  .goals li::after { top: 3px; left: -6px; }
+}
+
+/* charts */
+figure { margin: 0; display: grid; gap: 12px; }
+.chart-h { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.15; }
+.chart-sub { color: var(--muted); font-size: .92rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .88rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.chart { overflow-x: auto; }
+.chart svg { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+.chart .t { fill: var(--fg); font-size: 12px; }
+.chart .tm { fill: var(--muted); font-size: 12px; }
+.chart .ax { stroke: var(--line); stroke-width: 1; }
+.chart .zero { stroke: var(--dim); stroke-width: 1; stroke-dasharray: 3 4; }
+.chart .b-site { fill: var(--bar); }
+.chart .b-man { fill: var(--gold); }
+.chart .ln { fill: none; stroke: var(--gold); stroke-width: 2; }
+.chart .pt { fill: var(--ink); stroke: var(--gold); stroke-width: 1.5; }
+.chart .pt.neg { stroke: var(--neg); }
+.chart .tn { fill: var(--neg); font-size: 12px; }
+figcaption { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+
+/* org chart */
+.org { display: grid; gap: 0; }
+.org-top { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: center; }
+.org-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 56px; position: relative; }
+.node { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 6px; align-content: start; background: var(--ink-2); position: relative; }
+.node b { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; color: var(--fg); line-height: 1.15; }
+.node span, .node li { color: var(--muted); font-size: .92rem; line-height: 1.45; }
+.node ul { list-style: none; display: grid; gap: 3px; }
+.node.boss { grid-column: 2; border-color: var(--gold); background: rgb(var(--gold-rgb) / .08); text-align: center; }
+.node.ext { border-style: dashed; background: transparent; }
+.org-note { grid-column: 1; grid-row: 1; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); line-height: 1.7; }
+.node.boss::after { content: ""; position: absolute; left: 50%; bottom: -29px; height: 28px; border-left: 1px solid var(--dim); }
+.node.boss::before { content: "contrata"; position: absolute; right: -24px; top: 50%; width: 24px; border-top: 1px dashed var(--dim); font-size: 0; }
+.org-row::before { content: ""; position: absolute; top: -28px; left: calc((100% - 48px) / 6); right: calc((100% - 48px) / 6); border-top: 1px solid var(--dim); }
+.org-row .node::before { content: ""; position: absolute; top: -29px; left: 50%; height: 28px; border-left: 1px solid var(--dim); }
+@media (max-width: 760px) {
+  .org-top, .org-row { grid-template-columns: 1fr; gap: 14px; }
+  .org-row { margin-top: 14px; padding-left: 18px; border-left: 1px solid var(--dim); }
+  .node.boss { grid-column: auto; text-align: left; }
+  .org-note { grid-row: auto; }
+  .node.boss::after, .node.boss::before, .org-row::before { display: none; }
+  .org-row .node::before { top: 50%; left: -19px; height: 0; width: 18px; border-left: 0; border-top: 1px solid var(--dim); }
+}
+
+/* money */
+.cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card { border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 8px; align-content: start; }
+.card b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; }
+.card p { color: var(--muted); font-size: .95rem; }
+.card .big { font-family: var(--font-display); font-size: 2.3rem; line-height: 1; color: var(--gold); }
+@media (max-width: 700px) { .cards2 { grid-template-columns: 1fr; } }
+.alts { list-style: none; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.alts li { display: grid; grid-template-columns: minmax(160px, 240px) 1fr; gap: 8px 24px; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
+.alts b { color: var(--fg); font-weight: 400; }
+@media (max-width: 640px) { .alts li { grid-template-columns: 1fr; } }
+
+/* conclusion + footer */
+.concl { padding-block: clamp(72px, 9vw, 120px); border-top: 1px solid var(--line); }
+.concl .wrap { display: grid; gap: 28px; }
+.concl p.big { font-family: var(--font-display); font-size: var(--step-3); line-height: 1.12; max-width: 26ch; text-wrap: balance; }
+.concl p.big em { font-style: normal; color: var(--gold); }
+footer { border-top: 1px solid var(--line); padding-block: 48px 64px; }
+footer .wrap { display: grid; gap: 28px; }
+.sources { columns: 2 320px; column-gap: 40px; list-style: none; }
+.sources li { break-inside: avoid; padding: 6px 0; font-size: .88rem; color: var(--muted); }
+.sources a { color: var(--muted); }
+.sources a:hover { color: var(--fg); }
+.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.foot a { color: var(--muted); }
+
+@media (max-width: 480px) { .logo small { display: none; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#topo"><i aria-hidden="true"></i>Orla<small>Plano de negócios</small></a>
+    <nav class="toc" aria-label="Pontos do plano">
+      <a href="#ideia">I</a><a href="#nome">II</a><a href="#missao">III</a><a href="#mercado">IV</a><a href="#objetivos">V</a><a href="#rh">VI</a><a href="#financiamento">VII</a><a href="#forma">VIII</a>
+    </nav></div>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <span class="eyebrow">Informática de Gestão · Módulo 1 · Criação de uma empresa</span>
+      <h1 id="h1">Sites à medida para os pequenos negócios <em>da costa</em>.</h1>
+      <p class="lede">O meu trabalho é o plano de negócios da <b>Orla</b>, um estúdio web que eu criei em Cascais.</p>
+    </div>
+    <div class="coast" aria-hidden="true">
+      <canvas id="coast3d"></canvas>
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path class="sea" d="M0 96 C 180 92, 320 100, 520 94 S 860 88, 1200 96"/>
+        <path class="sea" d="M0 110 C 220 106, 420 114, 640 108 S 980 104, 1200 110"/>
+        <path class="shore" id="shore" d="M0 64 C 90 60, 150 40, 240 46 C 330 52, 380 78, 470 74 C 560 70, 600 44, 690 40 C 760 37, 800 58, 860 62 C 940 67, 1000 50, 1080 52 C 1130 53, 1170 60, 1200 58"/>
+        <circle class="pin" id="pin" cx="690" cy="40" r="6"/>
+      </svg>
+      <span class="coast-cap" id="coastCap">Cascais · 38,70° N · 9,42° O</span>
+    </div>
+    <div class="wrap">
+      <dl class="ficha">
+        <div><dt>Início</dt><dd class="v" style="margin:0">jan. 2027</dd></div>
+        <div><dt>Forma jurídica</dt><dd class="v" style="margin:0">Trabalhador independente</dd></div>
+        <div><dt>Investimento inicial</dt><dd class="v num" style="margin:0">45 €</dd></div>
+        <div><dt>Custos fixos</dt><dd class="v num" style="margin:0">215 € <small>/ mês</small></dd></div>
+        <div><dt>Meta do 1.º ano</dt><dd class="v num" style="margin:0">12 sites</dd></div>
+        <div><dt>Faturação prevista</dt><dd class="v num" style="margin:0">7 305 €</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- I -->
+  <section class="ch" id="ideia" aria-labelledby="h-ideia">
+    <div class="wrap">
+      <div class="rail"><span class="rn">I</span><h2 id="h-ideia">A ideia por escrito</h2><span class="task">Enunciado: colocar a ideia por escrito</span></div>
+      <div class="body">
+        <div class="say"><p>Muitos cafés, pastelarias e lojas só têm Instagram. O cliente não encontra o menu, os preços nem o horário.</p><p>A Orla faz para eles um site simples, de uma página, em várias línguas, e os pedidos chegam por WhatsApp ou Telegram.</p><p>Primeiro eu faço um conceito do site e envio ao negócio. Só depois falamos de dinheiro.</p></div>
+        <div class="two">
+          <div>
+            <h3><span class="eyebrow">O problema</span>O cliente não encontra o essencial</h3>
+            <ul class="ticks">
+              <li><span>Menu, preços e horário estão <b>espalhados por publicações e stories</b>.</span></li>
+              <li><span>Em Cascais muitos clientes são estrangeiros, mas a informação costuma estar <b>só numa língua</b>.</span></li>
+              <li><span>Uma agência é <b>cara e demora</b>. Um construtor como o Wix exige tempo que o dono não tem.</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3><span class="eyebrow">A solução</span>Um site de uma página, feito à medida</h3>
+            <ul class="ticks">
+              <li><span><b>Menu ou serviços com preços</b>, horário com “aberto agora”, morada e contactos.</span></li>
+              <li><span><b>Duas ou três línguas</b>: português, inglês e, quando faz sentido, russo ou ucraniano.</span></li>
+              <li><span>Pedidos e reservas chegam por <b>WhatsApp ou Telegram</b>, sem comissão por pedido.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h3><span class="eyebrow">Como a Orla vende</span>Primeiro o conceito, depois a conversa</h3>
+          <ol class="steps">
+            <li><b>Encontrar</b>Procura negócios locais no Instagram e no Telegram.</li>
+            <li><b>Fazer o conceito</b>Desenha o site antes do contacto, com o nome e os produtos reais do negócio.</li>
+            <li><b>Enviar</b>Manda o link numa mensagem curta e propõe uma conversa.</li>
+            <li><b>Entregar</b>Se o cliente aceitar, o conceito passa a site real, com fotos, preços e domínio.</li>
+          </ol>
+        </div>
+        <p class="proof"><span class="eyebrow">Outubro de 2026</span><span>Já existem o <a href="https://vvvseva3-maker.github.io/orla-studio/" target="_blank" rel="noopener">site do estúdio</a>, uma demo e quatro conceitos para negócios reais. Um deles foi passado à direção do negócio para avaliação.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- II -->
+  <section class="ch" id="nome" aria-labelledby="h-nome">
+    <div class="wrap">
+      <div class="rail"><span class="rn">II</span><h2 id="h-nome">Nome da empresa</h2><span class="task">Enunciado: nome da empresa</span></div>
+      <div class="body">
+        <div class="say"><p>Orla quer dizer margem, ou a faixa da costa junto ao mar. Cascais fica na costa, por isso o nome faz sentido.</p><p>Além disso, é curto e fácil de dizer em várias línguas.</p></div>
+        <div class="dict">
+          <span class="word">Orla</span>
+          <span class="ph">ór·la · nome feminino</span>
+          <ol>
+            <li><i>Margem, borda</i> de alguma coisa.</li>
+            <li><i>Orla marítima</i>: a faixa de terra junto ao mar.</li>
+          </ol>
+        </div>
+        <ul class="ticks">
+          <li><span><b>Significado.</b> O estúdio nasce em Cascais, na orla marítima, e trabalha com os negócios dessa costa.</span></li>
+          <li><span><b>Fácil de dizer.</b> Tem quatro letras e lê-se da mesma forma em português, inglês e russo.</span></li>
+          <li><span><b>Fácil de lembrar.</b> É curto, não tem acentos e funciona como logotipo, conta de Instagram e endereço de site.</span></li>
+          <li><span><b>Domínio.</b> Hoje o site está num endereço gratuito do GitHub Pages. O passo seguinte é registar um domínio próprio, por exemplo orlastudio.pt.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- III -->
+  <section class="ch" id="missao" aria-labelledby="h-missao">
+    <div class="wrap">
+      <div class="rail"><span class="rn">III</span><h2 id="h-missao">Missão da empresa</h2><span class="task">Enunciado: missão da empresa</span></div>
+      <div class="body">
+        <div class="say"><p>A nossa missão é dar a cada pequeno negócio um site feito à medida, rápido e em várias línguas, que traga clientes reais.</p></div>
+        <div class="prose"><p><b>Visão.</b> Ser, até 2030, o estúdio de referência para sites de pequenos negócios na Linha de Cascais e em Lisboa.</p></div>
+        <div class="values">
+          <div><b>Feito à medida</b><p>Cada cliente tem a sua própria identidade, sem modelos genéricos.</p></div>
+          <div><b>Honestidade</b><p>O cliente vê o conceito antes de pagar. A Orla não inventa avaliações nem números.</p></div>
+          <div><b>Rapidez</b><p>Os sites são leves e abrem depressa no telemóvel.</p></div>
+          <div><b>Proximidade</b><p>A Orla fala a língua do cliente e responde no canal que ele já usa.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV -->
+  <section class="ch" id="mercado" aria-labelledby="h-mercado">
+    <div class="wrap">
+      <div class="rail"><span class="rn">IV</span><h2 id="h-mercado">Mercado potencial</h2><span class="task">Enunciado: mercado potencial</span></div>
+      <div class="body">
+        <div class="say"><p>Em Portugal há mais de <b>um milhão e meio</b> de empresas, e <b>96%</b> são microempresas. Muitas ainda não têm site.</p><p>Os meus clientes são cafés, restaurantes, lojas e pequenos serviços: primeiro em Cascais, depois em Lisboa e também online.</p></div>
+        <div class="stats">
+          <div class="stat"><span class="v">1 576 606</span><p>empresas não financeiras em Portugal</p><span class="src"><a href="https://www.gee.gov.pt/pt/docs/publicacoes/estatisticas-setoriais/8789-total-das-empresas-nao-financeiras/file" target="_blank" rel="noopener">GEE / INE, 2024</a></span></div>
+          <div class="stat"><span class="v">96,3<small>%</small></span><p>são microempresas, com menos de 10 pessoas (1 518 262)</p><span class="src"><a href="https://www.gee.gov.pt/pt/docs/publicacoes/estatisticas-setoriais/8789-total-das-empresas-nao-financeiras/file" target="_blank" rel="noopener">GEE / INE, 2024</a></span></div>
+          <div class="stat"><span class="v">39 912</span><p>empresas no concelho de Cascais, com 242 619 habitantes (2025)</p><span class="src"><a href="https://www.pordata.pt/en/municipalities/summary+table/cascais-828235" target="_blank" rel="noopener">PORDATA, 2024</a></span></div>
+          <div class="stat"><span class="v">63<small>%</small></span><p>das empresas com 10 ou mais pessoas têm site em Portugal. Na UE são 79%.</p><span class="src"><a href="https://www.pordata.pt/en/europe/enterprises+with+10+or+more+personnel+employed+with+website+or+homepage+on+the+internet+as+a+percentage+of+total+of+enterprises+by+band+of+personnel+employed-1495" target="_blank" rel="noopener">PORDATA, 2025</a></span></div>
+        </div>
+        <p class="note">Mesmo entre as empresas maiores, 37% não têm site, e as microempresas nem entram neste inquérito. Em Cascais, cerca de 1 em cada 10 residentes tem nacionalidade estrangeira (<a href="https://data.cascais.pt/sites/default/files/2024-11/Brochura%20PerfilLocalSaude_Cascais2024_V2.cleaned.pdf" target="_blank" rel="noopener">Censos 2021</a>), por isso as várias línguas contam.</p>
+        <div class="two">
+          <div>
+            <h3><span class="eyebrow">Clientes-alvo</span>Quem compra</h3>
+            <ul class="ticks">
+              <li><span>Cafés, restaurantes e pastelarias que mudam o menu com frequência.</span></li>
+              <li><span>Lojas de comida e mercearias que já recebem encomendas por mensagem.</span></li>
+              <li><span>Pequenos serviços: fotografia, yoga, explicações, estética.</span></li>
+              <li><span>Negócios com muitos clientes estrangeiros.</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3><span class="eyebrow">Zona geográfica</span>Onde, por ordem</h3>
+            <ul class="ticks">
+              <li><span><b>2027:</b> Cascais e a Linha (Estoril, Parede, Carcavelos, Oeiras), com contacto direto.</span></li>
+              <li><span><b>2.º semestre de 2027:</b> Lisboa.</span></li>
+              <li><span><b>Sempre:</b> clientes de todo o mundo, pelas plataformas Fiverr e Upwork.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h3><span class="eyebrow">Concorrência</span>O que o cliente faz hoje</h3>
+          <div class="tbl wide">
+            <table>
+              <thead><tr><th>Alternativa</th><th>Como funciona</th><th>Ponto fraco para um pequeno negócio</th></tr></thead>
+              <tbody>
+                <tr><td>Construtores de sites (Wix, Squarespace)</td><td>O dono faz o site sozinho e paga uma assinatura</td><td>Exige tempo e jeito, e o resultado parece um modelo</td></tr>
+                <tr><td>Agências web</td><td>Uma equipa faz um site completo</td><td>Preço alto e prazos de semanas ou meses</td></tr>
+                <tr><td>Freelancers em plataformas online</td><td>Sites baratos feitos à distância</td><td>Não conhecem o negócio local</td></tr>
+                <tr><td>Só Instagram e Google Maps</td><td>Grátis</td><td>Menu, preços e horário perdidos entre publicações</td></tr>
+                <tr><td>Plataformas de entrega (Glovo, Uber Eats)</td><td>Recebem pedidos online</td><td>Cobram uma comissão por cada pedido</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note" style="margin-top:14px">A vantagem da Orla: o cliente vê o conceito antes de pagar, o preço é fixo e o site fica pronto em uma a duas semanas.</p>
+        </div>
+        <div>
+          <h3><span class="eyebrow">Análise SWOT</span>Forças, fraquezas, oportunidades e ameaças</h3>
+          <div class="swot">
+            <div><span class="q">Forças <span>· interno</span></span><ul><li>Conceito pronto antes do primeiro contacto</li><li>Sites leves e em várias línguas</li><li>Custos fixos de cerca de 215 € por mês, sem escritório nem empregados</li></ul></div>
+            <div><span class="q">Fraquezas <span>· interno</span></span><ul><li>Uma só pessoa, com pouca capacidade</li><li>Marca nova, ainda sem clientes pagos</li><li>Depende de serviços externos</li></ul></div>
+            <div><span class="q">Oportunidades <span>· externo</span></span><ul><li>Muitas empresas ainda sem site</li><li>Muitos residentes e turistas estrangeiros</li><li>Os negócios já usam WhatsApp e Telegram para encomendas</li></ul></div>
+            <div><span class="q">Ameaças <span>· externo</span></span><ul><li>Construtores de sites com IA cada vez mais fáceis</li><li>Freelancers muito baratos</li><li>Donos que acham que o Instagram chega</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V -->
+  <section class="ch" id="objetivos" aria-labelledby="h-obj">
+    <div class="wrap">
+      <div class="rail"><span class="rn">V</span><h2 id="h-obj">Objetivo da empresa</h2><span class="task">Enunciado: objetivo da empresa</span></div>
+      <div class="body">
+        <div class="say"><p>Tenho três produtos: o site Essencial por <b>390 euros</b>, o site Completo por <b>690 euros</b> e a manutenção por <b>25 euros por mês</b>.</p><p>A meta para 2027 é vender <b>12 sites</b> e faturar cerca de <b>7300 euros</b>.</p></div>
+        <div>
+          <h3><span class="eyebrow">Serviços e preços</span>Três produtos, preço fixo</h3>
+          <div class="plans">
+            <article class="plan"><span class="k"><span>Site</span><span>1 semana</span></span><h4>Essencial</h4><span class="price">390 €</span><p>Uma página com apresentação, serviços ou menu com preços, horário, mapa e contactos, em duas línguas.</p></article>
+            <article class="plan main"><span class="k"><span>Site</span><span>2 semanas</span></span><h4>Completo</h4><span class="price">690 €</span><p>Tudo o que o Essencial inclui, mais pedidos ou reservas por WhatsApp ou Telegram, três línguas e animações.</p></article>
+            <article class="plan"><span class="k"><span>Mensal</span><span>contínuo</span></span><h4>Manutenção</h4><span class="price">25 € <small>/ mês</small></span><p>Alojamento, domínio do cliente e até duas atualizações de menu ou preços por mês.</p></article>
+          </div>
+          <p class="note" style="margin-top:14px">Preços sem IVA: a Orla fica isenta ao abrigo do artigo 53.º do Código do IVA (ponto VIII). O cliente paga 50% quando aceita a proposta e 50% na entrega.</p>
+        </div>
+        <div>
+          <h3><span class="eyebrow">Metas</span>Três marcos no primeiro ano</h3>
+          <ol class="goals">
+            <li><span class="d">31 mar. 2027</span><b>2 sites vendidos</b><p>Domínio próprio registado e 15 conceitos enviados.</p></li>
+            <li><span class="d">30 jun. 2027</span><b>5 sites vendidos</b><p>5 clientes com manutenção.</p></li>
+            <li><span class="d">31 dez. 2027</span><b>12 sites vendidos</b><p>8 Essencial e 4 Completo, cerca de 7 300 € faturados e pelo menos 1 em cada 5 conceitos a passar a cliente.</p></li>
+          </ol>
+        </div>
+        <figure>
+          <span class="chart-h">Faturação prevista de 7 305 € em 2027, e a manutenção cresce todos os meses</span>
+          <span class="chart-sub" id="revSub"></span>
+          <span class="legend"><span><i style="background:var(--bar)"></i>Sites</span><span><i style="background:var(--gold)"></i>Manutenção</span></span>
+          <div class="chart" id="revChart" role="img" aria-label="Faturação prevista por mês em 2027, de 0 € em janeiro a 965 € em dezembro"></div>
+          <figcaption>Previsão do plano · janeiro a dezembro de 2027 · manutenção a 25 € por cliente por mês</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- VI -->
+  <section class="ch" id="rh" aria-labelledby="h-rh">
+    <div class="wrap">
+      <div class="rail"><span class="rn">VI</span><h2 id="h-rh">Recursos humanos</h2><span class="task">Enunciado: recursos humanos (organigrama)</span></div>
+      <div class="body">
+        <div class="say"><p>No início sou só eu. Faço a parte comercial, o design e a programação, e o apoio aos clientes.</p><p>Quando for preciso, contrato um contabilista, um fotógrafo ou um revisor.</p></div>
+        <div class="org" role="group" aria-label="Organigrama da Orla">
+          <div class="org-top">
+            <span class="org-note">1 pessoa<br>3 funções<br>3 parceiros externos</span>
+            <div class="node boss"><b>Fundador e gerente</b><span>Vsevolod Vatlin, faz as três funções</span></div>
+            <div class="node ext"><b>Parceiros externos</b><ul><li>Contabilista, ao passar a sociedade</li><li>Fotógrafo freelancer para os clientes</li><li>Revisor para textos noutras línguas</li></ul></div>
+          </div>
+          <div class="org-row">
+            <div class="node"><b>Comercial e marketing</b><ul><li>Procura clientes no Instagram</li><li>Envia conceitos e propostas</li><li>Gere as redes sociais</li></ul></div>
+            <div class="node"><b>Design e desenvolvimento</b><ul><li>Cria a identidade do cliente</li><li>Programa e testa os sites</li><li>Trabalha com o Claude, um assistente de IA</li></ul></div>
+            <div class="node"><b>Apoio e manutenção</b><ul><li>Atualiza menus e preços</li><li>Gere alojamento e domínios</li><li>Responde aos clientes</li></ul></div>
+          </div>
+        </div>
+        <p class="note">A caixa tracejada são serviços comprados fora, só quando é preciso. Se em 2028 a Orla vender mais de dois sites por mês, o primeiro passo é contratar um designer ou programador em part-time, ou um estagiário.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VII -->
+  <section class="ch" id="financiamento" aria-labelledby="h-fin">
+    <div class="wrap">
+      <div class="rail"><span class="rn">VII</span><h2 id="h-fin">Forma de financiamento</h2><span class="task">Enunciado: forma de financiamento</span></div>
+      <div class="body">
+        <div class="say"><p>Começo com <b>500 euros</b> das minhas poupanças. O investimento inicial é de cerca de <b>45 euros</b>, e os custos fixos são cerca de <b>215 euros por mês</b>, sobretudo a assinatura de inteligência artificial.</p><p>Não preciso de empréstimo, porque cada cliente paga metade no início.</p><p>Só janeiro fica negativo, e no fim do ano o resultado é de cerca de <b>4500 euros</b>.</p></div>
+        <div>
+          <h3><span class="eyebrow">Investimento e custos</span>Primeiro ano</h3>
+          <div class="tbl">
+            <table>
+              <thead><tr><th>Rubrica</th><th class="n">Por mês</th><th class="n">1.º ano</th><th>Nota</th></tr></thead>
+              <tbody>
+                <tr><td>Domínio próprio .pt</td><td class="n">—</td><td class="n">≈ 15 €</td><td>Investimento inicial</td></tr>
+                <tr><td>Cartões de visita</td><td class="n">—</td><td class="n">≈ 30 €</td><td>Investimento inicial</td></tr>
+                <tr><td>Computador e telemóvel</td><td class="n">—</td><td class="n">0 €</td><td>O fundador já os tem</td></tr>
+                <tr><td>Claude Max (20x): IA para design, código e textos</td><td class="n">≈ 215 €</td><td class="n">2 580 €</td><td>200 US$ mais IVA de 23%</td></tr>
+                <tr><td>Domínios dos clientes</td><td class="n">—</td><td class="n">≈ 180 €</td><td>15 € por cliente novo, pagos pela manutenção</td></tr>
+                <tr><td>Alojamento dos sites</td><td class="n">0 €</td><td class="n">0 €</td><td>Planos gratuitos do GitHub Pages ou Cloudflare Pages</td></tr>
+                <tr><td>Segurança Social</td><td class="n">0 €</td><td class="n">0 €</td><td>Isenção nos primeiros 12 meses de atividade</td></tr>
+                <tr><td>Contabilista</td><td class="n">0 €</td><td class="n">0 €</td><td>Não é obrigatório no regime simplificado</td></tr>
+                <tr class="total"><td>Total</td><td class="n">≈ 215 €</td><td class="n">≈ 2 805 €</td><td>Para começar bastam 45 €</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <figure>
+          <span class="chart-h" id="cashH">O saldo acumulado fica positivo em março e fecha o ano em cerca de 4 500 €</span>
+          <span class="chart-sub">Saldo acumulado no fim de cada mês: faturação menos custos, antes de impostos</span>
+          <div class="chart" id="cashChart" role="img" aria-label="Saldo acumulado por mês em 2027, de menos 260 € em janeiro a 4 500 € em dezembro"></div>
+          <figcaption>Previsão do plano · custos de 215 € por mês, mais 15 € por cliente novo e 45 € de investimento em janeiro</figcaption>
+        </figure>
+        <div class="cards2">
+          <div class="card"><span class="eyebrow">Capitais próprios</span><span class="big">500 €</span><p>Poupanças do fundador. Cobrem o investimento inicial e a assinatura de janeiro, antes do primeiro pagamento.</p></div>
+          <div class="card"><span class="eyebrow">Autofinanciamento</span><span class="big">50%</span><p>Cada cliente paga metade quando aceita a proposta, por isso o trabalho é pago antes da entrega. As receitas são reinvestidas.</p></div>
+        </div>
+        <div>
+          <h3><span class="eyebrow">Alternativas analisadas</span>Porque não, por agora</h3>
+          <ul class="alts">
+            <li><b>Apoios do IEFP</b><span>Empreende XXI, MICROINVEST e INVEST+. Exigem inscrição num centro de emprego e servem projetos com mais investimento.</span></li>
+            <li><b>Microcrédito</b><span>Crédito pequeno do Programa Nacional de Microcrédito, com apoio da CASES. Útil se a Orla precisar de equipamento.</span></li>
+            <li><b>Business angels e capital de risco</b><span>Procuram crescimento muito rápido e ficam com parte da empresa. Não faz sentido para um estúdio pequeno.</span></li>
+            <li><b>Crowdfunding</b><span>Não é necessário para um investimento tão baixo.</span></li>
+          </ul>
+          <p class="note" style="margin-top:14px">Estas opções ficam em aberto para 2028, se a Orla contratar alguém (<a href="https://www.vendus.pt/blog/apoios-novas-empresas/" target="_blank" rel="noopener">fonte</a>).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIII -->
+  <section class="ch" id="forma" aria-labelledby="h-forma">
+    <div class="wrap">
+      <div class="rail"><span class="rn">VIII</span><h2 id="h-forma">Tipo de empresa</h2><span class="task">Enunciado: tipo de empresa (forma jurídica)</span></div>
+      <div class="body">
+        <div class="say"><p>Escolhi ser <b>trabalhador independente</b>. Abrir atividade nas Finanças é grátis, não preciso de contabilista e fico isento de IVA, porque vou faturar menos de <b>15 000 euros</b> por ano.</p><p>Quando a empresa crescer, passo a sociedade unipessoal por quotas.</p></div>
+        <div class="tbl wide">
+          <table>
+            <thead><tr><th>Forma jurídica</th><th>Sócios</th><th>Capital mínimo</th><th>Responsabilidade</th><th>Contabilidade</th><th>Abertura</th></tr></thead>
+            <tbody>
+              <tr class="pick"><td>Trabalhador independente <span class="tag">Orla</span></td><td>1</td><td>Não tem</td><td>Ilimitada: responde o património pessoal</td><td>Regime simplificado, sem contabilista até 200 000 € por ano</td><td>Grátis, no Portal das Finanças</td></tr>
+              <tr><td>Sociedade unipessoal por quotas</td><td>1</td><td>1 €</td><td>Limitada ao capital social</td><td>Organizada, com contabilista certificado</td><td>Cerca de 360 € na Empresa na Hora</td></tr>
+              <tr><td>Sociedade por quotas (Lda.)</td><td>2 ou mais</td><td>1 € por sócio</td><td>Limitada ao valor da quota</td><td>Organizada, com contabilista certificado</td><td>220 € a 360 €</td></tr>
+              <tr><td>Sociedade anónima (S.A.)</td><td>5 ou mais</td><td>50 000 €</td><td>Limitada ao valor das ações</td><td>Organizada, com contabilista certificado</td><td>220 € a 360 €</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Fontes: <a href="https://www.doutorfinancas.pt/empresas/o-que-e-que-preciso-para-constituir-uma-empresa/" target="_blank" rel="noopener">Doutor Finanças</a>, <a href="https://invoicexpress.com/blog/trabalhador-independente-vs-sociedade-unipessoal/" target="_blank" rel="noopener">InvoiceXpress</a>.</p>
+        <div>
+          <h3><span class="eyebrow">Como fica a Orla</span>As regras que se aplicam</h3>
+          <ul class="ticks">
+            <li><span><b>Abertura de atividade</b> no Portal das Finanças com o código 1332, “Programadores informáticos”, da <a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/legislacao/diplomas_legislativos/Documents/portaria_1011-2001_de_21_de_agosto_i_serie_b.pdf" target="_blank" rel="noopener">tabela do artigo 151.º do CIRS</a>. A marca comercial é “Orla”.</span></li>
+            <li><span><b>IRS no regime simplificado:</b> só 75% da faturação conta como rendimento, e é preciso justificar despesas de pelo menos 15% da faturação (<a href="https://www.cgd.pt/Site/Saldo-Positivo/leis-e-impostos/Pages/Pode-aceder-ao-regime-simplificado.aspx" target="_blank" rel="noopener">CGD</a>).</span></li>
+            <li><span><b>Isenção de IVA (artigo 53.º):</b> o limite em 2026 é de 15 000 € por ano (<a href="https://invoicexpress.com/blog/regras-faturacao-contabilidade-2026/" target="_blank" rel="noopener">InvoiceXpress</a>), e a previsão da Orla é de 7 305 €.</span></li>
+            <li><span><b>Segurança Social:</b> isenção nos primeiros 12 meses. Depois, 21,4% sobre 70% do valor dos serviços (<a href="https://www.cgd.pt/Site/Saldo-Positivo/protecao/Pages/isencao-contribuicoes-seguranca-social.aspx" target="_blank" rel="noopener">CGD</a>).</span></li>
+          </ul>
+        </div>
+        <p class="proof"><span class="eyebrow">Quando mudar</span><span>A Orla passa a sociedade unipessoal por quotas quando a faturação se aproximar dos 15 000 € por ano ou quando contratar a primeira pessoa. A decisão é tomada com um contabilista certificado.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="concl" aria-labelledby="h-concl">
+    <div class="wrap">
+      <span class="eyebrow" id="h-concl">Conclusão</span>
+      <div class="say big"><p>A Orla é um negócio com risco baixo e um mercado grande.</p></div>
+      <p class="note">O mercado é grande, com mais de 1,5 milhões de microempresas em Portugal e muitas ainda sem site. O maior desafio é a capacidade de uma só pessoa, por isso o plano prevê a primeira contratação quando as vendas passarem de dois sites por mês.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="eyebrow">Fontes</span>
+    <ul class="sources">
+      <li><a href="https://www.gee.gov.pt/pt/docs/publicacoes/estatisticas-setoriais/8789-total-das-empresas-nao-financeiras/file" target="_blank" rel="noopener">GEE: Total das empresas não financeiras (dados do INE, 2024)</a></li>
+      <li><a href="https://www.pordata.pt/en/municipalities/summary+table/cascais-828235" target="_blank" rel="noopener">PORDATA: Quadro-resumo do município de Cascais</a></li>
+      <li><a href="https://www.pordata.pt/en/europe/enterprises+with+10+or+more+personnel+employed+with+website+or+homepage+on+the+internet+as+a+percentage+of+total+of+enterprises+by+band+of+personnel+employed-1495" target="_blank" rel="noopener">PORDATA: Empresas com 10 ou mais pessoas com website</a></li>
+      <li><a href="https://data.cascais.pt/sites/default/files/2024-11/Brochura%20PerfilLocalSaude_Cascais2024_V2.cleaned.pdf" target="_blank" rel="noopener">Câmara Municipal de Cascais: Perfil Local de Saúde 2024</a></li>
+      <li><a href="https://invoicexpress.com/blog/regras-faturacao-contabilidade-2026/" target="_blank" rel="noopener">InvoiceXpress: Regras que mudam em 2026</a></li>
+      <li><a href="https://invoicexpress.com/blog/trabalhador-independente-vs-sociedade-unipessoal/" target="_blank" rel="noopener">InvoiceXpress: Trabalhador independente vs. sociedade unipessoal</a></li>
+      <li><a href="https://www.cgd.pt/Site/Saldo-Positivo/leis-e-impostos/Pages/Pode-aceder-ao-regime-simplificado.aspx" target="_blank" rel="noopener">CGD Saldo Positivo: Regime simplificado de IRS</a></li>
+      <li><a href="https://www.cgd.pt/Site/Saldo-Positivo/protecao/Pages/isencao-contribuicoes-seguranca-social.aspx" target="_blank" rel="noopener">CGD Saldo Positivo: Isenção de contribuições</a></li>
+      <li><a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/legislacao/diplomas_legislativos/Documents/portaria_1011-2001_de_21_de_agosto_i_serie_b.pdf" target="_blank" rel="noopener">Portal das Finanças: Portaria n.º 1011/2001</a></li>
+      <li><a href="https://www.doutorfinancas.pt/empresas/o-que-e-que-preciso-para-constituir-uma-empresa/" target="_blank" rel="noopener">Doutor Finanças: O que preciso para constituir uma empresa</a></li>
+      <li><a href="https://www.vendus.pt/blog/apoios-novas-empresas/" target="_blank" rel="noopener">Vendus: Apoios financeiros para novas empresas</a></li>
+      <li><a href="https://geotoolbox.ai/fr/blog/prix-claude.md" target="_blank" rel="noopener">GeoToolbox: Prix de Claude en 2026</a></li>
+    </ul>
+    <div class="foot"><span>Vsevolod Vatlin · Informática de Gestão · Módulo 1 · 2026</span><a href="https://vvvseva3-maker.github.io/orla-studio/" target="_blank" rel="noopener">Site do estúdio Orla</a></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.documentElement.lang = 'pt-PT';
+
+  // Plan data, the same as in the written plan
+  const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  const MES_NOME = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+  const SITES = [0, 390, 390, 690, 390, 390, 690, 390, 390, 1080, 390, 690];   // € from sites sold that month
+  const NOVOS = [0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1];                         // new clients that month
+  const MANUT = 25, FIXO = 215, DOMINIO = 15, INVEST = 45;
+  let clientes = 0;
+  const rows = MES.map((m, i) => {
+    const man = clientes * MANUT;                 // clients from earlier months pay maintenance
+    clientes += NOVOS[i];
+    const custo = FIXO + DOMINIO * NOVOS[i] + (i === 0 ? INVEST : 0);
+    return { m, nome: MES_NOME[i], site: SITES[i], man, total: SITES[i] + man, custo };
+  });
+  let acc = 0;
+  rows.forEach(r => { acc += r.total - r.custo; r.saldo = acc; });
+
+  const NB = ' ';
+  const grp = v => Math.abs(Math.round(v)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, NB);
+  const eur = v => (v < 0 ? '−' : '') + grp(v) + NB + '€';
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, text) => {
+    const n = document.createElementNS(NS, tag);
+    for (const k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    return n;
+  };
+  const widthOf = box => Math.max(300, Math.min(760, Math.round(box.clientWidth || 760)));
+
+  const sumSites = rows.reduce((s, r) => s + r.site, 0), sumMan = rows.reduce((s, r) => s + r.man, 0);
+  document.getElementById('revSub').textContent = `Sites ${eur(sumSites)} + manutenção ${eur(sumMan)} = ${eur(sumSites + sumMan)} · valores por mês`;
+
+  // revenue: stacked bars, sites under maintenance
+  function drawRev() {
+    const box = document.getElementById('revChart'); box.textContent = '';
+    const W = widthOf(box), narrow = W < 560, fs = narrow ? 10 : 12;
+    const H = narrow ? 240 : 300, L = 4, R = 4, base = H - 38, hgt = H - 92;
+    const peak = Math.max(...rows.map(r => r.total));
+    const band = (W - L - R) / rows.length, bw = Math.min(34, band * .6);
+    const y = v => v / peak * hgt;
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true' });
+    svg.appendChild(el('line', { class: 'ax', x1: L, x2: W - R, y1: base, y2: base }));
+    rows.forEach((r, i) => {
+      const cx = L + band * i + band / 2;
+      const a = el('rect', { class: 'b-site', x: cx - bw / 2, y: base - y(r.site), width: bw, height: y(r.site), rx: 1 });
+      a.appendChild(el('title', {}, `${r.nome} 2027 · sites: ${eur(r.site)}`));
+      const b = el('rect', { class: 'b-man', x: cx - bw / 2, y: base - y(r.site) - y(r.man), width: bw, height: y(r.man), rx: 1 });
+      b.appendChild(el('title', {}, `${r.nome} 2027 · manutenção: ${eur(r.man)}`));
+      svg.append(a, b);
+      svg.appendChild(el('text', { class: 't', 'font-size': fs, x: cx, y: base - y(r.total) - 7, 'text-anchor': 'middle' }, narrow ? grp(r.total) : eur(r.total)));
+      svg.appendChild(el('text', { class: 'tm', 'font-size': fs, x: cx, y: base + 20, 'text-anchor': 'middle' }, r.m));
+    });
+    box.appendChild(svg);
+  }
+
+  // cumulative balance: one line, zero marked
+  function drawCash() {
+    const box = document.getElementById('cashChart'); box.textContent = '';
+    const W = widthOf(box), narrow = W < 560, fs = narrow ? 10.5 : 12;
+    const H = narrow ? 220 : 250, L = 4, R = 4, y0 = 34, y1 = H - 58;
+    const vals = rows.map(r => r.saldo);
+    const lo = Math.min(0, ...vals), hi = Math.max(...vals);
+    const band = (W - L - R) / rows.length;
+    const x = i => L + band * i + band / 2;
+    const y = v => y1 - (v - lo) / (hi - lo) * (y1 - y0);
+    const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, 'aria-hidden': 'true' });
+    svg.appendChild(el('line', { class: 'zero', x1: L, x2: W - R, y1: y(0), y2: y(0) }));
+    svg.appendChild(el('text', { class: 'tm', 'font-size': fs, x: W - R, y: y(0) + 16, 'text-anchor': 'end' }, '0' + NB + '€'));
+    svg.appendChild(el('path', { class: 'ln', d: vals.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('') }));
+    rows.forEach((r, i) => {
+      const c = el('circle', { class: 'pt' + (r.saldo < 0 ? ' neg' : ''), cx: x(i), cy: y(r.saldo), r: 4 });
+      c.appendChild(el('title', {}, `${r.nome} 2027 · saldo acumulado: ${eur(r.saldo)}`));
+      svg.appendChild(c);
+      svg.appendChild(el('text', { class: 'tm', 'font-size': fs, x: x(i), y: H - 10, 'text-anchor': 'middle' }, r.m));
+    });
+    const first = vals.findIndex(v => v > 0), last = rows.length - 1;
+    svg.appendChild(el('text', { class: 'tn', 'font-size': fs, x: x(0) - 4, y: y(vals[0]) + 22, 'text-anchor': 'start' }, eur(vals[0])));
+    svg.appendChild(el('text', { class: 't', 'font-size': fs, x: x(first) + 8, y: y(vals[first]) + 22, 'text-anchor': 'start' }, `+${eur(vals[first])} em ${rows[first].nome}`));
+    svg.appendChild(el('text', { class: 't', 'font-size': fs, x: x(last), y: y(vals[last]) - 14, 'text-anchor': 'end' }, eur(vals[last])));
+    box.appendChild(svg);
+  }
+
+  // coastline caption follows the pin
+  function placeCap() {
+    const svg = document.querySelector('.coast svg'), cap = document.getElementById('coastCap');
+    if (!svg || !cap || svg.parentElement.classList.contains('is-3d')) return;
+    const r = svg.getBoundingClientRect(), box = svg.parentElement.getBoundingClientRect();
+    const px = r.left - box.left + 690 / 1200 * r.width, py = r.top - box.top + 40 / 120 * r.height;
+    const w = cap.offsetWidth;
+    let left = px - w / 2;
+    left = Math.max(16, Math.min(box.width - w - 16, left));
+    cap.style.left = left + 'px';
+    cap.style.top = (py - 30) + 'px';
+  }
+
+  function drawAll() { drawRev(); drawCash(); placeCap(); }
+  drawAll();
+  let t = 0, lastW = innerWidth;
+  addEventListener('resize', () => {
+    clearTimeout(t);
+    t = setTimeout(() => { if (innerWidth !== lastW) { lastW = innerWidth; drawAll(); } else placeCap(); }, 120);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeCap);
+})();
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+<script type="module">
+// 3D coastline: the "orla" between land and sea, drawn as points, with Cascais marked
+import * as THREE from 'three';
+const box = document.querySelector('.coast'), cv = document.getElementById('coast3d'), cap = document.getElementById('coastCap');
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let renderer = null;
+try { renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: false, alpha: true, powerPreference: 'low-power' }); } catch (e) { renderer = null; }
+if (renderer && box && cap) {
+  const coast = x => 0.9 * Math.sin(x * 0.33 + 0.4) + 0.45 * Math.sin(x * 0.87 + 1.7) + 0.2 * Math.sin(x * 2.1);
+  const small = innerWidth < 700;
+  const NX = small ? 150 : 240, NZ = small ? 64 : 100, X0 = -12, X1 = 12, Z0 = -5, Z1 = 5;
+  const pos = new Float32Array(NX * NZ * 3);
+  let k = 0, seed = 7;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  for (let j = 0; j < NZ; j++) for (let i = 0; i < NX; i++) {
+    pos[k++] = X0 + (X1 - X0) * (i + rnd() * .6) / (NX - 1);
+    pos[k++] = 0;
+    pos[k++] = Z0 + (Z1 - Z0) * (j + rnd() * .6) / (NZ - 1);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  const uni = { uTime: { value: 6 }, uPR: { value: 1 }, uSize: { value: small ? 30 : 26 } };
+  const mat = new THREE.ShaderMaterial({
+    uniforms: uni, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: `
+      uniform float uTime; uniform float uPR; uniform float uSize;
+      varying float vA; varying vec3 vC;
+      float coast(float x){ return 0.9*sin(x*0.33+0.4)+0.45*sin(x*0.87+1.7)+0.2*sin(x*2.1); }
+      void main(){
+        float x = position.x, z = position.z;
+        float d = z - coast(x);                       // > 0 sea (near), < 0 land (far)
+        float land = smoothstep(0.0, -0.5, d);
+        float hills = (0.55*sin(x*0.7+z*0.9) + 0.35*sin(x*1.7-z*1.3+1.2) + 0.25*sin(x*3.1+z*2.3))*0.5 + 0.6;
+        float yLand = land * max(0.0, hills) * smoothstep(0.0, -2.6, d) * (1.3 + 0.5*smoothstep(4.0, -8.0, x));
+        float wave = 0.07*sin(x*1.6 + uTime*1.1) + 0.05*sin(z*2.3 - uTime*0.9 + x*0.5) + 0.03*sin((x+z)*3.7 + uTime*1.7);
+        float sea = 1.0 - land;
+        float ySea = sea * wave * smoothstep(0.0, 1.2, d);
+        vec4 mv = modelViewMatrix * vec4(x, yLand + ySea, z, 1.0);
+        gl_Position = projectionMatrix * mv;
+        float shore = exp(-pow(d / 0.09, 2.0));
+        vec3 gold = vec3(0.894, 0.729, 0.416), cream = vec3(0.933, 0.906, 0.863);
+        vC = mix(mix(gold * 0.62, cream * 0.5, land), vec3(1.0, 0.83, 0.5), shore);
+        float fade = smoothstep(11.8, 6.5, abs(x)) * smoothstep(-5.0, -2.8, z) * smoothstep(5.0, 3.2, z);
+        float crest = sea * (0.65 + 4.0 * max(wave, 0.0));
+        vA = fade * (land * (0.22 + 0.25 * smoothstep(0.0, 1.4, yLand)) + crest * 0.42 + shore * (0.75 + 0.25 * sin(x * 6.0 - uTime * 2.0)));
+        gl_PointSize = uSize * uPR * (1.0 + 1.4 * shore) / -mv.z;
+      }`,
+    fragmentShader: `
+      varying float vA; varying vec3 vC;
+      void main(){
+        float r = length(gl_PointCoord - 0.5);
+        if (r > 0.5) discard;
+        gl_FragColor = vec4(vC, smoothstep(0.5, 0.05, r) * vA);
+      }`
+  });
+  const scene = new THREE.Scene();
+  scene.add(new THREE.Points(geo, mat));
+
+  // Cascais: a pin on the shoreline with a pulsing ring
+  const GOLD = 0xe4ba6a, PX = 1.3, PZ = coast(PX), PH = 1.05;
+  const pin = new THREE.Group(); pin.position.set(PX, 0, PZ); scene.add(pin);
+  const stem = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, PH, 0)]), new THREE.LineBasicMaterial({ color: GOLD, transparent: true, opacity: .85 }));
+  pin.add(stem);
+  const dot = document.createElement('canvas'); dot.width = dot.height = 64;
+  const g = dot.getContext('2d'), grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+  grad.addColorStop(0, 'rgba(255,236,190,1)'); grad.addColorStop(.25, 'rgba(228,186,106,.9)'); grad.addColorStop(1, 'rgba(228,186,106,0)');
+  g.fillStyle = grad; g.fillRect(0, 0, 64, 64);
+  const head = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(dot), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }));
+  head.position.y = PH; head.scale.setScalar(.42); pin.add(head);
+  const ringMat = new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: .8, side: THREE.DoubleSide, depthWrite: false });
+  const ring = new THREE.Mesh(new THREE.RingGeometry(.1, .125, 64), ringMat);
+  ring.rotation.x = -Math.PI / 2; ring.position.y = .01; pin.add(ring);
+
+  const cam = new THREE.PerspectiveCamera(32, 2, .1, 100);
+  const look = new THREE.Vector3(0, 0, 1.1), tip = new THREE.Vector3();
+  let W = 0, H = 0, dist = 8.2;
+  function size() {
+    W = box.clientWidth; H = box.clientHeight; if (!W || !H) return;
+    const pr = Math.min(devicePixelRatio || 1, 2);
+    renderer.setPixelRatio(pr); renderer.setSize(W, H, false); uni.uPR.value = pr;
+    cam.aspect = W / H; cam.fov = cam.aspect < 2.2 ? 40 : 32; dist = cam.aspect < 2.2 ? 9.6 : 8.2;
+    cam.updateProjectionMatrix();
+  }
+  let px = 0, py = 0, tx = 0, ty = 0;
+  addEventListener('pointermove', e => { tx = e.clientX / innerWidth * 2 - 1; ty = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+  function frame(t) {
+    uni.uTime.value = 6 + t * .001;
+    px += (tx - px) * .04; py += (ty - py) * .04;
+    const s = t * .001;
+    cam.position.set(Math.sin(s * .07) * .9 + px * .5, 3.1 - py * .25, dist);
+    cam.lookAt(look.x + px * .25, look.y, look.z);
+    const ph = (s % 2.4) / 2.4;
+    ring.scale.setScalar(1 + ph * 5); ringMat.opacity = .8 * (1 - ph);
+    renderer.render(scene, cam);
+    // keep the place name above the pin
+    tip.set(PX, PH + .1, PZ).project(cam);
+    const x = (tip.x + 1) / 2 * W, y = (1 - tip.y) / 2 * H, cw = cap.offsetWidth;
+    cap.style.left = Math.max(16, Math.min(W - cw - 16, x - cw / 2)) + 'px';
+    cap.style.top = (y - 26) + 'px';
+  }
+  size(); frame(0);
+  box.classList.add('is-3d');
+  let visible = true, raf = 0;
+  const loop = t => { raf = 0; frame(t); if (visible && !RM) raf = requestAnimationFrame(loop); };
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible && !RM && !raf) raf = requestAnimationFrame(loop); }).observe(box);
+  new ResizeObserver(() => { size(); if (RM || !visible) frame(0); }).observe(box);
+  if (!RM) raf = requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>
