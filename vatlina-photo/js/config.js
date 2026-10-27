@@ -71,16 +71,16 @@ window.SITE_CONFIG = {
     { unsplash: '1492684223066-81342ee5ff30', category: 'reportage', ratio: 3 / 2, title: 'Вечеринка в честь запуска', place: 'Лиссабон' },
     { unsplash: '1507003211169-0a1dd7228f2d', category: 'portrait',  ratio: 4 / 5, title: 'Давид',              place: 'Кашкайш' },
     { unsplash: '1470071459604-3b5ec3a7fe05', category: 'landscape', ratio: 4 / 5, title: 'Туман в горах',       place: 'Путешествие' },
-    { unsplash: '1522673607200-164d1b6ce486', category: 'love',      ratio: 3 / 2, title: 'Свадьба у океана',    place: 'Эрисейра' },
+    { unsplash: '1522673607200-164d1b6ce486', category: 'love',      ratio: 3 / 2, title: 'Церемония в саду',     place: 'Синтра' },
     { unsplash: '1540575467063-178a50c2df87', category: 'reportage', ratio: 3 / 2, title: 'Конференция',         place: 'Лиссабон' },
     { unsplash: '1534528741775-53994a69daeb', category: 'portrait',  ratio: 4 / 5, title: 'Ева',                place: 'Студия' },
     { unsplash: '1507525428034-b723cf961d3e', category: 'landscape', ratio: 3 / 2, title: 'Тихий берег',         place: 'Путешествие' },
-    { unsplash: '1511285560929-80b456fea0bc', category: 'love',      ratio: 4 / 5, title: 'Кольца',             place: 'Кашкайш' },
+    { unsplash: '1511285560929-80b456fea0bc', category: 'love',      ratio: 4 / 5, title: 'Церемония',           place: 'Кашкайш' },
     { unsplash: '1470229722913-7c0e2dbbafd3', category: 'reportage', ratio: 4 / 5, title: 'Концерт',            place: 'Порту' },
     { unsplash: '1517841905240-472988babdf9', category: 'portrait',  ratio: 3 / 2, title: 'Лея',               place: 'Кашкайш' },
     { unsplash: '1501785888041-af3ef285b470', category: 'landscape', ratio: 3 / 2, title: 'Озеро',              place: 'Путешествие' },
-    { unsplash: '1516589178581-6cd7833ae3b2', category: 'love',      ratio: 3 / 2, title: 'Прогулка',           place: 'Лиссабон' },
-    { unsplash: '1511578314322-379afb476865', category: 'reportage', ratio: 4 / 5, title: 'За кулисами',        place: 'Лиссабон' }
+    { unsplash: '1516589178581-6cd7833ae3b2', category: 'love',      ratio: 3 / 2, title: 'На закате',          place: 'Лиссабон' },
+    { unsplash: '1511578314322-379afb476865', category: 'reportage', ratio: 4 / 5, title: 'Зал перед конференцией', place: 'Лиссабон' }
   ],
 
   /* Фото первого экрана: id с Unsplash или путь к своему файлу */
