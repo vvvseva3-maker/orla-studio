@@ -1,0 +1,100 @@
+slug: euphoria
+name: Euphoria Coffee & Brunch
+wordmark: "Euphoria"
+logo_sub: "Coffee & Brunch"
+ig: euphoriacoffeebrunch
+address: "Rua Afonso Sanches, 12, 2750-282 Cascais"
+maps_q: "Euphoria Coffee & Brunch, Rua Afonso Sanches 12, Cascais"
+phone: null
+hours: {mon: [["08:00","18:00"]], tue: [["08:00","18:00"]], wed: [["08:00","18:00"]], thu: [["08:00","18:00"]], fri: [["08:00","18:00"]], sat: [["08:00","18:00"]], sun: [["08:00","18:00"]]}
+look:
+  fonts: ["Syne:wght@600;700;800", "Manrope:wght@400;500;600;700"]
+  display_css: "'Syne', system-ui, sans-serif"
+  body_css: "'Manrope', system-ui, sans-serif"
+  dw: 800
+  dt: "-0.035em"
+  scheme: light
+  bg: "#eaf0e4"
+  bg2: "#dfe8d6"
+  card: "#f6f9f2"
+  ink: "#16302a"
+  ink2: "#35504a"
+  muted: "#64786f"
+  line: "#cddbc4"
+  acc: "#ff3d7f"
+  acc_ink: "#d8195e"
+  on_acc: "#ffffff"
+  dark: "#16302a"
+  on_dark: "#eaf0e4"
+  on_dark_muted: "#a9bdb3"
+  art_bg: "#1f4a3c"
+  a1: "#ffb347"
+  a2: "#ff3d7f"
+  a3: "#2c6b56"
+  art_ink: "#10251f"
+  art_hi: "#fff4d6"
+  h1: 0.78
+  motif: bowl
+  hero: split
+  menu: cards
+  r: 26
+  extra_css: "@media (max-width:440px){.hdr .btn.sm{display:none}} .logo{color:var(--ink)} .logo:hover{text-shadow:0 0 18px color-mix(in srgb, var(--acc) 60%, transparent)} .hero h1 em{text-shadow:0 0 28px color-mix(in srgb, var(--acc) 35%, transparent)}"
+form:
+  type: order
+items:
+  - ["Tosta de abacate", "Avocado toast", "Clássico do brunch, em pão tostado.", "A brunch classic on toasted bread."]
+  - ["Tosta de cogumelos e trufa", "Mushroom and truffle toast", "Cogumelos salteados com um toque de trufa.", "Sautéed mushrooms with a touch of truffle."]
+  - ["Tosta de salmão fumado", "Smoked salmon toast", "Para quem gosta de começar com salgado.", "For a savoury start."]
+  - ["Bife Angus com ovo", "Angus steak and egg", "O brunch mais completo da carta.", "The heartiest brunch on the menu."]
+  - ["Açaí bowl", "Açaí bowl", "Para um pequeno-almoço fresco.", "For a fresh breakfast."]
+  - ["Panquecas com frango e bacon", "Pancakes with chicken and bacon", "Também há com salmão fumado e queijo creme.", "Also with smoked salmon and cream cheese."]
+  - ["Cookies da casa", "House cookies", "Também de matcha.", "Matcha ones too."]
+  - ["Cheesecake americano", "American cheesecake", "Ao estilo americano, para o lanche.", "American style, for the afternoon."]
+facts:
+  - ["2023", "aberto no centro de Cascais", "opened in central Cascais"]
+  - ["22 + 12", "lugares dentro e na esplanada", "seats inside and on the terrace"]
+  - ["3", "formas de café: espresso, filtro e cold brew", "ways to have coffee: espresso, filter and cold brew"]
+  - ["Wi-Fi", "grátis, opções vegan e cães bem-vindos", "free, with vegan options and dogs welcome"]
+t:
+  pt:
+    eyebrow: "Café de especialidade e brunch · Cascais"
+    h1: "Brunch todo o dia, <em>a dois passos da baía</em>."
+    lede: "Tostas, bowls, panquecas, ovos e café de especialidade: espresso, filtro e cold brew. Todos os dias, das 8h às 18h."
+    cta1: "Encomendar para levar"
+    cta_short: "Encomendar"
+    art_tag_b: "Café da casa"
+    art_tag: "frutado, com um pouco de acidez"
+    menu_k: "Menu"
+    menu_h: "Do pequeno-almoço ao lanche"
+    menu_p: "Opções vegan, pratos com matcha e cookies da casa. O menu em inglês e em português, para quem está de passagem."
+    menu_note: "Os preços entram aqui quando a casa os confirmar."
+    about_h: "Um café que começou em Bucareste"
+    about_p:
+      - "O Euphoria abriu em 2023, pela mão de Francisco Freire, que ganhou o gosto pelo café de especialidade quando viveu em Bucareste."
+      - "O espaço já foi uma sapataria. Hoje tem uma parede verde com o nome em néon, boa música e mesas onde se pode trabalhar ao computador."
+    hours_note: "Horário segundo os guias de café (European Coffee Trip). A confirmar com a casa."
+    form_h: "Encomendar para levar"
+    form_p: "Escolha o que quer, o dia e o nome. A mensagem fica pronta para enviar ao Euphoria pelo Instagram."
+    foot_p: "Café de especialidade e brunch no centro de Cascais."
+    og_desc: "Conceito de site para o Euphoria Coffee & Brunch, em Cascais: menu, horário e encomendas."
+  en:
+    eyebrow: "Specialty coffee & brunch · Cascais"
+    h1: "All-day brunch, <em>a stone's throw from the bay</em>."
+    lede: "Toasts, bowls, pancakes, eggs and specialty coffee: espresso, filter and cold brew. Every day, 8am to 6pm."
+    cta1: "Order to take away"
+    cta_short: "Order"
+    art_tag_b: "House coffee"
+    art_tag: "fruity, with a little acidity"
+    menu_k: "Menu"
+    menu_h: "From breakfast to afternoon"
+    menu_p: "Vegan options, matcha dishes and house cookies. The menu in English and Portuguese, for everyone passing through."
+    menu_note: "Prices go here once the café confirms them."
+    about_h: "A café that started in Bucharest"
+    about_p:
+      - "Euphoria opened in 2023, run by Francisco Freire, who fell for specialty coffee while living in Bucharest."
+      - "The space used to be a shoe shop. Now it has a green wall with the name in neon, good music and tables where you can work on your laptop."
+    hours_note: "Hours as listed by coffee guides (European Coffee Trip). To be confirmed."
+    form_h: "Order to take away"
+    form_p: "Choose what you'd like, the day and your name. The message is ready to send to Euphoria on Instagram."
+    foot_p: "Specialty coffee and brunch in central Cascais."
+    og_desc: "Website concept for Euphoria Coffee & Brunch in Cascais: menu, hours and orders."

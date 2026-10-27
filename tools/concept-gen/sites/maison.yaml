@@ -1,0 +1,127 @@
+slug: maison
+name: Maison Daniela de Sá
+wordmark: "Maison"
+logo_sub: "Daniela de Sá"
+giant: "Maison"
+foot_name: "Maison<br>Daniela de Sá"
+ig: maison_daniela_de_sa
+address: "Rua de Damão, 109, Alcabideche"
+maps_q: "Rua de Damão 109, Alcabideche"
+phone: null
+hours: null
+look:
+  fonts: ["Italiana", "Jost:wght@400;500;600"]
+  display_css: "'Italiana', Didot, Georgia, serif"
+  body_css: "'Jost', system-ui, sans-serif"
+  dw: 400
+  dt: "0.02em"
+  dc: uppercase
+  scheme: light
+  bg: "#f5f2ee"
+  bg2: "#ebe6df"
+  card: "#fbf9f6"
+  ink: "#141414"
+  ink2: "#3d3a36"
+  muted: "#77716a"
+  line: "#ddd6cc"
+  acc: "#1b2a4a"
+  acc_ink: "#1b2a4a"
+  on_acc: "#f5f2ee"
+  dark: "#141414"
+  on_dark: "#f5f2ee"
+  on_dark_muted: "#b3aca2"
+  art_bg: "#e6dfd3"
+  a1: "#1b2a4a"
+  a2: "#b08d57"
+  a3: "#d9cfbf"
+  art_ink: "#141414"
+  art_hi: "#f5f2ee"
+  motif: knots
+  hero: type
+  menu: cards
+  r: 0
+  btn_r: "0"
+  h1: 0.9
+  logo_size: "26px"
+  em_style: normal
+  sep: "⟡"
+form:
+  type: enquiry
+  opts:
+    int:
+      - ["Uma peça personalizada", "A made-to-order piece"]
+      - ["A camisola de macramé", "The macramé sweater"]
+      - ["A Cruise Collection", "The Cruise Collection"]
+      - ["Visitar o ateliê", "Visiting the atelier"]
+items:
+  - ["Camisola de macramé", "Macramé sweater", "1660 nós, um a um, à mão.", "1,660 knots, tied one by one by hand."]
+  - ["Peças personalizadas", "Made-to-order pieces", "Com detalhes só seus, feitas só para si. Entre 400 e 2000 €, consoante a personalização.", "With your own details, made only for you. Between €400 and €2,000, depending on customisation."]
+  - ["Cruise Collection", "Cruise Collection", "A coleção cápsula, mais pequena.", "The smaller capsule collection."]
+  - ["Calçado", "Footwear", "Técnicas tradicionais e materiais reciclados. Ainda em testes.", "Traditional techniques and recycled materials. Still in testing."]
+  - ["Rede com nó de pescador", "Fisherman's-knot net", "A peça oferecida ao Presidente da Câmara de Cascais.", "The piece given to the Mayor of Cascais."]
+facts:
+  - ["4.ª", "geração de uma família do calçado", "generation of a footwear family"]
+  - ["1660", "nós numa só camisola de macramé", "knots in a single macramé sweater"]
+  - ["QR", "um vídeo para acompanhar a sua peça a ser feita", "a video to follow your piece being made"]
+  - ["Ateliê", "partilhado por artesãos, num antigo edifício de uma escola de teatro", "shared by artisans, in a former theatre-school building"]
+t:
+  pt:
+    eyebrow: "Moda feita à mão · Alcabideche"
+    h1: "Entre reis e pescadores: <em>luxo feito à mão</em>, em Cascais."
+    lede: "Tecidos nobres, macramé, nós de pescador e materiais reciclados, num ateliê partilhado por artesãos em Alcabideche."
+    cta1: "Pedir uma peça"
+    cta_short: "Contactar"
+    cta2: "Ver as peças"
+    nav_menu: "Peças"
+    nav_visit: "Ateliê"
+    art_tag_b: "1660 nós"
+    art_tag: "numa só camisola de macramé"
+    menu_k: "Peças"
+    menu_h: "Da rede de pesca à alta-costura"
+    menu_p: "Cada cliente pode acompanhar a sua peça a ser feita, num vídeo a que chega por código QR."
+    menu_note: "Informação segundo a Time Out (março de 2026). No site final, cada peça teria fotografias e história."
+    about_k: "A marca"
+    about_h: "Quarta geração do calçado"
+    about_p:
+      - "Daniela de Sá é empresária do calçado e a quarta geração de uma família do setor. Através da empresa da família, trabalhou com a Gucci e a Versace."
+      - "A Maison nasceu nas Festas do Mar de 2025, inspirada em Cascais como terra de reis e pescadores. Trabalha num ateliê colaborativo em Alcabideche, com artesãos de várias gerações e regiões."
+    visit_k: "Ateliê"
+    visit_h: "O ateliê"
+    visit_p: "Em Alcabideche, num antigo edifício de uma escola de teatro."
+    hours_h: "Visitas"
+    hours_note: "Horário do ateliê a confirmar."
+    form_k: "Contacto"
+    form_h: "Pedir uma peça"
+    form_p: "Diga o que procura e a Daniela responde pelo Instagram. A mensagem fica pronta para enviar."
+    foot_p: "Moda feita à mão em Alcabideche, entre o luxo e a tradição piscatória de Cascais."
+    og_desc: "Conceito de site para a Maison Daniela de Sá: peças feitas à mão, o ateliê e pedidos personalizados."
+  en:
+    eyebrow: "Handmade fashion · Alcabideche"
+    h1: "Between kings and fishermen: <em>handmade luxury</em> in Cascais."
+    lede: "Fine fabrics, macramé, fishermen's knots and recycled materials, in an atelier shared by artisans in Alcabideche."
+    cta1: "Request a piece"
+    cta_short: "Contact"
+    cta2: "See the pieces"
+    nav_menu: "Pieces"
+    nav_visit: "Atelier"
+    art_tag_b: "1,660 knots"
+    art_tag: "in a single macramé sweater"
+    menu_k: "Pieces"
+    menu_h: "From fishing net to couture"
+    menu_p: "Every client can follow their piece being made, in a video reached through a QR code."
+    menu_note: "Details as published by Time Out (March 2026). On the real site, each piece would have photos and its story."
+    about_k: "The brand"
+    about_h: "Fourth generation in footwear"
+    about_p:
+      - "Daniela de Sá is a footwear entrepreneur and the fourth generation of a footwear family. Through the family business she worked with Gucci and Versace."
+      - "Maison was born at the 2025 Festas do Mar, inspired by Cascais as a land of kings and fishermen. It works from a shared atelier in Alcabideche, with artisans from different generations and regions."
+    visit_k: "Atelier"
+    visit_h: "The atelier"
+    visit_p: "In Alcabideche, in a former theatre-school building."
+    hours_h: "Visits"
+    hours_note: "Atelier hours to be confirmed."
+    form_k: "Contact"
+    form_h: "Request a piece"
+    form_p: "Tell us what you're looking for and Daniela replies on Instagram. The message is ready to send."
+    foot_p: "Handmade fashion in Alcabideche, between luxury and Cascais's fishing heritage."
+    og_desc: "Website concept for Maison Daniela de Sá: handmade pieces, the atelier and custom requests."

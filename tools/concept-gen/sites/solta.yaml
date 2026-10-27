@@ -1,0 +1,99 @@
+slug: solta
+name: Solta
+wordmark: "Solta"
+ig: solta_cascais
+address: "Travessa das Flores, 2, 2750-348 Cascais"
+maps_q: "Solta, Travessa das Flores 2, Cascais"
+phone: null
+hours: {mon: [["11:00","23:00"]], tue: [["11:00","23:00"]], wed: [["11:00","23:00"]], thu: [["11:00","23:00"]], fri: [["11:00","23:00"]], sat: [["11:00","23:00"]], sun: [["11:00","23:00"]]}
+look:
+  fonts: ["Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600", "Sora:wght@400;500;600"]
+  display_css: "'Newsreader', Georgia, serif"
+  body_css: "'Sora', system-ui, sans-serif"
+  dw: 400
+  dt: "-0.025em"
+  scheme: light
+  bg: "#f3f0ea"
+  bg2: "#e8e3d9"
+  card: "#faf8f4"
+  ink: "#1c1b18"
+  ink2: "#45423b"
+  muted: "#787366"
+  line: "#dcd5c8"
+  acc: "#2f5d50"
+  acc_ink: "#2f5d50"
+  on_acc: "#f3f0ea"
+  dark: "#1c1b18"
+  on_dark: "#f3f0ea"
+  on_dark_muted: "#b5ae9f"
+  art_bg: "#25302b"
+  a1: "#e2a03f"
+  a2: "#c9573c"
+  a3: "#f6d98f"
+  art_ink: "#0f1311"
+  art_hi: "#fff6dc"
+  motif: lamps
+  hero: split
+  menu: list
+  r: 0
+  btn_r: "0"
+  h1: 1.05
+  sep: "—"
+form:
+  type: table
+  times: ["11:00", "12:00", "13:00", "14:00", "19:00", "20:00", "21:00", "22:00"]
+items:
+  - ["Croissant de presunto", "Cured ham croissant", "Para o brunch.", "For brunch."]
+  - ["Sanduíche de pulled pork", "Pulled pork sandwich", "Para o brunch, sem pressa.", "For an unhurried brunch."]
+  - ["Fish and chips de bacalhau", "Cod fish and chips", "Com aioli fumado.", "With smoked aioli."]
+  - ["Robalo com espargos", "Sea bass with asparagus", "E molho provençal.", "With a Provençal sauce."]
+  - ["Schnitzel de frango", "Chicken schnitzel", "Panado e estaladiço.", "Breaded and crisp."]
+  - ["Wagyu maturado", "Dry-aged Wagyu", "Com molho de pimenta.", "With pepper sauce."]
+facts:
+  - ["11–23", "aberto todos os dias", "open every day"]
+  - ["3", "momentos: brunch, refeições e cocktails", "moments: brunch, meals and cocktails"]
+  - ["2", "influências na cozinha: Israel e Rússia", "influences in the kitchen: Israel and Russia"]
+  - ["Flores", "na Travessa das Flores, no centro de Cascais", "on Travessa das Flores, in central Cascais"]
+t:
+  pt:
+    eyebrow: "Mediterrânico, do brunch aos cocktails · Cascais"
+    h1: "Chegar sem pressa, <em>ficar até tarde</em>."
+    lede: "Croissants e sanduíches ao brunch, cozinha mediterrânica ao almoço e ao jantar, cocktails de autor para o fim do dia. Na Travessa das Flores."
+    cta1: "Reservar mesa"
+    cta_short: "Reservar"
+    art_tag_b: "Solta"
+    art_tag: "um sítio para chegar sem pressa"
+    menu_k: "Menu"
+    menu_h: "A qualquer hora do dia"
+    menu_p: "Uma base mediterrânica com as influências dos donos, de Israel e da Rússia. Ao fim do dia, cocktails de autor."
+    menu_note: "Menu segundo a Time Out. Os preços entram quando a casa os confirmar."
+    about_h: "Anna e Konstantin"
+    about_p:
+      - "O Solta é da Anna, israelita, e do Konstantin, russo, que juntaram as duas influências numa carta mediterrânica pensada para qualquer hora do dia."
+      - "Abriu em 2026, no centro de Cascais, para ser um sítio onde se chega sem pressa e de onde se sai já tarde."
+    hours_note: "Horário segundo a Time Out. Online aparecem duas moradas diferentes; no site ficaria só a certa."
+    form_h: "Reservar mesa"
+    form_p: "Brunch, jantar ou só cocktails: escolha o dia, a hora e quantas pessoas. A mensagem fica pronta para enviar ao Solta pelo Instagram."
+    foot_p: "Mediterrânico, do brunch aos cocktails, no centro de Cascais."
+    og_desc: "Conceito de site para o Solta, em Cascais: menu do brunch ao jantar, horário, morada certa e reservas."
+  en:
+    eyebrow: "Mediterranean, brunch to cocktails · Cascais"
+    h1: "Arrive unhurried, <em>stay until late</em>."
+    lede: "Croissants and sandwiches for brunch, Mediterranean food for lunch and dinner, signature cocktails to end the day. On Travessa das Flores."
+    cta1: "Book a table"
+    cta_short: "Book"
+    art_tag_b: "Solta"
+    art_tag: "a place to arrive unhurried"
+    menu_k: "Menu"
+    menu_h: "Any time of day"
+    menu_p: "A Mediterranean base with the owners' Israeli and Russian influences. Later on, signature cocktails."
+    menu_note: "Menu as described by Time Out. Prices go here once confirmed."
+    about_h: "Anna and Konstantin"
+    about_p:
+      - "Solta belongs to Anna, from Israel, and Konstantin, from Russia, who brought both influences into a Mediterranean menu built for any time of day."
+      - "It opened in 2026 in central Cascais, as a place to arrive unhurried and leave late."
+    hours_note: "Hours as published by Time Out. Two different addresses appear online; the site would show only the right one."
+    form_h: "Book a table"
+    form_p: "Brunch, dinner or just cocktails: choose the day, time and party size. The message is ready to send to Solta on Instagram."
+    foot_p: "Mediterranean, brunch to cocktails, in central Cascais."
+    og_desc: "Website concept for Solta in Cascais: brunch-to-dinner menu, hours, the right address and bookings."

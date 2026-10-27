@@ -1,0 +1,110 @@
+slug: peixaria-da-poca
+name: Peixaria da Poça
+wordmark: "Peixaria <span style=\"color:var(--acc-ink)\">da Poça</span>"
+ig: peixaria_da_poca
+address: "Largo Amália Rodrigues, 125, loja 3, 2765-255 Estoril"
+maps_q: "Peixaria da Poça, Largo Amália Rodrigues 125, Estoril"
+phone: "965 446 417"
+hours: {tue: [["09:00","21:00"]], wed: [["09:00","21:00"]], thu: [["09:00","21:00"]], fri: [["09:00","21:00"]], sat: [["09:00","21:00"]], sun: [["09:00","14:00"]]}
+look:
+  fonts: ["Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700", "Work+Sans:wght@400;500;600"]
+  display_css: "'Fraunces', Georgia, serif"
+  body_css: "'Work Sans', system-ui, sans-serif"
+  dw: 600
+  dt: "-0.03em"
+  scheme: light
+  bg: "#f1f5f4"
+  bg2: "#e2ecea"
+  card: "#fbfdfc"
+  ink: "#0f2a33"
+  ink2: "#2f4a52"
+  muted: "#5f767c"
+  line: "#cfdedb"
+  acc: "#0f6e8c"
+  acc_ink: "#0c6380"
+  on_acc: "#ffffff"
+  dark: "#0f2a33"
+  on_dark: "#eef5f4"
+  on_dark_muted: "#a3bcc0"
+  art_bg: "#d7e8e6"
+  a1: "#0f6e8c"
+  a2: "#e9855c"
+  a3: "#9fc9c9"
+  art_ink: "#0f2a33"
+  art_hi: "#ffffff"
+  motif: waves
+  hero: split
+  menu: cards
+  r: 20
+  h1: 0.92
+  logo_size: "24px"
+  logo_size_sm: "20px"
+  sep: "≈"
+form:
+  type: order
+  opts:
+    what:
+      - ["Ostras", "Oysters"]
+      - ["Sapateira recheada", "Dressed brown crab"]
+      - ["Camarão espinho", "Prawns"]
+      - ["Peixe do dia", "Fish of the day"]
+      - ["Salada de polvo", "Octopus salad"]
+items:
+  - ["Ostras", "Oysters", "Médias ou XL, abertas na hora.", "Medium or XL, opened to order.", "3 € / 4 €"]
+  - ["Sapateira recheada", "Dressed brown crab", "Para comer na esplanada ou levar para casa.", "Eat on the terrace or take home.", "22,20 €"]
+  - ["Camarão espinho", "Prawns", "Ao peso.", "By weight.", "7,80 € / 100 g"]
+  - ["Salada de polvo", "Octopus salad", "Fresca, para o fim da praia.", "Fresh, for after the beach."]
+  - ["Ceviche", "Ceviche", "A novidade da casa.", "The newest thing on the counter."]
+  - ["Peixe fresco para levar", "Fresh fish to take home", "Chega todos os dias da zona de Peniche. Preço conforme o dia.", "Arrives daily from the Peniche area. Price depends on the day.", "desde 10 €/kg"]
+facts:
+  - ["Peniche", "de onde chega o peixe, todos os dias", "where the fish comes from, every day"]
+  - ["22", "lugares, dentro e na esplanada", "seats, inside and on the terrace"]
+  - ["5,50 €", "o copo de vinho mais em conta", "for the most affordable glass of wine"]
+  - ["2025", "aberta em dezembro, ao pé da Praia da Poça", "opened in December, by Praia da Poça"]
+t:
+  pt:
+    eyebrow: "Peixaria e oyster bar · Estoril"
+    h1: "Peixe de Peniche, <em>ostras e um copo de vinho</em>, ao pé da praia."
+    lede: "Peixaria de bairro e oyster bar no Largo Amália Rodrigues, a dois passos da Praia da Poça. Leva-se para casa ou come-se ali, na esplanada."
+    cta1: "Encomendar"
+    cta_short: "Encomendar"
+    cta2: "Ver o balcão"
+    nav_menu: "O balcão"
+    art_tag_b: "Todos os dias"
+    art_tag: "peixe e marisco acabados de chegar de Peniche"
+    menu_k: "O balcão"
+    menu_h: "Do mar para a mesa, ou para casa"
+    menu_p: "O que há depende do mar. Os vinhos vão de 5,50 € o copo até 150 € a garrafa."
+    menu_note: "Preços segundo a Time Out e a NiT (junho de 2026). O peixe muda todos os dias; no site, a casa atualizava o balcão do dia."
+    about_h: "Uma peixaria de família"
+    about_p:
+      - "A Peixaria da Poça abriu em dezembro de 2025, pela mão da Ágata e do Diogo dos Santos, o casal da florista Flores da Poça. O irmão do Diogo, Alexandre, escolhe o peixe."
+      - "O peixe e o marisco chegam todos os dias da zona de Peniche, uma homenagem às memórias de infância dos irmãos. Em 45 m² cabem a banca, o balcão das ostras e 22 lugares."
+    hours_note: "Horário segundo a Time Out e a NiT (junho de 2026)."
+    form_h: "Encomendar para levantar"
+    form_p: "Diga o que quer e para que dia, e o peixe fica guardado. A mensagem fica pronta para enviar pelo Instagram, ou ligue para o 965 446 417."
+    foot_p: "Peixaria e oyster bar no Estoril, a dois passos da Praia da Poça."
+    og_desc: "Conceito de site para a Peixaria da Poça, no Estoril: o balcão do dia, preços, horário e encomendas."
+  en:
+    eyebrow: "Fishmonger & oyster bar · Estoril"
+    h1: "Fish from Peniche, <em>oysters and a glass of wine</em>, by the beach."
+    lede: "A neighbourhood fishmonger and oyster bar on Largo Amália Rodrigues, steps from Praia da Poça. Take it home or eat it right there on the terrace."
+    cta1: "Order"
+    cta_short: "Order"
+    cta2: "See the counter"
+    nav_menu: "The counter"
+    art_tag_b: "Every day"
+    art_tag: "fish and seafood fresh from Peniche"
+    menu_k: "The counter"
+    menu_h: "From the sea to your table, or your home"
+    menu_p: "What's on depends on the sea. Wines run from €5.50 a glass to €150 a bottle."
+    menu_note: "Prices as published by Time Out and NiT (June 2026). The fish changes daily; on the site, the shop would update today's counter."
+    about_h: "A family fishmonger"
+    about_p:
+      - "Peixaria da Poça opened in December 2025, run by Ágata and Diogo dos Santos, the couple behind the Flores da Poça florist. Diogo's brother Alexandre picks the fish."
+      - "Fish and seafood arrive every day from the Peniche area, a nod to the brothers' childhood memories. In 45 m² there's the fish counter, the oyster bar and 22 seats."
+    hours_note: "Hours as published by Time Out and NiT (June 2026)."
+    form_h: "Order for pick-up"
+    form_p: "Tell us what you want and for which day, and we'll keep it for you. The message is ready to send on Instagram, or call 965 446 417."
+    foot_p: "Fishmonger and oyster bar in Estoril, steps from Praia da Poça."
+    og_desc: "Website concept for Peixaria da Poça in Estoril: today's counter, prices, hours and orders."

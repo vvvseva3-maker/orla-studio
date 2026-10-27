@@ -1,0 +1,107 @@
+slug: lamusik
+name: LaMusik
+wordmark: "LaMusik"
+ig: lamusik.cascais
+address: "Rua José Relvas, 12, 2775-222 Parede"
+maps_q: "LaMusik, Rua José Relvas 12, Parede"
+phone: "912 383 745"
+hours: {wed: [["19:30","22:00"]], thu: [["19:30","22:00"]], fri: [["19:00","02:00"]], sat: [["19:00","02:00"]]}
+look:
+  fonts: ["Big+Shoulders+Display:wght@700;800;900", "Golos+Text:wght@400;500;600"]
+  display_css: "'Big Shoulders Display', Impact, sans-serif"
+  body_css: "'Golos Text', system-ui, sans-serif"
+  dw: 800
+  dt: "0.01em"
+  dc: uppercase
+  scheme: dark
+  bg: "#0e1424"
+  bg2: "#141c30"
+  card: "#18213a"
+  ink: "#f2ecda"
+  ink2: "#d3ccb7"
+  muted: "#9a9a9a"
+  line: "#27314d"
+  acc: "#d4a24c"
+  acc_ink: "#e2b562"
+  on_acc: "#0e1424"
+  dark: "#080c17"
+  on_dark: "#f2ecda"
+  on_dark_muted: "#9fa3ae"
+  art_bg: "#0e1424"
+  a1: "#d4a24c"
+  a2: "#c8553d"
+  a3: "#3a4566"
+  art_ink: "#05070d"
+  art_hi: "#f2ecda"
+  motif: vinyl
+  hero: poster
+  menu: carta
+  r: 6
+  btn_r: "6px"
+  open: "#8fd16a"
+  err: "#ff8a80"
+  h1: 1.05
+  em_style: normal
+  logo_size: "30px"
+  sep: "♪"
+form:
+  type: table
+  times: ["19:00", "19:30", "20:00", "20:30", "21:00", "21:30"]
+items:
+  - ["Croquetes de alheira", "Alheira croquettes", "Interludes: com maionese de endro.", "Interludes: with dill mayonnaise.", "6 €"]
+  - ["Ovos rotos", "Ovos rotos", "Batata palha, cebola confitada e pimentos assados. Com presunto: 10 €.", "Shoestring potatoes, confit onion and roasted peppers. With ham: €10.", "7 €"]
+  - ["Bacalhau à LaMusik", "Bacalhau à LaMusik", "Crescendo: bacalhau a baixa temperatura, inspirado no à Brás, com gema.", "Crescendo: slow-cooked cod inspired by bacalhau à Brás, with egg yolk.", "16 €"]
+  - ["Entrecôte 250 g", "Entrecôte 250 g", "Com alecrim flamejado, manteiga da casa, espargos e batata rústica.", "With flaming rosemary, house butter, asparagus and rustic potatoes.", "20 €"]
+  - ["Cheesecake de citrinos e gengibre", "Citrus and ginger cheesecake", "Finale.", "Finale.", "8 €"]
+  - ["Gelado de alecrim", "Rosemary ice cream", "Ou de hibisco e hortelã.", "Or hibiscus and mint.", "2,50 €"]
+  - ["Sade", "Sade", "Cocktail: limoncello, chá de gengibre e espumante.", "Cocktail: limoncello, ginger tea and sparkling wine.", "12 €"]
+  - ["Amy Winehouse", "Amy Winehouse", "Cocktail: bourbon, sumo de limão e vinho tinto.", "Cocktail: bourbon, lemon juice and red wine.", "10 €"]
+facts:
+  - ["35", "lugares, por isso convém reservar", "seats, so booking is a good idea"]
+  - ["Ao vivo", "jazz, bossa nova e soul todas as semanas", "jazz, bossa nova and soul every week"]
+  - ["02:00", "à sexta e ao sábado", "on Fridays and Saturdays"]
+  - ["2026", "aberto a 22 de abril, na Parede", "opened on 22 April in Parede"]
+t:
+  pt:
+    eyebrow: "Cozinha portuguesa e música ao vivo · Parede"
+    h1: "Jazz, bossa nova e soul, <em>com bacalhau à mesa</em>."
+    lede: "35 lugares, uma carta portuguesa do chef David da Conceição e uma programação semanal escolhida pelo agente musical Rodrigo Balona."
+    cta1: "Reservar mesa"
+    cta_short: "Reservar"
+    cta2: "Ver a carta"
+    nav_menu: "Carta"
+    menu_k: "Carta"
+    menu_h: "Interludes, Crescendo, Finale"
+    menu_p: "As secções da carta e os cocktails têm nomes de música. Para começar, pão de massa-mãe com azeitonas e manteiga de alho e ervas."
+    menu_note: "Preços segundo a Time Out (junho de 2026)."
+    about_h: "Um restaurante com programação"
+    about_p:
+      - "O LaMusik abriu a 22 de abril de 2026, na Parede. Rodrigo Balona, agente e manager de músicos, escolhe os concertos: jazz, bossa nova e soul, e em breve open mics."
+      - "Na cozinha, o chef David da Conceição faz cozinha portuguesa com um toque de fine dining. São só 35 lugares."
+    visit_p: "Horário, morada e, no site final, o cartaz de cada semana."
+    hours_note: "Horário segundo a Time Out (junho de 2026)."
+    form_h: "Reservar mesa"
+    form_p: "Escolha a noite, a hora e quantas pessoas. A mensagem fica pronta para enviar pelo Instagram, ou ligue para o 912 383 745."
+    foot_p: "Cozinha portuguesa e música ao vivo na Parede."
+    og_desc: "Conceito de site para o LaMusik, na Parede: carta, música ao vivo, horário e reservas."
+  en:
+    eyebrow: "Portuguese food and live music · Parede"
+    h1: "Jazz, bossa nova and soul, <em>with bacalhau on the table</em>."
+    lede: "35 seats, a Portuguese menu by chef David da Conceição and a weekly line-up picked by music agent Rodrigo Balona."
+    cta1: "Book a table"
+    cta_short: "Book"
+    cta2: "See the menu"
+    menu_k: "Menu"
+    menu_h: "Interludes, Crescendo, Finale"
+    menu_p: "Menu sections and cocktails are named after music. To start, sourdough with olives and garlic-herb butter."
+    menu_note: "Prices as published by Time Out (June 2026)."
+    about_h: "A restaurant with a line-up"
+    about_p:
+      - "LaMusik opened on 22 April 2026 in Parede. Rodrigo Balona, a music agent and manager, picks the concerts: jazz, bossa nova and soul, with open mics coming soon."
+      - "In the kitchen, chef David da Conceição cooks Portuguese food with a fine-dining touch. There are only 35 seats."
+    visit_p: "Hours, address and, on the real site, each week's line-up."
+    hours_note: "Hours as published by Time Out (June 2026)."
+    form_h: "Book a table"
+    form_p: "Choose the night, time and party size. The message is ready to send on Instagram, or call 912 383 745."
+    foot_p: "Portuguese food and live music in Parede."
+    og_desc: "Website concept for LaMusik in Parede: menu, live music, hours and bookings."

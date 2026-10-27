@@ -1,0 +1,113 @@
+slug: desvio
+name: Desvio Ceramics
+wordmark: "Desvio"
+logo_sub: "Ceramics"
+giant: "Desvio"
+ig: desvioceramics
+address: "Avenida Dom Carlos I, 246 (Cidadela Art District), 2750-310 Cascais"
+maps_q: "Desvio Ceramics, Cidadela de Cascais"
+phone: "927 056 514"
+hours: {mon: [["11:00","19:00"]], tue: [["11:00","19:00"]], wed: [["11:00","19:00"]], thu: [["11:00","19:00"]], fri: [["11:00","19:00"]], sat: [["11:00","19:00"]]}
+look:
+  fonts: ["Instrument+Serif:ital@0;1", "Hanken+Grotesk:wght@400;500;600"]
+  display_css: "'Instrument Serif', Georgia, serif"
+  body_css: "'Hanken Grotesk', system-ui, sans-serif"
+  dw: 400
+  dt: "-0.02em"
+  scheme: light
+  bg: "#ece6dd"
+  bg2: "#e1d8cb"
+  card: "#f6f2ec"
+  ink: "#2b2622"
+  ink2: "#4f4842"
+  muted: "#7f766c"
+  line: "#d6cbbb"
+  acc: "#5b6b4e"
+  acc_ink: "#4f5f43"
+  on_acc: "#f6f2ec"
+  dark: "#2b2622"
+  on_dark: "#ece6dd"
+  on_dark_muted: "#bbb0a3"
+  art_bg: "#d9cdbb"
+  a1: "#b9a68c"
+  a2: "#8a9a7a"
+  a3: "#cbbca6"
+  art_ink: "#3a3029"
+  art_hi: "#efe7da"
+  motif: vessels
+  hero: type
+  menu: cards
+  r: 30
+  sep: "○"
+form:
+  type: enquiry
+  opts:
+    int:
+      - ["Workshop de roda", "Wheel workshop"]
+      - ["Wheel and Wine", "Wheel and Wine"]
+      - ["Modelação manual", "Hand-building class"]
+      - ["Open Studio", "Open Studio"]
+      - ["Uma peça da loja", "A piece from the shop"]
+  extra:
+    - {id: date, kind: date, at: 1}
+items:
+  - ["Pratos, chávenas e taças", "Plates, cups and bowls", "Feitos à mão, minimalistas, com as imperfeições naturais do barro.", "Handmade and minimalist, with the clay's natural imperfections."]
+  - ["Jarros e peças decorativas", "Jugs and decorative pieces", "Para a mesa e para a casa.", "For the table and the home."]
+  - ["Workshops de roda", "Wheel workshops", "Na loja da Cidadela, na roda de oleiro.", "At the Cidadela shop, on the potter's wheel."]
+  - ["Wheel and Wine", "Wheel and Wine", "Roda de oleiro com um copo de vinho.", "The potter's wheel, with a glass of wine."]
+  - ["Modelação manual", "Hand-building", "No estúdio do Bairro do Rosário.", "At the Bairro do Rosário studio."]
+  - ["Open Studio", "Open Studio", "Reserve tempo no estúdio para trabalhar nas suas próprias peças.", "Book studio time to work on your own pieces."]
+facts:
+  - ["2024", "o primeiro estúdio, no Bairro do Rosário", "the first studio, in Bairro do Rosário"]
+  - ["2025", "a loja e o estúdio de roda no Art District da Cidadela", "the shop and wheel studio in the Cidadela Art District"]
+  - ["1", "aula de olaria que mudou o caminho da Sofia", "pottery class that changed Sofia's path"]
+  - ["2", "espaços: modelação no Rosário, roda na Cidadela", "spaces: hand-building in Rosário, wheel at the Cidadela"]
+t:
+  pt:
+    eyebrow: "Cerâmica e workshops · Cidadela de Cascais"
+    h1: "Cerâmica feita à mão, <em>com as imperfeições do barro</em>."
+    lede: "Pratos, chávenas, taças e jarros minimalistas, e workshops de roda na loja da Cidadela. Desde 2024, pela mão da Sofia Santo."
+    cta1: "Marcar um workshop"
+    cta_short: "Marcar"
+    cta2: "Ver peças e workshops"
+    nav_menu: "Peças"
+    art_tag_b: "Imperfeito de propósito"
+    art_tag: "cada peça mostra o barro como ele é"
+    menu_k: "Peças e workshops"
+    menu_h: "Para levar ou para fazer"
+    menu_p: "As peças estão à venda na loja da Cidadela. Os workshops acontecem na Cidadela (roda) e no Rosário (modelação e Open Studio)."
+    menu_note: "Os preços e as datas dos workshops entram aqui quando a Desvio os confirmar."
+    about_h: "Uma aula que virou caminho"
+    about_p:
+      - "A Sofia Santo passou dez anos na área social, até que uma aula de olaria lhe mostrou outro caminho. Em outubro de 2024 abriu o estúdio no Bairro do Rosário."
+      - "Em julho de 2025 chegou ao Art District da Cidadela, com loja e estúdio de roda. Há cursos também com artistas convidados."
+    hours_note: "Horário da loja da Cidadela, segundo a Time Out (setembro de 2025)."
+    form_k: "Workshops"
+    form_h: "Marcar um workshop"
+    form_p: "Escolha o workshop e o dia que lhe dá jeito. A mensagem fica pronta para enviar à Desvio pelo Instagram."
+    foot_p: "Cerâmica feita à mão e workshops, na Cidadela de Cascais e no Bairro do Rosário."
+    og_desc: "Conceito de site para a Desvio Ceramics, em Cascais: peças, workshops de roda, horário e marcações."
+  en:
+    eyebrow: "Ceramics and workshops · Cidadela de Cascais"
+    h1: "Handmade ceramics, <em>with the clay's imperfections</em>."
+    lede: "Minimalist plates, cups, bowls and jugs, and wheel workshops at the Cidadela shop. Since 2024, made by Sofia Santo."
+    cta1: "Book a workshop"
+    cta_short: "Book"
+    cta2: "See pieces and workshops"
+    nav_menu: "Pieces"
+    art_tag_b: "Imperfect on purpose"
+    art_tag: "every piece shows the clay as it is"
+    menu_k: "Pieces and workshops"
+    menu_h: "To take home, or to make"
+    menu_p: "Pieces are sold at the Cidadela shop. Workshops run at the Cidadela (wheel) and in Rosário (hand-building and Open Studio)."
+    menu_note: "Workshop prices and dates go here once Desvio confirms them."
+    about_h: "One class, a new path"
+    about_p:
+      - "Sofia Santo spent ten years in social work until a single pottery class showed her another path. In October 2024 she opened her studio in Bairro do Rosário."
+      - "In July 2025 she moved into the Cidadela Art District with a shop and wheel studio. Some courses are led by guest artists."
+    hours_note: "Cidadela shop hours, as published by Time Out (September 2025)."
+    form_k: "Workshops"
+    form_h: "Book a workshop"
+    form_p: "Choose the workshop and a day that suits you. The message is ready to send to Desvio on Instagram."
+    foot_p: "Handmade ceramics and workshops at the Cidadela de Cascais and in Bairro do Rosário."
+    og_desc: "Website concept for Desvio Ceramics in Cascais: pieces, wheel workshops, hours and bookings."

@@ -1,0 +1,125 @@
+slug: d-amelia
+name: D. Amélia Flower Bar
+wordmark: "D. Amélia"
+logo_sub: "Flower Bar"
+giant: "D. Amélia"
+ig: d.ameliaflowerbar
+address: "Fortaleza da Cidadela de Cascais, Avenida Dom Carlos I, 2750-310 Cascais"
+maps_q: "D. Amélia Flower Bar, Cidadela de Cascais"
+phone: null
+hours: {tue: [["12:00","18:00"]], wed: [["12:00","18:00"]], thu: [["12:00","18:00"]], fri: [["12:00","18:00"]], sat: [["12:00","18:00"]]}
+look:
+  fonts: ["Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600", "Mulish:wght@400;500;600;700"]
+  display_css: "'Cormorant Garamond', Garamond, Georgia, serif"
+  body_css: "'Mulish', system-ui, sans-serif"
+  dw: 500
+  dt: "-0.01em"
+  dstyle: italic
+  scheme: light
+  bg: "#ede6dc"
+  bg2: "#e3d9cc"
+  card: "#f7f3ed"
+  ink: "#33291f"
+  ink2: "#54473a"
+  muted: "#857565"
+  line: "#d8cbb9"
+  acc: "#7c4f63"
+  acc_ink: "#734659"
+  on_acc: "#fbf6f1"
+  dark: "#33291f"
+  on_dark: "#ede6dc"
+  on_dark_muted: "#c3b5a4"
+  art_bg: "#e3d6c4"
+  a1: "#b9849a"
+  a2: "#7b7f4a"
+  a3: "#cdb995"
+  art_ink: "#4a3524"
+  art_hi: "#f2d9a0"
+  motif: flowers2
+  hero: type
+  menu: cards
+  r: 2
+  btn_r: "2px"
+  h1: 0.95
+  logo_size: "30px"
+  logo_size_sm: "25px"
+  em_style: normal
+  sep: "❦"
+form:
+  type: bouquet
+  opts:
+    occ:
+      - ["Aniversário", "Birthday"]
+      - ["Agradecimento", "Thank you"]
+      - ["Para a casa", "For the home"]
+      - ["Só porque sim", "Just because"]
+    budget:
+      - ["até 25 €", "up to €25"]
+      - ["25–40 €", "€25–40"]
+      - ["40–60 €", "€40–60"]
+      - ["60 € ou mais", "€60 or more"]
+    col:
+      - ["Brancos", "Whites"]
+      - ["Rosas e lilases", "Pinks and lilacs"]
+      - ["Amarelos", "Yellows"]
+      - ["Secos e neutros", "Dried and neutral"]
+    how:
+      - ["Levanto na Cidadela", "I'll pick up at the Cidadela"]
+      - ["Preciso de entrega", "I need delivery"]
+items:
+  - ["Ramos feitos na hora", "Bouquets made on the spot", "Escolhe as flores e a Maria faz o ramo à sua frente, ao seu gosto.", "Pick the flowers and Maria makes the bouquet in front of you, your way."]
+  - ["Ramos prontos", "Ready-made bouquets", "Para quem está com pressa, há sempre ramos prontos.", "In a hurry? There are always bouquets ready."]
+  - ["Flores secas", "Dried flowers", "A maior parte da loja. Duram meses.", "Most of the shop. They last for months."]
+  - ["Fruta em conserva caseira", "Home-preserved fruit", "Fruta da época, conservada pela própria Maria.", "Seasonal fruit, preserved by Maria herself."]
+facts:
+  - ["Cidadela", "dentro das muralhas da fortaleza", "inside the fortress walls"]
+  - ["Na hora", "cada ramo ao gosto de quem o leva", "every bouquet made to taste"]
+  - ["Time Out", "na lista das melhores floristas de Cascais (2025)", "on the list of the best florists in Cascais (2025)"]
+  - ["2for1", "o estúdio de design da Maria, no mesmo espaço", "Maria's design studio, in the same space"]
+t:
+  pt:
+    eyebrow: "Flower bar · Cidadela de Cascais"
+    h1: "Flores secas e ramos feitos <em>à sua frente</em>."
+    lede: "Uma pequena florista com ar de campo, dentro das muralhas da Fortaleza da Cidadela. Há sempre ramos prontos, mas a Maria prefere fazê-los na hora, ao seu gosto."
+    cta1: "Pedir um ramo"
+    cta_short: "Pedir"
+    cta2: "Ver a loja"
+    nav_menu: "A loja"
+    art_tag_b: "Feito na hora"
+    art_tag: "cada ramo ao gosto de quem o leva"
+    menu_k: "A loja"
+    menu_h: "O que vai encontrar"
+    menu_p: "Sobretudo flores secas, que duram meses, e produtos da época. No site final, aqui entravam fotografias dos ramos da semana."
+    menu_note: "Os preços entram aqui quando a casa os confirmar."
+    about_h: "Flores e design na Cidadela"
+    about_p:
+      - "A D. Amélia é a florista de Maria Matos, dentro da Fortaleza da Cidadela de Cascais. No mesmo espaço funciona o estúdio de design dela, a 2for1 Design."
+      - "A loja parece uma casa de campo: flores secas, fruta da época que a própria Maria conserva e ramos montados ao gosto de cada cliente."
+    hours_note: "Horário segundo a Time Out (2021). A confirmar com a casa."
+    form_h: "Pedir um ramo"
+    form_p: "Diga a ocasião, as cores e o orçamento. A mensagem fica pronta para enviar à D. Amélia pelo Instagram, e o ramo fica pronto para o dia."
+    foot_p: "Flower bar dentro da Fortaleza da Cidadela de Cascais."
+    og_desc: "Conceito de site para a D. Amélia Flower Bar, na Cidadela de Cascais: a loja, o horário e pedidos de ramos."
+  en:
+    eyebrow: "Flower bar · Cidadela de Cascais"
+    h1: "Dried flowers and bouquets made <em>in front of you</em>."
+    lede: "A small, countryside-style florist inside the walls of the Cidadela fortress. There are always bouquets ready, but Maria prefers to make them on the spot, your way."
+    cta1: "Ask for a bouquet"
+    cta_short: "Ask"
+    cta2: "See the shop"
+    nav_menu: "The shop"
+    art_tag_b: "Made on the spot"
+    art_tag: "every bouquet made to taste"
+    menu_k: "The shop"
+    menu_h: "What you'll find"
+    menu_p: "Mostly dried flowers, which last for months, and seasonal produce. On the real site, this is where photos of the week's bouquets would go."
+    menu_note: "Prices go here once the shop confirms them."
+    about_h: "Flowers and design in the Cidadela"
+    about_p:
+      - "D. Amélia is Maria Matos's florist, inside the Cidadela fortress in Cascais. Her design studio, 2for1 Design, works from the same space."
+      - "The shop feels like a country house: dried flowers, seasonal fruit that Maria preserves herself and bouquets made to each customer's taste."
+    hours_note: "Hours as published by Time Out (2021). To be confirmed."
+    form_h: "Ask for a bouquet"
+    form_p: "Tell us the occasion, colours and budget. The message is ready to send to D. Amélia on Instagram, and the bouquet will be ready on the day."
+    foot_p: "Flower bar inside the Cidadela fortress in Cascais."
+    og_desc: "Website concept for D. Amélia Flower Bar in the Cidadela de Cascais: the shop, hours and bouquet requests."

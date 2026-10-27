@@ -1,0 +1,105 @@
+slug: masa
+name: Masa Bakery
+wordmark: "Masa"
+logo_sub: "Bakery"
+giant: "Masa<span>.</span>"
+ig: masabakery_pt
+address: "Rua de Cascais, 938B, 2755-162 Malveira da Serra"
+maps_q: "Masa Bakery, Rua de Cascais 938B, Malveira da Serra"
+phone: null
+hours: {wed: [["09:00","17:00"]], thu: [["09:00","17:00"]], fri: [["09:00","17:00"]], sat: [["09:00","14:00"]], sun: [["09:00","14:00"]]}
+look:
+  fonts: ["Young+Serif", "Figtree:wght@400;500;600;700"]
+  display_css: "'Young Serif', Georgia, serif"
+  body_css: "'Figtree', system-ui, sans-serif"
+  dw: 400
+  dt: "-0.02em"
+  scheme: dark
+  bg: "#16231c"
+  bg2: "#1c2c23"
+  card: "#203329"
+  ink: "#f3ecdd"
+  ink2: "#d6ccb8"
+  muted: "#9fae9f"
+  line: "#2f463a"
+  acc: "#e9b44c"
+  acc_ink: "#f0c266"
+  on_acc: "#16231c"
+  dark: "#0e1712"
+  on_dark: "#f3ecdd"
+  on_dark_muted: "#a9b5a8"
+  art_bg: "#1f3329"
+  a1: "#e2a843"
+  a2: "#c98a2e"
+  a3: "#2a4436"
+  art_ink: "#7a4a12"
+  art_hi: "#fbe3a6"
+  motif: croissant
+  hero: type
+  menu: cards
+  open: "#8fd16a"
+  err: "#ff8a80"
+  r: 20
+  sep: "●"
+form:
+  type: order
+items:
+  - ["Croissant clássico", "Classic croissant", "Folhado, dourado e estaladiço. O começo de tudo.", "Flaky, golden and crisp. Where it all started."]
+  - ["Cruffin", "Cruffin", "Meio croissant, meio muffin. Um dos sucessos da casa.", "Half croissant, half muffin. One of the house hits."]
+  - ["Croissant de chocolate ou de amêndoa", "Chocolate or almond croissant", "Para quem prefere começar o dia pelo doce.", "For those who start the day with something sweet."]
+  - ["Croissant de fiambre e queijo", "Ham and cheese croissant", "O salgado para o pequeno-almoço.", "The savoury one for breakfast."]
+  - ["Croissant de salsicha", "Sausage croissant", "Com salsicha Frankfurt, para o lanche.", "With a frankfurter, for a mid-morning snack."]
+  - ["Croissants da época", "Seasonal croissants", "Figo e mascarpone no verão, noz e café no inverno.", "Fig and mascarpone in summer, walnut and coffee in winter."]
+  - ["Pão do dia", "Bread of the day", "Baguete, 100% centeio, pão com chouriço ou de sementes. Muda todos os dias.", "Baguette, 100% rye, chouriço bread or seeded loaf. Changes every day."]
+facts:
+  - ["2024", "abriu a 17 de julho, na Malveira da Serra", "opened on 17 July in Malveira da Serra"]
+  - ["100%", "pão natural, de fermentação lenta", "natural, slow-fermented bread"]
+  - ["15", "lugares na esplanada", "seats on the terrace"]
+  - ["Guincho", "há quem leve os croissants para os miradouros sobre a costa", "people take their croissants to the viewpoints over the coast"]
+t:
+  pt:
+    eyebrow: "Micropadaria · Malveira da Serra"
+    h1: "Croissants de um antigo pasteleiro do Alma, <em>no meio da serra</em>."
+    lede: "Croissants doces e salgados e pão de fermentação lenta, 100% natural, que muda todos os dias. A caminho do Guincho."
+    cta1: "Encomendar croissants"
+    cta_short: "Encomendar"
+    cta2: "Ver o que há"
+    nav_menu: "Do forno"
+    art_tag_b: "Cruffin"
+    art_tag: "meio croissant, meio muffin: o sucesso da casa"
+    menu_k: "Do forno"
+    menu_h: "Croissants e pão do dia"
+    menu_p: "O pão muda todos os dias. Os croissants mudam com a estação: figo e mascarpone no verão, noz e café no inverno."
+    menu_note: "Os preços entram aqui quando a casa os confirmar."
+    about_h: "Do Alma para a Malveira"
+    about_p:
+      - "A Masa é a micropadaria do padeiro colombiano Mauricio Roesel, que foi chefe de pastelaria do Alma, o restaurante com estrela Michelin de Henrique Sá Pessoa."
+      - "Abriu a 17 de julho de 2024, no antigo espaço da Croissants da Serra, dentro do Parque Natural de Sintra-Cascais. É pequena: um balcão, um corredor e uma esplanada."
+    hours_note: "Horário segundo a Time Out (fevereiro de 2025). A confirmar com a casa."
+    form_h: "Encomendar para levantar"
+    form_p: "Escolha os croissants e o pão, o dia e o nome. A mensagem fica pronta para enviar à Masa pelo Instagram."
+    foot_p: "Micropadaria na Malveira da Serra, a caminho do Guincho."
+    og_desc: "Conceito de site para a Masa Bakery, na Malveira da Serra: croissants, pão do dia, horário e encomendas."
+  en:
+    eyebrow: "Micro bakery · Malveira da Serra"
+    h1: "Croissants by a former Alma pastry chef, <em>up in the hills</em>."
+    lede: "Sweet and savoury croissants and slow-fermented, 100% natural bread that changes every day. On the way to Guincho."
+    cta1: "Order croissants"
+    cta_short: "Order"
+    cta2: "See what's baking"
+    nav_menu: "Bakes"
+    art_tag_b: "Cruffin"
+    art_tag: "half croissant, half muffin: the house hit"
+    menu_k: "From the oven"
+    menu_h: "Croissants and today's bread"
+    menu_p: "The bread changes every day. The croissants change with the season: fig and mascarpone in summer, walnut and coffee in winter."
+    menu_note: "Prices go here once the bakery confirms them."
+    about_h: "From Alma to Malveira"
+    about_p:
+      - "Masa is the micro bakery of Colombian baker Mauricio Roesel, former pastry chef at Alma, Henrique Sá Pessoa's Michelin-starred restaurant."
+      - "It opened on 17 July 2024 in the old Croissants da Serra shop, inside the Sintra-Cascais Natural Park. It's small: a counter, a corridor and a terrace."
+    hours_note: "Hours as published by Time Out (February 2025). To be confirmed."
+    form_h: "Order for pick-up"
+    form_p: "Choose your croissants and bread, the day and your name. The message is ready to send to Masa on Instagram."
+    foot_p: "Micro bakery in Malveira da Serra, on the way to Guincho."
+    og_desc: "Website concept for Masa Bakery in Malveira da Serra: croissants, bread of the day, hours and orders."

@@ -1,0 +1,110 @@
+slug: cabana
+name: Cabana das Paixões
+wordmark: "Cabana"
+logo_sub: "das Paixões"
+giant: "Cabana<span>.</span>"
+foot_name: "Cabana das Paixões"
+ig: cabana.das.paixoes
+address: "Avenida General Eduardo Galhardo, 71, 2775-564 Carcavelos"
+maps_q: "Cabana das Paixões, Avenida General Eduardo Galhardo 71, Carcavelos"
+phone: "969 639 473"
+hours: {sun: [["12:00","14:30"]], mon: [["12:00","14:30"]], tue: [["12:00","14:30"]], wed: [["12:00","14:30"]], thu: [["12:00","14:30"]], fri: [["12:00","14:30"],["19:30","21:30"]], sat: [["12:00","14:30"],["19:30","21:30"]]}
+look:
+  fonts: ["Anton", "Work+Sans:wght@400;500;600"]
+  display_css: "'Anton', Impact, sans-serif"
+  body_css: "'Work Sans', system-ui, sans-serif"
+  dw: 400
+  dt: "0.005em"
+  dc: uppercase
+  scheme: dark
+  bg: "#141110"
+  bg2: "#1c1816"
+  card: "#221d1a"
+  ink: "#f4ede4"
+  ink2: "#d4c8bb"
+  muted: "#9c8f84"
+  line: "#352d28"
+  acc: "#ff7a2f"
+  acc_ink: "#ff8f4f"
+  on_acc: "#141110"
+  dark: "#0b0908"
+  on_dark: "#f4ede4"
+  on_dark_muted: "#a6998e"
+  art_bg: "#1f1a17"
+  a1: "#9fb3bf"
+  a2: "#ff7a2f"
+  a3: "#3a322d"
+  art_ink: "#0b0908"
+  art_hi: "#f4ede4"
+  motif: grill
+  hero: type
+  menu: list
+  r: 4
+  btn_r: "4px"
+  open: "#8fd16a"
+  err: "#ff8a80"
+  h1: 0.9
+  logo_size: "30px"
+  logo_size_sm: "24px"
+  em_style: normal
+  sep: "/"
+form:
+  type: table
+  times: ["12:00", "12:30", "13:00", "13:30", "14:00", "19:30", "20:00", "20:30", "21:00"]
+items:
+  - ["Sardinhas", "Sardines", "Assadas no carvão, no verão.", "Charcoal-grilled, in summer.", "10 €"]
+  - ["Dourada", "Sea bream", "Grelhada inteira.", "Grilled whole.", "10,50 €"]
+  - ["Chocos", "Cuttlefish", "Grelhados no carvão.", "Charcoal-grilled.", "13 €"]
+  - ["Linguado", "Sole", "Grelhado, simples.", "Simply grilled.", "17 €"]
+  - ["Bacalhau à lagareiro", "Bacalhau à lagareiro", "Com batata a murro e muito azeite.", "With crushed potatoes and plenty of olive oil.", "18 €"]
+  - ["Robalo para dois", "Sea bass for two", "Para três pessoas: 47,50 €.", "For three: €47.50.", "28,50 €"]
+  - ["Pregado para dois", "Turbot for two", "Para três pessoas: 57,50 €.", "For three: €57.50.", "31 €"]
+  - ["Bife da vazia", "Sirloin steak", "Para quem não é de peixe.", "For those who skip the fish.", "16 €"]
+facts:
+  - ["2003", "a família Brito na Cabana", "the Brito family at Cabana"]
+  - ["10–20 €", "conta média por pessoa", "average spend per person"]
+  - ["Carvão", "toda a grelha é a carvão", "everything grilled over charcoal"]
+  - ["Montra", "o peixe fresco à porta; a garoupa vende-se ao peso", "fresh fish at the door; grouper sold by weight"]
+t:
+  pt:
+    eyebrow: "Peixe grelhado no carvão · Carcavelos"
+    h1: "Dos melhores peixes grelhados <em>da Linha</em>."
+    lede: "Peixe fresco na montra à porta, carvão e cozinha simples. Na família Brito desde 2003, junto ao estádio do Carcavelinhos."
+    cta1: "Reservar mesa"
+    cta_short: "Reservar"
+    art_tag_b: "NiT, julho de 2026"
+    art_tag: "«serve dos melhores peixes grelhados da Linha»"
+    menu_k: "Da grelha"
+    menu_h: "Peixe do dia e grelhados"
+    menu_p: "O peixe muda com o que há de fresco. A garoupa vende-se ao peso. Também há entremeada, febras e maminha."
+    menu_note: "Preços segundo a NiT (julho de 2026)."
+    about_h: "Uma casa de família"
+    about_p:
+      - "A família Brito ficou com a Cabana em 2003. O pai esteve à frente da casa quase duas décadas e, desde que se reformou, em 2022, é o Gonçalo quem a gere."
+      - "Continua tudo como os clientes gostam: produto fresco, grelha a carvão e boa relação qualidade-preço. Fica a poucos minutos a pé da estação de Carcavelos."
+    hours_note: "Horário segundo a NiT (julho de 2026). Jantar só à sexta e ao sábado."
+    form_h: "Reservar mesa"
+    form_p: "Escolha o dia, a hora e quantas pessoas. A mensagem fica pronta para enviar pelo Instagram, ou ligue para o 969 639 473."
+    foot_p: "Peixe grelhado no carvão em Carcavelos, na família Brito desde 2003."
+    og_desc: "Conceito de site para a Cabana das Paixões, em Carcavelos: peixe grelhado, menu com preços, horário e reservas."
+  en:
+    eyebrow: "Charcoal-grilled fish · Carcavelos"
+    h1: "Some of the best grilled fish <em>on the Linha</em>."
+    lede: "Fresh fish on display at the door, charcoal and simple cooking. Run by the Brito family since 2003, next to the Carcavelinhos stadium."
+    cta1: "Book a table"
+    cta_short: "Book"
+    art_tag_b: "NiT, July 2026"
+    art_tag: "“serves some of the best grilled fish on the Linha”"
+    menu_k: "From the grill"
+    menu_h: "Fish of the day and grills"
+    menu_p: "The fish depends on what's fresh. Grouper is sold by weight. There's also pork belly, pork steaks and beef."
+    menu_note: "Prices as published by NiT (July 2026)."
+    about_h: "A family place"
+    about_p:
+      - "The Brito family took over Cabana in 2003. The father ran it for almost two decades, and since he retired in 2022 Gonçalo has been in charge."
+      - "Everything is as regulars like it: fresh produce, a charcoal grill and good value. It's a few minutes' walk from Carcavelos station."
+    hours_note: "Hours as published by NiT (July 2026). Dinner on Fridays and Saturdays only."
+    form_h: "Book a table"
+    form_p: "Choose the day, time and party size. The message is ready to send on Instagram, or call 969 639 473."
+    foot_p: "Charcoal-grilled fish in Carcavelos, run by the Brito family since 2003."
+    og_desc: "Website concept for Cabana das Paixões in Carcavelos: grilled fish, menu with prices, hours and bookings."

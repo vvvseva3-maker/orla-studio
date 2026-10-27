@@ -1,0 +1,104 @@
+slug: marujo
+name: Marujo da Linha
+wordmark: "Marujo <span style=\"color:var(--acc-ink)\">da Linha</span>"
+ig: marujodalinha
+address: "Largo Luís de Camões, 44, 2750-458 Cascais"
+maps_q: "Marujo da Linha, Largo Luís de Camões 44, Cascais"
+phone: "925 675 800"
+hours: {mon: [["11:00","01:00"]], tue: [["11:00","01:00"]], wed: [["11:00","01:00"]], thu: [["11:00","01:00"]], fri: [["11:00","01:00"]], sat: [["11:00","01:00"]], sun: [["11:00","01:00"]]}
+look:
+  fonts: ["Abril+Fatface", "Karla:wght@400;500;600;700"]
+  display_css: "'Abril Fatface', Georgia, serif"
+  body_css: "'Karla', system-ui, sans-serif"
+  dw: 400
+  dt: "-0.01em"
+  scheme: light
+  bg: "#f5f7fa"
+  bg2: "#e8eef6"
+  card: "#ffffff"
+  ink: "#0f2340"
+  ink2: "#2e4262"
+  muted: "#5f7190"
+  line: "#d3ddeb"
+  acc: "#1d4fa0"
+  acc_ink: "#1d4fa0"
+  on_acc: "#ffffff"
+  dark: "#0f2340"
+  on_dark: "#eef3fa"
+  on_dark_muted: "#a8b8d3"
+  art_bg: "#e8eef6"
+  a1: "#c8312b"
+  a2: "#1d4fa0"
+  a3: "#f5f7fa"
+  art_ink: "#0f2340"
+  art_hi: "#ffffff"
+  motif: lifebuoy
+  hero: split
+  menu: cards
+  r: 16
+  logo_size: "25px"
+  logo_size_sm: "20px"
+  sep: "⚓"
+form:
+  type: table
+  times: ["12:30", "13:00", "13:30", "14:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"]
+items:
+  - ["Tábua de presunto ibérico e manchego", "Iberian ham and Manchego board", "Para começar e partilhar.", "To start and share.", "23 €"]
+  - ["Croquete de presunto ibérico", "Iberian ham croquette", "Cremoso por dentro.", "Creamy inside.", "3 €"]
+  - ["Gambas al ajillo", "Gambas al ajillo", "Gambas em azeite e alho.", "Prawns in garlic and olive oil.", "16 €"]
+  - ["Lulas à andaluza", "Andalusian squid", "Estaladiças, como no sul de Espanha.", "Crispy, the southern Spanish way.", "16 €"]
+  - ["Huevos rotos com presunto ibérico", "Huevos rotos with Iberian ham", "Ovos sobre batata frita. Com lavagante: 24 €.", "Eggs over fried potatoes. With lobster: €24.", "16 €"]
+  - ["Paella valenciana", "Paella valenciana", "A tradicional, como em Valência.", "The traditional one, as in Valencia.", "16,50 €"]
+  - ["Arroz de lavagante", "Lobster rice", "O arroz português da casa.", "The house Portuguese rice.", "26 €"]
+  - ["Torrija de leite-creme", "Torrija with leite-creme", "A sobremesa preferida da casa.", "The house favourite dessert.", "6,50 €"]
+facts:
+  - ["90", "lugares na sala e na esplanada", "seats in the dining room and on the terrace"]
+  - ["11–01", "aberto todos os dias", "open every day"]
+  - ["2", "cozinhas na mesma mesa: portuguesa e espanhola", "cuisines at one table: Portuguese and Spanish"]
+  - ["4,6", "no Google, com mais de mil avaliações", "on Google, from over a thousand reviews"]
+t:
+  pt:
+    eyebrow: "Cozinha ibérica · Centro histórico de Cascais"
+    h1: "Tapas, arrozes e paelha <em>no Largo Camões</em>."
+    lede: "Cozinha portuguesa e espanhola com sotaque valenciano, da Mireia e do irmão, o chef Borja López. Aberto todos os dias até à uma da manhã."
+    cta1: "Reservar mesa"
+    cta_short: "Reservar"
+    cta2: "Ver a carta"
+    nav_menu: "Carta"
+    art_tag_b: "Torrija de leite-creme"
+    art_tag: "a sobremesa preferida da casa"
+    menu_k: "Carta"
+    menu_h: "Para partilhar"
+    menu_p: "Produtos portugueses e os essenciais espanhóis, como os boquerones e os presuntos curados. Vinhos portugueses e espanhóis."
+    menu_note: "Preços segundo a Time Out (julho de 2025)."
+    about_h: "De Valência para Cascais"
+    about_p:
+      - "A Mireia López é de Valência e vive em Portugal há 18 anos. O irmão, Borja, é o chef. Depois de oito meses no Paredão de Carcavelos, o Marujo mudou-se para o Largo Luís de Camões a 10 de junho de 2025."
+      - "A sala é azul e branca, com azulejos pintados à mão com o Camões, candeeiros feitos pela própria Mireia e livros do poeta à vista."
+    hours_note: "Horário segundo a Time Out (julho de 2025)."
+    form_h: "Reservar mesa"
+    form_p: "Escolha o dia, a hora e quantas pessoas. A mensagem fica pronta para enviar ao Marujo pelo Instagram."
+    foot_p: "Cozinha ibérica no Largo Luís de Camões, no centro histórico de Cascais."
+    og_desc: "Conceito de site para o Marujo da Linha, em Cascais: carta com preços em português e inglês, horário e reservas."
+  en:
+    eyebrow: "Iberian kitchen · Cascais old town"
+    h1: "Tapas, rice and paella <em>on Largo Camões</em>."
+    lede: "Portuguese and Spanish cooking with a Valencian accent, from Mireia and her brother, chef Borja López. Open every day until 1am."
+    cta1: "Book a table"
+    cta_short: "Book"
+    cta2: "See the menu"
+    art_tag_b: "Torrija with leite-creme"
+    art_tag: "the house favourite dessert"
+    menu_k: "Menu"
+    menu_h: "To share"
+    menu_p: "Portuguese produce plus the Spanish essentials, like boquerones and cured hams. Portuguese and Spanish wines."
+    menu_note: "Prices as published by Time Out (July 2025)."
+    about_h: "From Valencia to Cascais"
+    about_p:
+      - "Mireia López is from Valencia and has lived in Portugal for 18 years. Her brother Borja is the chef. After eight months on the Carcavelos promenade, Marujo moved to Largo Luís de Camões on 10 June 2025."
+      - "The room is blue and white, with hand-painted tiles of Camões, lamps made by Mireia herself and the poet's books on display."
+    hours_note: "Hours as published by Time Out (July 2025)."
+    form_h: "Book a table"
+    form_p: "Choose the day, time and party size. The message is ready to send to Marujo on Instagram."
+    foot_p: "Iberian cooking on Largo Luís de Camões, in Cascais old town."
+    og_desc: "Website concept for Marujo da Linha in Cascais: menu with prices in English and Portuguese, hours and bookings."

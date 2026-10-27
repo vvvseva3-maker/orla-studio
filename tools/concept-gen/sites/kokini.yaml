@@ -1,0 +1,119 @@
+slug: kokini
+name: Kokini
+ig: kokini.cascais
+address: Rua Freitas Reis, 17 B, 2750-357 Cascais
+maps_q: Kokini, Rua Freitas Reis 17 B, Cascais
+phone: null
+hours: {mon: [["11:00","17:00"]], tue: [["11:00","21:00"]], wed: [["11:00","21:00"]], thu: [["11:00","21:00"]], fri: [["11:00","21:00"]], sat: [["11:00","21:00"]], sun: [["11:00","21:00"]]}
+look:
+  fonts: ["Gloock", "Rubik:wght@400;500;600"]
+  display_css: "'Gloock', Georgia, serif"
+  body_css: "'Rubik', system-ui, sans-serif"
+  dw: 400
+  dt: "-0.01em"
+  scheme: light
+  bg: "#f6f0e7"
+  bg2: "#efe5d7"
+  card: "#fbf7f1"
+  ink: "#1f1a17"
+  ink2: "#4a3f38"
+  muted: "#7d6e63"
+  line: "#e2d4c2"
+  acc: "#b3262d"
+  acc_ink: "#a11f26"
+  on_acc: "#fff7f0"
+  dark: "#1d2b2b"
+  on_dark: "#f3ece2"
+  on_dark_muted: "#b9c2bd"
+  art_bg: "#1d2b2b"
+  a1: "#b3262d"
+  a2: "#1f7a7a"
+  a3: "#24393a"
+  art_ink: "#0f1717"
+  art_hi: "#f3e6cf"
+  motif: star
+  hero: split
+  menu: list
+  r: 6
+  btn_r: "6px"
+  sep: "✦"
+form:
+  type: table
+  times: ["12:00","12:30","13:00","13:30","19:00","19:30","20:00","20:30"]
+items:
+  - n: {pt: "Frango com castanhas", en: "Chicken with chestnuts"}
+    d: {pt: "A especialidade da casa e o prato mais pedido pelos clientes da vila.", en: "The house specialty and the dish locals order most."}
+    p: "14 €"
+  - n: {pt: "Borrego assado lentamente", en: "Slow-roasted lamb"}
+    d: {pt: "Assado durante horas, até se desfazer.", en: "Roasted for hours, until it falls apart."}
+    p: "16 €"
+  - n: "Mantı"
+    d: {pt: "Pequenos pastéis cozidos turcos.", en: "Little Turkish dumplings."}
+    p: "12 €"
+  - n: "Kavurma"
+    d: {pt: "Guisado turco de novilho.", en: "Turkish beef stew."}
+    p: "16 €"
+  - n: {pt: "Mezze frios", en: "Cold mezze"}
+    d: {pt: "Uma seleção para partilhar à mesa.", en: "A selection to share at the table."}
+    p: "6 €"
+  - n: {pt: "Prato de degustação", en: "Tasting platter"}
+    d: {pt: "Para provar um pouco de tudo.", en: "A little of everything."}
+    p: "25 €"
+  - n: "Börek"
+    d: {pt: "Folhado recheado, acabado de fazer.", en: "Filled pastry, freshly made."}
+    p: "3 €"
+  - n: "Baklava"
+    d: {pt: "Para acabar, com um café turco.", en: "To finish, with a Turkish coffee."}
+    p: "5 €"
+facts:
+  - b: "2025"
+    t: {pt: "aberto em Cascais, junto ao jardim do Largo Maestro Taborda", en: "opened in Cascais, by the park at Largo Maestro Taborda"}
+  - b: "3–4 h"
+    t: {pt: "o tempo que algumas carnes passam no forno", en: "how long some of the meats spend in the oven"}
+  - b: "Kolonya"
+    t: {pt: "água-de-colónia para as mãos à chegada, como manda a tradição turca", en: "cologne for your hands on arrival, the Turkish way"}
+  - b: "Tavla"
+    t: {pt: "café turco, rakı, gamão e conversa", en: "Turkish coffee, rakı, backgammon and conversation"}
+t:
+  pt:
+    eyebrow: Cozinha turca · Cascais
+    h1: Cozinha caseira de Istambul, <em>ao lado do jardim</em>.
+    lede: Borrego assado durante horas, mezze, börek e baklava. No fim, café turco e uma partida de gamão.
+    cta1: Reservar mesa
+    cta_short: Reservar
+    art_tag_b: Kokini
+    art_tag: o nome vem da mãe do dono e das suas bochechas coradas
+    menu_k: Menu
+    menu_h: Da época, como em casa
+    menu_p: A carta muda com as estações. Há carnes que assam três a quatro horas antes de chegarem à mesa.
+    menu_note: Preços segundo a Time Out (agosto de 2026). No site final, a carta seria atualizada pela própria casa.
+    about_h: Um restaurante com nome de mãe
+    about_p:
+      - O Kokini abriu em 2025, pela mão de A. Turgay Gülay, antigo realizador e argumentista de Istambul. A cozinha é caseira e da época, com influências otomanas, da Anatólia, do Egeu e do Levante.
+      - O nome é uma homenagem à mãe do dono, antiga lançadora de disco, conhecida pelas bochechas coradas. A sala foi desenhada pela filha, a arquiteta Elif Deniz Gülay, com fotografias de Istambul a preto e branco.
+    hours_note: Horário segundo a Time Out (agosto de 2026).
+    form_h: Reservar mesa
+    form_p: Escolha o dia, a hora e quantas pessoas. A mensagem fica pronta para enviar ao Kokini pelo Instagram.
+    foot_p: Cozinha turca caseira em Cascais, ao lado do jardim do Largo Maestro Taborda.
+    og_desc: Conceito de site para o Kokini, cozinha turca em Cascais. Menu, horário e reservas.
+  en:
+    eyebrow: Turkish kitchen · Cascais
+    h1: Istanbul home cooking, <em>right by the park</em>.
+    lede: Lamb roasted for hours, mezze, börek and baklava. Then Turkish coffee and a game of backgammon.
+    cta1: Book a table
+    cta_short: Book
+    art_tag_b: Kokini
+    art_tag: named after the owner's mother and her rosy cheeks
+    menu_k: Menu
+    menu_h: Seasonal, like at home
+    menu_p: The menu changes with the seasons. Some meats roast for three to four hours before they reach the table.
+    menu_note: Prices as published by Time Out (August 2026). On the real site the owners would keep the menu up to date.
+    about_h: A restaurant named after a mother
+    about_p:
+      - Kokini opened in 2025, run by A. Turgay Gülay, a former film director and screenwriter from Istanbul. The cooking is homely and seasonal, with Ottoman, Anatolian, Aegean and Levantine roots.
+      - The name honours the owner's mother, a former discus thrower known for her rosy cheeks. The room was designed by his daughter, architect Elif Deniz Gülay, with black-and-white photos of Istanbul.
+    hours_note: Hours as published by Time Out (August 2026).
+    form_h: Book a table
+    form_p: Choose the day, time and party size. The message is ready to send to Kokini on Instagram.
+    foot_p: Turkish home cooking in Cascais, by the park at Largo Maestro Taborda.
+    og_desc: Website concept for Kokini, Turkish cooking in Cascais. Menu, hours and bookings.

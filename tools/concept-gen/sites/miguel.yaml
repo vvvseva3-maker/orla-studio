@@ -1,0 +1,103 @@
+slug: miguel
+name: Padaria do Miguel
+wordmark: "Padaria <em style=\"font-style:italic;color:var(--acc-ink)\">do</em> Miguel"
+ig: padaria.do.miguel
+address: "Rua Latino Coelho, 64 C, 2775-225 Parede"
+maps_q: "Padaria do Miguel, Rua Latino Coelho 64C, Parede"
+phone: null
+hours: {tue: [["08:30","13:00"]], wed: [["08:30","13:00"]], thu: [["08:30","13:00"]], fri: [["08:30","13:00"]], sat: [["08:30","13:00"]]}
+look:
+  fonts: ["DM+Serif+Display:ital@0;1", "DM+Sans:opsz,wght@9..40,400..700"]
+  display_css: "'DM Serif Display', Georgia, serif"
+  body_css: "'DM Sans', system-ui, sans-serif"
+  dw: 400
+  dt: "-0.015em"
+  scheme: light
+  bg: "#f4efe6"
+  bg2: "#ebe2d3"
+  card: "#fbf8f2"
+  ink: "#2a1f16"
+  ink2: "#4f4235"
+  muted: "#7f6f5f"
+  line: "#e0d4c2"
+  acc: "#4f6b3a"
+  acc_ink: "#44602f"
+  on_acc: "#f7f3ea"
+  dark: "#2a1f16"
+  on_dark: "#f4efe6"
+  on_dark_muted: "#c9bba8"
+  art_bg: "#e6dac6"
+  a1: "#c8894a"
+  a2: "#4f6b3a"
+  a3: "#d9c6a6"
+  art_ink: "#5a3518"
+  art_hi: "#fbf3e2"
+  motif: bun
+  hero: split
+  menu: list
+  r: 14
+  logo_size: "24px"
+  logo_size_sm: "19px"
+form:
+  type: order
+items:
+  - ["Pão de trigo tradicional", "Traditional wheat loaf", "O pão de todos os dias, de massa-mãe.", "The everyday sourdough loaf."]
+  - ["Pão de sementes", "Seeded loaf", "Massa-mãe com sementes.", "Sourdough with seeds."]
+  - ["Pão de trigo barbela", "Barbela wheat loaf", "Feito com barbela, um trigo antigo português.", "Made with barbela, an old Portuguese wheat."]
+  - ["Pão de espelta", "Spelt loaf", "Espelta e massa-mãe, fermentação lenta.", "Spelt and sourdough, slowly fermented."]
+  - ["Pão com queijo de São Jorge", "São Jorge cheese loaf", "Com queijo da ilha de São Jorge.", "With cheese from São Jorge island."]
+  - ["Pão com chouriço de porco preto", "Black pork chouriço loaf", "Com chouriço de porco preto.", "With black pork chouriço."]
+  - ["Caracol de canela", "Cinnamon roll", "Para o café da manhã. Também há rolos de cardamomo.", "For your morning coffee. There are cardamom rolls too."]
+  - ["Croissant de chocolate", "Chocolate croissant", "Aos sábados, convém chegar cedo.", "On Saturdays, come early."]
+facts:
+  - ["2021", "aberta numa antiga pastelaria, no centro da Parede", "opened in a former cake shop in central Parede"]
+  - ["~20 h", "o tempo que a massa descansa", "how long the dough rests"]
+  - ["150–200", "pães por dia, de três massas-mãe", "loaves a day, from three sourdough starters"]
+  - ["Solete", "do Guia Repsol, em 2025", "from the Repsol Guide, 2025"]
+t:
+  pt:
+    eyebrow: "Padaria de massa-mãe · Parede"
+    h1: "Pão de massa-mãe que descansa <em>quase 20 horas</em>."
+    lede: "Três massas-mãe, farinhas biológicas e 150 a 200 pães por dia, feitos pelo Miguel e pela Carmo no centro da Parede."
+    cta1: "Reservar pão"
+    cta_short: "Reservar"
+    cta2: "Ver o pão"
+    nav_menu: "O pão"
+    art_tag_b: "Solete Repsol"
+    art_tag: "distinção do Guia Repsol, em 2025"
+    menu_k: "Do forno"
+    menu_h: "O pão e o que vem com ele"
+    menu_p: "Farinhas biológicas de Paulino Horta, em Alenquer, massa-mãe e fermentação lenta. A padaria abre só de manhã."
+    menu_note: "Os preços entram aqui quando a casa os confirmar."
+    about_h: "O Miguel, a Carmo e três massas-mãe"
+    about_p:
+      - "A Padaria do Miguel abriu em 2021, numa antiga pastelaria no centro da Parede, pelas mãos do padeiro Miguel Vilela e da mulher, Carmo."
+      - "As farinhas são biológicas e vêm de Paulino Horta, em Alenquer, mentor do Miguel. O pão que sobra é torrado, para não se desperdiçar nada, e o pão da casa também chega a hotéis e restaurantes."
+    hours_note: "Horário segundo o Google. Online há horários e telefones diferentes; no site ficaria só o certo."
+    form_h: "Reservar pão para levantar"
+    form_p: "Escolha o pão, o dia e o nome, e passe só para levantar de manhã. A mensagem fica pronta para enviar pelo Instagram."
+    foot_p: "Padaria de massa-mãe no centro da Parede, desde 2021."
+    og_desc: "Conceito de site para a Padaria do Miguel, na Parede: o pão, o horário certo e reservas para levantar."
+  en:
+    eyebrow: "Sourdough bakery · Parede"
+    h1: "Sourdough that rests for <em>almost 20 hours</em>."
+    lede: "Three sourdough starters, organic flour and 150 to 200 loaves a day, made by Miguel and Carmo in the heart of Parede."
+    cta1: "Reserve bread"
+    cta_short: "Reserve"
+    cta2: "See the bread"
+    nav_menu: "Bread"
+    art_tag_b: "Repsol Solete"
+    art_tag: "awarded by the Repsol Guide in 2025"
+    menu_k: "From the oven"
+    menu_h: "Bread, and what goes with it"
+    menu_p: "Organic flour from Paulino Horta in Alenquer, sourdough and slow fermentation. Mornings only."
+    menu_note: "Prices go here once the bakery confirms them."
+    about_h: "Miguel, Carmo and three starters"
+    about_p:
+      - "Padaria do Miguel opened in 2021 in a former cake shop in central Parede, run by baker Miguel Vilela and his wife, Carmo."
+      - "The flour is organic and comes from Paulino Horta in Alenquer, Miguel's mentor. Leftover bread is toasted so nothing goes to waste, and the bakery also supplies hotels and restaurants."
+    hours_note: "Hours as shown on Google. Different hours and phone numbers appear online; the site would show only the right ones."
+    form_h: "Reserve bread for pick-up"
+    form_p: "Choose your bread, the day and your name, then just pick it up in the morning. The message is ready to send on Instagram."
+    foot_p: "Sourdough bakery in central Parede since 2021."
+    og_desc: "Website concept for Padaria do Miguel in Parede: the bread, the right hours and pick-up reservations."

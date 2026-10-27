@@ -1,0 +1,103 @@
+slug: frutos-secos
+name: Lugar dos Frutos Secos
+wordmark: "Lugar dos <span style=\"color:var(--acc-ink)\">Frutos Secos</span>"
+ig: lugardosfrutossecos
+address: "Mercado da Vila, Rua Padre Moisés da Silva, 2750-642 Cascais"
+maps_q: "Lugar dos Frutos Secos, Mercado da Vila, Cascais"
+phone: null
+hours: {mon: [["09:00","19:00"]], tue: [["09:00","19:00"]], wed: [["06:00","19:00"]], thu: [["09:00","19:00"]], fri: [["09:00","19:00"]], sat: [["06:00","19:00"]], sun: [["08:00","19:00"]]}
+look:
+  fonts: ["Alfa+Slab+One", "Archivo:wght@400;500;600"]
+  display_css: "'Alfa Slab One', Rockwell, serif"
+  body_css: "'Archivo', system-ui, sans-serif"
+  dw: 400
+  dt: "-0.01em"
+  scheme: light
+  bg: "#ead9bd"
+  bg2: "#e0cba8"
+  card: "#f5ead6"
+  ink: "#2e1f12"
+  ink2: "#4f3a26"
+  muted: "#7c6448"
+  line: "#d3bb93"
+  acc: "#6b2e4a"
+  acc_ink: "#6b2e4a"
+  on_acc: "#f8eedf"
+  dark: "#2e1f12"
+  on_dark: "#f2e6d1"
+  on_dark_muted: "#c4ad8c"
+  art_bg: "#d9c19a"
+  a1: "#b77b45"
+  a2: "#6e4a2a"
+  a3: "#c9ab7d"
+  art_ink: "#2e1f12"
+  art_hi: "#f0dcb5"
+  extra_css: "@media (max-width:460px){.hdr .btn.sm{display:none}}"
+  motif: nuts
+  hero: split
+  menu: cards
+  r: 8
+  btn_r: "8px"
+  h1: 0.88
+  logo_size: "21px"
+  logo_size_sm: "17px"
+  em_style: normal
+  sep: "•"
+form:
+  type: order
+items:
+  - ["Frutos secos a granel", "Nuts by weight", "Amêndoa, noz, avelã, pistácio, caju. Leva só a quantidade de que precisa.", "Almonds, walnuts, hazelnuts, pistachios, cashews. Take just what you need."]
+  - ["Fruta desidratada", "Dried fruit", "Figo, damasco, tâmara, ameixa, uva-passa, e muitas mais.", "Figs, apricots, dates, prunes, raisins and many more."]
+  - ["Para a granola", "For your granola", "Tudo o que precisa para a granola caseira, num só sítio.", "Everything for homemade granola, in one place."]
+  - ["Especialidades", "Specialities", "Derivados de frutos secos que não se encontram em todo o lado.", "Nut products you won't find just anywhere."]
+facts:
+  - ["1952", "no Mercado da Vila de Cascais", "at Cascais's Mercado da Vila"]
+  - ["06:00", "abertura às quartas e aos sábados, dias de mercado", "opening on Wednesdays and Saturdays, market days"]
+  - ["Granel", "compra-se à medida", "buy by weight"]
+t:
+  pt:
+    eyebrow: "Mercado da Vila de Cascais · desde 1952"
+    h1: "Frutos secos e fruta desidratada, <em>a granel, desde 1952</em>."
+    lede: "Tudo o que precisa para a granola e mais umas quantas coisas que não se encontram em todo o lado. No Mercado da Vila."
+    cta1: "Fazer uma encomenda"
+    cta_short: "Encomendar"
+    cta2: "Ver produtos"
+    nav_menu: "Produtos"
+    art_tag_b: "A granel"
+    art_tag: "leve só a quantidade de que precisa"
+    menu_k: "Produtos"
+    menu_h: "Da banca para a sua despensa"
+    menu_p: "A maior parte vende-se a granel. Às quartas e aos sábados, dias de mercado, a banca abre às seis da manhã."
+    menu_note: "Produtos de exemplo. No site final, a lista e os preços seriam feitos com a casa."
+    about_h: "Mais de 70 anos no Mercado da Vila"
+    about_p:
+      - "O Lugar dos Frutos Secos vende no Mercado da Vila de Cascais desde 1952. É uma das bancas com mais história no mercado."
+      - "A Time Out chama-lhe o sítio certo para fazer stock de frutos secos e diz que tem todas as frutas secas de que se precisa para a granola."
+    hours_note: "Horário segundo a Time Out (2023). A confirmar com a casa."
+    form_h: "Encomendar para levantar"
+    form_p: "Diga o que quer e para que dia, e passe só para levantar. A mensagem fica pronta para enviar pelo Instagram."
+    foot_p: "Frutos secos e fruta desidratada no Mercado da Vila de Cascais, desde 1952."
+    og_desc: "Conceito de site para o Lugar dos Frutos Secos, no Mercado da Vila de Cascais: produtos, horário e encomendas."
+  en:
+    eyebrow: "Mercado da Vila, Cascais · since 1952"
+    h1: "Nuts and dried fruit, <em>by weight, since 1952</em>."
+    lede: "Everything you need for granola, and a few things you won't find just anywhere. At the Mercado da Vila."
+    cta1: "Place an order"
+    cta_short: "Order"
+    cta2: "See products"
+    nav_menu: "Products"
+    art_tag_b: "By weight"
+    art_tag: "take just what you need"
+    menu_k: "Products"
+    menu_h: "From the stall to your pantry"
+    menu_p: "Most of it is sold by weight. On Wednesdays and Saturdays, market days, the stall opens at 6am."
+    menu_note: "Example products. On the real site, the list and prices would be made with the shop."
+    about_h: "Over 70 years at the Mercado da Vila"
+    about_p:
+      - "Lugar dos Frutos Secos has been selling at Cascais's Mercado da Vila since 1952. It's one of the market's longest-standing stalls."
+      - "Time Out calls it the right place to stock up on nuts and says it has every dried fruit you need for granola."
+    hours_note: "Hours as published by Time Out (2023). To be confirmed."
+    form_h: "Order for pick-up"
+    form_p: "Tell us what you want and for which day, then just pick it up. The message is ready to send on Instagram."
+    foot_p: "Nuts and dried fruit at Cascais's Mercado da Vila, since 1952."
+    og_desc: "Website concept for Lugar dos Frutos Secos at Mercado da Vila, Cascais: products, hours and orders."

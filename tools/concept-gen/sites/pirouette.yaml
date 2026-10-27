@@ -1,0 +1,105 @@
+slug: pirouette
+name: Pirouette
+wordmark: "Pirouette"
+ig: pirouettemtestoril
+address: "Jardim Carlos Anjos (Jardim dos Passarinhos), Av. Sabóia, 2765 Monte Estoril"
+maps_q: "Pirouette, Jardim Carlos Anjos, Monte Estoril"
+phone: "21 245 3339"
+hours: {mon: [["08:00","20:00"]], tue: [["08:00","20:00"]], wed: [["08:00","20:00"]], thu: [["08:00","20:00"]], fri: [["08:00","20:00"]], sat: [["08:00","20:00"]], sun: [["08:00","20:00"]]}
+look:
+  fonts: ["Fredoka:wght@500;600;700", "Nunito:wght@400;600;700"]
+  display_css: "'Fredoka', system-ui, sans-serif"
+  body_css: "'Nunito', system-ui, sans-serif"
+  dw: 600
+  dt: "-0.02em"
+  scheme: light
+  bg: "#eef4ec"
+  bg2: "#e1ecdd"
+  card: "#fafcf8"
+  ink: "#1d2b21"
+  ink2: "#3c4d40"
+  muted: "#6a7c6d"
+  line: "#cfdfca"
+  acc: "#d63a2f"
+  acc_ink: "#c0312a"
+  on_acc: "#ffffff"
+  dark: "#1d3a28"
+  on_dark: "#eef4ec"
+  on_dark_muted: "#aec4b2"
+  art_bg: "#cfe3c8"
+  a1: "#d63a2f"
+  a2: "#f5c542"
+  a3: "#3f7d4e"
+  art_ink: "#1d2b21"
+  art_hi: "#fff8ea"
+  motif: awning
+  hero: split
+  menu: cards
+  r: 24
+  sep: "✿"
+form:
+  type: enquiry
+  opts:
+    int:
+      - ["Mesa para um grupo", "A table for a group"]
+      - ["Festa de anos no jardim", "A birthday party in the garden"]
+      - ["Tábuas para levar", "Boards to take away"]
+      - ["Outro assunto", "Something else"]
+items:
+  - ["Panquecas de banana e mirtilo", "Banana and blueberry pancakes", "Para começar o dia no jardim.", "To start the day in the garden."]
+  - ["Bruschetta de ovos mexidos, fiambre e abacate", "Scrambled egg, ham and avocado bruschetta", "Um brunch completo numa fatia.", "A full brunch on one slice."]
+  - ["Bruschetta de figos, gorgonzola e mel", "Fig, gorgonzola and honey bruschetta", "Doce e salgado ao mesmo tempo.", "Sweet and savoury at once."]
+  - ["Bowl de camarão, quinoa, maçã e endro", "Prawn, quinoa, apple and dill bowl", "Leve, para o almoço.", "Light, for lunch."]
+  - ["Burrata com tomate cherry e pesto", "Burrata with cherry tomatoes and pesto", "Com manjericão, para partilhar.", "With basil, for sharing."]
+  - ["Salmorejo", "Salmorejo", "Sopa fria espanhola de tomate.", "Cold Spanish tomato soup."]
+  - ["Tábua de queijos ou mista", "Cheese or mixed board", "Para o fim da tarde, com vinho, sangria ou cocktails.", "For late afternoon, with wine, sangria or cocktails."]
+facts:
+  - ["2021", "o quiosque reabriu renovado, depois de quase dois anos fechado", "the kiosk reopened, renovated, after almost two years closed"]
+  - ["08–20", "aberto todos os dias", "open every day"]
+  - ["4,6", "no Google, com mais de 260 avaliações", "on Google, from over 260 reviews"]
+  - ["Jardim", "parque infantil e viveiro de aves ao lado", "playground and aviary next door"]
+t:
+  pt:
+    eyebrow: "Quiosque do Jardim dos Passarinhos · Monte Estoril"
+    h1: "Um quiosque no jardim, <em>do brunch ao fim da tarde</em>."
+    lede: "Panquecas, bruschettas, bowls e tábuas, numa esplanada debaixo das árvores do Jardim Carlos Anjos, ao lado do parque infantil."
+    cta1: "Grupos e festas"
+    cta_short: "Contactar"
+    art_tag_b: "Pirouette"
+    art_tag: "o nome vem dos pássaros do jardim, que parecem fazer piruetas"
+    menu_k: "Menu"
+    menu_h: "Para o dia inteiro"
+    menu_p: "Também há queques, pastéis de nata, tostas e torradas. Ao fim da tarde, vinhos, sangrias e cocktails."
+    menu_note: "Menu e preços a confirmar com a casa."
+    about_h: "O quiosque do bairro"
+    about_p:
+      - "O Pirouette é o quiosque-cafetaria do Jardim Carlos Anjos, mais conhecido por Jardim dos Passarinhos, no Monte Estoril. Reabriu renovado em 2021, depois de quase dois anos fechado."
+      - "Tem esplanada debaixo das árvores, cadeirões virados para o jardim, o parque infantil e o viveiro de aves ao lado. Há muitos anos que é ponto de encontro do bairro."
+    hours_note: "Horário segundo o Google. Online aparecem horários diferentes; no site ficaria só o certo."
+    form_k: "Grupos e festas"
+    form_h: "Grupos e aniversários"
+    form_p: "Uma mesa para muitos, uma festa de anos no jardim ou tábuas para levar. A mensagem fica pronta para enviar ao Pirouette pelo Instagram."
+    foot_p: "Quiosque-cafetaria do Jardim dos Passarinhos, no Monte Estoril."
+    og_desc: "Conceito de site para o Pirouette, no Jardim dos Passarinhos: menu, horário certo e pedidos para grupos."
+  en:
+    eyebrow: "Garden kiosk · Monte Estoril"
+    h1: "A kiosk in the garden, <em>from brunch to sunset</em>."
+    lede: "Pancakes, bruschettas, bowls and boards on a terrace under the trees of Jardim Carlos Anjos, next to the playground."
+    cta1: "Groups and parties"
+    cta_short: "Contact"
+    art_tag_b: "Pirouette"
+    art_tag: "named after the garden's birds, which seem to do pirouettes"
+    menu_k: "Menu"
+    menu_h: "For the whole day"
+    menu_p: "There are also muffins, pastéis de nata, toasties and buttered toast. Later on, wine, sangria and cocktails."
+    menu_note: "Menu and prices to be confirmed."
+    about_h: "The neighbourhood kiosk"
+    about_p:
+      - "Pirouette is the café kiosk in Jardim Carlos Anjos, better known as Jardim dos Passarinhos, in Monte Estoril. It reopened, renovated, in 2021 after almost two years closed."
+      - "There's a terrace under the trees, armchairs facing the garden, and the playground and aviary next door. It has been the neighbourhood's meeting point for years."
+    hours_note: "Hours as shown on Google. Different hours appear online; the site would show only the right ones."
+    form_k: "Groups and parties"
+    form_h: "Groups and birthdays"
+    form_p: "A table for many, a birthday party in the garden or boards to take away. The message is ready to send to Pirouette on Instagram."
+    foot_p: "Café kiosk in Jardim dos Passarinhos, Monte Estoril."
+    og_desc: "Website concept for Pirouette in Jardim dos Passarinhos: menu, the right hours and group requests."

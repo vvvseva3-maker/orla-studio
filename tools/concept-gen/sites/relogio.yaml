@@ -1,0 +1,109 @@
+slug: relogio
+name: O Relógio – Slow Retail
+wordmark: "O Relógio"
+logo_sub: "Slow Retail"
+ig: relogiocascais
+address: "Praça 5 de Outubro, 75, 2750-320 Cascais"
+maps_q: "O Relógio Slow Retail, Praça 5 de Outubro 75, Cascais"
+phone: null
+hours: null
+look:
+  fonts: ["Libre+Caslon+Display", "Libre+Franklin:wght@400;500;600"]
+  display_css: "'Libre Caslon Display', Georgia, serif"
+  body_css: "'Libre Franklin', system-ui, sans-serif"
+  dw: 400
+  dt: "-0.01em"
+  scheme: light
+  bg: "#f7f6f1"
+  bg2: "#eceef4"
+  card: "#ffffff"
+  ink: "#14213d"
+  ink2: "#34415c"
+  muted: "#66708a"
+  line: "#dadfe9"
+  acc: "#1f4e9c"
+  acc_ink: "#1f4e9c"
+  on_acc: "#ffffff"
+  dark: "#14213d"
+  on_dark: "#f2f4f9"
+  on_dark_muted: "#aab4cc"
+  art_bg: "#ffffff"
+  a1: "#1f4e9c"
+  a2: "#d9a43b"
+  a3: "#f7f6f1"
+  art_ink: "#14213d"
+  art_hi: "#fbfaf6"
+  motif: azulejo
+  hero: split
+  menu: cards
+  r: 0
+  btn_r: "0"
+  h1: 0.95
+  sep: "◆"
+form:
+  type: enquiry
+  opts:
+    int:
+      - ["Uma peça que vi na loja", "A piece I saw in the shop"]
+      - ["Um presente", "A gift"]
+      - ["Uma das marcas", "One of the brands"]
+      - ["Outro assunto", "Something else"]
+items:
+  - ["Nicollò", "Nicollò", "Chocolates quentes e cafés de São Tomé.", "Hot chocolates and coffees from São Tomé."]
+  - ["Origem", "Origem", "Óculos de sol em bambu.", "Bamboo sunglasses."]
+  - ["A Industria", "A Industria", "Roupa de homem.", "Menswear."]
+  - ["HLC", "HLC", "Joalharia.", "Jewellery."]
+  - ["Papua", "Papua", "Roupa de senhora.", "Womenswear."]
+  - ["Benedita Formosinho", "Benedita Formosinho", "A marca de moda de Benedita e da mãe, Perpétua. Com espaço próprio desde 2025.", "The fashion label of Benedita and her mother, Perpétua. With its own corner since 2025."]
+facts:
+  - ["Paços", "o antigo edifício da Câmara de Cascais", "Cascais's former Town Hall building"]
+  - ["100%", "marcas portuguesas", "Portuguese brands"]
+  - ["Embaixada", "a mesma equipa da concept store do Príncipe Real", "the same team as the Príncipe Real concept store"]
+  - ["2025", "chega a Benedita Formosinho", "Benedita Formosinho moves in"]
+t:
+  pt:
+    eyebrow: "Concept store de marcas portuguesas · Praça 5 de Outubro"
+    h1: "Marcas portuguesas, <em>nos antigos Paços do Concelho</em>."
+    lede: "Chocolate de São Tomé, óculos de bambu, roupa, joias e moda de autor, escolhidos um a um, no antigo edifício da Câmara, na praça principal de Cascais."
+    cta1: "Falar com a loja"
+    cta_short: "Contactar"
+    cta2: "Ver as marcas"
+    nav_menu: "Marcas"
+    art_tag_b: "Slow retail"
+    art_tag: "menos coisas, mais bem escolhidas"
+    menu_k: "Marcas"
+    menu_h: "Quem está no Relógio"
+    menu_p: "Uma seleção de marcas portuguesas, da mesma equipa da Embaixada, no Príncipe Real, em Lisboa."
+    menu_note: "Lista de marcas segundo a Time Out (2024 e 2025). Pode ter mudado."
+    about_h: "Slow retail no centro da vila"
+    about_p:
+      - "O Relógio é um projeto de Catarina Lopes, da equipa da Embaixada, no Príncipe Real. Ocupa o antigo edifício dos Paços do Concelho, na Praça 5 de Outubro."
+      - "A ideia é a do slow retail: poucas marcas, todas portuguesas, escolhidas com tempo. Desde maio de 2025, a Benedita Formosinho tem ali o seu espaço."
+    hours_note: "11:00–14:30 e 15:00–19:30, segundo a Time Out (2024). Os dias da semana ficam a confirmar com a loja."
+    form_h: "Falar com a loja"
+    form_p: "Viu uma peça e quer saber se ainda há? Procura um presente? A mensagem fica pronta para enviar ao Relógio pelo Instagram."
+    foot_p: "Concept store de marcas portuguesas na Praça 5 de Outubro, em Cascais."
+    og_desc: "Conceito de site para O Relógio – Slow Retail, em Cascais: as marcas, o horário e contacto."
+  en:
+    eyebrow: "Portuguese-brand concept store · Praça 5 de Outubro"
+    h1: "Portuguese brands, <em>in the old Town Hall</em>."
+    lede: "São Tomé chocolate, bamboo sunglasses, clothing, jewellery and designer fashion, picked one by one, in the former Town Hall on Cascais's main square."
+    cta1: "Contact the shop"
+    cta_short: "Contact"
+    cta2: "See the brands"
+    nav_menu: "Brands"
+    art_tag_b: "Slow retail"
+    art_tag: "fewer things, better chosen"
+    menu_k: "Brands"
+    menu_h: "Who's at O Relógio"
+    menu_p: "A selection of Portuguese brands, from the team behind Embaixada in Lisbon's Príncipe Real."
+    menu_note: "Brand list as published by Time Out (2024 and 2025). It may have changed."
+    about_h: "Slow retail in the old town"
+    about_p:
+      - "O Relógio is a project by Catarina Lopes, from the Embaixada team in Príncipe Real. It occupies the former Town Hall building on Praça 5 de Outubro."
+      - "The idea is slow retail: a few brands, all Portuguese, chosen with care. Since May 2025, Benedita Formosinho has had her own corner there."
+    hours_note: "11:00–14:30 and 15:00–19:30, as published by Time Out (2024). Days of the week to be confirmed."
+    form_h: "Contact the shop"
+    form_p: "Saw a piece and want to know if it's still there? Looking for a gift? The message is ready to send to O Relógio on Instagram."
+    foot_p: "Concept store of Portuguese brands on Praça 5 de Outubro, Cascais."
+    og_desc: "Website concept for O Relógio – Slow Retail in Cascais: the brands, hours and contact."

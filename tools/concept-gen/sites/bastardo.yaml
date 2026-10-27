@@ -1,0 +1,109 @@
+slug: bastardo
+name: Bastardo
+wordmark: "Bastardo"
+logo_sub: "Bar de vinhos"
+ig: bastardobardevinhos
+address: "Rua Afonso Sanches, 21A, 2750-469 Cascais"
+maps_q: "Bastardo bar de vinhos, Rua Afonso Sanches 21A, Cascais"
+phone: null
+hours: {mon: [["15:00","22:30"]], tue: [["15:00","22:30"]], wed: [["15:00","22:30"]], thu: [["15:00","22:30"]], fri: [["15:00","22:30"]], sat: [["15:00","22:30"]], sun: [["15:00","22:30"]]}
+look:
+  fonts: ["Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700", "Space+Grotesk:wght@400;500;600"]
+  display_css: "'Bodoni Moda', Didot, Georgia, serif"
+  body_css: "'Space Grotesk', system-ui, sans-serif"
+  dw: 500
+  dt: "-0.02em"
+  scheme: dark
+  bg: "#1b1315"
+  bg2: "#231a1c"
+  card: "#2a1f22"
+  ink: "#f2e8dc"
+  ink2: "#d8c9b8"
+  muted: "#a3918a"
+  line: "#3b2c2f"
+  acc: "#d9a35f"
+  acc_ink: "#e5b471"
+  on_acc: "#1b1315"
+  dark: "#120c0d"
+  on_dark: "#f2e8dc"
+  on_dark_muted: "#a8968f"
+  art_bg: "#251a1d"
+  a1: "#8c1c3a"
+  a2: "#d98a3a"
+  a3: "#c9a77a"
+  art_ink: "#f2e8dc"
+  art_hi: "#f2e8dc"
+  motif: dunes
+  hero: split
+  menu: carta
+  r: 2
+  btn_r: "2px"
+  open: "#8fd16a"
+  err: "#ff8a80"
+  sep: "·"
+form:
+  type: table
+  times: ["15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]
+items:
+  - ["Bolinha, Casa Mouraz", "Bolinha, Casa Mouraz", "Curtimenta do Dão. No rótulo, um cão.", "Skin-contact white from the Dão. There's a dog on the label.", "11 €"]
+  - ["Passo Gigante", "Passo Gigante", "Espumante de Loureiro.", "Sparkling Loureiro.", "6 €"]
+  - ["Lou 38", "Lou 38", "Vinho de curtimenta.", "Orange wine.", "7 €"]
+  - ["Ramilo Ramisco, Colares", "Ramilo Ramisco, Colares", "Tinto de vinha em chão de areia, junto ao Atlântico. Servido com Coravin.", "Red from vines in sand by the Atlantic. Poured with Coravin.", "45 €"]
+  - ["Tábua de queijos", "Cheese board", "Queijos portugueses.", "Portuguese cheeses.", "12 €"]
+  - ["Enchidos de porco preto", "Black pork charcuterie", "De Barrancos, no Alentejo.", "From Barrancos, in the Alentejo.", "9 €"]
+  - ["Sandes de presunto", "Cured ham sandwich", "Simples, para acompanhar um copo.", "Simple, to go with a glass.", "8 €"]
+  - ["Azeitonas", "Olives", "Para começar.", "To start.", "1 €"]
+facts:
+  - ["Bastardo", "a casta que dá nome à casa, a Trousseau francesa", "the grape behind the name, France's Trousseau"]
+  - ["15–22h30", "aberto todos os dias", "open every day"]
+  - ["Coravin", "para servir a copo as garrafas especiais", "to pour special bottles by the glass"]
+  - ["Em breve", "provas guiadas e garrafas para levar", "guided tastings and bottles to take away"]
+t:
+  pt:
+    eyebrow: "Bar de vinhos · Cascais"
+    h1: "Cada copo conta <em>a história de um pequeno produtor</em>."
+    lede: "Vinhos portugueses de todos os estilos, de curtimenta a generosos, a copo e à garrafa, com enchidos e queijos portugueses. Perto da baía de Cascais."
+    cta1: "Reservar mesa"
+    cta_short: "Reservar"
+    cta2: "Ver a carta"
+    nav_menu: "Carta"
+    art_tag_b: "Ramisco de Colares"
+    art_tag: "vinha em chão de areia, junto ao Atlântico"
+    menu_k: "Carta"
+    menu_h: "Esta semana, a copo"
+    menu_p: "Brancos, tintos, rosés, palhetes, curtimentas, espumantes e generosos. A carta muda; o site mostraria sempre a desta semana."
+    menu_note: "Preços segundo a Time Out (outubro de 2026)."
+    about_h: "Um nome de casta"
+    about_p:
+      - "O nome vem da casta Bastardo e dos vinhos que fogem ao circuito comercial. A missão é devolver valor ao pequeno produtor; para já, só portugueses."
+      - "A ideia foi da Bia Lobato, com o Miguel Costa e o sommelier João Diaz, que passou pelo Calma, em Lisboa. Estão a preparar provas guiadas e venda de garrafas para levar."
+    hours_note: "Horário segundo a Time Out (outubro de 2026)."
+    form_h: "Reservar mesa ou prova"
+    form_p: "Escolha o dia, a hora e quantas pessoas. Para uma prova em grupo, diga nas notas. A mensagem fica pronta para enviar pelo Instagram."
+    ph_notes: "Uma prova para um grupo? Um vinho que quer provar?"
+    foot_p: "Bar de vinhos de pequenos produtores portugueses, perto da baía de Cascais."
+    og_desc: "Conceito de site para o Bastardo, bar de vinhos em Cascais: a carta da semana, horário e reservas."
+  en:
+    eyebrow: "Wine bar · Cascais"
+    h1: "Every glass tells <em>a small producer's story</em>."
+    lede: "Portuguese wines of every style, from skin-contact to fortified, by the glass and bottle, with Portuguese charcuterie and cheese. Near Cascais bay."
+    cta1: "Book a table"
+    cta_short: "Book"
+    cta2: "See the list"
+    nav_menu: "Wine list"
+    art_tag_b: "Colares Ramisco"
+    art_tag: "vines in sand, by the Atlantic"
+    menu_k: "Wine list"
+    menu_h: "This week, by the glass"
+    menu_p: "Whites, reds, rosés, palhetes, orange, sparkling and fortified. The list changes; the site would always show this week's."
+    menu_note: "Prices as published by Time Out (October 2026)."
+    about_h: "Named after a grape"
+    about_p:
+      - "The name comes from the Bastardo grape and from wines outside the commercial mainstream. The mission is to give value back to small producers; for now, Portuguese only."
+      - "It was Bia Lobato's idea, with Miguel Costa and sommelier João Diaz, formerly of Calma in Lisbon. Guided tastings and bottles to take away are on the way."
+    hours_note: "Hours as published by Time Out (October 2026)."
+    form_h: "Book a table or tasting"
+    form_p: "Choose the day, time and party size. For a group tasting, say so in the notes. The message is ready to send on Instagram."
+    ph_notes: "A tasting for a group? A wine you'd like to try?"
+    foot_p: "Small-producer Portuguese wine bar near Cascais bay."
+    og_desc: "Website concept for Bastardo, a wine bar in Cascais: this week's list, hours and bookings."

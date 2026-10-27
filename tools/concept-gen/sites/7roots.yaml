@@ -1,0 +1,100 @@
+slug: 7roots
+name: 7Roots
+wordmark: "7Roots"
+ig: 7roots.restaurante
+address: "Praça do Junqueiro, 7, 2775-597 Carcavelos"
+maps_q: "7Roots, Praça do Junqueiro 7, Carcavelos"
+phone: "913 332 996"
+hours: {tue: [["12:00","00:00"]], wed: [["12:00","00:00"]], thu: [["12:00","00:00"]], fri: [["12:00","00:00"]], sat: [["12:00","00:00"]], sun: [["12:00","15:30"]]}
+look:
+  fonts: ["Bricolage+Grotesque:opsz,wght@12..96,500..800", "Instrument+Sans:wght@400;500;600;700"]
+  display_css: "'Bricolage Grotesque', system-ui, sans-serif"
+  body_css: "'Instrument Sans', system-ui, sans-serif"
+  dw: 800
+  dt: "-0.04em"
+  scheme: light
+  bg: "#f1ebdf"
+  bg2: "#e6dcc9"
+  card: "#faf6ee"
+  ink: "#2c2418"
+  ink2: "#4f4434"
+  muted: "#7d6f5b"
+  line: "#d9ccb5"
+  acc: "#5f6b2a"
+  acc_ink: "#525d22"
+  on_acc: "#f7f3e8"
+  dark: "#3a2b1c"
+  on_dark: "#f1ebdf"
+  on_dark_muted: "#c2b39b"
+  art_bg: "#5f6b2a"
+  a1: "#c8723d"
+  a2: "#7a4a2a"
+  a3: "#4d5722"
+  art_ink: "#2c2418"
+  art_hi: "#f6efdf"
+  motif: plate
+  hero: split
+  menu: list
+  r: 18
+  h1: 0.92
+  sep: "✺"
+form:
+  type: table
+  times: ["12:30", "13:00", "13:30", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"]
+items:
+  - ["Bacalhau à 7Roots", "Bacalhau à 7Roots", "A estrela dos petiscos, com pimentos e cebola.", "The star of the petiscos, with peppers and onion.", "7,50 €"]
+  - ["Croquetes de alheira", "Alheira croquettes", "Duas unidades.", "Two pieces.", "3,50 €"]
+  - ["Pica-pau do lombo", "Pork loin pica-pau", "Para partilhar, com pão.", "To share, with bread.", "11,90 €"]
+  - ["Ovos rotos", "Ovos rotos", "Ovos sobre batata frita.", "Eggs over fried potatoes.", "8,90 €"]
+  - ["Polvo confitado", "Confit octopus", "Tentáculos de polvo confitado.", "Confit octopus tentacles.", "16,90 €"]
+  - ["Bife à portuguesa", "Portuguese-style steak", "Bife do lombo, a escolha da Time Out.", "Sirloin steak, Time Out's pick."]
+  - ["Caril de legumes", "Vegetable curry", "Vegan.", "Vegan.", "11,90 €"]
+  - ["Cocktail 7Roots", "7Roots cocktail", "Laranja, lima, rum e clara de ovo.", "Orange, lime, rum and egg white.", "7 €"]
+facts:
+  - ["2025", "aberto a 27 de novembro, na Praça do Junqueiro", "opened on 27 November on Praça do Junqueiro"]
+  - ["30 + 60", "lugares dentro e na esplanada", "seats inside and on the terrace"]
+  - ["Vegan", "há opções, do caril à sobremesa", "options, from curry to dessert"]
+  - ["Cães", "bem-vindos, com água e biscoitos", "welcome, with water and biscuits"]
+t:
+  pt:
+    eyebrow: "Petiscos e cocktails · Carcavelos"
+    h1: "Petiscos para partilhar <em>e ficar à mesa</em>."
+    lede: "Do bacalhau à 7Roots ao polvo confitado, com cocktails clássicos e de autor. Na Praça do Junqueiro, em Carcavelos, a 15 minutos a pé da praia."
+    cta1: "Reservar mesa"
+    cta_short: "Reservar"
+    art_tag_b: "Bacalhau à 7Roots"
+    art_tag: "a estrela dos petiscos"
+    menu_k: "Petiscos"
+    menu_h: "Para pôr no meio da mesa"
+    menu_p: "Assenta no hábito português de partilhar e ficar à mesa. Há opções vegan e cocktails a partir de 7 €."
+    menu_note: "Preços segundo a MAGG e a Time Out (dezembro de 2025)."
+    about_h: "Uma segunda casa em Carcavelos"
+    about_p:
+      - "O 7Roots abriu a 27 de novembro de 2025, pela mão de Catarina Branco e do marido, Luís Segura, que trata do bar. Na cozinha está o chef Fábio Tarik."
+      - "O espaço, que já foi uma gelataria, tem tons de castanho e verde-azeitona, quadros coloridos e frases divertidas nas paredes, e uma esplanada na praça."
+    hours_note: "Horário segundo a Time Out (janeiro de 2026)."
+    form_h: "Reservar mesa"
+    form_p: "Escolha o dia, a hora e quantas pessoas. A mensagem fica pronta para enviar ao 7Roots pelo Instagram, ou ligue para o 913 332 996."
+    foot_p: "Petiscos e cocktails na Praça do Junqueiro, em Carcavelos."
+    og_desc: "Conceito de site para o 7Roots, em Carcavelos: petiscos com preços, cocktails, horário e reservas."
+  en:
+    eyebrow: "Petiscos and cocktails · Carcavelos"
+    h1: "Small plates to share, <em>and a table to linger at</em>."
+    lede: "From bacalhau à 7Roots to confit octopus, with classic and signature cocktails. On Praça do Junqueiro in Carcavelos, a 15-minute walk from the beach."
+    cta1: "Book a table"
+    cta_short: "Book"
+    art_tag_b: "Bacalhau à 7Roots"
+    art_tag: "the star of the petiscos"
+    menu_k: "Petiscos"
+    menu_h: "For the middle of the table"
+    menu_p: "Built on the Portuguese habit of sharing and lingering at the table. Vegan options and cocktails from €7."
+    menu_note: "Prices as published by MAGG and Time Out (December 2025)."
+    about_h: "A second home in Carcavelos"
+    about_p:
+      - "7Roots opened on 27 November 2025, run by Catarina Branco and her husband Luís Segura, who looks after the bar. Chef Fábio Tarik runs the kitchen."
+      - "The space, once a gelato shop, has brown and olive-green tones, colourful paintings and funny phrases on the walls, and a terrace on the square."
+    hours_note: "Hours as published by Time Out (January 2026)."
+    form_h: "Book a table"
+    form_p: "Choose the day, time and party size. The message is ready to send to 7Roots on Instagram, or call 913 332 996."
+    foot_p: "Petiscos and cocktails on Praça do Junqueiro, Carcavelos."
+    og_desc: "Website concept for 7Roots in Carcavelos: petiscos with prices, cocktails, hours and bookings."

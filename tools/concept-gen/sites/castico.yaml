@@ -1,0 +1,105 @@
+slug: castico
+name: Castiço Wine Bar
+wordmark: "Castiço"
+logo_sub: "Wine Bar"
+ig: casticowinebar
+address: "Mercado Municipal de Carcavelos, Praça Dr. Manuel Rebello de Andrade, 3, 2775-596 Carcavelos"
+maps_q: "Castiço Wine Bar, Mercado Municipal de Carcavelos"
+phone: "936 788 521"
+hours: {tue: [["12:00","00:00"]], wed: [["12:00","00:00"]], thu: [["12:00","00:00"]], fri: [["12:00","00:00"]], sat: [["12:00","00:00"]], sun: [["12:00","00:00"]]}
+look:
+  fonts: ["Zilla+Slab:ital,wght@0,500;0,600;0,700;1,500;1,600", "Public+Sans:wght@400;500;600"]
+  display_css: "'Zilla Slab', Rockwell, Georgia, serif"
+  body_css: "'Public Sans', system-ui, sans-serif"
+  dw: 700
+  dt: "-0.015em"
+  scheme: light
+  bg: "#f3ede5"
+  bg2: "#ead9d2"
+  card: "#fbf7f2"
+  ink: "#2a1418"
+  ink2: "#4f3538"
+  muted: "#7d6367"
+  line: "#e0cfc8"
+  acc: "#7b1e3a"
+  acc_ink: "#7b1e3a"
+  on_acc: "#fbf3ee"
+  dark: "#2a1418"
+  on_dark: "#f3ede5"
+  on_dark_muted: "#c6b1ae"
+  art_bg: "#e4d3c6"
+  a1: "#7b1e3a"
+  a2: "#e3b04b"
+  a3: "#2f3a33"
+  art_ink: "#2a1418"
+  art_hi: "#f3ede5"
+  h1: 0.86
+  motif: chalk
+  hero: split
+  menu: list
+  r: 10
+  em_style: italic
+form:
+  type: table
+  times: ["12:30", "13:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]
+items:
+  - ["Vinho da semana", "Wine of the week", "Um vinho novo à prova todas as semanas, a copo ou à garrafa.", "A new wine to try every week, by the glass or bottle."]
+  - ["Villa Oeiras", "Villa Oeiras", "O vinho generoso de Carcavelos, distinguido nos Decanter World Wine Awards.", "Carcavelos's own fortified wine, honoured at the Decanter World Wine Awards."]
+  - ["Aneto Reserva", "Aneto Reserva", "Tinto do Douro.", "A red from the Douro."]
+  - ["Conservas Briosa", "Briosa tinned fish", "Sardinha, raia, cavala, bacalhau ou atum, com pão artesanal.", "Sardine, skate, mackerel, cod or tuna, with artisan bread."]
+  - ["Tábua pequena", "Small board", "Queijo, para acompanhar um copo.", "Cheese, to go with a glass."]
+  - ["Tábua média", "Medium board", "Enchidos, doce de abóbora e frutos secos.", "Charcuterie, pumpkin jam and nuts."]
+  - ["Tábua grande", "Large board", "Três queijos, azeitonas e amêndoas.", "Three cheeses, olives and almonds."]
+  - ["Chouriço assado", "Flame-grilled chouriço", "Assado em aguardente, à mesa.", "Flamed in aguardente at your table."]
+facts:
+  - ["2021", "aberto no Mercado de Carcavelos", "opened in Carcavelos market"]
+  - ["100%", "vinhos e produtos portugueses, de pequenos produtores", "Portuguese wines and products from small producers"]
+  - ["Villa Oeiras", "o vinho de Carcavelos, na carta", "Carcavelos wine, on the list"]
+  - ["4,5", "no Google, com mais de 120 avaliações", "on Google, from over 120 reviews"]
+t:
+  pt:
+    eyebrow: "Bar de vinhos · Mercado de Carcavelos"
+    h1: "Pequenos produtores portugueses, <em>a copo</em>, no mercado."
+    lede: "Vinho da semana, tábuas de queijos e enchidos, conservas Briosa e chouriço assado à mesa. Na zona de restauração do Mercado de Carcavelos."
+    cta1: "Reservar mesa"
+    cta_short: "Reservar"
+    cta2: "Ver a carta"
+    nav_menu: "Carta"
+    art_tag_b: "Vinho da semana"
+    art_tag: "um vinho novo à prova, todas as semanas"
+    menu_k: "Carta"
+    menu_h: "Vinho e o que vai com ele"
+    menu_p: "Só produtores portugueses: Douro, Beiras, ilhas, Algarve. E o vinho de Carcavelos, Villa Oeiras."
+    menu_note: "Os preços entram aqui quando a casa os confirmar. O vinho da semana seria atualizado pela casa, todas as semanas."
+    about_h: "Um balcão no mercado"
+    about_p:
+      - "O Castiço abriu no verão de 2021 na zona de restauração do Mercado Municipal de Carcavelos, pelas mãos de Vítor Santa e Francisco Figueirôa."
+      - "A ideia é simples: vinhos de pequenos produtores portugueses, a copo ou à garrafa, com petiscos portugueses para acompanhar."
+    hours_note: "Horário segundo o Google. Online aparecem horários diferentes; no site ficaria só o certo."
+    form_h: "Reservar mesa"
+    form_p: "Escolha o dia, a hora e quantas pessoas. A mensagem fica pronta para enviar ao Castiço pelo Instagram."
+    foot_p: "Bar de vinhos de pequenos produtores no Mercado de Carcavelos."
+    og_desc: "Conceito de site para o Castiço Wine Bar, no Mercado de Carcavelos: vinho da semana, carta, horário e reservas."
+  en:
+    eyebrow: "Wine bar · Carcavelos market"
+    h1: "Small Portuguese producers, <em>by the glass</em>, at the market."
+    lede: "Wine of the week, cheese and charcuterie boards, Briosa tinned fish and chouriço flamed at your table. In the food court of Carcavelos market."
+    cta1: "Book a table"
+    cta_short: "Book"
+    cta2: "See the list"
+    nav_menu: "Wine list"
+    art_tag_b: "Wine of the week"
+    art_tag: "a new wine to try, every week"
+    menu_k: "Wine list"
+    menu_h: "Wine, and what goes with it"
+    menu_p: "Portuguese producers only: Douro, Beiras, the islands, the Algarve. And Carcavelos's own wine, Villa Oeiras."
+    menu_note: "Prices go here once the bar confirms them. The wine of the week would be updated by the bar each week."
+    about_h: "A counter in the market"
+    about_p:
+      - "Castiço opened in summer 2021 in the food court of Carcavelos municipal market, run by Vítor Santa and Francisco Figueirôa."
+      - "The idea is simple: wines from small Portuguese producers, by the glass or bottle, with Portuguese petiscos alongside."
+    hours_note: "Hours as shown on Google. Different hours appear online; the site would show only the right ones."
+    form_h: "Book a table"
+    form_p: "Choose the day, time and party size. The message is ready to send to Castiço on Instagram."
+    foot_p: "Small-producer wine bar in Carcavelos market."
+    og_desc: "Website concept for Castiço Wine Bar in Carcavelos market: wine of the week, list, hours and bookings."

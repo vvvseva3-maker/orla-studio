@@ -1,0 +1,100 @@
+slug: maide
+name: Mâide
+wordmark: "Mâide"
+giant: "Mâide<span>.</span>"
+ig: maide_cascais
+address: "Rua Joaquim Ereira, 1543, loja B, 2750-392 Cascais"
+maps_q: "Mâide, Rua Joaquim Ereira 1543, Cascais"
+phone: "21 092 7605"
+hours: {tue: [["10:00","22:00"]], wed: [["10:00","22:00"]], thu: [["10:00","22:00"]], fri: [["10:00","22:00"]], sat: [["10:00","22:00"]], sun: [["10:00","22:00"]]}
+look:
+  fonts: ["Unbounded:wght@500;600;700", "Plus+Jakarta+Sans:wght@400;500;600;700"]
+  display_css: "'Unbounded', system-ui, sans-serif"
+  body_css: "'Plus Jakarta Sans', system-ui, sans-serif"
+  dw: 600
+  dt: "-0.04em"
+  scheme: light
+  bg: "#f8e9e5"
+  bg2: "#f1dcd6"
+  card: "#fdf6f3"
+  ink: "#2a1d21"
+  ink2: "#4f3c41"
+  muted: "#836a70"
+  line: "#e9cec6"
+  acc: "#d9483b"
+  acc_ink: "#c23a2e"
+  on_acc: "#ffffff"
+  dark: "#2a1d21"
+  on_dark: "#f8e9e5"
+  on_dark_muted: "#c9aeb2"
+  art_bg: "#efc9c0"
+  a1: "#f2b13b"
+  a2: "#2f7a5c"
+  a3: "#e7a597"
+  art_ink: "#2a1d21"
+  art_hi: "#fff7f2"
+  motif: plate
+  hero: type
+  menu: cards
+  r: 28
+  h1: 0.82
+form:
+  type: table
+  times: ["10:00", "10:30", "11:00", "11:30", "12:00", "13:00", "19:00", "19:30", "20:00", "20:30", "21:00"]
+items:
+  - ["Ovos Benedict", "Eggs Benedict", "O clássico do brunch.", "The brunch classic."]
+  - ["Panquecas clássicas ou salgadas", "Classic or savoury pancakes", "Com mel, Nutella, doce ou maple; ou com bacon e ovo estrelado.", "With honey, Nutella, jam or maple; or with bacon and a fried egg."]
+  - ["Tosta de abacate", "Avocado toast", "Com ovo escalfado e tomate cherry.", "With a poached egg and cherry tomatoes."]
+  - ["Bagel de salmão fumado", "Smoked salmon bagel", "Com queijo creme e cebolinho.", "With cream cheese and chives."]
+  - ["Poké de salmão e camarão", "Salmon and prawn poké", "Com guacamole.", "With guacamole."]
+  - ["Nasi goreng", "Nasi goreng", "Arroz frito indonésio, com frango ou camarão.", "Indonesian fried rice, with chicken or prawns."]
+  - ["Caril seco de novilho", "Indonesian dry beef curry", "Com arroz e uma Bintang ao lado.", "With rice and a Bintang on the side."]
+  - ["Coconut cappuccino", "Coconut cappuccino", "Também há matcha latte e smoothies.", "Matcha lattes and smoothies too."]
+facts:
+  - ["4,6", "no Google, com mais de 900 avaliações", "on Google, from over 900 reviews"]
+  - ["12:30", "até quando se serve o brunch", "brunch is served until then"]
+  - ["10–22", "de terça a domingo", "Tuesday to Sunday"]
+  - ["Cães", "bem-vindos, e há opções para restrições alimentares", "welcome, and there are options for dietary needs"]
+t:
+  pt:
+    eyebrow: "Brunch e cozinha do mundo · Cascais"
+    h1: "Brunch de manhã, <em>poké e nasi goreng</em> ao jantar."
+    lede: "Ovos Benedict, panquecas e tostas até às 12h30; depois, pratos de vários cantos do mundo. De terça a domingo, das 10h às 22h."
+    cta1: "Reservar mesa"
+    cta_short: "Reservar"
+    art_tag_b: "Coconut cappuccino"
+    art_tag: "e também matcha latte e smoothies"
+    menu_k: "Menu"
+    menu_h: "Do brunch ao jantar"
+    menu_p: "Uma cozinha de fusão, com sabores da Ásia e da América do Sul. Há opções para restrições alimentares."
+    menu_note: "Menu segundo a Time Out e guias de viagem; pode ter mudado. Os preços entram quando a casa os confirmar."
+    about_h: "Um canto cor-de-rosa à saída do centro"
+    about_p:
+      - "O Mâide fica na Rua Joaquim Ereira, logo à saída do centro de Cascais. A sala é minimalista, em tons de rosa, com arte contemporânea nas paredes."
+      - "Serve brunch até às 12h30 e depois uma carta de pratos de vários países, do poké ao nasi goreng. Tem 4,6 estrelas no Google, com mais de 900 avaliações."
+    hours_note: "Horário segundo o Google."
+    form_h: "Reservar mesa"
+    form_p: "Escolha o dia, a hora e quantas pessoas. A mensagem fica pronta para enviar ao Mâide pelo Instagram, ou ligue para o 21 092 7605."
+    foot_p: "Brunch e cozinha do mundo, à saída do centro de Cascais."
+    og_desc: "Conceito de site para o Mâide, em Cascais: brunch, menu do mundo, horário e reservas."
+  en:
+    eyebrow: "Brunch and world food · Cascais"
+    h1: "Brunch in the morning, <em>poké and nasi goreng</em> for dinner."
+    lede: "Eggs Benedict, pancakes and toasts until 12:30; then dishes from around the world. Tuesday to Sunday, 10am to 10pm."
+    cta1: "Book a table"
+    cta_short: "Book"
+    art_tag_b: "Coconut cappuccino"
+    art_tag: "plus matcha lattes and smoothies"
+    menu_k: "Menu"
+    menu_h: "From brunch to dinner"
+    menu_p: "Fusion cooking with Asian and South American flavours. There are options for dietary needs."
+    menu_note: "Menu as described by Time Out and travel guides; it may have changed. Prices go here once confirmed."
+    about_h: "A pink corner just outside the centre"
+    about_p:
+      - "Mâide is on Rua Joaquim Ereira, just outside central Cascais. The room is minimalist, in shades of pink, with contemporary art on the walls."
+      - "Brunch runs until 12:30, then a menu of dishes from many countries, from poké to nasi goreng. It has 4.6 stars on Google from over 900 reviews."
+    hours_note: "Hours as shown on Google."
+    form_h: "Book a table"
+    form_p: "Choose the day, time and party size. The message is ready to send to Mâide on Instagram, or call 21 092 7605."
+    foot_p: "Brunch and world food just outside central Cascais."
+    og_desc: "Website concept for Mâide in Cascais: brunch, world menu, hours and bookings."
