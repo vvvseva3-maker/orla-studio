@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Заголовок и описание для Google и превью ссылок. Поменяйте под себя. -->
+  <title>Vatlina Photo — фотограф в Лиссабоне и Кашкайше</title>
+  <meta name="description" content="Портреты, репортаж, пейзаж и love story. Съёмка в золотой час: виджет света и погоды, запись онлайн.">
+  <meta property="og:title" content="Vatlina Photo — фотограф в Лиссабоне и Кашкайше">
+  <meta property="og:description" content="Сохраняю лучшие моменты в самом красивом свете.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0f0f10">
+  <!-- Черновик: закрыт от Google. Уберите эту строку, когда сайт будет готов к запуску. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Шрифты: Cormorant Garamond (заголовки), Geologica (текст), JetBrains Mono (время). Все с кириллицей. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Geologica:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержанию</a>
+
+  <!-- ===================== ШАПКА ===================== -->
+  <header class="hdr" id="hdr">
+    <div class="wrap hdr-in">
+      <a class="logo" href="#top" aria-label="На главную">
+        <span class="logo-name" data-cfg="logoMain">Vatlina</span>
+        <span class="logo-role" data-cfg="logoSub">Photo</span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Разделы сайта">
+        <a href="#portfolio">Портфолио</a>
+        <a href="#light">Свет и погода</a>
+        <a href="#tips">Когда сниматься</a>
+        <a href="#booking">Контакты</a>
+        <a class="btn btn-gold nav-cta" href="#booking">Записаться на съёмку</a>
+      </nav>
+
+      <a class="btn btn-gold btn-sm hdr-cta" href="#booking">Записаться на съёмку</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== ПЕРВЫЙ ЭКРАН ===================== -->
+    <section class="hero" id="top">
+      <div class="hero-media" aria-hidden="true"><img id="heroImg" alt="" fetchpriority="high"></div>
+      <div class="wrap hero-in">
+        <p class="eyebrow reveal"><span data-cfg="role">Фотограф</span><i></i><span data-cfg="baseCity">Лиссабон и Кашкайш</span></p>
+        <h1 class="hero-title reveal">Сохраняю лучшие моменты <em>в самом красивом свете</em></h1>
+        <p class="hero-lede reveal">Портреты, репортажи, пейзажи и love story. Время съёмки подбираю по солнцу, чтобы свет работал на вас, а не против.</p>
+        <div class="ctas reveal">
+          <a class="btn btn-gold" href="#booking">Записаться на съёмку</a>
+          <a class="btn btn-ghost" href="#portfolio">Смотреть работы</a>
+        </div>
+      </div>
+      <!-- Живая подсказка: сегодняшний золотой час в городе по умолчанию (заполняет main.js) -->
+      <a class="hero-light" href="#light" id="heroLight" hidden>
+        <span class="sun-dot" aria-hidden="true"></span>
+        <span id="heroLightText"></span>
+      </a>
+    </section>
+
+    <!-- ===================== ПОРТФОЛИО ===================== -->
+    <section class="sec" id="portfolio">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <p class="kicker">Портфолио</p>
+            <h2>Избранные <em>работы</em></h2>
+          </div>
+          <!-- Кнопки фильтра создаются из SITE_CONFIG.categories -->
+          <div class="filters" id="filters" role="group" aria-label="Фильтр по типу съёмки"></div>
+        </div>
+        <!-- Сетка фото создаётся из SITE_CONFIG.photos -->
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- ===================== ЗОЛОТОЙ ЧАС И ПОГОДА ===================== -->
+    <section class="sec sky" id="light">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <p class="kicker">Свет и погода</p>
+            <h2>Когда свет будет <em>самым красивым</em></h2>
+          </div>
+          <p class="sec-lede">Выберите место и дату. Покажу рассвет, закат, золотой и синий час, прогноз погоды и что я посоветую для съёмки.</p>
+        </div>
+
+        <!-- Выбор места и даты -->
+        <div class="controls">
+          <div class="ctl">
+            <span class="lbl" id="locLabel">Место</span>
+            <div class="chips" id="locChips" role="radiogroup" aria-labelledby="locLabel"></div>
+            <div class="place-search">
+              <form id="placeForm" class="search" role="search">
+                <label class="sr" for="placeInput">Другой город</label>
+                <input id="placeInput" type="search" placeholder="Другой город" autocomplete="off">
+                <button type="submit" class="btn btn-line btn-sm">Найти</button>
+              </form>
+              <button type="button" class="geo-btn" id="geoBtn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7.5"/></svg>
+                Моё местоположение
+              </button>
+              <ul class="results" id="placeResults" hidden></ul>
+            </div>
+          </div>
+          <div class="ctl">
+            <span class="lbl"><label for="lightDate">Дата</label></span>
+            <div class="date-row">
+              <input type="date" id="lightDate">
+              <div class="chips" id="dateChips"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sky-grid">
+          <!-- Шкала дня и время -->
+          <article class="panel day">
+            <header class="day-head">
+              <h3 id="dayTitle">Сегодня</h3>
+              <span class="mono" id="localNow"></span>
+            </header>
+            <div class="daybar" id="daybar" role="img" aria-label="Шкала света за день">
+              <span class="now-mark" id="nowMark" hidden></span>
+            </div>
+            <div class="daybar-scale" aria-hidden="true"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+            <p class="countdown" id="countdown" aria-live="polite"></p>
+
+            <div class="times">
+              <div class="times-col">
+                <h4>Утро</h4>
+                <dl>
+                  <div><dt><i class="sw blue"></i>Синий час</dt><dd class="mono" id="tBlueM">—</dd></div>
+                  <div><dt><i class="sw sun"></i>Рассвет</dt><dd class="mono" id="tSunrise">—</dd></div>
+                  <div><dt><i class="sw gold"></i>Золотой час</dt><dd class="mono" id="tGoldM">—</dd></div>
+                </dl>
+              </div>
+              <div class="times-col best">
+                <h4>Вечер <span class="tag">лучшее время</span></h4>
+                <dl>
+                  <div><dt><i class="sw gold"></i>Золотой час</dt><dd class="mono" id="tGoldE">—</dd></div>
+                  <div><dt><i class="sw sun"></i>Закат</dt><dd class="mono" id="tSunset">—</dd></div>
+                  <div><dt><i class="sw blue"></i>Синий час</dt><dd class="mono" id="tBlueE">—</dd></div>
+                </dl>
+              </div>
+            </div>
+            <p class="fine">Время местное. Солнце считается прямо в браузере, без интернета.</p>
+          </article>
+
+          <!-- Погода и совет -->
+          <article class="panel weather" id="weather" aria-live="polite">
+            <header class="w-head">
+              <span class="lbl" id="wWhen">Погода</span>
+              <span class="w-desc" id="wDesc"></span>
+            </header>
+            <div class="w-main">
+              <span class="w-icon" id="wIcon" aria-hidden="true"></span>
+              <span class="w-temp" id="wTemp">—</span>
+            </div>
+            <ul class="w-stats">
+              <li><span>Облачность</span><b class="mono" id="wCloud">—</b></li>
+              <li><span>Ветер</span><b class="mono" id="wWind">—</b></li>
+              <li><span>Дождь</span><b class="mono" id="wRain">—</b></li>
+            </ul>
+            <p class="w-golden" id="wGolden" hidden></p>
+            <div class="advice">
+              <p class="lbl">Совет фотографа</p>
+              <h4 id="aTitle">Загружаю прогноз…</h4>
+              <p id="aText"></p>
+              <ul id="aNotes"></ul>
+            </div>
+            <a class="btn btn-gold" href="#booking" id="bookThisDay">Записаться на этот день</a>
+            <p class="fine">Погода: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, прогноз на 16 дней вперёд.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== КОГДА ЛУЧШЕ СНИМАТЬСЯ ===================== -->
+    <section class="sec" id="tips">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <p class="kicker">Когда лучше сниматься</p>
+            <h2>Свет решает <em>половину кадра</em></h2>
+          </div>
+          <p class="sec-lede">Короткая шпаргалка: какой свет бывает в течение дня и что надеть под погоду.</p>
+        </div>
+
+        <div class="light-cards">
+          <article class="lcard reveal">
+            <div class="swatch golden" aria-hidden="true"></div>
+            <p class="lbl">Час после рассвета и час до заката</p>
+            <h3>Золотой час</h3>
+            <p>Солнце низко, свет тёплый и мягкий, тени длинные, волосы светятся контровым светом. Лучшее время для портретов и love story.</p>
+          </article>
+          <article class="lcard reveal">
+            <div class="swatch blue" aria-hidden="true"></div>
+            <p class="lbl">20–30 минут до рассвета и после заката</p>
+            <h3>Синий час</h3>
+            <p>Солнце уже за горизонтом, небо глубокое синее, в городе зажигаются огни. Атмосферные кадры, вечерние прогулки, огни набережной.</p>
+          </article>
+          <article class="lcard reveal">
+            <div class="swatch overcast" aria-hidden="true"></div>
+            <p class="lbl">Облачный день</p>
+            <h3>Мягкий свет</h3>
+            <p>Облака рассеивают солнце, как огромный софтбокс: ровный тон кожи, никто не щурится. Портреты, семейные съёмки, репортаж.</p>
+          </article>
+          <article class="lcard reveal">
+            <div class="swatch noon" aria-hidden="true"></div>
+            <p class="lbl">С 12 до 15 часов</p>
+            <h3>Полдень</h3>
+            <p>Солнце сверху даёт жёсткие тени под глазами. Снимаем в тени деревьев, под арками, у светлых стен — или делаем контрастные fashion-кадры.</p>
+          </article>
+        </div>
+
+        <h3 class="sub-h">Что надеть <em>под погоду</em></h3>
+        <div class="outfits" id="outfits">
+          <article class="ocard reveal" data-outfit="sun">
+            <h4>Солнечно</h4>
+            <p>Светлые натуральные ткани: лён, хлопок, шёлк. Пастель и тёплые земляные тона. Без мелкой полоски и неона — они рябят в кадре.</p>
+          </article>
+          <article class="ocard reveal" data-outfit="cloud">
+            <h4>Облачно</h4>
+            <p>Насыщенные цвета оживляют серый день: бордо, горчичный, изумрудный, глубокий синий. Фактурные вещи — трикотаж, вельвет, шерсть.</p>
+          </article>
+          <article class="ocard reveal" data-outfit="wind">
+            <h4>Ветрено</h4>
+            <p>Летящие платья и длинные юбки — ветер станет стилистом. Волосы лучше собрать или взять лак, сверху плотная куртка.</p>
+          </article>
+          <article class="ocard reveal" data-outfit="rain">
+            <h4>Дождь</h4>
+            <p>Тренч, прозрачный зонт, непромокаемая обувь. Тёмная обувь и запасные носки — обязательно. Получится кино.</p>
+          </article>
+          <article class="ocard reveal" data-outfit="cold">
+            <h4>Холодно</h4>
+            <p>Пальто, крупная вязка, шарф, плед для пауз между кадрами. Перчатки снимаем только для кадров с руками.</p>
+          </article>
+        </div>
+        <p class="rule-note"><b>Общее правило:</b> 2–3 сочетающихся цвета на всех, без крупных логотипов. Возьмите вторую смену одежды — это два образа за одну съёмку.</p>
+      </div>
+    </section>
+
+    <!-- ===================== ЗАПИСЬ И КОНТАКТЫ ===================== -->
+    <section class="sec booking" id="booking">
+      <div class="wrap book-grid">
+        <div class="book-intro">
+          <p class="kicker">Запись</p>
+          <h2>Записаться <em>на съёмку</em></h2>
+          <p class="sec-lede">Расскажите, какую съёмку хотите. Отвечу в течение дня, подберу место и время по свету и пришлю прогноз за пару дней до встречи.</p>
+          <!-- Ссылки создаются из SITE_CONFIG.contacts -->
+          <ul class="contacts" id="contacts"></ul>
+        </div>
+
+        <form class="book-form" id="bookForm" novalidate>
+          <div class="two">
+            <div class="fld">
+              <label for="fName">Имя</label>
+              <input id="fName" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="fld">
+              <label for="fContact">Телефон или Telegram</label>
+              <input id="fContact" name="contact" type="text" autocomplete="tel" placeholder="+351 … или @username" required>
+            </div>
+          </div>
+          <div class="fld">
+            <label for="fDate">Желаемая дата</label>
+            <input id="fDate" name="date" type="date">
+            <p class="hint" id="fDateHint">Выберите дату — подскажу время золотого часа.</p>
+          </div>
+          <div class="fld" role="group" aria-labelledby="typeLabel">
+            <span class="flbl" id="typeLabel">Тип съёмки</span>
+            <div class="chips" id="typeChips"></div>
+          </div>
+          <div class="fld">
+            <label for="fComment">Комментарий</label>
+            <textarea id="fComment" name="comment" rows="3" placeholder="Сколько человек, идеи, любимые места"></textarea>
+          </div>
+          <p class="err" id="formErr" hidden></p>
+          <button class="btn btn-gold btn-wide" type="submit" id="submitBtn">Отправить заявку</button>
+          <p class="fine">Нажимая кнопку, вы соглашаетесь, что я использую эти данные только для связи с вами.</p>
+
+          <!-- Результат отправки -->
+          <div class="form-done" id="formDone" hidden aria-live="polite">
+            <h4 id="doneTitle"></h4>
+            <p id="doneText"></p>
+            <pre id="doneMsg" hidden></pre>
+            <div class="done-acts" id="doneActs"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== ПОДВАЛ ===================== -->
+  <footer class="foot">
+    <div class="wrap foot-in">
+      <div>
+        <p class="foot-name" data-cfg="name">Vatlina Photo</p>
+        <p class="foot-role"><span data-cfg="role">Фотограф</span> · <span data-cfg="baseCity">Лиссабон и Кашкайш</span></p>
+      </div>
+      <nav class="foot-nav" aria-label="Разделы">
+        <a href="#portfolio">Портфолио</a><a href="#light">Свет и погода</a><a href="#tips">Когда сниматься</a><a href="#booking">Запись</a>
+      </nav>
+      <p class="foot-small">© <span id="year">2026</span> <span data-cfg="name">Vatlina Photo</span>. Фото-примеры: Unsplash. Погода: Open-Meteo, CC BY 4.0.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== ПРОСМОТР ФОТО (LIGHTBOX) ===================== -->
+  <dialog class="lightbox" id="lightbox" aria-label="Просмотр фотографии">
+    <figure class="lb-fig">
+      <img id="lbImg" alt="">
+      <figcaption><span id="lbCap"></span><span class="mono" id="lbCount"></span></figcaption>
+    </figure>
+    <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="Закрыть">×</button>
+    <button class="lb-btn lb-prev" type="button" id="lbPrev" aria-label="Предыдущее фото">‹</button>
+    <button class="lb-btn lb-next" type="button" id="lbNext" aria-label="Следующее фото">›</button>
+  </dialog>
+
+  <!-- Порядок важен: сначала настройки, потом расчёты, потом интерфейс -->
+  <script src="js/config.js" defer></script>
+  <script src="js/sun.js" defer></script>
+  <script src="js/weather.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
