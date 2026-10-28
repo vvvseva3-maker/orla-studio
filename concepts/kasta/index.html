@@ -48,7 +48,7 @@ h1,h2,h3,h4{margin:0;font-weight:400}
 /* плашка концепта */
 .rib{background:var(--ink);color:var(--on-night-2);font-size:13px;line-height:1.45}
 .rib .wrap{display:flex;gap:12px;align-items:center;justify-content:center;padding-block:9px}
-.rib b{flex:none;background:var(--pink);color:var(--ink);font:700 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:5px 8px}
+.rib b{flex:none;background:var(--pink);color:var(--ink);font:700 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:6px 9px}
 
 /* шапка */
 .hdr{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--paper);border-bottom:2px solid var(--ink)}
@@ -90,7 +90,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .next h3{font:400 clamp(1.6rem,3vw,2.3rem)/1 var(--display)}
 .next p{color:var(--ink-2);font-size:15px}
 .next .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:4px}
-.count{font:700 15px/1 var(--mono);background:var(--ink);color:var(--paper);padding:8px 10px}
+.count{font:700 15px/1 var(--mono);background:var(--ink);color:var(--paper);padding:9px 12px}
 @media (max-width:860px){.hero-row{grid-template-columns:1fr}}
 
 /* бегущая строка */
@@ -109,7 +109,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (max-width:860px){.sec-h{grid-template-columns:1fr}}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:2px solid var(--ink);background:transparent;color:var(--ink);font:600 13.5px/1 var(--body);padding:10px 14px;cursor:pointer;min-height:42px;display:inline-flex;align-items:center;gap:8px}
-.chip small{font:500 11px/1 var(--mono);opacity:.6}
+.chip small{font:500 11px/1 var(--mono);opacity:.75}
 .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .chip:hover{border-color:var(--blue)}
 
@@ -123,7 +123,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .show .c{font:400 clamp(1.4rem,2.6vw,2.1rem)/1.05 var(--display);overflow-wrap:anywhere}
 .show .c small{display:block;font:500 12.5px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 .show .v{color:var(--ink-2);font-size:15px}
-.show .v em{font-style:normal;display:inline-block;margin-left:8px;font:700 10.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--pink);color:var(--ink);padding:4px 6px}
+.show .v em{font-style:normal;display:inline-block;margin-left:8px;font:700 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--pink);color:var(--ink);padding:5px 8px}
 .show .a{display:flex;gap:8px;justify-content:flex-end}
 .icon-btn{width:44px;height:40px;border:2px solid var(--ink);background:transparent;cursor:pointer;display:grid;place-items:center}
 .icon-btn:hover{background:var(--ink);color:var(--paper)}
@@ -150,7 +150,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 @media (max-width:700px){.latest{grid-template-columns:1fr}}
 .disco-bar{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;margin-bottom:18px}
 .decades{display:flex;gap:6px;font:500 12px/1 var(--mono)}
-.decades a{padding:8px 9px;border:1px solid var(--line);text-decoration:none}
+.decades a{padding:9px 11px;border:1px solid var(--line);text-decoration:none}
 .decades a:hover{border-color:var(--ink)}
 .disco{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:12px}
 @media (max-width:560px){.disco{grid-template-columns:1fr 1fr;gap:8px}.rel{min-height:124px;padding:12px}.rel.album h4{font-size:17px}.rel h4{font-size:15px}}
@@ -158,7 +158,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .rel:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--blue)}
 .rel .y{display:flex;justify-content:space-between;align-items:center;gap:8px;font:700 12px/1 var(--mono);letter-spacing:.08em}
 .rel .y i{font-style:normal;text-transform:uppercase;color:var(--muted);font-weight:500}
-.rel .y b{background:var(--ink);color:var(--paper);padding:4px 6px}
+.rel .y b{background:var(--ink);color:var(--paper);padding:5px 8px}
 .rel h4{font:600 17px/1.2 var(--body);overflow-wrap:anywhere}
 .rel.album h4{font:400 21px/1.08 var(--display)}
 .rel .who{font:500 12px/1 var(--mono);color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
