@@ -78,14 +78,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero{position:relative;overflow:hidden;background:var(--night);color:var(--on-night);border-bottom:2px solid var(--ink);isolation:isolate}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(48% 60% at 74% 46%,rgba(255,255,255,.07),transparent 70%),radial-gradient(30% 40% at 80% 70%,rgba(216,35,26,.12),transparent 70%)}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background-image:radial-gradient(rgba(242,240,235,.11) .7px,transparent 1px);background-size:5px 5px;mask-image:linear-gradient(180deg,transparent 0%,transparent 55%,#000 100%);-webkit-mask-image:linear-gradient(180deg,transparent 0%,transparent 55%,#000 100%)}
-.hero-in{position:relative;z-index:3;padding-block:clamp(30px,4.5vw,56px) clamp(30px,4.5vw,56px);display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);grid-template-areas:"eyebrow eyebrow" "giant deck" "copy deck";gap:clamp(16px,2.4vw,30px) clamp(16px,3vw,40px);align-items:end}
+.hero-in{position:relative;z-index:3;padding-block:clamp(36px,5vw,64px) clamp(30px,4.5vw,56px);display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);grid-template-areas:"giant deck" "copy deck";gap:clamp(16px,2.4vw,30px) clamp(16px,3vw,40px);align-items:end}
 .hero-in > *{min-width:0}
-.eyebrow{grid-area:eyebrow;display:flex;flex-wrap:wrap;gap:10px 22px;font:500 12.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--on-night-2)}
+.eyebrow{display:flex;flex-wrap:wrap;gap:10px 22px;font:500 12.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--on-night-2)}
 .eyebrow span{display:inline-flex;align-items:center;gap:8px}
 .eyebrow span::before{content:"";width:9px;height:9px;background:var(--red)}
 .giant{grid-area:giant;font:900 clamp(5rem,19.5vw,19rem)/.8 var(--display);text-transform:uppercase;white-space:nowrap;letter-spacing:-.01em;margin-left:-.04em;position:relative;z-index:1;width:max-content;max-width:100%}
 .giant span{display:inline-block}
-.giant .r{color:var(--red)}
+.giant .r{color:var(--red-hi)}
 .copy{grid-area:copy;display:grid;gap:22px;align-content:start}
 .hero-lede{font-size:clamp(1.1rem,1.6vw,1.38rem);line-height:1.4;max-width:36ch;font-weight:500}
 .hero-lede b{color:#fff;background:var(--red);padding:0 .2em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
@@ -111,7 +111,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .deck-note:hover{transform:rotate(0) translate(-2px,-2px)}
 .deck-note i{font-style:normal;background:var(--red);color:var(--on-red);padding:4px 6px}
 @media (max-width:860px){
-  .hero-in{grid-template-columns:1fr;grid-template-areas:"eyebrow" "deck" "giant" "copy"}
+  .hero-in{grid-template-columns:1fr;grid-template-areas:"deck" "giant" "copy"}
   .deck{min-height:0;aspect-ratio:1/0.92;margin-right:0}
   .deck-note{top:0;right:0;max-width:200px;font-size:11px;padding:6px 9px}
   .giant{font-size:clamp(4.6rem,33vw,10rem);margin-top:-6px}
@@ -332,7 +332,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <main id="top">
 <section class="hero">
   <div class="wrap hero-in">
-    <p class="eyebrow"><span data-t="e1">Ростов-на-Дону</span><span data-t="e2">С 1999 года</span><span data-t="e3">Greatest Hits Tour 2026–2027</span></p>
     <h1 class="giant" aria-label="Каста"><span>К</span><span>А</span><span>С</span><span>Т</span><span class="r">А</span></h1>
     <div class="deck" id="deck">
       <div class="deck-fb" aria-hidden="true"></div>
@@ -341,6 +340,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <div class="deck-hud" aria-hidden="true"><span><b id="rpm">33⅓</b> <span data-t="rpm">об/мин</span></span><span id="scr" data-t="scratch">Покрутите пластинку</span></div>
     </div>
     <div class="copy">
+      <p class="eyebrow"><span data-t="e1">Ростов-на-Дону</span><span data-t="e2">С 1999 года</span><span data-t="e3">Greatest Hits Tour 2026–2027</span></p>
       <p class="hero-lede" data-th="lede">Влади, Шым, Хамиль и Змей. <b>18 концертов в 9 странах</b>: от Буэнос-Айреса до Лос-Анджелеса.</p>
       <div class="ctas"><a class="btn red" href="#tour" data-t="cta_all">Все концерты</a><a class="btn line" href="#music" data-t="cta_listen">Слушать</a></div>
       <article class="next" id="next" aria-live="polite"></article>
@@ -351,7 +351,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="sec" id="tour">
   <div class="wrap">
-    <div class="sec-h rv"><div><span class="k"><b>01</b><span data-t="tour_k">Greatest Hits Tour</span></span><h2 data-t="tour_h">Концерты</h2></div><p data-t="tour_p">Все даты с годом. Прошедшие концерты исчезают сами, а любой концерт можно добавить в календарь.</p></div>
+    <div class="sec-h rv"><div><span class="k"><span data-t="tour_k">Greatest Hits Tour</span></span><h2 data-t="tour_h">Концерты</h2></div><p data-t="tour_p">Все даты с годом. Прошедшие концерты исчезают сами, а любой концерт можно добавить в календарь.</p></div>
     <div class="tour-bar"><div class="chips" id="regions" role="group" aria-label="Регион"></div><span class="mono" id="tourCount"></span></div>
     <div id="shows"></div>
     <p class="note" data-t="tour_note">Билеты продают местные организаторы: кнопка ведёт на их страницу. Время начала уточняется у организатора.</p>
@@ -360,7 +360,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="sec" id="music">
   <div class="wrap">
-    <div class="sec-h rv"><div><span class="k"><b>02</b><span data-t="music_k">Дискография 1999–2026</span></span><h2 data-t="music_h">Музыка</h2></div><p data-t="music_p">49 релизов: альбомы, синглы и сольные работы участников. Слушайте там, где вам удобно.</p></div>
+    <div class="sec-h rv"><div><span class="k"><span data-t="music_k">Дискография 1999–2026</span></span><h2 data-t="music_h">Музыка</h2></div><p data-t="music_p">49 релизов: альбомы, синглы и сольные работы участников. Слушайте там, где вам удобно.</p></div>
     <div class="stream" id="stream"></div>
     <div class="latest rv" id="latest"></div>
     <div class="sides rv" id="sides"></div>
@@ -372,7 +372,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="sec video" id="video">
   <div class="wrap">
-    <div class="sec-h rv"><div><span class="k"><b>03</b><span data-t="video_k">YouTube</span></span><h2 data-t="video_h">Клипы</h2></div><p data-t="video_p">Видео включается только по нажатию: никакого автозапуска и лишнего трафика.</p></div>
+    <div class="sec-h rv"><div><span class="k"><span data-t="video_k">YouTube</span></span><h2 data-t="video_h">Клипы</h2></div><p data-t="video_p">Видео включается только по нажатию: никакого автозапуска и лишнего трафика.</p></div>
     <div class="vgrid" id="vgrid"></div>
     <div class="more"><a class="btn sm" href="https://www.youtube.com/kasta" target="_blank" rel="noopener" data-t="yt_all" style="box-shadow:3px 3px 0 var(--red);background:var(--on-night);color:var(--ink);border-color:var(--on-night)">Все видео на YouTube</a></div>
   </div>
@@ -380,7 +380,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="sec" id="about">
   <div class="wrap">
-    <div class="sec-h rv"><div><span class="k"><b>04</b><span data-t="about_k">С 1995 года</span></span><h2 data-t="about_h">О группе</h2></div></div>
+    <div class="sec-h rv"><div><span class="k"><span data-t="about_k">С 1995 года</span></span><h2 data-t="about_h">О группе</h2></div></div>
     <div class="about">
       <div>
         <div class="txt rv">
@@ -396,7 +396,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="sec" id="news">
   <div class="wrap">
-    <div class="sec-h rv"><div><span class="k"><b>05</b><span data-t="news_k">Из первых рук</span></span><h2 data-t="news_h">Новости</h2></div></div>
+    <div class="sec-h rv"><div><span class="k"><span data-t="news_k">Из первых рук</span></span><h2 data-t="news_h">Новости</h2></div></div>
     <div class="news" id="newsList"></div>
   </div>
 </section>
