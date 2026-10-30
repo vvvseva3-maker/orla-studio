@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Каста — концепт сайта, версия 2</title>
+<meta name="description" content="Концепт нового сайта группы «Каста» от студии Orla: ночной двор в 3D, табло концертов, глобус тура и дискография.">
+<meta name="theme-color" content="#08090b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Каста — концепт сайта, версия 2">
+<meta property="og:description" content="Ночной двор в 3D, вокзальное табло концертов и глобус тура. Предложение студии Orla.">
+<meta property="og:image" content="https://vvvseva3-maker.github.io/orla-studio/concepts/kasta/v2/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fira+Sans+Extra+Condensed:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>
+/* ===== Токены: ночной двор, натриевый фонарь, бетон ===== */
+:root{
+  --bg:#08090b; --bg2:#0d0e11; --card:#121316; --card2:#17181c;
+  --line:rgba(236,232,225,.12); --line2:rgba(236,232,225,.22);
+  --fg:#ece8e1; --soft:#d6d1c8; --mut:#a8a39b;
+  --amb:#ffa53a; --amb-hi:#ffc06e; --amb-ink:#160d02; --rec:#ff4a3d;
+  --disp:'Fira Sans Extra Condensed','Arial Narrow',Impact,sans-serif;
+  --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --hand:'Caveat','Comic Sans MS',cursive;
+  --hdr:60px; --r:6px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--amb);outline-offset:3px}
+.wrap{max-width:1320px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+/* плёночное зерно поверх всей страницы */
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.055;background-size:180px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+/* ===== Плашка концепта и шапка ===== */
+.rib{background:#131417;border-bottom:1px solid var(--line);font:500 12px/1.4 var(--mono);color:var(--mut)}
+.rib .wrap{display:flex;gap:6px 12px;align-items:center;padding-block:8px;flex-wrap:wrap}
+.rib b{background:var(--amb);color:var(--amb-ink);padding:2px 7px;border-radius:3px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.rib a{color:var(--fg);margin-left:auto;text-underline-offset:3px}
+.hdr{position:sticky;top:0;z-index:50;height:var(--hdr);background:rgba(8,9,11,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hdr .wrap{height:100%;display:flex;align-items:center;gap:22px}
+.logo{font:800 30px/1 var(--disp);letter-spacing:.04em;text-decoration:none;text-transform:uppercase}
+.nav{display:flex;gap:22px;margin-left:auto}
+.nav a{font:500 14px var(--sans);text-decoration:none;color:var(--mut);transition:color .2s}
+.nav a:hover{color:var(--fg)}
+.lang{display:flex;border:1px solid var(--line2);border-radius:4px;overflow:hidden}
+.lang button{background:none;border:0;padding:0 10px;min-height:34px;font:600 12px var(--mono);color:var(--mut);cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
+@media (max-width:900px){.nav{display:none}.lang{margin-left:auto}.hdr .wrap{gap:12px}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:4px;font:600 15px var(--sans);text-decoration:none;border:1px solid var(--line2);background:transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s;white-space:nowrap}
+.btn:hover{border-color:var(--fg)}
+.btn:active{transform:translateY(1px)}
+.btn.amb{background:var(--amb);border-color:var(--amb);color:var(--amb-ink)}
+.btn.amb:hover{background:var(--amb-hi);border-color:var(--amb-hi)}
+.btn.sm{min-height:36px;padding:0 13px;font-size:13px}
+
+/* ===== Первый экран: 3D-двор + VHS ===== */
+.hero{position:relative;height:calc(100svh - var(--hdr) - 34px);min-height:620px;max-height:1020px;background:#07080a;isolation:isolate;overflow:hidden}
+.scene{position:absolute;inset:0}
+.scene canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.yard-fb{position:absolute;inset:0;transition:opacity 1s;background:radial-gradient(40% 45% at 18% 88%,rgba(255,150,50,.25),transparent 70%),linear-gradient(#0b0d13,#08090b 62%,#0e0f11)}
+.yard-fb::before{content:"";position:absolute;left:30%;right:6%;top:20%;bottom:19%;
+  background:repeating-linear-gradient(to right,transparent 0 1.6%,#0e0f12 1.6% 4.76%),repeating-linear-gradient(to bottom,transparent 0 4.5%,#0e0f12 4.5% 11.1%),#3a2a17}
+.hero.on .yard-fb{opacity:0}
+.vhs{position:absolute;inset:0;z-index:2;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
+.vhs::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(0,0,0,.6))}
+.vhs::after{content:"";position:absolute;left:0;right:0;height:9%;top:-10%;background:linear-gradient(transparent,rgba(255,255,255,.035) 40%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.035) 60%,transparent);animation:track 9s linear infinite}
+@keyframes track{to{top:110%}}
+.osd{position:absolute;z-index:5;font:600 clamp(13px,1.2vw,17px)/1 var(--mono);color:#f5f2ea;letter-spacing:.08em;pointer-events:none;
+  text-shadow:0 0 6px rgba(255,255,255,.35),1.5px 0 0 rgba(255,60,60,.45),-1.5px 0 0 rgba(60,170,255,.45)}
+.osd.tl{top:22px;left:max(22px,env(safe-area-inset-left,0px))}
+.osd.tr{top:22px;right:max(22px,env(safe-area-inset-right,0px));text-align:right}
+.osd.br{bottom:24px;right:max(22px,env(safe-area-inset-right,0px));text-align:right;line-height:1.5}
+.osd .play{display:inline-block;margin-left:6px}
+.hero-copy{position:absolute;z-index:4;left:0;right:0;bottom:0;padding-bottom:clamp(30px,6.5vh,72px)}
+.hero-copy::before{content:"";position:absolute;inset:-60% 0 0;z-index:-1;pointer-events:none;background:linear-gradient(to bottom,transparent,rgba(7,8,10,.72) 55%,rgba(7,8,10,.92))}
+.hero-copy .wrap{display:grid;gap:18px;justify-items:start}
+.kick{font:500 13px/1.3 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--amb);margin:0}
+h1.title{font:800 clamp(76px,11vw,168px)/.84 var(--disp);letter-spacing:.012em;margin:0;text-transform:uppercase}
+.hero-lede{max-width:560px;font-size:clamp(16px,1.3vw,19px);line-height:1.5;color:var(--soft);margin:0}
+.hero-lede b{color:var(--fg);font-weight:600}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.newchip{display:inline-flex;gap:10px;align-items:center;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(8,9,11,.66);border:1px solid var(--line2);font:500 14px/1.3 var(--sans);text-decoration:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);max-width:100%}
+.newchip i{font:600 11px var(--mono);font-style:normal;background:var(--amb);color:var(--amb-ink);padding:4px 7px;border-radius:999px;letter-spacing:.08em;text-transform:uppercase;flex:none}
+.newchip:hover{border-color:var(--amb)}
+@media (max-width:760px){
+  .hero{height:auto;min-height:0;max-height:none;display:flex;flex-direction:column}
+  .scene{position:relative;inset:auto;height:min(84vw,440px);flex:none}
+  .hero-copy{position:relative;padding-top:6px}
+  .hero-copy::before{inset:-90px 0 0}
+  .osd.br{bottom:16px}
+}
+
+/* бегущая строка городов */
+.ticker{border-block:1px solid var(--line);background:#0b0c0e;overflow:hidden;white-space:nowrap}
+.ticker .row{display:inline-flex;gap:44px;padding:13px 0;animation:tick 70s linear infinite;font:600 14px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amb)}
+.ticker .row span i{font-style:normal;color:var(--mut);margin-left:10px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ===== Общие секции ===== */
+section.sec{padding-block:clamp(64px,9vw,128px);border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:20px 48px;align-items:end;margin-bottom:40px}
+.sec-head h2{font:800 clamp(56px,8.4vw,120px)/.84 var(--disp);margin:8px 0 0;text-transform:uppercase;position:relative;display:inline-block}
+.sec-head p{margin:0;color:var(--mut);font-size:17px}
+.sec-head .kick{color:var(--amb);font-size:13px}
+.scrawl{display:block;width:min(260px,62%);height:20px;margin-top:6px;overflow:visible}
+.scrawl path{fill:none;stroke:var(--amb);stroke-width:4;stroke-linecap:round;stroke-dasharray:320;stroke-dashoffset:320;transition:stroke-dashoffset 1.1s cubic-bezier(.6,.1,.2,1)}
+.in .scrawl path{stroke-dashoffset:0}
+@media (max-width:860px){.sec-head{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line2);background:transparent;border-radius:999px;padding:0 15px;min-height:38px;font:500 14px var(--sans);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip:hover{border-color:var(--fg)}
+.chip small{font:500 11px var(--mono);color:var(--mut);margin-left:5px}
+.chip[aria-pressed=true]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip[aria-pressed=true] small{color:#55514b}
+
+/* ===== Концерты: глобус + табло ===== */
+.tour-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:44px;align-items:start}
+.globe-col{position:sticky;top:calc(var(--hdr) + 24px)}
+.globe{position:relative;aspect-ratio:1;width:100%;max-width:540px;margin:0 auto}
+.globe canvas{width:100%;height:100%;display:block;touch-action:pan-y;cursor:grab}
+.globe canvas:active{cursor:grabbing}
+.g-lbl{position:absolute;left:0;top:0;transform:translate(-50%,calc(-100% - 12px));font:600 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--amb);color:var(--amb-ink);padding:6px 8px;border-radius:3px;white-space:nowrap;pointer-events:none;transition:opacity .25s}
+.g-lbl::after{content:"";position:absolute;left:50%;top:100%;width:1px;height:10px;background:var(--amb)}
+.globe-fb{display:none}
+.no3d .globe{display:none}
+.g-hint{font:500 12px var(--mono);color:var(--mut);text-align:center;margin:8px 0 0}
+.stop{border:1px solid var(--line2);background:var(--card);border-radius:var(--r);padding:18px 20px;margin-top:18px;display:grid;gap:6px}
+.stop .lbl{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.stop h3{font:800 clamp(40px,4vw,54px)/.92 var(--disp);margin:0;text-transform:uppercase}
+.stop p{margin:0;color:var(--soft)}
+.stop .row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px;flex-wrap:wrap}
+.count{font:600 14px var(--mono);color:var(--amb);letter-spacing:.06em;text-transform:uppercase;position:relative;padding:4px 2px}
+.count svg{position:absolute;left:-12px;top:-8px;width:calc(100% + 24px);height:calc(100% + 16px);overflow:visible;pointer-events:none}
+.count svg path{fill:none;stroke:var(--amb);stroke-width:2;stroke-linecap:round}
+.tour-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.board{background:#0b0c0e;border:1px solid var(--line2);border-radius:var(--r);overflow:hidden}
+.b-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line2);font:600 12px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--amb);background:#101114}
+.b-head span:last-child{color:var(--mut)}
+.b-cols,.trow{display:grid;grid-template-columns:100px minmax(0,1.25fr) minmax(0,1fr) 112px 140px;gap:14px;align-items:center;padding:12px 18px}
+.b-cols{font:500 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);border-bottom:1px solid var(--line);padding-block:9px}
+.shows{list-style:none;margin:0;padding:0}
+.trow{border-bottom:1px solid var(--line);cursor:pointer;position:relative;transition:background .2s}
+.trow:last-child{border-bottom:0}
+.trow:hover{background:#111215}
+.trow.sel{background:#16171a}
+.trow.sel::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amb)}
+.flap{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:top;font:600 16px/1.25 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:#f3efe7;padding:4px 7px;border-radius:3px;
+  background:linear-gradient(#1c1d21 0 48%,#050506 48% 52%,#16171a 52%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.td-date .flap{font-size:15px}
+.trow small{display:block;font:500 11px/1.3 var(--mono);color:var(--mut);letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+.td-venue{font-size:14px;color:var(--soft);min-width:0;overflow-wrap:anywhere}
+.td-st{font:600 12px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.td-st.hot{color:var(--amb)}
+.td-st.now{color:var(--amb);animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:.35}}
+.td-act{display:flex;gap:8px;justify-content:flex-end;align-items:center}
+.icon-btn{width:38px;height:36px;display:grid;place-items:center;border:1px solid var(--line2);border-radius:4px;background:transparent;cursor:pointer;flex:none}
+.icon-btn:hover{border-color:var(--fg)}
+.icon-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6}
+.tour-note{font-size:13px;color:var(--mut);margin:16px 0 0}
+.empty{padding:28px 18px;color:var(--mut)}
+@media (max-width:1100px){.b-cols,.trow{grid-template-columns:92px minmax(0,1fr) minmax(0,.9fr) 104px 128px}}
+@media (max-width:980px){.tour-grid{grid-template-columns:1fr}.globe-col{position:static}.globe{max-width:420px}}
+@media (max-width:720px){
+  .b-cols{display:none}
+  .trow{grid-template-columns:78px minmax(0,1fr);grid-template-areas:"d c" "d v" "d s" ". a";row-gap:5px;column-gap:12px;padding:14px 14px 16px 16px}
+  .td-date{grid-area:d;align-self:start}.td-city{grid-area:c}.td-venue{grid-area:v;font-size:13px}.td-st{grid-area:s}
+  .td-act{grid-area:a;justify-content:flex-start;margin-top:6px}
+  .b-head{letter-spacing:.1em}
+  .flap{font-size:15px}.td-date .flap{font-size:14px}
+}
+
+/* ===== Музыка ===== */
+.feat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:64px}
+.fcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0;transition:border-color .25s}
+.fcard:hover{border-color:var(--line2)}
+.art{aspect-ratio:1.3;display:grid;place-items:center;border-radius:4px;overflow:hidden;position:relative;
+  background:radial-gradient(70% 70% at 50% 40%,rgba(255,165,58,.14),transparent 70%),linear-gradient(#17181c,#0d0e10)}
+.fcard .k{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--amb);margin:0}
+.fcard h3{font:800 38px/.95 var(--disp);margin:0;text-transform:uppercase}
+.fcard .who{font:600 13px var(--mono);color:var(--soft);letter-spacing:.06em;text-transform:uppercase;margin:-6px 0 0}
+.fcard p{margin:0;color:var(--mut);font-size:15px}
+.fcard .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.fcard .links a{font:500 12px var(--mono);border:1px solid var(--line2);border-radius:3px;padding:0 9px;min-height:32px;display:inline-flex;align-items:center;text-decoration:none;transition:border-color .2s}
+.fcard .links a:hover{border-color:var(--amb)}
+.fcard .btn{margin-top:auto;align-self:flex-start}
+/* пластинка */
+.disc{width:min(70%,240px);aspect-ratio:1;position:relative}
+.vinyl{position:absolute;inset:0;border-radius:50%;box-shadow:0 22px 40px rgba(0,0,0,.65),inset 0 0 0 1px rgba(255,255,255,.07);
+  background:radial-gradient(circle,#0b0b0c 0 2.6%,transparent 2.9%),radial-gradient(circle,var(--amb) 0 30%,#0c0c0d 30.4% 33%,transparent 33.2%),repeating-radial-gradient(circle,#141416 0 1px,#0a0a0b 1px 3px);
+  animation:spin 1.8s linear infinite;animation-play-state:paused}
+.vinyl span{position:absolute;left:50%;top:33%;transform:translateX(-50%);font:800 clamp(16px,2vw,22px)/1 var(--disp);color:var(--amb-ink);letter-spacing:.04em}
+.vinyl em{position:absolute;left:50%;bottom:33%;transform:translateX(-50%);font:600 7px/1 var(--mono);font-style:normal;color:var(--amb-ink);white-space:nowrap;letter-spacing:.06em}
+.disc::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;background:conic-gradient(from 25deg,transparent 0 9%,rgba(255,255,255,.13) 12%,transparent 16% 59%,rgba(255,255,255,.1) 62%,transparent 66%)}
+.fcard:hover .vinyl,.fcard:focus-within .vinyl{animation-play-state:running}
+/* кассета */
+.tape{width:min(84%,300px);height:auto;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
+.tape .reel{transform-box:fill-box;transform-origin:center;animation:spin 2.4s linear infinite;animation-play-state:paused}
+.fcard:hover .reel,.fcard:focus-within .reel{animation-play-state:running}
+/* CD-R с подписью маркером */
+.cd{width:min(70%,240px);aspect-ratio:1;border-radius:50%;position:relative;box-shadow:0 22px 40px rgba(0,0,0,.6);
+  background:radial-gradient(circle,#0d0e10 0 6%,rgba(255,255,255,.75) 6.4% 7.4%,#c9ccd2 7.6% 15%,transparent 15.3%),conic-gradient(from 0deg,#d7dbe2,#f1e7ff,#c6f0ea,#fff4c7,#ffd7e8,#cfe0ff,#d7dbe2 50%,#f8f4dc,#d2f4ff,#ffe3cf,#e7d6ff,#d7dbe2)}
+.cd::after{content:"";position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle,transparent 0 13%,#eceef2 13.5%);opacity:.92}
+.cd b{position:absolute;z-index:1;left:50%;top:21%;transform:translateX(-50%) rotate(-6deg);font:600 clamp(22px,2.4vw,30px)/1 var(--hand);color:#1a1a1a;white-space:nowrap}
+.cd i{position:absolute;z-index:1;left:50%;bottom:22%;transform:translateX(-50%) rotate(-4deg);font:600 clamp(20px,2.1vw,26px)/1 var(--hand);font-style:normal;color:#b3261e;white-space:nowrap}
+@keyframes spin{to{transform:rotate(1turn)}}
+@media (max-width:1060px){.feat{grid-template-columns:1fr 1fr}}
+@media (max-width:660px){.feat{grid-template-columns:1fr}}
+.disco-tools{display:flex;flex-wrap:wrap;gap:12px 20px;justify-content:space-between;align-items:center;margin-bottom:14px}
+.decades{display:flex;gap:14px;flex-wrap:wrap}
+.decades a{font:600 13px var(--mono);color:var(--amb);text-underline-offset:3px}
+.disco{display:grid;grid-template-columns:1fr 1fr;column-gap:44px}
+.rel{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;min-width:0}
+.rel .y{font:700 24px/1 var(--disp);color:var(--mut)}
+.rel h4{margin:0;font:600 17px/1.3 var(--sans);transition:color .2s;overflow-wrap:anywhere}
+.rel .who{font:500 12px var(--mono);color:var(--amb);letter-spacing:.04em;margin:0 0 3px}
+.rel .t{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--mut);border:1px solid var(--line2);border-radius:3px;padding:4px 7px;white-space:nowrap}
+.rel:hover h4{color:var(--amb-hi)}
+.year-mark{grid-column:1/-1;font:800 48px/1 var(--disp);margin:32px 0 6px}
+.more{margin-top:26px}
+.listen{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+.listen .lbl{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-right:6px}
+.listen a{font:500 14px var(--sans);border:1px solid var(--line2);border-radius:999px;padding:0 14px;min-height:38px;display:inline-flex;align-items:center;text-decoration:none}
+.listen a:hover{border-color:var(--amb)}
+@media (max-width:760px){.disco{grid-template-columns:1fr}}
+
+/* ===== Клипы ===== */
+.vfeat{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:36px;align-items:center;margin-bottom:44px}
+.vbox{position:relative;aspect-ratio:16/9;background:#000;border-radius:4px;overflow:hidden;cursor:pointer}
+.vbox img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(1.06);transition:transform .6s}
+.vbox:hover img{transform:scale(1.03)}
+.vbox::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.16) 0 1px,transparent 1px 3px)}
+.vbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2}
+.vbox .osd-mini{position:absolute;z-index:1;top:10px;left:12px;font:600 12px var(--mono);letter-spacing:.08em;color:#f5f2ea;text-shadow:0 0 4px rgba(255,255,255,.4),1px 0 0 rgba(255,60,60,.5),-1px 0 0 rgba(60,170,255,.5)}
+.vbox .play{position:absolute;z-index:1;left:12px;bottom:12px;display:inline-flex;gap:8px;align-items:center;background:rgba(8,9,11,.8);border:1px solid var(--line2);padding:0 12px;min-height:34px;border-radius:3px;font:600 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.vbox .play svg{width:10px;height:10px;fill:var(--amb)}
+.vbox.noimg{background:linear-gradient(135deg,#1a1b1f,#0b0c0e)}
+.vbox.noimg img{opacity:0}
+.vfeat h3{font:800 clamp(44px,5vw,72px)/.9 var(--disp);margin:8px 0 14px;text-transform:uppercase}
+.vfeat p{color:var(--soft);margin:0 0 20px}
+.vfeat .kick{color:var(--amb);margin:0}
+.vgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 20px}
+.vcard h4{margin:10px 0 0;font:600 15px/1.35 var(--sans)}
+.yt-all{margin-top:28px}
+@media (max-width:980px){.vfeat{grid-template-columns:1fr}.vgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ===== О группе ===== */
+.about-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;align-items:start}
+.mem{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding:8px 0 10px}
+.mem:first-child{border-top:1px solid var(--line)}
+.mem b{font:800 clamp(54px,6.4vw,92px)/.95 var(--disp);text-transform:uppercase}
+.mem span{font:500 12px var(--mono);color:var(--mut);text-transform:uppercase;letter-spacing:.1em;text-align:right}
+.about-text p{font-size:18px;color:var(--soft);margin:0 0 18px}
+.about-text p:first-child{font-size:22px;color:var(--fg)}
+.timeline{display:flex;gap:0;overflow-x:auto;margin:56px 0 0;padding:0 0 8px;list-style:none;scroll-snap-type:x proximity}
+.timeline li{flex:0 0 250px;scroll-snap-align:start;padding:30px 24px 6px 0;position:relative;background:linear-gradient(var(--line2),var(--line2)) 0 9px/100% 1px no-repeat}
+.timeline li::before{content:"";position:absolute;top:4px;left:0;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--amb)}
+.timeline li.now::before{background:var(--amb)}
+.timeline b{display:block;font:800 42px/1 var(--disp);color:var(--amb)}
+.timeline p{margin:8px 0 0;font-size:14px;color:var(--mut)}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:36px}}
+
+/* ===== Новости ===== */
+.news{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:28px;border-top:1px solid var(--line)}
+.news a{padding:20px 0 24px;border-bottom:1px solid var(--line);text-decoration:none;display:grid;gap:8px;align-content:start}
+.news time{font:500 12px var(--mono);color:var(--amb);letter-spacing:.08em;text-transform:uppercase}
+.news h4{margin:0;font:600 19px/1.3 var(--sans);transition:color .2s}
+.news a:hover h4{color:var(--amb-hi)}
+@media (max-width:860px){.news{grid-template-columns:1fr}}
+
+/* ===== Букинг, мерч, рассылка ===== */
+.book-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:44px;align-items:start}
+.book-intro{font-size:19px;color:var(--soft);margin:0;max-width:640px}
+.steps{display:grid;gap:16px;margin:28px 0;padding:0;list-style:none;counter-reset:s}
+.steps li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px;color:var(--soft)}
+.steps li::before{counter-increment:s;content:"0" counter(s);font:700 28px/1 var(--disp);color:var(--amb)}
+.mailbox{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;border:1px dashed var(--line2);border-radius:var(--r);padding:14px 16px}
+.mailbox code{font:600 clamp(16px,2vw,20px) var(--mono);overflow-wrap:anywhere}
+.side{display:grid;gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:10px}
+.card .k{font:500 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--amb);margin:0}
+.card h3{font:800 34px/.95 var(--disp);margin:0;text-transform:uppercase}
+.card p{margin:0;color:var(--mut);font-size:15px}
+.card .btn{justify-self:start;margin-top:6px}
+.sub form{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.sub input{flex:1 1 200px;min-width:0;min-height:46px;background:#0b0c0e;border:1px solid var(--line2);border-radius:4px;padding:0 14px;color:var(--fg);font:inherit}
+.sub input::placeholder{color:#8a857e}
+.sub .msg{font-size:14px;color:var(--amb);min-height:1.4em;margin:6px 0 0}
+.socials{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:56px;border-top:1px solid var(--line)}
+.socials a{display:flex;justify-content:space-between;gap:10px;padding:16px 16px 16px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:600;min-width:0}
+.socials a span{font:500 13px var(--mono);color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.socials a:hover{color:var(--amb-hi)}
+@media (max-width:900px){.book-grid{grid-template-columns:1fr}.socials{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.socials{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:28px 44px;font-size:13px;color:var(--mut)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+footer a{color:var(--fg);text-underline-offset:3px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:95;background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:4px;font:600 14px var(--sans)}
+
+/* появление блоков */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .vhs::after,.ticker .row,.td-st.now{animation:none}
+  .scrawl path{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="rib"><div class="wrap"><b data-t="rib_tag">Концепт · v2</b><span data-t="rib">Предложение нового сайта от студии Orla. Это не официальный сайт «Касты».</span><a href="../" data-t="rib_v1">Версия 1 →</a></div></div>
+
+<header class="hdr"><div class="wrap">
+  <a class="logo" href="#top" aria-label="Каста — наверх">Каста</a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#tour" data-t="n_tour">Концерты</a><a href="#music" data-t="n_music">Музыка</a><a href="#video" data-t="n_video">Клипы</a><a href="#about" data-t="n_about">О группе</a><a href="#booking" data-t="n_book">Букинг</a>
+  </nav>
+  <div class="lang" role="group" aria-label="Язык / Language"><button type="button" data-lang="ru" aria-pressed="true">RU</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+  <a class="btn amb sm" href="#tour" data-t="cta_tickets">Билеты</a>
+</div></header>
+
+<main>
+<section class="hero" id="top" aria-label="Каста">
+  <div class="scene" id="scene">
+    <div class="yard-fb" aria-hidden="true"></div>
+    <canvas id="yard" aria-hidden="true"></canvas>
+    <div class="vhs" aria-hidden="true"></div>
+    <div class="osd tl" aria-hidden="true">PLAY<span class="play">▶</span></div>
+    <div class="osd tr" aria-hidden="true">SP <span id="tc">0:00:00</span></div>
+    <div class="osd br" aria-hidden="true" id="stamp"></div>
+  </div>
+  <div class="hero-copy"><div class="wrap">
+    <a class="newchip" href="#music"><i data-t="new">Новое</i><span data-t="new_txt">«Новинки зарубежного рэпа» на виниле</span> →</a>
+    <p class="kick" data-t="h_kick">Ростов-на-Дону · с 1999 года</p>
+    <h1 class="title">Каста</h1>
+    <p class="hero-lede" data-th="lede"></p>
+    <div class="ctas"><a class="btn amb" href="#tour" data-t="cta_tour">Концерты</a><a class="btn" href="#music" data-t="cta_listen">Слушать</a></div>
+  </div></div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="row" id="ticker"></div></div>
+
+<section class="sec" id="tour"><div class="wrap">
+  <div class="sec-head rv">
+    <div><p class="kick" data-t="tour_k">Greatest Hits Tour 2026–2027</p><h2 data-t="tour_h">Концерты</h2><svg class="scrawl" viewBox="0 0 300 20" aria-hidden="true"><path d="M3 13 C 60 4, 140 19, 205 9 S 282 6, 297 12"/></svg></div>
+    <p data-th="tour_p"></p>
+  </div>
+  <div class="tour-grid">
+    <div class="globe-col">
+      <div class="globe" id="globe"><canvas id="globeCv" aria-label="Глобус с городами тура"></canvas><div class="g-lbl" id="gLbl" hidden></div></div>
+      <p class="g-hint" data-t="g_hint">Тяните глобус, чтобы покрутить</p>
+      <div class="stop" id="stop" aria-live="polite"></div>
+    </div>
+    <div>
+      <div class="tour-tools"><div class="chips" id="regions" role="group" aria-label="Регион"></div></div>
+      <div class="board" id="board">
+        <div class="b-head"><span data-t="b_head">Отправление · Departures</span><span id="tourCount"></span></div>
+        <div class="b-cols" aria-hidden="true"><span data-t="c_date">Дата</span><span data-t="c_city">Город</span><span data-t="c_venue">Площадка</span><span data-t="c_st">Статус</span><span></span></div>
+        <ol class="shows" id="shows"></ol>
+      </div>
+      <p class="tour-note" data-t="tour_note"></p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sec" id="music"><div class="wrap">
+  <div class="sec-head rv">
+    <div><p class="kick" data-t="music_k">Дискография 1999–2026</p><h2 data-t="music_h">Музыка</h2><svg class="scrawl" viewBox="0 0 300 20" aria-hidden="true"><path d="M3 11 C 70 18, 150 3, 210 12 S 280 15, 297 8"/></svg></div>
+    <p data-t="music_p"></p>
+  </div>
+  <div class="feat">
+    <article class="fcard rv">
+      <div class="art"><div class="disc" aria-hidden="true"><div class="vinyl"><span>КАСТА</span><em>33⅓ · LP</em></div></div></div>
+      <p class="k" data-t="f1_k">Винил · новинка</p>
+      <h3>Новинки зарубежного рэпа</h3>
+      <p data-t="f1_p"></p>
+      <a class="btn amb" href="https://inpg.io/kastanzr" target="_blank" rel="noopener" data-t="f1_btn">Купить винил ↗</a>
+    </article>
+    <article class="fcard rv">
+      <div class="art"><svg class="tape" viewBox="0 0 320 204" aria-hidden="true">
+        <rect x="6" y="6" width="308" height="192" rx="12" fill="#1c1d21" stroke="#2f3036" stroke-width="2"/>
+        <circle cx="22" cy="22" r="4" fill="#2f3036"/><circle cx="298" cy="22" r="4" fill="#2f3036"/><circle cx="22" cy="182" r="4" fill="#2f3036"/><circle cx="298" cy="182" r="4" fill="#2f3036"/>
+        <rect x="28" y="22" width="264" height="112" rx="6" fill="#ece8e1"/>
+        <rect x="28" y="22" width="264" height="24" fill="#ffa53a"/>
+        <text x="40" y="39" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#160d02" letter-spacing="1">КАСТА · GREATEST HITS</text>
+        <text x="272" y="39" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#160d02" text-anchor="end">A</text>
+        <rect x="84" y="58" width="152" height="50" rx="25" fill="#0b0b0c"/>
+        <rect x="118" y="70" width="84" height="26" fill="#3b2a1d"/>
+        <g class="reel"><circle cx="112" cy="83" r="19" fill="#ece8e1"/><circle cx="112" cy="83" r="6" fill="#0b0b0c"/><path d="M112 66v8M112 92v8M95 83h8M121 83h8" stroke="#0b0b0c" stroke-width="3"/></g>
+        <g class="reel"><circle cx="208" cy="83" r="19" fill="#ece8e1"/><circle cx="208" cy="83" r="6" fill="#0b0b0c"/><path d="M208 66v8M208 92v8M191 83h8M217 83h8" stroke="#0b0b0c" stroke-width="3"/></g>
+        <text x="40" y="126" font-family="IBM Plex Mono, monospace" font-size="11" fill="#55514b">30 · 1997–2025 · REMASTER</text>
+        <path d="M66 198 L82 150 H238 L254 198Z" fill="#141518" stroke="#2f3036" stroke-width="2"/>
+        <circle cx="120" cy="178" r="6" fill="#0b0b0c"/><circle cx="200" cy="178" r="6" fill="#0b0b0c"/>
+      </svg></div>
+      <p class="k" data-t="f2_k">Сборник · 31.10.2025</p>
+      <h3>Greatest Hits</h3>
+      <p data-t="f2_p"></p>
+      <div class="links" id="ghLinks"></div>
+    </article>
+    <article class="fcard rv">
+      <div class="art"><div class="cd" aria-hidden="true"><b>Шым — Мама,</b><i>проснись!</i></div></div>
+      <p class="k" data-t="f3_k">Новый сингл · 22.09.2026</p>
+      <h3>Мама, проснись</h3>
+      <p class="who" data-t="f3_who">Шым</p>
+      <p data-t="f3_p"></p>
+      <div class="links" id="mamaLinks"></div>
+    </article>
+  </div>
+  <div class="disco-tools"><div class="chips" id="relFilter" role="group" aria-label="Тип релиза"></div><div class="decades" id="decades"></div></div>
+  <div class="disco" id="disco"></div>
+  <button type="button" class="btn more" id="moreRel"></button>
+  <div class="listen"><span class="lbl" data-t="listen">Слушать «Касту»</span><span id="stream" style="display:contents"></span></div>
+</div></section>
+
+<section class="sec" id="video"><div class="wrap">
+  <div class="sec-head rv">
+    <div><p class="kick">YouTube</p><h2 data-t="video_h">Клипы</h2><svg class="scrawl" viewBox="0 0 300 20" aria-hidden="true"><path d="M3 12 C 50 5, 130 17, 190 10 S 270 4, 297 13"/></svg></div>
+    <p data-t="video_p"></p>
+  </div>
+  <div class="vfeat rv" id="vfeat"></div>
+  <div class="vgrid" id="vgrid"></div>
+  <a class="btn yt-all" href="https://www.youtube.com/kasta" target="_blank" rel="noopener" data-t="yt_all">Все клипы на YouTube ↗</a>
+</div></section>
+
+<section class="sec" id="about"><div class="wrap">
+  <div class="sec-head rv">
+    <div><p class="kick" data-t="about_k">С 1999 года</p><h2 data-t="about_h">О группе</h2><svg class="scrawl" viewBox="0 0 300 20" aria-hidden="true"><path d="M3 9 C 60 17, 150 5, 215 13 S 285 9, 297 11"/></svg></div>
+  </div>
+  <div class="about-grid">
+    <div class="members" id="members"></div>
+    <div class="about-text rv"><p data-t="ab1"></p><p data-t="ab2"></p><p data-t="ab3"></p></div>
+  </div>
+  <ol class="timeline" id="timeline"></ol>
+</div></section>
+
+<section class="sec" id="news"><div class="wrap">
+  <div class="sec-head rv">
+    <div><p class="kick" data-t="news_k">Из первых рук</p><h2 data-t="news_h">Новости</h2><svg class="scrawl" viewBox="0 0 300 20" aria-hidden="true"><path d="M3 13 C 60 4, 140 19, 205 9 S 282 6, 297 12"/></svg></div>
+  </div>
+  <div class="news" id="newsList"></div>
+</div></section>
+
+<section class="sec" id="booking"><div class="wrap">
+  <div class="sec-head rv">
+    <div><p class="kick" data-t="book_k">Букинг</p><h2 data-t="book_h">Пригласить «Касту»</h2><svg class="scrawl" viewBox="0 0 300 20" aria-hidden="true"><path d="M3 11 C 70 18, 150 3, 210 12 S 280 15, 297 8"/></svg></div>
+  </div>
+  <div class="book-grid">
+    <div>
+      <p class="book-intro" data-t="book_p"></p>
+      <ol class="steps"><li data-t="st1"></li><li data-t="st2"></li><li data-t="st3"></li></ol>
+      <div class="mailbox"><code id="mail">booking@kasta.world</code><button type="button" class="btn sm" id="copyMail" data-t="copy">Скопировать</button><a class="btn sm" href="mailto:booking@kasta.world" data-t="write">Написать</a></div>
+    </div>
+    <div class="side">
+      <div class="card">
+        <p class="k" data-t="merch_k">Мерч</p>
+        <h3>BRIMBACK × KASTA</h3>
+        <p data-t="merch_p"></p>
+        <a class="btn sm" href="http://www.brimback.com" target="_blank" rel="noopener">brimback.com ↗</a>
+      </div>
+      <div class="card sub">
+        <p class="k" data-t="sub_k">Рассылка</p>
+        <h3 data-t="sub_h">Новые даты — первым</h3>
+        <form id="subForm" novalidate><label class="sr" for="subMail">E-mail</label><input id="subMail" type="email" inputmode="email" autocomplete="email" placeholder="you@mail.com"><button class="btn amb" type="submit" data-t="sub_btn">Подписаться</button></form>
+        <p class="msg" id="subMsg" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+  <div class="socials" id="socials"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span data-t="foot"></span>
+  <span><a href="../" data-t="foot_v1">Версия 1</a> · <a href="https://vvvseva3-maker.github.io/orla-studio/" target="_blank" rel="noopener" data-t="foot_by">Сайт: Orla, веб-студия</a></span>
+</div></footer>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+/* ===== Данные: kasta.world, октябрь 2026 ===== */
+// [дата, регион, страна, город RU, город EN, страна RU, страна EN, площадка, билеты, широта, долгота]
+const SHOWS = [
+  ['2026-10-30','sa','AR','Буэнос-Айрес','Buenos Aires','Аргентина','Argentina','Niceto Club','https://utrennik.com/',-34.60,-58.38],
+  ['2026-11-01','sa','BR','Флорианополис','Florianópolis','Бразилия','Brazil','John Bull','http://kasta-floripa.site/',-27.59,-48.55],
+  ['2026-11-29','med','CY','Лимасол','Limassol','Кипр','Cyprus','Notes Live','https://eventcartel.com/ru/events/concert/kasta-greatest-hits-limassol--notes-live-tickets-15935',34.68,33.04],
+  ['2026-12-01','med','IL','Тель-Авив','Tel Aviv','Израиль','Israel','Reading 3','https://shimon.kassa.co.il/announce/kasta-greatest-hits',32.08,34.78],
+  ['2026-12-02','med','IL','Хайфа','Haifa','Израиль','Israel','Beat','https://shimon.kassa.co.il/announce/kasta-greatest-hits',32.79,34.99],
+  ['2026-12-04','med','GE','Батуми','Batumi','Грузия','Georgia','Circus Arena','https://tkt.ge/en/show/34906/kasta-in-batumi',41.64,41.64],
+  ['2026-12-05','med','GE','Тбилиси','Tbilisi','Грузия','Georgia','ELEKTROWERK','https://tkt.ge/en/show/34904/kasta-in-tbilisi',41.72,44.79],
+  ['2027-01-28','asia','TH','Пхукет','Phuket','Таиланд','Thailand','LAVA','https://lotusarena.com/ru/events/93---phuket',7.88,98.39],
+  ['2027-01-30','asia','TH','Паттайя','Pattaya','Таиланд','Thailand','Lotus Arena','https://ticket.lotusarena.life/ru/events/58',12.93,100.88],
+  ['2027-02-02','asia','VN','Нячанг','Nha Trang','Вьетнам','Vietnam','Lotus Arena','https://lotusarena.com/ru/events/94---nha-trang',12.24,109.19],
+  ['2027-04-07','na','US','Майами','Miami','США','USA','Sport of Kings Club','https://eventcartel.com/tours/kasta-greatest-hits-north-american-tour-2027-buy-tickets-1640',25.76,-80.19],
+  ['2027-04-09','na','US','Тампа','Tampa','США','USA','Brass Mug','https://eventcartel.com/tours/kasta-greatest-hits-north-american-tour-2027-buy-tickets-1640',27.95,-82.46],
+  ['2027-04-10','na','CA','Торонто','Toronto','Канада','Canada',"Annabel's Music Hall",'https://admitone.com/events/toronto/pro/concerts/annabel-s/artist/kasta-live-in-concert/6ab5655e0f9be4858c3d45ba',43.65,-79.38],
+  ['2027-04-11','na','US','Нью-Йорк','New York','США','USA','Chronos Lounge & Restaurant','https://eventcartel.com/tours/kasta-greatest-hits-north-american-tour-2027-buy-tickets-1640',40.71,-74.01],
+  ['2027-04-14','na','US','Шарлотт','Charlotte','США','USA','Visulite Theatre','https://eventcartel.com/tours/kasta-greatest-hits-north-american-tour-2027-buy-tickets-1640',35.23,-80.84],
+  ['2027-04-15','na','CA','Ванкувер','Vancouver','Канада','Canada','The Hollywood Theatre','https://eventcartel.com/tours/kasta-greatest-hits-north-american-tour-2027-buy-tickets-1640',49.28,-123.12],
+  ['2027-04-16','na','US','Сан-Франциско','San Francisco','США','USA','Roccapulco','https://eventcartel.com/tours/kasta-greatest-hits-north-american-tour-2027-buy-tickets-1640',37.77,-122.42],
+  ['2027-04-18','na','US','Лос-Анджелес','Los Angeles','США','USA','Whisky A Go Go','https://eventcartel.com/tours/kasta-greatest-hits-north-american-tour-2027-buy-tickets-1640',34.05,-118.24]
+].map(([d,r,cc,cru,cen,kru,ken,venue,url,lat,lng]) => ({d,r,cc,city:{ru:cru,en:cen},country:{ru:kru,en:ken},venue,url,lat,lng}));
+
+// родительный падеж для «от … до …»
+const GEN = {'Буэнос-Айрес':'Буэнос-Айреса','Флорианополис':'Флорианополиса','Лимасол':'Лимасола','Тель-Авив':'Тель-Авива','Хайфа':'Хайфы','Батуми':'Батуми','Тбилиси':'Тбилиси','Пхукет':'Пхукета','Паттайя':'Паттайи','Нячанг':'Нячанга','Майами':'Майами','Тампа':'Тампы','Торонто':'Торонто','Нью-Йорк':'Нью-Йорка','Шарлотт':'Шарлотта','Ванкувер':'Ванкувера','Сан-Франциско':'Сан-Франциско','Лос-Анджелес':'Лос-Анджелеса'};
+
+// [название, тип, год, адрес на kasta.world/release/]
+const RELEASES = [
+  ['Шым — Мама, проснись','single',2026,'mama-prosnis'],['Greatest Hits','album',2025,'kasta-greatest-hits'],['Новинки зарубежного рэпа','album',2024,'novinki'],
+  ['Михаил Сегал, Каста — Сказка Чёрная Краска','single',2024,'skazka-chyornaya-kraska'],['Мы берём это на улицах','single',2024,'kasta-my-beryom-eto-na-ulitsah'],
+  ['Музыка из альбомов 2','album',2023,'kasta-muzyka-2'],['Наши люди (Стэпман Remix 2023)','single',2023,'nashi-lyudi-stepman-remix-2023'],['Длится февраль','lp',2022,'dlitsya-fevral'],
+  ['Статья, которой нет','single',2022,'statya-kotoroj-net'],['Альбомба','album',2021,'albomba'],['Чернила осьминога (Deluxe)','album',2021,'chernila-osminoga-deluxe'],
+  ['Ремиксы Дроп 1','album',2021,'remiksy-drop-1'],['Чернила осьминога','album',2020,'chernila-osminoga'],['Музыка из альбомов','album',2020,'kasta-muzyka-iz-albomov'],
+  ['КастаLive','album',2020,'kastalive'],['Об изъяне понятно','album',2019,'kasta-ob-izyane-ponyatno'],['Влади — Другое слово','album',2019,'vladi-drugoe-slovo'],
+  ['Каста & BrainStorm — Про секс','single',2019,'kasta-brainstorm-pro-seks'],['Солдат','single',2018,'soldat'],['Счастье','single',2018,'schaste'],
+  ['Четырёхглавый орёт','album',2017,'chetyryohglavyj-oryot'],['По-хорошему (уч. «Разбитые сердца»)','single',2016,'po-horoshemu-uch-razbitye-serdtsa'],
+  ['DJ Nik One и Влади — Fresh Vlad','mixtape',2016,'dj-nik-one-i-vladi-fresh-vlad-mixtape'],['Песня про месть','single',2016,'pesnya-pro-mest'],['Синдбад','single',2015,'sindbad'],
+  ['Разбуди район','single',2015,'razbudi-rajon'],['Решено','single',2015,'resheno'],['Несусветное','album',2015,'nesusvetnoe'],['Лучшие песни','album',2014,'luchshie-pesni'],
+  ['Корабельная песня','single',2014,'korabelnaya-pesnya'],['Хамиль и Змей — Когда я пою регги','single',2014,'hamil-i-zmej-kogda-ya-poyu-reggi'],
+  ['Россиянцы и американе','single',2014,'rossiyantsy-i-amerikane'],['На весь район','single',2014,'na-ves-rajon'],['Змей — Маленький остров','single',2014,'zmej-malenkij-ostrov'],
+  ['Влади — Зеркало','single',2014,'zerkalo'],['Шым — Романс для Анны','single',2014,'romans-dlya-anny'],['Хамиль — Нелётная','single',2014,'nelyotnaya'],
+  ['Жара и Змей — Жаз Дуэт','ep',2013,'zhara-i-zmej-zhaz-duet'],['Ясно!','album',2012,'yasno'],['Инструментальная музыка','album',2011,'instrumentalnaya-muzyka'],
+  ['Большой концерт','album',2011,'bolshoj-kontsert'],['ХЗ','album',2010,'hz'],['Animal ДжаZ — Можно всё (feat. Влади)','single',2009,'animal-dzhaz-vladi-mozhno-vsyo'],
+  ['Быль в глаза','album',2008,'byl-v-glaza'],['По-приколу','ep',2007,'po-prikolu'],['Хамиль — Феникс','album',2004,'hamil-feniks'],
+  ['Влади — Что нам делать в Греции','album',2002,'vladi-chto-nam-delat-v-gretsii'],['Громче воды, выше травы','album',2002,'gromche-vody-vyshe-travy'],['Трёхмерные рифмы','album',1999,'tryohmernye-rifmy']
+].map(([t,type,y,slug]) => {
+  const m = t.match(/^(Шым|Влади|Хамиль|Змей|Хамиль и Змей|Жара и Змей|DJ Nik One и Влади|Animal ДжаZ|Каста & BrainStorm|Михаил Сегал, Каста) — (.+)$/);
+  const solo = /^(Шым|Влади|Хамиль|Змей|Хамиль и Змей|Жара и Змей|DJ Nik One и Влади)$/.test(m ? m[1] : '') || /feat\. Влади/.test(t);
+  return { title: m ? m[2] : t, who: m ? m[1] : '', type, y, solo, url: `https://kasta.world/release/${slug}/` };
+});
+
+// [YouTube id, название, длительность]
+const VIDEOS = [
+  ['-9lZ_0BOrPU','Этого больше не будет','4:13'],['5U23pJle-HI','Созвон','3:06'],['xM7AY1lZ7Y8','Священный мясокомбинат','2:50'],
+  ['Gz8DEFh42Ho','Эмигрант эмигранту','3:46'],['kUnlY14z26M','Кровопровод «Дружба»','3:30'],['CNui08B3SGk','Михаил Сегал, Каста — Сказка Чёрная Краска','4:40'],
+  ['O3AmuRLWAoM','Врун-врун (feat. Ivan Dorn, Alyona Alyona)','4:13'],['9Z1uhDDfVR8','Концерт в Стадиуме. Чернила осьминога, 2021','6:10'],['bE-K-oFBZuQ','Под солнцем затусим','5:11']
+];
+
+const NEWS = [
+  ['2026-10-03','«Новинки зарубежного рэпа» на виниле','“Novinki zarubezhnogo repa” on vinyl','https://kasta.world/news'],
+  ['2026-09-22','«Мама, проснись» — новый сингл Шыма','“Mama, prosnis” — new single by Shym','https://kasta.world/mama-prosnis/'],
+  ['2025-12-10','Премьера клипа «Этого больше не будет»','Video premiere: “Etogo bolshe ne budet”','https://kasta.world/kasta-etogo-bolshe-ne-budet/'],
+  ['2025-11-24','Интервью Шыма и Влади для Republic','Shym and Vlady interviewed by Republic','https://kasta.world/news'],
+  ['2025-11-09','Премьера клипа «Созвон»','Video premiere: “Sozvon”','https://kasta.world/kasta-sozvon/'],
+  ['2025-10-31','Вышел альбом Greatest Hits','Greatest Hits is out','https://kasta.world/kasta-greatest-hits/']
+];
+
+const MILESTONES = [
+  ['1997',{ru:'Пять МС ростовской сцены собирают «Объединённую Касту».',en:'Five MCs from the Rostov scene form United Kasta.'}],
+  ['1999',{ru:'Влади, Шым и Хамиль создают «Касту». «Мы берём это на улицах» берёт Гран-при фестиваля Rap Music ’99.',en:'Vlady, Shym and Khamil start Kasta. “My beryom eto na ulitsakh” wins the Rap Music ’99 Grand Prix.'}],
+  ['2002',{ru:'Дебютный альбом «Громче воды, выше травы».',en:'Debut album “Gromche vody, vyshe travy”.'}],
+  ['2004',{ru:'Первая MTV Russian Music Awards в категории «рэп/хип-хоп».',en:'First MTV Russian Music Award for best rap/hip-hop act.'}],
+  ['2008',{ru:'«Быль в глаза» — первое место месячного чарта продаж Billboard. Змей официально становится четвёртым МС.',en:'“Byl v glaza” tops Billboard’s monthly sales chart. Zmey officially becomes the fourth MC.'}],
+  ['2017',{ru:'После девяти лет паузы «Четырёхглавый орёт» стартует с первого места в iTunes и Google Play.',en:'After nine years, “Chetyryokhglavy oryot” debuts at No. 1 on iTunes and Google Play.'}],
+  ['2024',{ru:'«Новинки зарубежного рэпа» — первый альбом, записанный после отъезда.',en:'“Novinki zarubezhnogo repa”, the first album made after leaving Russia.'}],
+  ['2025',{ru:'Альбом Greatest Hits и мировой тур.',en:'Greatest Hits album and a world tour.'}]
+];
+
+const MEMBERS = [['Влади','Vlady',1999],['Шым','Shym',1999],['Хамиль','Khamil',1999],['Змей','Zmey',2008]];
+const STREAM = [['Spotify','https://open.spotify.com/artist/5I37oVgAnT7OGiqKJSMVRH'],['Apple Music','https://music.apple.com/artist/340420197'],['YouTube Music','https://music.youtube.com/channel/UC6dVEXOzTCaou9DXVYHOtDg'],['Яндекс Музыка','https://music.yandex.ru/artist/41126'],['VK Музыка','https://vk.com/artist/kasta']];
+const GH = [['Spotify','https://open.spotify.com/album/0DHuVgG2fQzfYk7QJaOiY3'],['Apple Music','https://music.apple.com/ru/album/1847420676'],['YouTube Music','https://music.youtube.com/playlist?list=OLAK5uy_kpcvG7Oy7XFb_FJqHyH9IEhXepOI_Fk_w'],['Яндекс Музыка','https://music.yandex.ru/album/38783119'],['VK Музыка','https://vk.com/music/album/-2000608089_25608089'],['Звук','https://zvuk.com/release/42949260']];
+const MAMA = [['Spotify','https://open.spotify.com/album/0S0MuTq7g2g9ksvK7h8WUo'],['Apple Music','https://music.apple.com/us/album/6813081517'],['YouTube Music','https://music.youtube.com/playlist?list=OLAK5uy_n8HzG0in8WA1VTTyjjvLQe95Blg_43AN8'],['Яндекс Музыка','https://music.yandex.ru/album/43999475'],['VK Музыка','https://vk.ru/music/album/-2000275157_29275157'],['Звук','https://zvuk.com/release/52983738']];
+const SOCIAL = [['Instagram','@kastainsta','http://www.instagram.com/kastainsta/'],['YouTube','youtube.com/kasta','https://www.youtube.com/kasta'],['VK','vk.com/kastanews','https://vk.com/kastanews'],['Facebook','kastanews','http://www.facebook.com/kastanews/'],['X / Twitter','@kasta_ru','http://twitter.com/kasta_ru'],['OK','ok.ru/kastanews','https://ok.ru/kastanews']];
+
+/* ===== Тексты ===== */
+const T = {
+  ru: {
+    rib_tag:'Концепт · v2', rib:'Предложение нового сайта от студии Orla. Это не официальный сайт «Касты».', rib_v1:'Версия 1 →',
+    n_tour:'Концерты', n_music:'Музыка', n_video:'Клипы', n_about:'О группе', n_book:'Букинг', cta_tickets:'Билеты',
+    new:'Новое', new_txt:'«Новинки зарубежного рэпа» на виниле', h_kick:'Ростов-на-Дону · с 1999 года',
+    cta_tour:'Концерты', cta_listen:'Слушать',
+    tour_k:'Greatest Hits Tour 2026–2027', tour_h:'Концерты',
+    tour_p:'{n} в {c} — от {a} до {b}. Нажмите на строку, и глобус развернётся к городу. Прошедшие даты исчезают сами.',
+    g_hint:'Тяните глобус, чтобы покрутить', b_head:'Отправление · Departures', c_date:'Дата', c_city:'Город', c_venue:'Площадка', c_st:'Статус',
+    next:'Ближайший концерт', picked:'Концерт', ticket:'Билеты', cal:'Добавить в календарь', today:'сегодня', tomorrow:'завтра',
+    all:'Все', sa:'Южная Америка', med:'Кипр, Израиль, Грузия', asia:'Азия', na:'Северная Америка',
+    noShows:'Новые даты скоро. Подпишитесь на рассылку внизу страницы.',
+    tour_note:'Билеты продают местные организаторы: кнопка ведёт на их страницу. Время начала уточняйте у организатора.',
+    music_k:'Дискография 1999–2026', music_h:'Музыка', music_p:'49 релизов: альбомы, синглы и сольные работы участников. От кассет до стриминга.',
+    f1_k:'Винил · новинка', f1_p:'Альбом 2024 года, первый после отъезда, теперь на пластинке. Для ламповых усилителей, хорошей акустики или в подарок.', f1_btn:'Купить винил ↗',
+    f2_k:'Сборник · 31.10.2025', f2_p:'30 главных песен 1997–2025 годов. Ранние треки — в ремастере.',
+    f3_k:'Новый сингл · 22.09.2026', f3_who:'Шым', f3_p:'Сольный сингл Шыма. Слушайте на любой площадке.',
+    f_all:'Всё', f_album:'Альбомы', f_single:'Синглы', f_solo:'Сольно и совместно', more:'Показать все', less:'Свернуть',
+    t_album:'альбом', t_single:'сингл', t_ep:'EP', t_lp:'LP', t_mixtape:'микстейп', listen:'Слушать «Касту»',
+    video_h:'Клипы', video_p:'Видео включается только по нажатию: без автозапуска и лишнего трафика.', yt_all:'Все клипы на YouTube ↗', play:'Смотреть',
+    vf_k:'Последний клип · 10.12.2025',
+    vf_p:'Коллеги встречаются в командировке в Западной Европе и вспоминают прошлое. В клипе звучит объявление с ростовского вокзала. Режиссёр — Влади, снимали эмигранты в Париже.',
+    about_k:'С 1999 года', about_h:'О группе',
+    ab1:'«Каста» родилась в Ростове-на-Дону. В 1999 году Влади, Шым и Хамиль собрали группу, а в 2008-м четвёртым МС официально стал Змей.',
+    ab2:'Двадцать с лишним лет группа писала про свой район, своих людей и свою страну — с иронией и без пафоса.',
+    ab3:'Сейчас «Каста» в антивоенной эмиграции и выступает по всему миру.',
+    since:'с {y}', news_k:'Из первых рук', news_h:'Новости',
+    book_k:'Букинг', book_h:'Пригласить «Касту»',
+    book_p:'Группа выступает по всему миру, кроме территорий, подконтрольных Путину, и работает с профессиональными промоутерами.',
+    st1:'Проверьте, когда «Каста» последний раз играла в вашем городе: обычно перерыв около года.',
+    st2:'Напишите букинг-директору: город, площадка, ваш опыт и пара слов о себе.',
+    st3:'На серьёзные запросы отвечают. Корпоративные события рассматривают, если заказчик не связан с режимом.',
+    copy:'Скопировать', write:'Написать', copied:'Адрес скопирован',
+    merch_k:'Мерч', merch_p:'Чёрная кепка-гибрид, одобренная «Кастой». Brimback — бренд кепок с широким козырьком, который Влади основал в эмиграции. Доставка по миру, кроме стран под санкциями.',
+    sub_k:'Рассылка', sub_h:'Новые даты — первым', sub_btn:'Подписаться',
+    sub_ok:'Это концепт: подписка заработает на настоящем сайте. Ничего не отправлено.', sub_bad:'Проверьте адрес почты.',
+    foot:'Концепт сайта от Orla, версия 2. Данные — с kasta.world (октябрь 2026). Фото, обложки и логотип группы не использованы: двор, пластинка, кассета и диск нарисованы для концепта.',
+    foot_v1:'Версия 1', foot_by:'Сайт: Orla, веб-студия',
+    months:['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'],
+    mshort:['янв','фев','мар','апр','мая','июн','июл','авг','сен','окт','ноя','дек'], wd:['вс','пн','вт','ср','чт','пт','сб'],
+    osd_m:['ЯНВ','ФЕВ','МАР','АПР','МАЙ','ИЮН','ИЮЛ','АВГ','СЕН','ОКТ','НОЯ','ДЕК']
+  },
+  en: {
+    rib_tag:'Concept · v2', rib:'A website proposal by Orla studio. This is not Kasta’s official site.', rib_v1:'Version 1 →',
+    n_tour:'Tour', n_music:'Music', n_video:'Videos', n_about:'About', n_book:'Booking', cta_tickets:'Tickets',
+    new:'New', new_txt:'“Novinki zarubezhnogo repa” on vinyl', h_kick:'Rostov-on-Don · since 1999',
+    cta_tour:'Tour dates', cta_listen:'Listen',
+    tour_k:'Greatest Hits Tour 2026–2027', tour_h:'Tour',
+    tour_p:'{n} in {c}, from {a} to {b}. Tap a row and the globe turns to the city. Past dates disappear on their own.',
+    g_hint:'Drag the globe to spin it', b_head:'Departures · Отправление', c_date:'Date', c_city:'City', c_venue:'Venue', c_st:'Status',
+    next:'Next show', picked:'Show', ticket:'Tickets', cal:'Add to calendar', today:'today', tomorrow:'tomorrow',
+    all:'All', sa:'South America', med:'Cyprus, Israel, Georgia', asia:'Asia', na:'North America',
+    noShows:'New dates soon. Join the mailing list below.',
+    tour_note:'Tickets are sold by local promoters: the button opens their page. Check the start time with the promoter.',
+    music_k:'Discography 1999–2026', music_h:'Music', music_p:'49 releases: albums, singles and the members’ solo work. From cassettes to streaming.',
+    f1_k:'Vinyl · just out', f1_p:'The 2024 album, the first made after leaving Russia, now on vinyl. For tube amps, good speakers, or as a gift.', f1_btn:'Buy the vinyl ↗',
+    f2_k:'Compilation · Oct 31, 2025', f2_p:'30 key songs from 1997 to 2025. Early tracks are remastered.',
+    f3_k:'New single · Sep 22, 2026', f3_who:'Shym', f3_p:'Shym’s solo single. Listen anywhere.',
+    f_all:'All', f_album:'Albums', f_single:'Singles', f_solo:'Solo & collabs', more:'Show all', less:'Show less',
+    t_album:'album', t_single:'single', t_ep:'EP', t_lp:'LP', t_mixtape:'mixtape', listen:'Listen to Kasta',
+    video_h:'Videos', video_p:'Videos only play when you tap them: no autoplay, no wasted data.', yt_all:'All videos on YouTube ↗', play:'Watch',
+    vf_k:'Latest video · Dec 10, 2025',
+    vf_p:'Colleagues meet on a business trip in Western Europe and look back on the past. You can hear an announcement from Rostov station. Directed by Vlady, made by emigrants in Paris.',
+    about_k:'Since 1999', about_h:'About',
+    ab1:'Kasta was born in Rostov-on-Don. In 1999 Vlady, Shym and Khamil formed the group, and in 2008 Zmey officially became the fourth MC.',
+    ab2:'For over twenty years they rapped about their neighbourhood, their people and their country, with irony and no pomp.',
+    ab3:'Today Kasta lives in anti-war emigration and performs all over the world.',
+    since:'since {y}', news_k:'First-hand', news_h:'News',
+    book_k:'Booking', book_h:'Book Kasta',
+    book_p:'The band performs worldwide, except in territory controlled by Putin, and works with professional promoters.',
+    st1:'Check when Kasta last played your city: the usual gap is about a year.',
+    st2:'Email the booking director: city, venue, your experience and a few words about yourself.',
+    st3:'Serious requests get a reply. Corporate events are considered if the client has no ties to the regime.',
+    copy:'Copy', write:'Write', copied:'Address copied',
+    merch_k:'Merch', merch_p:'A black hybrid cap approved by Kasta. Brimback is a wide-brim cap brand Vlady founded in emigration. Ships worldwide except to sanctioned countries.',
+    sub_k:'Mailing list', sub_h:'New dates first', sub_btn:'Subscribe',
+    sub_ok:'This is a concept: the mailing list will work on the real site. Nothing was sent.', sub_bad:'Please check the email address.',
+    foot:'Website concept by Orla, version 2. Data from kasta.world (October 2026). No band photos, covers or logo used: the yard, record, tape and disc were drawn for this concept.',
+    foot_v1:'Version 1', foot_by:'Site: Orla web studio',
+    months:['January','February','March','April','May','June','July','August','September','October','November','December'],
+    mshort:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], wd:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    osd_m:['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
+  }
+};
+
+(function(){
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let lang = 'ru';
+  try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('kasta-lang') || ((navigator.language || 'ru').toLowerCase().startsWith('ru') ? 'ru' : 'en'); } catch (e) {}
+  if (!T[lang]) lang = 'ru';
+  const tr = k => T[lang][k] ?? T.ru[k] ?? '';
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let region = 'all', relType = 'all', relAll = false, sel = -1, userPicked = false;
+
+  /* --- даты --- */
+  const todayISO = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
+  const daysUntil = iso => Math.round((new Date(iso + 'T12:00:00') - new Date(todayISO() + 'T12:00:00')) / 864e5);
+  const upcoming = () => SHOWS.filter(s => s.d >= todayISO());
+  const dParts = iso => { const [y,m,d] = iso.split('-').map(Number); return {y, m:m-1, d, wd:new Date(y, m-1, d).getDay()}; };
+  const dateLabel = iso => { const p = dParts(iso); return lang === 'ru' ? `${p.d} ${tr('mshort')[p.m]} ${p.y}` : `${tr('mshort')[p.m]} ${p.d}, ${p.y}`; };
+  // склонение: plural(5, ['день','дня','дней'])
+  const plural = (n, f) => { const a = Math.abs(n) % 100, b = a % 10; return a > 10 && a < 20 ? f[2] : b > 1 && b < 5 ? f[1] : b === 1 ? f[0] : f[2]; };
+  const when = n => n === 0 ? tr('today') : n === 1 ? tr('tomorrow') : lang === 'ru' ? `через ${n} ${plural(n, ['день','дня','дней'])}` : `in ${n} days`;
+  const nShows = n => lang === 'ru' ? `${n} ${plural(n, ['концерт','концерта','концертов'])}` : `${n} show${n === 1 ? '' : 's'}`;
+  const nCountries = n => lang === 'ru' ? `${n} ${n === 1 ? 'стране' : 'странах'}` : `${n} countr${n === 1 ? 'y' : 'ies'}`;
+  const cityFrom = s => lang === 'ru' ? (GEN[s.city.ru] || s.city.ru) : s.city.en;
+
+  /* общий канал для 3D-глобуса (модуль ниже) */
+  const bus = new EventTarget();
+  window.KASTA = { SHOWS, bus, reduced, get lang(){ return lang; }, upcoming,
+    label: i => { const s = SHOWS[i]; const p = dParts(s.d); return `${s.city[lang]} · ${p.d} ${tr('mshort')[p.m]}`; },
+    state: () => ({ list: visibleList().map(s => SHOWS.indexOf(s)), sel }) };
+
+  /* --- первый экран --- */
+  function renderHero(){
+    const up = upcoming(), countries = new Set(up.map(s => s.cc)).size;
+    const a = up[0], b = up[up.length - 1];
+    $('[data-th="lede"]').innerHTML = lang === 'ru'
+      ? `Влади, Шым, Хамиль и Змей. <b>Greatest Hits Tour:</b> ${nShows(up.length)} в ${nCountries(countries)}${up.length > 1 ? ` — от ${esc(cityFrom(a))} до ${esc(cityFrom(b))}` : ''}.`
+      : `Vlady, Shym, Khamil and Zmey. <b>Greatest Hits Tour:</b> ${nShows(up.length)} in ${nCountries(countries)}${up.length > 1 ? `, from ${esc(a.city.en)} to ${esc(b.city.en)}` : ''}.`;
+    $('#ticker').innerHTML = [0,1].map(() => up.map(x => { const p = dParts(x.d); return `<span>${esc(x.city[lang])}<i>${String(p.d).padStart(2,'0')}.${String(p.m+1).padStart(2,'0')}</i></span>`; }).join('')).join('');
+  }
+
+  /* --- концерты: табло --- */
+  const visibleList = () => upcoming().filter(s => region === 'all' || s.r === region);
+  function renderTour(){
+    const up = upcoming(), list = visibleList();
+    const countries = new Set(up.map(s => s.cc)).size;
+    $('[data-th="tour_p"]').textContent = up.length
+      ? tr('tour_p').replace('{n}', nShows(up.length)).replace('{c}', nCountries(countries)).replace('{a}', cityFrom(up[0])).replace('{b}', cityFrom(up[up.length - 1]))
+      : tr('noShows');
+    const regs = ['all','sa','med','asia','na'].filter(r => r === 'all' || up.some(s => s.r === r));
+    $('#regions').innerHTML = regs.map(r => `<button type="button" class="chip" data-r="${r}" aria-pressed="${r === region}">${esc(tr(r))}<small>${r === 'all' ? up.length : up.filter(s => s.r === r).length}</small></button>`).join('');
+    $$('#regions .chip').forEach(btn => btn.addEventListener('click', () => {
+      region = btn.dataset.r; renderTour();
+      const l = visibleList(); if (l.length && !l.includes(SHOWS[sel])) select(SHOWS.indexOf(l[0]), false);
+      bus.dispatchEvent(new CustomEvent('filter', { detail: KASTA.state() }));
+      flapAll();
+    }));
+    $('#tourCount').textContent = nShows(list.length);
+    $('#shows').innerHTML = list.map(s => {
+      const i = SHOWS.indexOf(s), p = dParts(s.d), n = daysUntil(s.d);
+      const dd = `${String(p.d).padStart(2,'0')} ${tr('mshort')[p.m]}`.toUpperCase(), city = s.city[lang].toUpperCase();
+      return `<li class="trow${i === sel ? ' sel' : ''}" data-i="${i}" tabindex="0" aria-label="${esc(s.city[lang])}, ${esc(dateLabel(s.d))}, ${esc(s.venue)}">
+        <div class="td-date"><span class="flap" data-flap="${esc(dd)}" aria-hidden="true">${esc(dd)}</span><small>${esc(tr('wd')[p.wd])} · ${p.y}</small></div>
+        <div class="td-city"><span class="flap" data-flap="${esc(city)}" aria-hidden="true">${esc(city)}</span><small>${esc(s.country[lang])} · ${s.cc}</small></div>
+        <div class="td-venue">${esc(s.venue)}</div>
+        <div class="td-st${n === 0 ? ' now' : n <= 14 ? ' hot' : ''}">${esc(when(n))}</div>
+        <div class="td-act"><button type="button" class="icon-btn" data-ics="${i}" aria-label="${esc(tr('cal'))}: ${esc(s.city[lang])}" title="${esc(tr('cal'))}"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg></button><a class="btn sm amb" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(tr('ticket'))} ↗</a></div>
+      </li>`; }).join('') || `<li class="empty">${esc(tr('noShows'))}</li>`;
+    $$('#shows .trow').forEach(row => {
+      const i = +row.dataset.i;
+      row.addEventListener('click', e => { if (!e.target.closest('a,button')) select(i, true); });
+      row.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === row) { e.preventDefault(); select(i, true); } });
+      row.addEventListener('mouseenter', () => { if (matchMedia('(hover:hover)').matches) bus.dispatchEvent(new CustomEvent('peek', { detail: { i } })); });
+    });
+    $('#shows').onmouseleave = () => bus.dispatchEvent(new CustomEvent('peek', { detail: { i: sel } }));
+    $$('#shows [data-ics]').forEach(b => b.addEventListener('click', () => downloadICS(SHOWS[+b.dataset.ics])));
+    renderStop();
+  }
+
+  function select(i, user){
+    sel = i; if (user) userPicked = true;
+    $$('#shows .trow').forEach(r => r.classList.toggle('sel', +r.dataset.i === i));
+    renderStop();
+    bus.dispatchEvent(new CustomEvent('focus', { detail: { i, user: !!user } }));
+  }
+  bus.addEventListener('pick', e => {
+    select(e.detail.i, true);
+    const row = $(`#shows .trow[data-i="${e.detail.i}"]`);
+    if (row && matchMedia('(min-width: 981px)').matches) row.scrollIntoView({ block: 'nearest', behavior: reduced ? 'auto' : 'smooth' });
+  });
+
+  /* карточка выбранного концерта под глобусом */
+  function renderStop(){
+    const el = $('#stop'), s = SHOWS[sel];
+    if (!s) { el.innerHTML = `<p>${esc(tr('noShows'))}</p>`; return; }
+    const n = daysUntil(s.d), isNext = upcoming()[0] === s;
+    const ring = n <= 1 ? `<svg viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><path d="M8 22 C 10 6, 86 2, 94 16 S 60 39, 22 35 S 2 20, 18 9"/></svg>` : '';
+    el.innerHTML = `<p class="lbl">${esc(tr(isNext ? 'next' : 'picked'))}</p><h3>${esc(s.city[lang])}</h3>
+      <p>${esc(dateLabel(s.d))} · ${esc(s.venue)} · ${esc(s.country[lang])}</p>
+      <div class="row"><span class="count">${esc(when(n))}${ring}</span><a class="btn sm amb" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(tr('ticket'))} ↗</a></div>`;
+  }
+
+  /* «перещёлкивание» букв, как на вокзальном табло */
+  const SET = { ru:'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЭЮЯ0123456789', en:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789' };
+  function flap(el, delay){
+    const target = el.dataset.flap, chars = [...target];
+    if (reduced) { el.textContent = target; return; }
+    const set = SET[lang], settle = chars.map((c, i) => 5 + i * 1.6 + Math.random() * 5), end = Math.max(...settle);
+    let f = 0;
+    setTimeout(function step(){
+      f++;
+      el.textContent = chars.map((c, i) => /[\s\-·.,']/.test(c) || f >= settle[i] ? c : set[Math.random() * set.length | 0]).join('');
+      if (f < end) setTimeout(step, 34); else el.textContent = target;
+    }, delay);
+  }
+  let boardSeen = false;
+  function flapAll(){ if (!boardSeen) return; $$('#shows .flap').forEach((el, k) => flap(el, Math.floor(k / 2) * 45)); }
+  new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { boardSeen = true; flapAll(); o.disconnect(); } }, { threshold: .2 }).observe($('#board'));
+
+  /* файл календаря (.ics) */
+  function downloadICS(s){
+    const d = s.d.replace(/-/g, ''), next = new Date(s.d + 'T12:00:00'); next.setDate(next.getDate() + 1);
+    const d2 = `${next.getFullYear()}${String(next.getMonth()+1).padStart(2,'0')}${String(next.getDate()).padStart(2,'0')}`;
+    const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Kasta concept//RU','BEGIN:VEVENT',`UID:kasta-${d}-${s.cc}@kasta.world`,
+      `DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').slice(0,15)}Z`,`DTSTART;VALUE=DATE:${d}`,`DTEND;VALUE=DATE:${d2}`,
+      `SUMMARY:Каста — ${s.city.ru} (${s.venue})`,`LOCATION:${s.venue}\\, ${s.city.en}\\, ${s.country.en}`,`URL:${s.url}`,'END:VEVENT','END:VCALENDAR'].join('\r\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+    a.download = `kasta-${s.d}-${s.city.en.toLowerCase().replace(/\s+/g,'-')}.ics`;
+    document.body.append(a); a.click(); a.remove();
+  }
+
+  /* --- музыка --- */
+  const svc = n => lang === 'en' ? n.replace('Яндекс Музыка','Yandex Music').replace('VK Музыка','VK Music').replace('Звук','Zvuk') : n;
+  const linkList = arr => arr.map(([n,u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(svc(n))}</a>`).join('');
+  function renderMusic(){
+    $('#stream').innerHTML = linkList(STREAM);
+    $('#ghLinks').innerHTML = linkList(GH);
+    $('#mamaLinks').innerHTML = linkList(MAMA);
+    const types = [['all','f_all'],['album','f_album'],['single','f_single'],['solo','f_solo']];
+    const matchK = (r, k) => k === 'all' || (k === 'solo' ? r.solo : k === 'album' ? ['album','lp','ep','mixtape'].includes(r.type) && !r.solo : r.type === k && !r.solo);
+    $('#relFilter').innerHTML = types.map(([k,l]) => `<button type="button" class="chip" data-k="${k}" aria-pressed="${k === relType}">${esc(tr(l))}<small>${RELEASES.filter(r => matchK(r, k)).length}</small></button>`).join('');
+    $$('#relFilter .chip').forEach(b => b.addEventListener('click', () => { relType = b.dataset.k; renderMusic(); }));
+    const list = RELEASES.filter(r => matchK(r, relType)), shown = relAll ? list : list.slice(0, 16);
+    let html = '', lastDec = null;
+    shown.forEach(r => {
+      const dec = Math.floor(r.y / 10) * 10;
+      if (relAll && dec !== lastDec) { html += `<h3 class="year-mark" id="d${dec}">${dec}${lang === 'ru' ? '-е' : 's'}</h3>`; lastDec = dec; }
+      html += `<a class="rel" href="${r.url}" target="_blank" rel="noopener"><span class="y">${r.y}</span>
+        <div>${r.who ? `<p class="who">${esc(r.who)}</p>` : ''}<h4>${esc(r.title)}</h4></div><span class="t">${esc(tr('t_' + r.type))}</span></a>`;
+    });
+    $('#disco').innerHTML = html;
+    const btn = $('#moreRel');
+    btn.hidden = list.length <= 16;
+    btn.textContent = relAll ? tr('less') : `${tr('more')} (${list.length})`;
+    const decs = [...new Set(list.map(r => Math.floor(r.y / 10) * 10))];
+    $('#decades').innerHTML = relAll ? decs.map(d => `<a href="#d${d}">${d}${lang === 'ru' ? '-е' : 's'}</a>`).join('') : '';
+  }
+  $('#moreRel').addEventListener('click', () => { relAll = !relAll; renderMusic(); if (!relAll) $('#music').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); });
+
+  /* --- клипы: превью, плеер только по нажатию --- */
+  const vbox = (id, t, dur, big) => `<div class="vbox" role="button" tabindex="0" data-yt="${id}" aria-label="${esc(tr('play'))}: ${esc(t)}">
+      <img src="https://i.ytimg.com/vi/${id}/${big ? 'maxresdefault' : 'hqdefault'}.jpg" alt="" loading="lazy" decoding="async"${big ? ` data-fb="https://i.ytimg.com/vi/${id}/hqdefault.jpg"` : ''}>
+      <span class="osd-mini" aria-hidden="true">PLAY ▶</span>
+      <span class="play"><svg viewBox="0 0 10 10"><path d="M1 0l9 5-9 5z"/></svg>${esc(tr('play'))} · ${dur}</span></div>`;
+  function renderVideos(){
+    const [f, ...rest] = VIDEOS;
+    $('#vfeat').innerHTML = `${vbox(f[0], f[1], f[2], true)}<div><p class="kick">${esc(tr('vf_k'))}</p><h3>${esc(f[1])}</h3><p>${esc(tr('vf_p'))}</p></div>`;
+    $('#vgrid').innerHTML = rest.map(([id,t,dur]) => `<article class="vcard">${vbox(id, t, dur)}<h4>${esc(t)}</h4></article>`).join('');
+    $$('.vbox').forEach(v => {
+      const img = v.querySelector('img');
+      img.addEventListener('error', () => { if (img.dataset.fb) { img.src = img.dataset.fb; delete img.dataset.fb; } else v.classList.add('noimg'); });
+      // у YouTube вместо отсутствующей обложки maxres приходит заглушка 120×90
+      img.addEventListener('load', () => { if (img.naturalWidth < 200 && img.dataset.fb) { img.src = img.dataset.fb; delete img.dataset.fb; } });
+      const go = () => { if (v.querySelector('iframe')) return;
+        v.insertAdjacentHTML('beforeend', `<iframe src="https://www.youtube-nocookie.com/embed/${v.dataset.yt}?autoplay=1&rel=0" title="YouTube" allow="autoplay; encrypted-media; picture-in-picture; fullscreen"></iframe>`); };
+      v.addEventListener('click', go);
+      v.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+  }
+
+  /* --- о группе, новости, соцсети --- */
+  function renderAbout(){
+    $('#members').innerHTML = MEMBERS.map(([ru,en,y]) => `<div class="mem rv in"><b>${esc(lang === 'ru' ? ru : en)}</b><span>${esc(tr('since').replace('{y}', y))}</span></div>`).join('');
+    $('#timeline').innerHTML = MILESTONES.map(([y,t], i) => `<li class="${i === MILESTONES.length - 1 ? 'now' : ''}"><b>${y}</b><p>${esc(t[lang])}</p></li>`).join('');
+    $('#newsList').innerHTML = NEWS.map(([d,ru,en,u]) => `<a href="${u}" target="_blank" rel="noopener"><time datetime="${d}">${esc(dateLabel(d))}</time><h4>${esc(lang === 'ru' ? ru : en)}</h4></a>`).join('');
+    $('#socials').innerHTML = SOCIAL.map(([n,h,u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(n)}<span>${esc(h)}</span></a>`).join('');
+  }
+
+  function toast(msg){ const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, 2600); }
+  $('#copyMail').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText('booking@kasta.world'); toast(tr('copied')); }
+    catch (e) { const r = document.createRange(); r.selectNodeContents($('#mail')); getSelection().removeAllRanges(); getSelection().addRange(r); }
+  });
+  $('#subForm').addEventListener('submit', e => {
+    e.preventDefault();
+    $('#subMsg').textContent = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('#subMail').value.trim()) ? tr('sub_ok') : tr('sub_bad');
+  });
+
+  /* --- VHS-экранное меню: счётчик и штамп даты --- */
+  const t0 = Date.now();
+  function osd(){
+    const s = Math.floor((Date.now() - t0) / 1000);
+    $('#tc').textContent = `${Math.floor(s / 3600)}:${String(Math.floor(s / 60) % 60).padStart(2,'0')}:${String(s % 60).padStart(2,'0')}`;
+    const d = new Date();
+    $('#stamp').innerHTML = `${tr('osd_m')[d.getMonth()]} ${String(d.getDate()).padStart(2,'0')} ${d.getFullYear()}<br>${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  }
+  osd(); setInterval(osd, 1000);
+
+  /* --- язык --- */
+  function apply(){
+    document.documentElement.lang = lang;
+    $$('[data-t]').forEach(el => { const v = tr(el.dataset.t); if (v) el.textContent = v; });
+    $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+    const up = upcoming();
+    if (!userPicked || !SHOWS[sel] || SHOWS[sel].d < todayISO()) sel = up.length ? SHOWS.indexOf(up[0]) : -1;
+    renderHero(); renderTour(); renderMusic(); renderVideos(); renderAbout(); osd();
+    flapAll();
+    bus.dispatchEvent(new CustomEvent('lang', { detail: KASTA.state() }));
+  }
+  $$('.lang button').forEach(b => b.addEventListener('click', () => { lang = b.dataset.lang; try { localStorage.setItem('kasta-lang', lang); } catch (e) {} apply(); }));
+  apply();
+
+  /* появление блоков при прокрутке */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  $$('.rv').forEach(el => io.observe(el));
+})();
+</script>
+
+<script type="module">
+/* ===== 3D: ночной двор (первый экран) и глобус тура ===== */
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const K = window.KASTA, reduced = K.reduced;
+const LAND = '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';   // точки суши для глобуса: пары int16 (широта×100, долгота×100)
+
+const hasGL = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } })();
+if (!hasGL) document.documentElement.classList.add('no3d');
+else {
+  try { yard(); } catch (e) { console.warn('yard', e); }
+  try { globe(); } catch (e) { console.warn('globe', e); document.documentElement.classList.add('no3d'); }
+}
+
+/* цикл отрисовки: работает, только пока блок на экране и вкладка активна */
+function loop(el, frame){
+  let vis = false, raf = 0, last = 0;
+  const tick = now => { const dt = Math.min(.1, (now - last) / 1000 || .016); last = now; frame(dt, now / 1000); if (vis && !document.hidden) raf = requestAnimationFrame(tick); };
+  const start = () => { cancelAnimationFrame(raf); last = performance.now(); raf = requestAnimationFrame(tick); };
+  new IntersectionObserver(([e]) => { vis = e.isIntersecting; if (vis) start(); }).observe(el);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden && vis) start(); });
+}
+const lerp = (a, b, t) => a + (b - a) * t;
+
+/* ---------- Ночной двор: девятиэтажка, фонарь, окна складываются в «КАСТА» ---------- */
+function yard(){
+  const hero = document.getElementById('top'), host = document.getElementById('scene'), canvas = document.getElementById('yard');
+  const small = Math.min(innerWidth, innerHeight) < 700;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, small ? 2 : 1.5));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = .95;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x07080b);
+  scene.fog = new THREE.FogExp2(0x0d0c0f, 0.013);
+  const camera = new THREE.PerspectiveCamera(38, 1, .1, 260);
+
+  // небо: тёмный зенит, рыжая засветка города у горизонта
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(200, 32, 16), new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false, fog: false,
+    vertexShader: 'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
+    fragmentShader: 'varying vec3 vP; void main(){ float h = clamp(vP.y, -0.1, 1.); vec3 top = vec3(.012,.014,.025); vec3 hor = vec3(.13,.07,.03); vec3 c = mix(hor, top, smoothstep(0., .35, h)); gl_FragColor = vec4(c, 1.); }' })));
+
+  // земля: асфальт с мокрыми пятнами (в них отражается фонарь)
+  const tex = (w, h, draw) => { const c = document.createElement('canvas'); c.width = w; c.height = h; draw(c.getContext('2d'), w, h); const t = new THREE.CanvasTexture(c); t.anisotropy = 4; return t; };
+  const wet = tex(512, 512, (g, w, h) => {
+    g.fillStyle = 'rgb(225,225,225)'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 46; i++) { const x = Math.random() * w, y = Math.random() * h, r = 12 + Math.random() * 60;
+      const gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, 'rgba(40,40,40,.95)'); gr.addColorStop(1, 'rgba(225,225,225,0)'); g.fillStyle = gr; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); }
+  });
+  wet.wrapS = wet.wrapT = THREE.RepeatWrapping; wet.repeat.set(5, 5);
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(240, 240), new THREE.MeshStandardMaterial({ color: 0x141518, roughness: 1, roughnessMap: wet, metalness: .05 }));
+  ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+
+  // девятиэтажка
+  const COLS = 21, FLOORS = 9, MW = 1, FH = .92, BASE = .62, BW = COLS * MW + .7, BH = BASE + FLOORS * FH + .28, BD = 3.4;
+  const facade = tex(2048, Math.round(2048 * BH / BW), (g, w, h) => {
+    const px = w / BW, py = h / BH;
+    g.fillStyle = '#76777a'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 2200; i++) { g.fillStyle = `rgba(${Math.random() < .5 ? '255,255,255' : '0,0,0'},${Math.random() * .05})`; g.fillRect(Math.random() * w, Math.random() * h, 2 + Math.random() * 30, 2 + Math.random() * 3); }
+    for (let i = 0; i < 70; i++) { const x = Math.random() * w, gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(30,26,22,.0)'); gr.addColorStop(.3, 'rgba(30,26,22,.22)'); gr.addColorStop(1, 'rgba(30,26,22,.0)'); g.fillStyle = gr; g.fillRect(x, Math.random() * h * .5, 3 + Math.random() * 10, h * (.2 + Math.random() * .5)); }
+    g.fillStyle = '#4a4b4e'; g.fillRect(0, h - BASE * py, w, BASE * py);              // цоколь
+    g.strokeStyle = 'rgba(25,25,27,.75)'; g.lineWidth = 3;                              // швы между панелями
+    for (let f = 0; f <= FLOORS; f++) { const y = h - (BASE + f * FH) * py; g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+    for (let c = 0; c <= COLS; c += 3) { const x = (.35 + c * MW) * px; g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h - BASE * py); g.stroke(); }
+    g.fillStyle = '#16171a';                                                           // проёмы окон
+    for (let f = 0; f < FLOORS; f++) for (let c = 0; c < COLS; c++) {
+      const x = (.35 + c * MW + .17) * px, y = h - (BASE + f * FH + .82) * py; g.fillRect(x, y, .66 * px, .54 * py);
+    }
+    g.fillStyle = '#2a2420';                                                           // двери подъездов
+    for (const c of [2, 7, 13, 18]) g.fillRect((.35 + c * MW + .2) * px, h - (BASE + .02) * py - .02 * py, .6 * px, .02 * py + 1);
+  });
+  facade.colorSpace = THREE.SRGBColorSpace;
+  const concrete = new THREE.MeshStandardMaterial({ color: 0x5e5f62, roughness: .95 });
+  const bld = new THREE.Mesh(new THREE.BoxGeometry(BW, BH, BD), [concrete, concrete, new THREE.MeshStandardMaterial({ color: 0x1b1c1e, roughness: 1 }), concrete,
+    new THREE.MeshStandardMaterial({ map: facade, roughness: .95 }), concrete]);
+  bld.position.y = BH / 2; bld.receiveShadow = true; scene.add(bld);
+  const FZ = BD / 2;
+  const colX = c => -BW / 2 + .35 + (c + .5) * MW, floorY = f => BASE + f * FH;
+
+  // двери, козырьки и лампы над подъездами
+  const dark = new THREE.MeshStandardMaterial({ color: 0x1a1613, roughness: .8 });
+  const slab = new THREE.MeshStandardMaterial({ color: 0x4d4e51, roughness: .95 });
+  const bulbMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(2.4, 1.5, .7) });
+  for (const c of [2, 7, 13, 18]) {
+    const door = new THREE.Mesh(new THREE.BoxGeometry(.62, .86, .06), dark); door.position.set(colX(c), .45, FZ + .03); scene.add(door);
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(1.3, .08, .8), slab); cap.position.set(colX(c), 1.05, FZ + .4); cap.castShadow = true; scene.add(cap);
+    const bulb = new THREE.Mesh(new THREE.BoxGeometry(.16, .06, .1), bulbMat); bulb.position.set(colX(c), .98, FZ + .2); scene.add(bulb);
+  }
+  // балконы: плиты с ограждением
+  const balc = new THREE.MeshStandardMaterial({ color: 0x55565a, roughness: .9 });
+  for (const c of [4, 8, 12, 16]) for (let f = 1; f < FLOORS; f++) {   // только в промежутках между буквами
+    const b = new THREE.Mesh(new THREE.BoxGeometry(.92, .3, .5), balc); b.position.set(colX(c), floorY(f) + .12, FZ + .25); b.castShadow = b.receiveShadow = true; scene.add(b);
+  }
+  // крыша: машинные помещения и антенны
+  const roofY = BH;
+  for (const c of [2, 13]) { const m = new THREE.Mesh(new THREE.BoxGeometry(2.2, .9, 1.8), concrete); m.position.set(colX(c) + .5, roofY + .45, -.2); scene.add(m); }
+  const metal = new THREE.MeshStandardMaterial({ color: 0x2a2b2e, roughness: .6, metalness: .6 });
+  [[-8.6, 1.5], [-4.2, 1.9], [-1.1, 1.3], [3.3, 1.7], [6.4, 2.1], [9.1, 1.4]].forEach(([x, hgt], k) => {
+    const g = new THREE.Group(); g.position.set(x, roofY, .4 - (k % 3) * .5);
+    const mast = new THREE.Mesh(new THREE.CylinderGeometry(.025, .03, hgt, 6), metal); mast.position.y = hgt / 2; g.add(mast);
+    for (let j = 0; j < 3; j++) { const bar = new THREE.Mesh(new THREE.CylinderGeometry(.012, .012, .9 - j * .18, 4), metal); bar.rotation.z = Math.PI / 2; bar.position.y = hgt - .12 - j * .22; g.add(bar); }
+    g.rotation.y = k * .7; scene.add(g);
+  });
+
+  // окна: 21 × 9, каждое — отдельный экземпляр со своим цветом
+  const wins = [], idx = (c, f) => f * COLS + c;
+  const winMesh = new THREE.InstancedMesh(new THREE.PlaneGeometry(.6, .5), new THREE.MeshBasicMaterial({ color: 0xffffff }), COLS * FLOORS);
+  const m4 = new THREE.Matrix4(), OFF = new THREE.Color(.0025, .0032, .0048);
+  for (let f = 0; f < FLOORS; f++) for (let c = 0; c < COLS; c++) {
+    m4.makeTranslation(colX(c), floorY(f) + .55, FZ + .012); winMesh.setMatrixAt(idx(c, f), m4);
+    winMesh.setColorAt(idx(c, f), OFF);
+    wins.push({ cur: OFF.clone(), tgt: OFF.clone(), at: 0, tv: false, door: f === 0 && [2, 7, 13, 18].includes(c) });
+  }
+  winMesh.instanceColor.setUsage(THREE.DynamicDrawUsage); scene.add(winMesh);
+  wins.forEach((w, i) => { if (w.door) { m4.makeScale(0, 0, 0); winMesh.setMatrixAt(i, m4); } });
+
+  // буквы 3×5 для слова «КАСТА» на этажах 3–7, колонки 1–19
+  const GLYPH = { К:['X.X','X.X','XX.','X.X','X.X'], А:['.X.','X.X','XXX','X.X','X.X'], С:['.XX','X..','X..','X..','.XX'], Т:['XXX','.X.','.X.','.X.','.X.'] };
+  const WORD = new Set();
+  [...'КАСТА'].forEach((ch, li) => GLYPH[ch].forEach((row, r) => [...row].forEach((v, x) => { if (v === 'X') WORD.add(idx(1 + li * 4 + x, 7 - r)); })));
+
+  const PAL = [[1, .52, .18, .8], [1, .62, .3, .72], [1, .72, .42, .62], [1, .46, .14, .85], [.78, .93, .78, .55]];
+  const WORDC = new THREE.Color(1, .55, .2).multiplyScalar(1.5);
+  const colorFor = () => { if (Math.random() < .06) return { c: new THREE.Color(.42, .58, 1).multiplyScalar(.45), tv: true }; const p = PAL[Math.random() * PAL.length | 0]; return { c: new THREE.Color(p[0], p[1], p[2]).multiplyScalar(p[3]), tv: false }; };
+  const setWin = (i, on, delay = 0, color) => { const w = wins[i]; if (w.door) return; w.at = clock + delay; if (on) { const k = color ? { c: color, tv: false } : colorFor(); w.tgt.copy(k.c); w.tv = k.tv; } else { w.tgt.copy(OFF); w.tv = false; } };
+
+  // уличный фонарь «кобра» с натриевой лампой
+  const lampPos = new THREE.Vector3(6.2, 2.8, 6.9), lampAim = new THREE.Vector3(4.8, 0, 4.6);
+  const poleMat = new THREE.MeshStandardMaterial({ color: 0x55575d, roughness: .5, metalness: .35 });
+  const seg = (a, b, r, mat) => { const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, a.distanceTo(b), 8), mat); m.position.copy(a).add(b).multiplyScalar(.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize()); m.castShadow = true; scene.add(m); return m; };
+  const poleTop = new THREE.Vector3(6.85, 2.92, 7.3);
+  seg(new THREE.Vector3(6.85, 0, 7.3), poleTop, .045, poleMat);
+  seg(poleTop, lampPos.clone().add(new THREE.Vector3(0, .07, 0)), .022, poleMat);
+  const head = new THREE.Mesh(new THREE.BoxGeometry(.34, .07, .16), poleMat); head.position.copy(lampPos).add(new THREE.Vector3(0, .05, 0)); head.lookAt(poleTop.x, head.position.y, poleTop.z); scene.add(head);
+  const glow = new THREE.Mesh(new THREE.BoxGeometry(.1, .02, .26), new THREE.MeshBasicMaterial({ color: new THREE.Color(5, 2.6, .9) })); glow.position.copy(lampPos); glow.quaternion.copy(head.quaternion); scene.add(glow);
+  const spot = new THREE.SpotLight(0xff9a3c, 70, 0, 1.0, .6, 2);
+  spot.position.copy(lampPos); spot.target.position.copy(lampAim); spot.castShadow = true;
+  spot.shadow.mapSize.set(small ? 1024 : 2048, small ? 1024 : 2048); spot.shadow.bias = -.0004; spot.shadow.normalBias = .02;
+  scene.add(spot, spot.target);
+  // ночное небо подсвечивает всё холодным
+  scene.add(new THREE.HemisphereLight(0x3a4866, 0x0c0907, .8));
+  const fill = new THREE.DirectionalLight(0x7484ad, .6); fill.position.set(8, 12, 14); scene.add(fill);
+
+  // световой конус и пыль/морось в нём
+  const len = lampPos.distanceTo(lampAim), rad = Math.tan(.78) * len;
+  const coneGeo = new THREE.ConeGeometry(rad, len, 48, 1, true); coneGeo.translate(0, -len / 2, 0); coneGeo.rotateX(-Math.PI / 2);
+  const cone = new THREE.Mesh(coneGeo, new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
+    uniforms: { uLen: { value: len }, uC: { value: new THREE.Color(1, .55, .2) } },
+    vertexShader: 'uniform float uLen; varying float vH; varying vec3 vN; varying vec3 vV; void main(){ vH = position.z / uLen; vec4 mv = modelViewMatrix * vec4(position,1.); vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }',
+    fragmentShader: 'uniform vec3 uC; varying float vH; varying vec3 vN; varying vec3 vV; void main(){ float edge = pow(abs(dot(vN, vV)), 2.); float a = edge * (1. - vH) * .16; gl_FragColor = vec4(uC * a, a); }' }));
+  cone.position.copy(lampPos); cone.lookAt(lampAim); scene.add(cone);
+  const DN = small ? 260 : 520, dPos = new Float32Array(DN * 3), dSeed = new Float32Array(DN);
+  const axis = lampAim.clone().sub(lampPos).normalize(), side1 = new THREE.Vector3(1, 0, 0).cross(axis).normalize(), side2 = axis.clone().cross(side1);
+  const placeDust = k => { const t = Math.sqrt(Math.random()), r = Math.sqrt(Math.random()) * rad * t * .9, a = Math.random() * 6.283;
+    const p = lampPos.clone().addScaledVector(axis, t * len).addScaledVector(side1, Math.cos(a) * r).addScaledVector(side2, Math.sin(a) * r); dPos.set([p.x, p.y, p.z], k * 3); };
+  for (let k = 0; k < DN; k++) { placeDust(k); dSeed[k] = Math.random(); }
+  const dGeo = new THREE.BufferGeometry(); dGeo.setAttribute('position', new THREE.BufferAttribute(dPos, 3));
+  const dust = new THREE.Points(dGeo, new THREE.PointsMaterial({ color: new THREE.Color(1.6, .95, .5), size: .035, transparent: true, opacity: .75, depthWrite: false, blending: THREE.AdditiveBlending }));
+  scene.add(dust);
+
+  // двор: турник, лавочка, голые деревья
+  const pipe = new THREE.MeshStandardMaterial({ color: 0x3b3d42, roughness: .5, metalness: .7 });
+  const bar = (x1, y1, z1, x2, y2, z2, r = .035) => { const a = new THREE.Vector3(x1, y1, z1), b = new THREE.Vector3(x2, y2, z2); const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, a.distanceTo(b), 6), pipe); m.position.copy(a).add(b).multiplyScalar(.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize()); m.castShadow = true; scene.add(m); return m; };
+  bar(1.4, 0, 8.2, 1.4, .82, 8.2, .02); bar(2.3, 0, 8.2, 2.3, .82, 8.2, .02); bar(1.4, .8, 8.2, 2.3, .8, 8.2, .012);
+  const wood = new THREE.MeshStandardMaterial({ color: 0x2c221b, roughness: .8 });
+  for (let k = 0; k < 3; k++) { const p = new THREE.Mesh(new THREE.BoxGeometry(.7, .02, .05), wood); p.position.set(4.3, .17, 7.6 + k * .06); p.castShadow = true; scene.add(p); }
+  const back = new THREE.Mesh(new THREE.BoxGeometry(.7, .11, .02), wood); back.position.set(4.3, .28, 7.76); back.rotation.x = -.15; back.castShadow = true; scene.add(back);
+  bar(4.0, 0, 7.66, 4.0, .16, 7.66, .012); bar(4.6, 0, 7.66, 4.6, .16, 7.66, .012);
+  const bark = new THREE.MeshStandardMaterial({ color: 0x1e1d1c, roughness: .9 });
+  function tree(x, z, h, seed){
+    let s = seed; const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+    const branch = (p, dir, l, r, d) => { const e = p.clone().addScaledVector(dir, l); const m = new THREE.Mesh(new THREE.CylinderGeometry(r * .62, r, l, 5), bark); m.position.copy(p).add(e).multiplyScalar(.5); m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); m.castShadow = true; scene.add(m);
+      if (d > 0) for (let k = 0; k < (d > 2 ? 2 : 3); k++) { const nd = dir.clone().add(new THREE.Vector3(rnd() - .5, rnd() * .5, rnd() - .5).multiplyScalar(1.3)).normalize(); branch(e, nd, l * (.62 + rnd() * .15), r * .62, d - 1); } };
+    branch(new THREE.Vector3(x, 0, z), new THREE.Vector3(0, 1, 0), h * .38, .13, 4);
+  }
+  tree(-12.6, 6.4, 4.6, 7); tree(11.4, 5.2, 5.0, 19); tree(-15.8, 2.6, 5.2, 31);   // по краям, чтобы не закрывать буквы
+
+  // соседние дома вдали — тёмные силуэты с редкими окнами
+  const farMat = new THREE.MeshStandardMaterial({ color: 0x24252a, roughness: 1 });
+  const farWins = [];
+  [[-24, -26, 30, 14, 9], [14, -34, 34, 15, 10], [36, -16, 10, 26, 6], [-46, -10, 22, 12, 8]].forEach(([x, z, w, h, cols]) => {
+    const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, 6), farMat); b.position.set(x, h / 2, z); scene.add(b);
+    const fl = Math.floor((h - 1) / 1); for (let f = 0; f < fl; f++) for (let c = 0; c < cols; c++) if (Math.random() < .14) farWins.push([x - w / 2 + (c + .5) * w / cols, 1 + f, z + 3.01]);
+  });
+  const farMesh = new THREE.InstancedMesh(new THREE.PlaneGeometry(.3, .24), new THREE.MeshBasicMaterial({ color: 0xffffff }), farWins.length);
+  farWins.forEach(([x, y, z], i) => { m4.makeTranslation(x, y, z); farMesh.setMatrixAt(i, m4); farMesh.setColorAt(i, new THREE.Color(1, .42 + Math.random() * .12, .1).multiplyScalar(.45 + Math.random() * .3)); });
+  scene.add(farMesh);
+
+  // постобработка: свечение окон и фонаря
+  const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: small ? 2 : 4 }));
+  composer.addPass(new RenderPass(scene, camera));
+  const bloom = new UnrealBloomPass(new THREE.Vector2(256, 256), .7, .32, .42); composer.addPass(bloom);
+  composer.addPass(new OutputPass());
+
+  // кадр: дом справа и почти целиком, текст слева внизу на тёмной земле
+  const look = new THREE.Vector3(), base = new THREE.Vector3();
+  function resize(){
+    const w = host.clientWidth, h = host.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); composer.setSize(w, h); bloom.resolution.set(w / 2, h / 2);
+    const aspect = w / h; camera.aspect = aspect;
+    const vT = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)), hT = vT * aspect;
+    const wide = w > 760 && aspect > 1.15, frac = wide ? .72 : .97;
+    const dist = Math.max((BW / frac / 2) / hT, (BH + 2.4) / (2 * vT * .8));
+    const visW = 2 * dist * hT;
+    look.set(wide ? -(visW * (1 - frac) / 2) + .2 : 0, wide ? BH * .56 : BH * .52 - (aspect < .9 ? (1 / aspect - 1) * 4 : 0), 0);   // на высоких экранах дом выше, над текстом
+    base.set(look.x - (wide ? 4.5 : .6), 1.5, dist);
+    bloom.strength = wide ? .7 : .42;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(host); resize();
+
+  // сценарий окон: «Разбуди район», потом жизнь дома, иногда — слово
+  let clock = 0, phase = 'dark', next = .5, word = false;
+  const SPEED = /[?&]ff=1/.test(location.search) ? 8 : 1;   // ускорение сценария окон для проверки
+  const life = (stagger) => wins.forEach((w, i) => setWin(i, Math.random() < .4, stagger ? Math.random() * stagger : 0));
+  // слово: сначала дом гаснет, потом буквы загораются слева направо
+  const showWord = () => { word = true; wins.forEach((w, i) => { const c = i % COLS; if (WORD.has(i)) setWin(i, true, .5 + (c - 1) * .05, WORDC); else setWin(i, false, Math.random() * .35); }); };
+  const hideWord = () => { word = false; wins.forEach((w, i) => setWin(i, Math.random() < .4, Math.random() * 1.8)); };
+  if (reduced) { life(0); showWord(); wins.forEach(w => w.at = -1); }
+
+  let px = 0, py = 0, tpx = 0, tpy = 0;
+  addEventListener('pointermove', e => { tpx = e.clientX / innerWidth * 2 - 1; tpy = e.clientY / innerHeight * 2 - 1; }, { passive: true });
+  let first = true;
+  const frame = (dt, t) => {
+    clock += reduced ? 0 : dt * SPEED;
+    if (!reduced) {
+      host.dataset.phase = phase;
+      if (clock >= next) {
+        if (phase === 'dark') { life(2.6); phase = 'life'; next = clock + 6.5; }
+        else if (phase === 'life') { showWord(); phase = 'word'; next = clock + 5.5; }
+        else { hideWord(); phase = 'life'; next = clock + 11; }
+      }
+      // дом живёт: где-то гаснет свет, где-то включают
+      if (phase === 'life' && Math.random() < dt * 2.2) { const i = Math.random() * wins.length | 0; setWin(i, wins[i].tgt.r < .1); }
+    }
+    let dirty = false;
+    wins.forEach((w, i) => {
+      if (clock < w.at) return;
+      const k = Math.min(1, dt * 16 + (reduced ? 1 : 0));
+      const before = w.cur.r + w.cur.g;
+      w.cur.lerp(w.tgt, k);
+      let c = w.cur;
+      if (w.tv && !reduced) { const f = .72 + .28 * Math.sin(t * 9 + i) * Math.sin(t * 3.3 + i * 2); c = w.cur.clone().multiplyScalar(f); dirty = true; }
+      if (Math.abs(before - (w.cur.r + w.cur.g)) > 1e-4 || w.tv) { winMesh.setColorAt(i, c); dirty = true; }
+    });
+    if (dirty || first) winMesh.instanceColor.needsUpdate = true;
+    // морось медленно опускается в конусе света
+    if (!reduced) { for (let k = 0; k < DN; k++) { dPos[k * 3 + 1] -= dt * (.12 + dSeed[k] * .2); dPos[k * 3] += Math.sin(t * .7 + dSeed[k] * 9) * dt * .05; if (dPos[k * 3 + 1] < .02) placeDust(k); } dGeo.attributes.position.needsUpdate = true; }
+    // камера: лёгкий параллакс от мыши, медленный дрейф, подъём при прокрутке
+    px = lerp(px, tpx, Math.min(1, dt * 2.5)); py = lerp(py, tpy, Math.min(1, dt * 2.5));
+    const sc = Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / Math.max(1, hero.offsetHeight)));
+    const drift = reduced ? 0 : Math.sin(t * .13) * .6;
+    camera.position.set(base.x + px * .9 + drift, base.y - py * .4 + sc * 2.2, base.z);
+    camera.lookAt(look.x + px * .3, look.y + sc * 1.2, look.z);
+    composer.render();
+    if (first) { first = false; hero.classList.add('on'); }
+  };
+  loop(host, frame);
+}
+
+/* ---------- Глобус тура: точки суши, города и маршрут ---------- */
+function globe(){
+  const wrap = document.getElementById('globe'), canvas = document.getElementById('globeCv'), lbl = document.getElementById('gLbl');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  const PR = Math.min(devicePixelRatio || 1, 2); renderer.setPixelRatio(PR);
+  const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(30, 1, .1, 20); camera.position.set(0, 0, 4.75);
+  const G = new THREE.Group(); G.rotation.order = 'XYZ'; scene.add(G);
+  const ll = (lat, lng, r = 1) => { const a = THREE.MathUtils.degToRad(lat), b = THREE.MathUtils.degToRad(lng); return new THREE.Vector3(r * Math.cos(a) * Math.sin(b), r * Math.sin(a), r * Math.cos(a) * Math.cos(b)); };
+
+  G.add(new THREE.Mesh(new THREE.SphereGeometry(.992, 64, 48), new THREE.MeshBasicMaterial({ color: 0x0f1013 })));
+  // параллели и меридианы
+  const gridMat = new THREE.LineBasicMaterial({ color: 0xece8e1, transparent: true, opacity: .07 });
+  for (let lat = -60; lat <= 60; lat += 30) { const pts = []; for (let k = 0; k <= 96; k++) pts.push(ll(lat, k * 3.75, 1.001)); G.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), gridMat)); }
+  for (let lng = 0; lng < 360; lng += 30) { const pts = []; for (let k = 0; k <= 64; k++) pts.push(ll(-90 + k * 180 / 64, lng, 1.001)); G.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), gridMat)); }
+
+  // суша точками
+  const bin = atob(LAND), bytes = new Uint8Array(bin.length); for (let k = 0; k < bin.length; k++) bytes[k] = bin.charCodeAt(k);
+  const dv = new DataView(bytes.buffer), n = bytes.length / 4, lp = new Float32Array(n * 3);
+  for (let k = 0; k < n; k++) { const v = ll(dv.getInt16(k * 4, true) / 100, dv.getInt16(k * 4 + 2, true) / 100); lp.set([v.x, v.y, v.z], k * 3); }
+  const dotVS = 'uniform float uS; attribute float aSel; attribute float aOn; uniform float uT; varying float vF; varying float vSel; varying float vOn; void main(){ vec3 nn = normalize(normalMatrix * normalize(position)); vF = nn.z; vSel = aSel; vOn = aOn; vec4 mv = modelViewMatrix * vec4(position,1.); float pulse = 1. + aSel * (.5 + .5 * sin(uT * 4.)); gl_PointSize = uS * pulse * (.55 + .45 * clamp(nn.z, 0., 1.)); gl_Position = projectionMatrix * mv; }';
+  const landGeo = new THREE.BufferGeometry(); landGeo.setAttribute('position', new THREE.BufferAttribute(lp, 3));
+  landGeo.setAttribute('aSel', new THREE.BufferAttribute(new Float32Array(n), 1)); landGeo.setAttribute('aOn', new THREE.BufferAttribute(new Float32Array(n).fill(1), 1));
+  const landMat = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, uniforms: { uS: { value: 2.5 * PR }, uT: { value: 0 }, uC: { value: new THREE.Color(0xcfc9be) } },
+    vertexShader: dotVS, fragmentShader: 'uniform vec3 uC; varying float vF; void main(){ float d = length(gl_PointCoord - .5); if (d > .5) discard; float a = smoothstep(.5, .3, d) * (.12 + .7 * smoothstep(-.05, .55, vF)); gl_FragColor = vec4(uC, a); }' });
+  G.add(new THREE.Points(landGeo, landMat));
+
+  // города тура
+  const S = K.SHOWS, mp = new Float32Array(S.length * 3), mSel = new Float32Array(S.length), mOn = new Float32Array(S.length);
+  S.forEach((s, i) => { const v = ll(s.lat, s.lng, 1.006); mp.set([v.x, v.y, v.z], i * 3); });
+  const mGeo = new THREE.BufferGeometry(); mGeo.setAttribute('position', new THREE.BufferAttribute(mp, 3)); mGeo.setAttribute('aSel', new THREE.BufferAttribute(mSel, 1)); mGeo.setAttribute('aOn', new THREE.BufferAttribute(mOn, 1));
+  const mMat = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, uniforms: { uS: { value: 9 * PR }, uT: { value: 0 }, uC: { value: new THREE.Color(0xffa53a) } },
+    vertexShader: dotVS, fragmentShader: 'uniform vec3 uC; varying float vF; varying float vSel; varying float vOn; void main(){ float d = length(gl_PointCoord - .5); if (d > .5) discard; float core = smoothstep(.5, .36, d); float ring = smoothstep(.5, .44, d) * smoothstep(.3, .38, d); float a = mix(core, max(core * .9, ring), vSel * .0) * smoothstep(-.1, .3, vF) * mix(.22, 1., vOn); gl_FragColor = vec4(mix(uC, vec3(1.), vSel * .35), a); }' });
+  G.add(new THREE.Points(mGeo, mMat));
+  // кольцо вокруг выбранного города
+  const ring = new THREE.Mesh(new THREE.RingGeometry(.045, .055, 48), new THREE.MeshBasicMaterial({ color: 0xffa53a, transparent: true, opacity: .9, side: THREE.DoubleSide, depthWrite: false }));
+  G.add(ring);
+
+  // маршрут тура дугами
+  const arcs = new THREE.Group(); G.add(arcs);
+  const arcMat = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, uniforms: { uT: { value: 0 }, uC: { value: new THREE.Color(0xffa53a) } },
+    vertexShader: 'attribute float aT; attribute float aPh; varying float vT; varying float vPh; void main(){ vT = aT; vPh = aPh; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
+    fragmentShader: 'uniform float uT; uniform vec3 uC; varying float vT; varying float vPh; void main(){ float head = fract(uT * .22 + vPh); float d = head - vT; float trail = d >= 0. ? exp(-d * 9.) : 0.; float a = .16 + .84 * trail; gl_FragColor = vec4(uC, a); }' });
+  function buildArcs(list){
+    arcs.clear();
+    for (let k = 0; k + 1 < list.length; k++) {
+      const a = S[list[k]], b = S[list[k + 1]], va = ll(a.lat, a.lng), vb = ll(b.lat, b.lng), ang = va.angleTo(vb);
+      if (ang < .004) continue;
+      const N = 72, pos = new Float32Array((N + 1) * 3), at = new Float32Array(N + 1), ph = new Float32Array(N + 1).fill(k * .17);
+      for (let j = 0; j <= N; j++) { const t = j / N; const v = va.clone().lerp(vb, t).normalize(); const h = 1.006 + (.04 + ang * .2) * Math.sin(Math.PI * t); v.multiplyScalar(h); pos.set([v.x, v.y, v.z], j * 3); at[j] = t; }
+      // для больших расстояний — точный путь по большому кругу
+      if (ang > .6) for (let j = 0; j <= N; j++) { const t = j / N; const q = new THREE.Quaternion().setFromUnitVectors(va, vb); const qq = new THREE.Quaternion().slerp(q, t); const v = va.clone().applyQuaternion(qq).multiplyScalar(1.006 + (.04 + ang * .2) * Math.sin(Math.PI * t)); pos.set([v.x, v.y, v.z], j * 3); }
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); g.setAttribute('aT', new THREE.BufferAttribute(at, 1)); g.setAttribute('aPh', new THREE.BufferAttribute(ph, 1));
+      arcs.add(new THREE.Line(g, arcMat));
+    }
+  }
+
+  // ореол атмосферы
+  scene.add(new THREE.Mesh(new THREE.SphereGeometry(1, 64, 48).scale(1.2, 1.2, 1.2), new THREE.ShaderMaterial({ side: THREE.BackSide, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: 'varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
+    fragmentShader: 'varying vec3 vN; void main(){ float d = -dot(vN, vec3(0.,0.,1.)); float i = pow(smoothstep(0., .62, d), 2.2) * .5; gl_FragColor = vec4(vec3(1., .6, .24) * i, i); }' })));
+
+  // состояние
+  let rx = .35, ry = 0, tx = .35, ty = 0, sel = -1, peek = -1, autoAt = 0, clock = 0;
+  const target = i => { const s = S[i]; if (!s) return; tx = THREE.MathUtils.clamp(THREE.MathUtils.degToRad(s.lat) * .85, -.75, .75); let t = -THREE.MathUtils.degToRad(s.lng); while (t - ry > Math.PI) t -= Math.PI * 2; while (t - ry < -Math.PI) t += Math.PI * 2; ty = t; autoAt = clock + 9; };
+  function applyState(st){
+    mOn.fill(0); st.list.forEach(i => mOn[i] = 1); mGeo.attributes.aOn.needsUpdate = true;
+    buildArcs(st.list); setSel(st.sel);
+  }
+  function setSel(i){
+    sel = i; mSel.fill(0); if (i >= 0) mSel[i] = 1; mGeo.attributes.aSel.needsUpdate = true;
+    if (i >= 0) { const v = ll(S[i].lat, S[i].lng, 1.008); ring.position.copy(v); ring.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), v.clone().normalize()); lbl.textContent = K.label(i); }
+    ring.visible = i >= 0;
+  }
+  K.bus.addEventListener('filter', e => applyState(e.detail));
+  K.bus.addEventListener('lang', e => applyState(e.detail));
+  K.bus.addEventListener('focus', e => { setSel(e.detail.i); target(e.detail.i); peek = -1; });
+  K.bus.addEventListener('peek', e => { peek = e.detail.i; if (peek >= 0) target(peek); });
+  const st0 = K.state(); applyState(st0); if (st0.sel >= 0) { target(st0.sel); rx = tx; ry = ty; }
+
+  // перетаскивание и выбор города по нажатию
+  let drag = null;
+  canvas.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, rx: tx, ry: ty, moved: 0 }; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.moved = Math.max(drag.moved, Math.abs(dx) + Math.abs(dy)); ty = drag.ry + dx * .007; tx = THREE.MathUtils.clamp(drag.rx + (e.pointerType === 'mouse' ? dy * .005 : 0), -.9, .9); autoAt = clock + 6; });
+  const end = e => { if (!drag) return; if (drag.moved < 6) pickAt(e.clientX, e.clientY); drag = null; };
+  canvas.addEventListener('pointerup', end); canvas.addEventListener('pointercancel', () => drag = null);
+  const v3 = new THREE.Vector3();
+  function pickAt(cx, cy){
+    const r = canvas.getBoundingClientRect(); let best = -1, bd = 26;
+    S.forEach((s, i) => { if (!mOn[i]) return; v3.set(mp[i * 3], mp[i * 3 + 1], mp[i * 3 + 2]).applyMatrix4(G.matrixWorld); if (v3.z < .15) return; v3.project(camera);
+      const d = Math.hypot((v3.x * .5 + .5) * r.width - (cx - r.left), (-v3.y * .5 + .5) * r.height - (cy - r.top)); if (d < bd) { bd = d; best = i; } });
+    if (best >= 0) K.bus.dispatchEvent(new CustomEvent('pick', { detail: { i: best } }));
+  }
+
+  function resize(){ const s = wrap.clientWidth; if (!s) return; renderer.setSize(s, s, false); camera.aspect = 1; camera.updateProjectionMatrix(); }
+  new ResizeObserver(resize).observe(wrap); resize();
+
+  loop(wrap, (dt, t) => {
+    clock += dt;
+    if (!drag && !reduced && clock > autoAt) ty += dt * .07;
+    const k = Math.min(1, dt * (drag ? 14 : 3));
+    rx = lerp(rx, tx, k); ry = lerp(ry, ty, k);
+    G.rotation.set(rx, ry, 0);
+    landMat.uniforms.uT.value = mMat.uniforms.uT.value = arcMat.uniforms.uT.value = reduced ? 0 : t;
+    ring.scale.setScalar(reduced ? 1 : 1 + .25 * Math.sin(t * 3));
+    renderer.render(scene, camera);
+    // подпись у выбранного (или наведённого) города
+    const show = peek >= 0 ? peek : sel;
+    if (show >= 0) {
+      if (lbl.dataset.i !== String(show)) { lbl.textContent = K.label(show); lbl.dataset.i = show; }
+      v3.set(mp[show * 3], mp[show * 3 + 1], mp[show * 3 + 2]).applyMatrix4(G.matrixWorld);
+      const facing = v3.z > .2; v3.project(camera);
+      lbl.hidden = false; lbl.style.opacity = facing ? 1 : 0;
+      lbl.style.left = `${(v3.x * .5 + .5) * wrap.clientWidth}px`; lbl.style.top = `${(-v3.y * .5 + .5) * wrap.clientWidth}px`;
+    } else lbl.hidden = true;
+  });
+}
+</script>
+</body>
+</html>
