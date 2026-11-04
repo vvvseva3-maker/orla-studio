@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>Каста · Концепт сайта</title>
-<meta name="description" content="Концепт нового сайта группы «Каста» от студии Orla: пластинки играют песни с альбомов, золотой 3D-логотип отвечает басу, тур Greatest Hits на глобусе, клипы и букинг. Не официальный сайт.">
+<meta name="description" content="Концепт нового сайта группы «Каста» от студии Orla: пластинки играют песни с альбомов через плеер Spotify, золотой 3D-логотип, тур Greatest Hits на глобусе, клипы и букинг. Не официальный сайт.">
 <meta property="og:title" content="Каста · концепт сайта от Orla">
-<meta property="og:description" content="Поставьте пластинку: винил играет песни с альбомов «Касты», золотой логотип качается в такт. Не официальный сайт «Касты».">
+<meta property="og:description" content="Поставьте пластинку: винил играет песни с альбомов «Касты» через плеер Spotify. Не официальный сайт «Касты».">
 <meta property="og:image" content="https://vvvseva3-maker.github.io/orla-studio/concepts/kasta/v11/og.jpg">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -140,7 +140,7 @@
     <div style="--i:2">
       <div class="music-actions">
         <button class="cell cell-ink js-play" type="button" aria-pressed="false"><span class="js-play-label">Поставить пластинку</span><svg class="ic ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><svg class="ic ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button>
-        <a class="cell cell-tone js-r-apple" href="https://music.apple.com/us/album/6813081517" target="_blank" rel="noopener"><span class="js-apple-label">Целиком в Apple Music</span> <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="cell cell-tone js-r-full" href="https://open.spotify.com/album/0S0MuTq7g2g9ksvK7h8WUo" target="_blank" rel="noopener" data-en="Full album on Spotify &lt;span class=&quot;arr&quot; aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;">Целиком в Spotify <span class="arr" aria-hidden="true">↗</span></a>
       </div>
       <p class="platforms">
         <a href="https://open.spotify.com/artist/5I37oVgAnT7OGiqKJSMVRH" target="_blank" rel="noopener">Spotify</a>
@@ -150,7 +150,7 @@
         <a href="https://music.youtube.com/channel/UC6dVEXOzTCaou9DXVYHOtDg" target="_blank" rel="noopener">YouTube Music</a>
         <a href="https://kasta.world/releases" data-en="All releases">Все релизы</a>
       </p>
-      <p class="music-note" data-en="The record plays 30-second previews from Apple Music.">Пластинка играет 30-секундные фрагменты из&nbsp;Apple Music.</p>
+      <p class="music-note">Звук играет официальный плеер Spotify: если вы вошли в&nbsp;Spotify, песни звучат целиком, если нет — фрагментами.</p>
     </div>
   </div>
 </section>
@@ -295,14 +295,10 @@
   </div>
 </footer>
 
-<div class="np" id="np" hidden role="region" aria-label="Сейчас играет" data-en-aria-label="Now playing">
-  <span class="np-disc" aria-hidden="true"><img class="np-cover" src="assets/img/greatest-sq.jpg" alt="" width="96" height="96"></span>
-  <span class="np-meta"><span class="np-title">Вокруг шум</span><span class="np-by">Каста · Greatest Hits</span></span>
-  <span class="np-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-  <button class="np-btn js-np-toggle" type="button" aria-label="Пауза"><svg class="ic ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><svg class="ic ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button>
+<div class="np is-off" id="np" role="region" aria-label="Сейчас играет" data-en-aria-label="Now playing">
+  <div class="np-sp"><div class="js-sp"></div></div>
   <button class="np-btn js-np-next" type="button" aria-label="Следующий трек" data-en-aria-label="Next track"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5v15l10-7.5zM16.5 4.5H20v15h-3.5z"/></svg></button>
   <button class="np-btn js-np-close" type="button" aria-label="Выключить музыку" data-en-aria-label="Stop the music"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 4.3 12 9.9l5.6-5.6 2.1 2.1-5.6 5.6 5.6 5.6-2.1 2.1-5.6-5.6-5.6 5.6-2.1-2.1 5.6-5.6-5.6-5.6z"/></svg></button>
-  <span class="np-bar" aria-hidden="true"><span class="np-fill"></span></span>
 </div>
 
 <dialog class="player" id="player" aria-label="Видео" data-en-aria-label="Video">

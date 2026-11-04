@@ -1,5 +1,5 @@
-/* Каста · концепт v11 — интерфейс и проигрыватель без зависимостей. 3D живёт в scenes.js.
-   Пластинки играют 30-секундные фрагменты из Apple Music (данные в tracks.js). */
+/* Каста · концепт v11 — интерфейс и проигрыватель. 3D живёт в scenes.js.
+   Звук пластинок — официальный плеер Spotify (Embed IFrame API); в tracks.js только ID треков. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -56,7 +56,6 @@
     refreshTour();
     renderRelease(false);
     paintPlayer();
-    mediaMeta();
     if (curV) showFacts(curV);
     doFit();
     emit('kasta:lang', { lang });
@@ -199,8 +198,8 @@
   const browse = (i, focus) => {
     const same = i === rel;
     setRelease(i, focus);
-    if (same && A.r === i && !audio.paused) return;
-    playAt(i, 0, { delay: same ? 0.05 : 0.75 });
+    if (same && A.r === i && A.playing) return;
+    playAt(i, 0);
   };
   tabs.forEach((tb, i) => {
     tb.addEventListener('click', () => browse(i));
@@ -212,130 +211,132 @@
     });
   });
 
-  /* ---------- the record player ---------- */
+  /* ---------- the record player: the sound comes from the official Spotify player ---------- */
+  // There are no audio files or audio links on this site: tracks.js holds only Spotify track IDs,
+  // and the music streams inside Spotify's own embed (whole songs for people signed in to Spotify,
+  // previews for everyone else). Our turntable, tracklist and buttons drive it through the Embed IFrame API.
   const DATA = window.__kastaTracks || [];
   const RKEYS = ['mama', 'greatest', 'nzr'];
   const relData = i => DATA.find(d => d.key === RKEYS[i]);
   const P = {
-    ru: { put: 'Поставить пластинку', pause: 'Пауза', resume: 'Продолжить', again: 'Ещё раз', apple: 'Целиком в Apple Music',
-          hero: 'Включить Greatest Hits', heroOn: 'Пауза', heroResume: 'Продолжить', play: 'Играть', next: 'Следующий трек',
-          vinyl: 'Поставить пластинку', vinylOn: 'Снять с паузы или поставить на паузу' },
-    en: { put: 'Put the record on', pause: 'Pause', resume: 'Resume', again: 'Play again', apple: 'Full album: Apple Music',
-          hero: 'Play Greatest Hits', heroOn: 'Pause', heroResume: 'Resume', play: 'Play', next: 'Next track',
-          vinyl: 'Put the record on', vinylOn: 'Play or pause the record' },
+    ru: { put: 'Поставить пластинку', pause: 'Пауза', resume: 'Продолжить', again: 'Ещё раз', open: 'Открыть в Spotify',
+          hero: 'Включить Greatest Hits', heroOn: 'Пауза', heroResume: 'Продолжить',
+          vinyl: 'Поставить пластинку', vinylOn: 'Пауза или продолжить',
+          note: 'Звук играет официальный плеер Spotify: если вы вошли в Spotify, песни звучат целиком, если нет — фрагментами.',
+          failed: 'Плеер Spotify не загрузился (его может блокировать расширение браузера). Кнопка откроет альбом в Spotify.' },
+    en: { put: 'Put the record on', pause: 'Pause', resume: 'Resume', again: 'Play again', open: 'Open in Spotify',
+          hero: 'Play Greatest Hits', heroOn: 'Pause', heroResume: 'Resume',
+          vinyl: 'Put the record on', vinylOn: 'Pause or resume',
+          note: 'The sound comes from the official Spotify player: whole songs if you are signed in to Spotify, previews if not.',
+          failed: 'The Spotify player did not load (a browser extension may block it). The button opens the album in Spotify.' },
   };
   const p = () => P[lang];
-  const audio = new Audio();
-  audio.crossOrigin = 'anonymous';      // the previews allow it, so the bass can drive the visuals
-  audio.preload = 'none';
   const A = window.__kastaAudio = { playing: false, progress: 0, level: 0, r: -1, k: -1 };
-  let actx = null, gainN = null, analyser = null, bins = null, graphTried = false, albumDone = false, npClosed = false, fails = 0;
+  const np = $('#np');
+  let ctl = null, ctlP = null, spFailed = false, albumDone = false, npClosed = false;
+  let pos = 0, dur = 0, posAt = 0, endedUri = '', watchdog = 0, wantPlay = 0, readyTimer = 0;
+  let expectUri = '', startedUri = '', tries = 0, checkTimer = 0;
 
-  const ensureGraph = () => {
-    if (graphTried) { if (actx && actx.state === 'suspended') actx.resume(); return; }
-    graphTried = true;
-    try {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      actx = new AC();
-      const src = actx.createMediaElementSource(audio);
-      gainN = actx.createGain();
-      analyser = actx.createAnalyser();
-      analyser.fftSize = 256;
-      analyser.smoothingTimeConstant = 0.75;
-      src.connect(analyser); analyser.connect(gainN); gainN.connect(actx.destination);   // the meter hears the record before the fade
-      bins = new Uint8Array(analyser.frequencyBinCount);
-      document.documentElement.classList.add('has-analyser');
-    } catch (e) { actx = gainN = analyser = null; }
+  const loadSpotify = () => {
+    if (ctlP) return ctlP;
+    ctlP = new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('timeout')), 15000);
+      window.onSpotifyIframeApiReady = API => {
+        API.createController($('.js-sp'), { uri: relData(rel).tracks[0].uri, width: '100%', height: 80 }, c => {
+          clearTimeout(timer);
+          ctl = c;
+          c.addListener('playback_update', onUpdate);
+          // a freshly loaded track says "ready"; only then does play() stick, even after quick clicks
+          c.addListener('ready', () => { if (wantPlay) { wantPlay = 0; clearTimeout(readyTimer); c.play(); } });
+          c.addListener('playback_started', e => { startedUri = (e && e.data && e.data.playingURI) || startedUri; });
+          resolve(c);
+        });
+      };
+      const sc = document.createElement('script');
+      sc.src = 'https://open.spotify.com/embed/iframe-api/v1';
+      sc.async = true;
+      sc.onerror = () => { clearTimeout(timer); reject(new Error('blocked')); };
+      document.head.append(sc);
+    });
+    ctlP.catch(() => { spFailed = true; A.playing = false; A.r = -1; paintPlayer(); });
+    return ctlP;
   };
-  // the needle drops, then the sound comes up
-  const fadeIn = delay => {
-    if (!gainN) return;
-    const t0 = actx.currentTime;
-    gainN.gain.cancelScheduledValues(t0);
-    gainN.gain.setValueAtTime(0.0001, t0);
-    gainN.gain.setTargetAtTime(1, t0 + delay, 0.12);
-  };
+  // get the player ready a moment after the page settles, so the first press plays at once
+  addEventListener('load', () => setTimeout(() => (window.requestIdleCallback || setTimeout)(() => loadSpotify()), 2000));
 
-  const refreshed = {};
-  const refresh = async d => {
-    if (!d || refreshed[d.id]) return false;
-    refreshed[d.id] = true;
-    try {
-      const j = await fetch(`https://itunes.apple.com/lookup?id=${d.id}&entity=song&limit=200&country=us`).then(r => r.json());
-      const m = new Map(j.results.filter(x => x.previewUrl).map(x => [x.trackId, x.previewUrl]));
-      d.tracks.forEach(tr => { if (m.has(tr.id)) tr.src = m.get(tr.id); });
-      return true;
-    } catch (e) { return false; }
-  };
+  function onUpdate(e) {
+    const d = e.data || {};
+    // late frames from the track we just left must not move the needle or end the album
+    if (expectUri && d.playingURI && d.playingURI !== expectUri) return;
+    pos = (d.position || 0) / 1000; dur = (d.duration || 0) / 1000; posAt = performance.now();
+    if (dur > 0) clearTimeout(watchdog);
+    // the embed holds the last frame as "playing" when a track runs out: that is the end
+    if (dur > 0 && d.position >= d.duration - 80 && !d.isPaused) {
+      if (endedUri !== d.playingURI) { endedUri = d.playingURI; onEnded(); }
+      return;
+    }
+    const was = A.playing;
+    A.playing = !d.isPaused;
+    if (A.playing !== was) paintPlayer();
+    if (A.playing) startLevels();
+  }
+  function onEnded() {
+    const n = relData(A.r).tracks.length;
+    if (A.k + 1 < n) { playAt(A.r, A.k + 1); return; }
+    albumDone = true; A.playing = false; pos = 0;
+    if (ctl) ctl.pause();
+    paintPlayer();
+  }
 
-  function playAt(r, k, opts = {}) {
+  function playAt(r, k) {
     const d = relData(r);
     if (!d || !d.tracks[k]) return;
-    ensureGraph();
-    A.r = r; A.k = k; albumDone = false; npClosed = false;
-    audio.src = d.tracks[k].src;
-    fadeIn(opts.delay == null ? 0.05 : opts.delay);
-    const pr = audio.play();
-    if (pr) pr.catch(() => {});
-    paintPlayer(); mediaMeta();
+    if (spFailed) { window.open(d.url, '_blank', 'noopener'); return; }
+    A.r = r; A.k = k; albumDone = false; npClosed = false; endedUri = ''; pos = 0; dur = 0; posAt = performance.now();
+    A.playing = true;                       // the needle drops while Spotify buffers
+    paintPlayer(); startLevels();
+    const uri = d.tracks[k].uri;
+    const load = c => {
+      wantPlay = 1;
+      c.loadUri(uri);
+      clearTimeout(readyTimer);
+      readyTimer = setTimeout(() => { if (wantPlay) { wantPlay = 0; c.play(); } }, 1500);
+    };
+    // a load that lands while the previous track is still buffering can be dropped by the embed: try again
+    const check = c => {
+      clearTimeout(checkTimer);
+      checkTimer = setTimeout(() => {
+        if (expectUri !== uri || startedUri === uri) return;
+        if (++tries > 3) { A.playing = false; paintPlayer(); return; }
+        load(c); check(c);
+      }, 3500);
+    };
+    const go = c => { expectUri = uri; tries = 0; load(c); check(c); };
+    if (ctl) go(ctl); else loadSpotify().then(go).catch(() => {});
+    clearTimeout(watchdog);
+    watchdog = setTimeout(() => { if (A.r === r && A.k === k && startedUri !== uri) { A.playing = false; paintPlayer(); } }, 18000);
   }
-  const nextTrack = () => {
+  const nextTrack = () => { if (A.r >= 0) playAt(A.r, (A.k + 1) % relData(A.r).tracks.length); };
+  const toggleCurrent = () => {
     if (A.r < 0) return;
-    const n = relData(A.r).tracks.length;
-    playAt(A.r, (A.k + 1) % n);
+    if (albumDone || !ctl) { playAt(A.r, albumDone ? 0 : A.k); return; }
+    npClosed = false;
+    if (A.playing) ctl.pause(); else ctl.resume();
+    A.playing = !A.playing; posAt = performance.now();
+    paintPlayer(); if (A.playing) startLevels();
   };
-  const prevTrack = () => {
-    if (A.r < 0) return;
-    if (audio.currentTime > 3) { audio.currentTime = 0; return; }
-    const n = relData(A.r).tracks.length;
-    playAt(A.r, (A.k - 1 + n) % n);
-  };
-  const toggle = () => {
-    if (A.r !== rel || A.r < 0) { playAt(rel, 0, { delay: 0.5 }); return; }
-    if (audio.paused) {
-      if (albumDone) { playAt(rel, 0, { delay: 0.5 }); return; }
-      ensureGraph(); fadeIn(0.05); npClosed = false;
-      const pr = audio.play(); if (pr) pr.catch(() => {});
-    } else audio.pause();
-  };
+  const toggle = () => { if (A.r !== rel || A.r < 0) playAt(rel, 0); else toggleCurrent(); };
 
-  audio.addEventListener('play', () => { A.playing = true; fails = 0; paintPlayer(); startLevels(); });
-  audio.addEventListener('pause', () => { A.playing = false; paintPlayer(); });
-  audio.addEventListener('ended', () => {
-    const n = relData(A.r).tracks.length;
-    if (A.k + 1 < n) playAt(A.r, A.k + 1);
-    else { albumDone = true; A.playing = false; A.progress = 0; paintPlayer(); }
-  });
-  audio.addEventListener('error', async () => {
-    if (A.r < 0 || !audio.getAttribute('src')) return;
-    if (await refresh(relData(A.r))) { playAt(A.r, A.k); return; }
-    if (++fails < 3) nextTrack(); else { A.playing = false; paintPlayer(); }
-  });
-
-  // bass level and four bands for the little equalisers
-  const npEq = $('.np-eq'), npFill = $('.np-fill');
-  let lvRaf = 0, bassAvg = 0;
-  const band = (a, b) => { let v = 0; for (let i = a; i < b; i++) v += bins[i]; return v / ((b - a) * 255); };
+  // the turntable needs a smooth position between Spotify's once-a-second updates;
+  // the sound itself is closed inside Spotify's player, so the logo simply breathes while music plays
+  let lvRaf = 0;
   function startLevels() { if (!lvRaf) lvRaf = requestAnimationFrame(levels); }
-  function levels() {
-    A.progress = audio.duration ? audio.currentTime / audio.duration : 0;
-    npFill.style.transform = `scaleX(${A.progress.toFixed(4)})`;
-    if (analyser && !audio.paused) {
-      analyser.getByteFrequencyData(bins);
-      // kick detector: bass against its own running average, fast attack, slow release
-      const raw = band(1, 8);
-      bassAvg = bassAvg ? bassAvg + (raw - bassAvg) * 0.035 : raw;
-      const hit = Math.min(1, Math.max(0, (raw - bassAvg) * 11));
-      A.level = Math.max(hit, A.level * 0.9);
-      const bands = [band(1, 5), band(5, 14), band(14, 32), band(32, 64)];
-      const rowEq = $('.trk.is-current .trk-eq');
-      bands.forEach((v, i) => {
-        const s = (0.18 + Math.min(1, v * 1.25) * 0.82).toFixed(3);
-        npEq.style.setProperty(`--e${i}`, s);
-        if (rowEq) rowEq.style.setProperty(`--e${i}`, s);
-      });
-    } else A.level *= 0.88;
-    if (!audio.paused || A.level > 0.01) lvRaf = requestAnimationFrame(levels); else lvRaf = 0;
+  function levels(now) {
+    const cur = pos + (A.playing && dur ? (now - posAt) / 1000 : 0);
+    A.progress = dur ? Math.min(1, cur / dur) : 0;
+    const target = A.playing && !reduced ? 0.3 + 0.35 * (0.5 + 0.5 * Math.sin(now / 1000 * Math.PI)) : 0;
+    A.level += (target - A.level) * 0.05;
+    if (A.playing || A.level > 0.01) lvRaf = requestAnimationFrame(levels); else lvRaf = 0;
   }
 
   const fmt = sec => `${Math.floor(sec / 60)}:${String(Math.round(sec % 60)).padStart(2, '0')}`;
@@ -343,7 +344,7 @@
   function renderTracks() {
     const d = relData(rel);
     if (!d) return;
-    $('.js-r-apple').href = d.apple;
+    $('.js-r-full').href = d.url;
     trackList.replaceChildren(...d.tracks.map((tr, k) => {
       const li = document.createElement('li');
       const b = document.createElement('button');
@@ -364,20 +365,19 @@
 
   const playBtn = $('.js-play'), playLbl = $('.js-play-label');
   const heroBtn = $('.js-hero-play'), heroLbl = $('.js-hero-play-label');
-  const np = $('#np'), npToggle = $('.js-np-toggle');
-  const vinylBox = $('#vinyl');
-  let musicInView = false;
+  const vinylBox = $('#vinyl'), note = $('.music-note');
   function paintPlayer() {
     const onHere = A.r === rel && A.r >= 0;
     const playingHere = onHere && A.playing;
-    playLbl.textContent = playingHere ? p().pause : onHere && albumDone ? p().again : onHere && audio.currentTime > 0 ? p().resume : p().put;
+    playLbl.textContent = spFailed ? p().open : playingHere ? p().pause : onHere && albumDone ? p().again : onHere && pos > 0 ? p().resume : p().put;
     playBtn.setAttribute('aria-pressed', String(playingHere));
     playBtn.classList.toggle('is-on', playingHere);
     const gh = A.r === 1;
-    heroLbl.textContent = gh && A.playing ? p().heroOn : gh && audio.currentTime > 0 && !albumDone ? p().heroResume : p().hero;
+    heroLbl.textContent = gh && A.playing ? p().heroOn : gh && pos > 0 && !albumDone ? p().heroResume : p().hero;
     heroBtn.setAttribute('aria-pressed', String(gh && A.playing));
     heroBtn.classList.toggle('is-on', gh && A.playing);
     vinylBox.title = playingHere ? p().vinylOn : p().vinyl;
+    note.textContent = spFailed ? p().failed : p().note;
     $$('.trk', trackList).forEach(b => {
       const cur = onHere && +b.dataset.k === A.k;
       b.classList.toggle('is-current', cur);
@@ -389,61 +389,26 @@
       const top = curRow.offsetTop - trackList.offsetTop, h = curRow.offsetHeight;
       if (top < trackList.scrollTop || top + h > trackList.scrollTop + trackList.clientHeight) trackList.scrollTo({ top: top - h, behavior: reduced ? 'auto' : 'smooth' });
     }
-    // the bar that follows you down the page
-    if (A.r >= 0) {
-      const d = relData(A.r), tr = d.tracks[A.k], R = RELEASES[A.r];
-      $('.np-title', np).textContent = lang === 'en' ? tr.en : tr.ru;
-      $('.np-by', np).textContent = `${lang === 'en' ? tr.by[1] : tr.by[0]} · ${R[lang].name}`;
-      const cover = $('.np-cover', np);
-      if (!cover.src.endsWith(R.img)) cover.src = R.img;
-      npToggle.setAttribute('aria-label', A.playing ? p().pause : p().play);
-      npToggle.classList.toggle('is-on', A.playing);
-    }
+    // Spotify's own player rides along at the bottom of the screen while the music is on
+    np.classList.toggle('is-off', A.r < 0 || npClosed);
     np.classList.toggle('is-playing', A.playing);
-    np.hidden = A.r < 0 || npClosed;
-    np.classList.toggle('is-away', musicInView);
     document.documentElement.classList.toggle('is-playing', A.playing);
-    if ('mediaSession' in navigator) navigator.mediaSession.playbackState = A.r < 0 ? 'none' : A.playing ? 'playing' : 'paused';
   }
-  function mediaMeta() {
-    if (!('mediaSession' in navigator) || A.r < 0 || typeof MediaMetadata === 'undefined') return;
-    const d = relData(A.r), tr = d.tracks[A.k], R = RELEASES[A.r];
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: lang === 'en' ? tr.en : tr.ru,
-      artist: lang === 'en' ? tr.by[1] : tr.by[0],
-      album: R[lang].name,
-      artwork: [{ src: new URL(R.img, location.href).href, sizes: '1024x1024', type: 'image/jpeg' }],
-    });
-  }
-  if ('mediaSession' in navigator) {
-    const ms = navigator.mediaSession;
-    try {
-      ms.setActionHandler('play', () => { if (audio.paused) toggleFrom(A.r); });
-      ms.setActionHandler('pause', () => audio.pause());
-      ms.setActionHandler('nexttrack', nextTrack);
-      ms.setActionHandler('previoustrack', prevTrack);
-    } catch (e) {}
-  }
-  const toggleFrom = r => {
-    if (r < 0) return;
-    if (audio.paused) { ensureGraph(); fadeIn(0.05); npClosed = false; const pr = audio.play(); if (pr) pr.catch(() => {}); }
-    else audio.pause();
-  };
 
   playBtn.addEventListener('click', toggle);
   vinylBox.addEventListener('click', toggle);
   heroBtn.addEventListener('click', () => {
-    if (A.r === 1 && !albumDone && (A.playing || audio.currentTime > 0)) { toggleFrom(1); return; }
+    if (A.r === 1 && !albumDone && (A.playing || pos > 0)) { toggleCurrent(); return; }
     if (rel !== 1) setRelease(1);
-    playAt(1, 0, { delay: 0.1 });
+    playAt(1, 0);
   });
-  npToggle.addEventListener('click', () => { if (A.r >= 0 && albumDone) playAt(A.r, 0); else toggleFrom(A.r); });
+  // over the music section the bar moves under the turntable, so it never covers the buttons
+  new IntersectionObserver(([e]) => np.classList.toggle('is-left', e.isIntersecting), { threshold: 0.2 }).observe($('#music'));
   $('.js-np-next').addEventListener('click', nextTrack);
-  $('.js-np-close').addEventListener('click', () => { audio.pause(); npClosed = true; paintPlayer(); });
+  $('.js-np-close').addEventListener('click', () => { if (ctl) ctl.pause(); A.playing = false; npClosed = true; paintPlayer(); });
   addEventListener('keydown', e => {
-    if (e.key === ' ' && A.r >= 0 && document.activeElement === document.body) { e.preventDefault(); toggleFrom(A.r); }
+    if (e.key === ' ' && A.r >= 0 && document.activeElement === document.body) { e.preventDefault(); toggleCurrent(); }
   });
-  new IntersectionObserver(([e]) => { musicInView = e.isIntersecting; np.classList.toggle('is-away', musicInView); }, { threshold: 0.3 }).observe($('#music'));
   renderTracks();
 
   /* ---------- video: names passing the held square ---------- */
