@@ -614,27 +614,67 @@ ol, ul { list-style: none; }
 .js-play.is-on:hover { background: var(--gold-hi); }
 .music-note { margin-top: 14px; font-size: var(--t-xs); color: var(--muted); }
 
-/* now playing: Spotify's own player rides along at the bottom of the screen */
+/* now playing: our own bar; the sound underneath comes from Spotify's player */
 .np {
   position: fixed; z-index: 45; right: var(--m); bottom: max(16px, env(safe-area-inset-bottom));
   width: min(460px, calc(100vw - var(--m) * 2));
-  display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 6px;
-  padding: 8px; border-radius: 20px; background: #151515; color: var(--ink);
+  display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; column-gap: 12px; row-gap: 8px;
+  padding: 10px 10px 10px 10px; border-radius: 20px; background: #151515; color: var(--ink);
   box-shadow: 0 18px 50px rgba(0, 0, 0, .55); /* плеер плавает над страницей */
   transition: opacity .3s var(--ease-out), transform .35s var(--ease-out);
 }
-/* kept rendered while off, so the Spotify player can load before the first press */
-.np.is-off { opacity: 0; transform: translateY(140%); pointer-events: none; }
+/* off, it only fades: it has to stay on screen, or the browser freezes the Spotify player inside it */
+.np.is-off { opacity: 0; transform: translateY(16px); pointer-events: none; }
 @media (min-width: 901px) {
   .np { transition: opacity .3s var(--ease-out), transform .35s var(--ease-out), right .45s var(--ease-out); }
   .np.is-left { right: calc(100% - var(--m) - min(460px, calc(100vw - var(--m) * 2))); }
 }
-.np-sp { min-width: 0; height: 80px; border-radius: 12px; overflow: hidden; background: #222; }
-.np-sp iframe { display: block; width: 100%; height: 80px; border: 0; }
+.np-cover { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; background: #222; }
+.np-info { min-width: 0; }
+.np-title, .np-sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np-title { font-weight: 500; }
+.np-title small { color: var(--muted); font-size: var(--t-xs); font-weight: 400; }
+.np-sub { font-size: var(--t-xs); color: var(--muted); }
+.np-btns { display: flex; align-items: center; gap: 2px; }
 .np-btn { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; transition: background-color .2s, transform .15s; }
 .np-btn:hover { background: #262626; }
 .np-btn:active { transform: scale(.92); }
 .np-btn .ic { width: 18px; height: 18px; }
+.np-main { width: 44px; height: 44px; background: var(--ink); color: #000; }
+.np-main:hover { background: var(--teal-hi); }
+.np-main.is-on { background: var(--gold); }
+.np-main.is-on:hover { background: var(--gold-hi); }
+.np-time { grid-column: 1 / -1; display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 10px; }
+.np-t { font-size: var(--t-xs); color: var(--muted); font-variant-numeric: tabular-nums; min-width: 4ch; }
+.np-t.js-np-pos { text-align: right; }
+.np-src { font-size: var(--t-xs); color: var(--muted); white-space: nowrap; transition: color .2s; }
+.np-src:hover { color: var(--teal-hi); }
+.np-src.is-preview { color: var(--teal-hi); }
+/* the position slider: gold up to where the needle is */
+.np-seek { --p: 0%; -webkit-appearance: none; appearance: none; width: 100%; height: 20px; background: none; cursor: pointer; margin: 0; }
+.np-seek::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--gold) var(--p), #333 var(--p)); }
+.np-seek::-moz-range-track { height: 4px; border-radius: 2px; background: #333; }
+.np-seek::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--gold); }
+.np-seek::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -4px; border-radius: 50%; background: var(--ink); border: 0; transform: scale(0); transition: transform .15s var(--ease-out); }
+.np-seek::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--ink); border: 0; transform: scale(0); transition: transform .15s var(--ease-out); }
+.np-seek:hover::-webkit-slider-thumb, .np-seek:focus-visible::-webkit-slider-thumb { transform: scale(1); }
+.np-seek:hover::-moz-range-thumb, .np-seek:focus-visible::-moz-range-thumb { transform: scale(1); }
+@media (hover: none) {
+  .np-seek::-webkit-slider-thumb { transform: scale(1); }
+  .np-seek::-moz-range-thumb { transform: scale(1); }
+}
+.np-seek:focus-visible { outline: 2px solid var(--teal-hi); outline-offset: 2px; border-radius: 4px; }
+/* Spotify's player: invisible above the bar, shown only when the browser insists on a tap inside it */
+.np-engine {
+  position: absolute; left: 0; right: 0; bottom: calc(100% + 10px);
+  padding: 10px; border-radius: 20px; background: #151515; box-shadow: 0 18px 50px rgba(0, 0, 0, .55);
+  opacity: 0; pointer-events: none; transform: translateY(8px);
+  transition: opacity .3s var(--ease-out), transform .3s var(--ease-out);
+}
+.np.is-reveal .np-engine { opacity: 1; pointer-events: auto; transform: none; }
+.np-engine-hint { font-size: var(--t-xs); color: var(--muted); margin: 2px 4px 10px; }
+.np-sp { min-width: 0; height: 80px; border-radius: 12px; overflow: hidden; background: #222; }
+.np-sp iframe { display: block; width: 100%; height: 80px; border: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   :root:not(.has-analyser) .is-playing .trk-eq i, :root:not(.has-analyser) .np.is-playing .np-eq i { animation: none; }
@@ -643,6 +683,8 @@ ol, ul { list-style: none; }
   .hero-acts { flex-direction: column; align-items: stretch; }
   .hero-acts .btn { width: 100%; }
   .tracks { max-height: 300px; }
-  .np { left: var(--m); right: var(--m); width: auto; gap: 2px; padding: 6px; }
+  .np { left: var(--m); right: var(--m); width: auto; column-gap: 10px; padding: 8px; grid-template-columns: 44px minmax(0, 1fr) auto; }
+  .np-cover { width: 44px; height: 44px; }
   .np-btn { width: 36px; height: 36px; }
+  .np-main { width: 40px; height: 40px; }
 }

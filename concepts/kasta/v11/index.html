@@ -150,7 +150,7 @@
         <a href="https://music.youtube.com/channel/UC6dVEXOzTCaou9DXVYHOtDg" target="_blank" rel="noopener">YouTube Music</a>
         <a href="https://kasta.world/releases" data-en="All releases">Все релизы</a>
       </p>
-      <p class="music-note">Звук играет официальный плеер Spotify: если вы вошли в&nbsp;Spotify, песни звучат целиком, если нет — фрагментами.</p>
+      <p class="music-note">Музыка идёт через Spotify: если вы вошли в&nbsp;Spotify в&nbsp;этом браузере, песни звучат целиком, если нет — короткими фрагментами.</p>
     </div>
   </div>
 </section>
@@ -295,10 +295,28 @@
   </div>
 </footer>
 
-<div class="np is-off" id="np" role="region" aria-label="Сейчас играет" data-en-aria-label="Now playing">
-  <div class="np-sp"><div class="js-sp"></div></div>
-  <button class="np-btn js-np-next" type="button" aria-label="Следующий трек" data-en-aria-label="Next track"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5v15l10-7.5zM16.5 4.5H20v15h-3.5z"/></svg></button>
-  <button class="np-btn js-np-close" type="button" aria-label="Выключить музыку" data-en-aria-label="Stop the music"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 4.3 12 9.9l5.6-5.6 2.1 2.1-5.6 5.6 5.6 5.6-2.1 2.1-5.6-5.6-5.6 5.6-2.1-2.1 5.6-5.6-5.6-5.6z"/></svg></button>
+<div class="np is-off" id="np" role="region" aria-label="Сейчас играет" data-en-aria-label="Now playing" inert>
+  <!-- the sound: Spotify's player, kept invisible behind our own controls; it shows itself only if the browser wants a tap inside it -->
+  <div class="np-engine" inert>
+    <p class="np-engine-hint" data-en="The browser did not let the music start by itself. Press ▶ in the Spotify player once, and the turntable takes over again.">Браузер не дал музыке включиться самой. Нажмите&nbsp;▶ в&nbsp;плеере Spotify один раз, дальше всё снова через пластинку.</p>
+    <div class="np-sp"><div class="js-sp"></div></div>
+  </div>
+  <img class="np-cover js-np-cover" src="assets/img/greatest-sq.jpg" alt="" width="48" height="48">
+  <div class="np-info">
+    <p class="np-title js-np-title"></p>
+    <p class="np-sub js-np-album"></p>
+  </div>
+  <div class="np-btns">
+    <button class="np-btn np-main js-np-toggle" type="button" aria-label="Пауза" aria-pressed="false"><svg class="ic ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg><svg class="ic ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg></button>
+    <button class="np-btn js-np-next" type="button" aria-label="Следующий трек" data-en-aria-label="Next track"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5v15l10-7.5zM16.5 4.5H20v15h-3.5z"/></svg></button>
+    <button class="np-btn js-np-close" type="button" aria-label="Выключить музыку" data-en-aria-label="Stop the music"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 4.3 12 9.9l5.6-5.6 2.1 2.1-5.6 5.6 5.6 5.6-2.1 2.1-5.6-5.6-5.6 5.6-2.1-2.1 5.6-5.6-5.6-5.6z"/></svg></button>
+  </div>
+  <div class="np-time">
+    <span class="np-t js-np-pos">0:00</span>
+    <input class="np-seek js-np-seek" type="range" min="0" max="30" step="0.5" value="0" aria-label="Место в треке" data-en-aria-label="Position in the track">
+    <span class="np-t js-np-dur">0:00</span>
+    <a class="np-src js-np-src" href="https://open.spotify.com/artist/5I37oVgAnT7OGiqKJSMVRH" target="_blank" rel="noopener">Spotify <span aria-hidden="true">↗</span></a>
+  </div>
 </div>
 
 <dialog class="player" id="player" aria-label="Видео" data-en-aria-label="Video">
