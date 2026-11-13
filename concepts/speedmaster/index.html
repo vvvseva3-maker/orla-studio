@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-PT">
+<html lang="pt-PT" data-root="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,7 +7,7 @@
 <title>Speed Master · Conceito de site</title>
 <meta name="description" content="Conceito de site para a Speed Master, stand de motas novas e usadas em São Domingos de Rana, Cascais. Não é o site oficial.">
 <meta property="og:title" content="Speed Master · Conceito de site">
-<meta property="og:description" content="Motas novas e usadas em São Domingos de Rana, Cascais. Proposta de site da Orla, não é o site oficial.">
+<meta property="og:description" content="Motas usadas em São Domingos de Rana, Cascais. Proposta de site da Orla, não é o site oficial.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://vvvseva3-maker.github.io/orla-studio/concepts/speedmaster/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -16,726 +16,69 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-<style>
-:root{
-  color-scheme: light;
-  --bg:#f5f6f6; --surface:#e7eaea; --surface-2:#dadede; --ink:#121314; --muted:#535a5e;
-  --yellow:#ffe522; --night:#121314; --night-2:#1d1f21; --on-night:#f2f3f3; --on-night-muted:#a9b0b4;
-  --font:'Epilogue', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --step-small:clamp(.8125rem,.79rem + .1vw,.875rem);
-  --step-body:clamp(1.0625rem,1rem + .25vw,1.1875rem);
-  --step-lead:clamp(1.25rem,1.1rem + .7vw,1.625rem);
-  --step-head:clamp(2.5rem,1.2rem + 5vw,5.5rem);
-  --m:clamp(16px,2.2vw,32px); --gap:clamp(16px,2vw,32px); --section:clamp(112px,12vw,200px);
-  --ease-out:cubic-bezier(.22,1,.36,1); --ease-expo:cubic-bezier(.16,1,.3,1); --ease-soft:cubic-bezier(.33,1,.68,1);
-  --t-press:140ms; --t-hover:180ms; --t-ui:240ms;
-  --gut-l:max(var(--m), env(safe-area-inset-left,0px)); --gut-r:max(var(--m), env(safe-area-inset-right,0px));
-}
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:84px}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--step-body)/1.5 var(--font);-webkit-font-smoothing:antialiased;font-kerning:normal;overflow-x:clip}
-h1,h2,h3,p,figure,dl,dd,ul,ol{margin:0}
-ul[class],ol[class]{padding:0;list-style:none}
-img,video,canvas,svg{display:block;max-width:100%}
-a{color:inherit}
-button,input,select,textarea{font:inherit;color:inherit}
-button{background:none;border:0;padding:0;cursor:pointer}
-h1,h2,h3{font-weight:900;letter-spacing:-.035em;line-height:.95;text-wrap:balance}
-p{text-wrap:pretty}
-::selection{background:var(--yellow);color:var(--ink)}
-:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
-.night :focus-visible,.foot :focus-visible{outline-color:var(--yellow)}
-[hidden]{display:none!important}
-.m-br{display:none}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.wrap{padding-left:var(--gut-l);padding-right:var(--gut-r)}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
-.nums{font-variant-numeric:tabular-nums}
-.muted{color:var(--muted)}
-
-/* buttons: square, flat, one shape for the page */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:52px;padding:0 1.4em;background:var(--ink);color:var(--yellow);font-weight:500;text-decoration:none;transition:transform var(--t-press) var(--ease-out),background-color var(--t-hover) ease,color var(--t-hover) ease}
-.btn:active{transform:scale(.97)}
-.btn.alt{background:var(--surface);color:var(--ink)}
-.night .btn{background:var(--yellow);color:var(--ink)}
-.link{text-decoration:underline;text-decoration-thickness:.07em;text-underline-offset:.22em;text-decoration-color:color-mix(in srgb,currentColor 35%,transparent);transition:text-decoration-color var(--t-hover) ease}
-@media (hover:hover) and (pointer:fine){
-  .btn:hover{background:#2b2e30}
-  .btn.alt:hover{background:var(--surface-2)}
-  .night .btn:hover{background:#fff27a}
-  .link:hover{text-decoration-color:currentColor}
-}
-
-/* ribbon */
-.rib{background:var(--night);color:var(--on-night);font-size:var(--step-small);line-height:1.4;padding-block:10px}
-.rib b{color:var(--yellow);font-weight:500;margin-right:.5em}
-
-/* header */
-.bar{position:sticky;top:0;z-index:30;background:var(--yellow);transition:background-color var(--t-ui) ease}
-.bar.is-solid{background:var(--bg)}
-.bar .wrap{display:flex;align-items:center;gap:var(--gap);min-height:68px}
-.mark{font-weight:900;letter-spacing:-.04em;font-size:1.25rem;text-decoration:none;margin-right:auto;white-space:nowrap}
-.nav{display:flex;gap:clamp(14px,2vw,28px);font-size:.98rem}
-.nav a{text-decoration:none;padding-block:8px}
-.lang{display:flex}
-.lang button{min-width:44px;min-height:40px;font-weight:500;font-size:.9rem;color:var(--muted)}
-.lang button[aria-pressed="true"]{color:var(--ink);text-decoration:underline;text-underline-offset:.3em}
-.bar .btn{min-height:44px;padding:0 1.1em}
-@media (max-width:860px){ .nav{display:none} .bar .btn{display:none} }
-
-/* hero */
-.hero{position:relative;background:var(--yellow);min-height:calc(100svh - 68px);display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
-.hero-top{grid-row:1;padding-top:clamp(20px,3vw,40px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;position:relative;z-index:3}
-.hero-lede{font-size:var(--step-lead);line-height:1.3;max-width:30ch;font-weight:500}
-.hero-acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
-.hero-stage{grid-row:2 / 4;grid-column:1;position:relative;z-index:2;min-height:240px}
-.hero-gl{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .9s var(--ease-out);touch-action:pan-y;cursor:grab}
-.hero-gl:active{cursor:grabbing}
-.hero.is-3d .hero-gl{opacity:1}
-.monument{grid-row:3;grid-column:1;position:relative;z-index:1;padding:0 var(--gut-r) 0 var(--gut-l);margin:0;font-size:clamp(3.5rem,12.4vw,17rem);line-height:.84;letter-spacing:-.045em;white-space:nowrap;text-wrap:nowrap;padding-bottom:clamp(10px,1.6vw,24px)}
-.monument .m-br{display:none}
-@media (max-width:700px){
-  .monument{white-space:normal;font-size:23vw;line-height:.86}
-  .m-br{display:inline}
-  .hero-top{flex-direction:column;align-items:flex-start}
-  .hero-stage{min-height:200px}
-}
-
-/* sections */
-.sec{padding-block:calc(var(--section)/2)}
-.sec-head{font-size:var(--step-head)}
-
-/* stock */
-.stock-word{grid-column:1 / 8;font-size:clamp(5rem,19.5vw,22rem);line-height:.8;letter-spacing:-.06em;margin-left:-.04em}
-.stock-ask{grid-column:8 / 13;align-self:end;display:grid;gap:18px;padding-bottom:6px}
-.ask-q{font-size:var(--step-lead);font-weight:500;line-height:1.2}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{min-height:44px;padding:0 16px;background:var(--surface);font-weight:500;font-size:.98rem;transition:background-color var(--t-hover) ease,color var(--t-hover) ease,transform var(--t-press) var(--ease-out)}
-.chip:active{transform:scale(.97)}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--yellow)}
-@media (hover:hover) and (pointer:fine){ .chip:not([aria-pressed="true"]):hover{background:var(--surface-2)} }
-.readout{font-size:var(--step-body);line-height:1.45;min-height:2.9em}
-.readout b{font-weight:900}
-.stock-body{margin-top:clamp(36px,4vw,64px);align-items:start}
-.bars{grid-column:1 / 8;display:grid;gap:6px}
-.cat{background:var(--surface)}
-.cat summary{list-style:none;display:flex;align-items:center;gap:12px;min-height:58px;padding:0 18px;cursor:pointer;font-weight:500}
-.cat summary::-webkit-details-marker{display:none}
-.cat summary .n{color:var(--muted);font-weight:400}
-.cat summary::after{content:"+";margin-left:auto;font-size:1.5rem;font-weight:400;line-height:1;transition:transform var(--t-ui) var(--ease-out)}
-.cat[open] summary::after{transform:rotate(45deg)}
-.items{padding:2px 6px 10px}
-.item{display:grid;grid-template-columns:1fr auto;gap:2px 16px;width:100%;text-align:left;padding:12px 12px;transition:background-color var(--t-hover) ease}
-.item .nm{font-weight:500}
-.item .sub{grid-column:1;color:var(--muted);font-size:.95rem}
-.item .pr{grid-row:1 / 3;grid-column:2;align-self:center;font-weight:500;font-variant-numeric:tabular-nums}
-.item[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.item[aria-pressed="true"] .sub{color:var(--on-night-muted)}
-@media (hover:hover) and (pointer:fine){ .item:not([aria-pressed="true"]):hover{background:var(--surface-2)} }
-.stock-note{margin-top:14px;font-size:var(--step-small);color:var(--muted);max-width:60ch}
-.empty{background:var(--surface);padding:22px 18px}
-.detail{grid-column:8 / 13;position:sticky;top:96px;background:var(--night);color:var(--on-night);padding:clamp(22px,2.4vw,36px);display:grid;gap:18px}
-.d-kind{color:var(--on-night-muted);font-size:.98rem}
-.d-name{font-size:clamp(2rem,1.2rem + 2.2vw,3.4rem);line-height:.95}
-.odo{display:flex;align-items:baseline;gap:.35em;font-weight:900;font-size:clamp(2.6rem,1.6rem + 3vw,4.6rem);letter-spacing:-.03em;line-height:1;color:var(--yellow)}
-.odo small{font-size:.32em;font-weight:500;letter-spacing:0;color:var(--on-night)}
-.roll{display:inline-flex;font-variant-numeric:tabular-nums}
-.roll .col{display:inline-block;height:1.2em;overflow:hidden}
-.roll .strip{display:flex;flex-direction:column;transform:translateY(calc(var(--d) * -1.2em));transition:transform 1s var(--ease-expo) calc(var(--i) * 60ms)}
-.roll .strip span{height:1.2em;line-height:1.2em}
-.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px}
-.specs dt{color:var(--on-night-muted);font-size:.9rem}
-.specs dd{font-weight:500}
-.price{font-size:clamp(1.8rem,1.3rem + 1.4vw,2.6rem);font-weight:900;letter-spacing:-.02em;line-height:1}
-.fin{color:var(--on-night-muted);font-size:.95rem;line-height:1.45}
-.fin b{color:var(--on-night);font-weight:500}
-.d-acts{display:flex;flex-wrap:wrap;gap:8px}
-.detail .btn{background:var(--yellow);color:var(--ink)}
-.detail .btn.alt{background:var(--night-2);color:var(--on-night)}
-@media (hover:hover) and (pointer:fine){ .detail .btn:hover{background:#fff27a} .detail .btn.alt:hover{background:#2a2d30} }
-@media (max-width:900px){
-  .stock-word,.stock-ask,.bars,.detail{grid-column:1 / -1}
-  .stock-word{font-size:30vw}
-  .stock-ask{margin-top:26px}
-  .detail{position:static;margin-top:20px}
-}
-
-/* how to buy: one verb at a time */
-.verbs{position:relative}
-.panel{position:relative;height:88svh;min-height:520px;overflow:hidden;background:var(--night);color:#fff}
-.panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.panel:has(img)::after{content:"";position:absolute;inset:0;background:rgba(10,11,12,.3)}
-.panel .verb{position:sticky;top:50%;transform:translateY(-50%);text-align:center;font-size:clamp(4rem,12.4vw,15rem);letter-spacing:-.05em;line-height:.9;color:var(--yellow);margin:0;padding-inline:var(--m);z-index:1}
-.panel .cap{z-index:1;position:absolute;left:0;bottom:0;max-width:min(560px,100%);padding:22px var(--gut-r) 26px var(--gut-l);background:rgba(10,11,12,.72);font-size:var(--step-lead);line-height:1.3;color:#fff}
-.panel.last{background:var(--yellow);color:var(--ink)}
-.panel.last .verb{color:var(--ink)}
-.panel.last .cap{background:var(--ink);color:var(--on-night)}
-.panel .credit{position:absolute;right:var(--gut-r);bottom:10px;font-size:13px;color:rgba(255,255,255,.75)}
-@media (max-width:700px){ .panel .verb{font-size:15vw} .panel .cap{font-size:1.06rem;max-width:100%} .panel.last{background:var(--yellow);color:var(--ink)}
-.panel.last .verb{color:var(--ink)}
-.panel.last .cap{background:var(--ink);color:var(--on-night)}
-.panel .credit{display:none} }
-
-/* brands + workshop index */
-.index-head{grid-column:1 / 10;font-size:var(--step-head)}
-.idx{margin-top:clamp(40px,6vw,96px);row-gap:40px}
-.idx .col{grid-column:span 3}
-.idx h3{font-size:1.06rem;letter-spacing:0;font-weight:500;line-height:1.25;margin-bottom:1.25em}
-.idx li{color:var(--muted);line-height:1.5}
-.idx .card{grid-column:10 / 13;background:var(--yellow);padding:clamp(20px,2vw,30px);display:grid;gap:14px;align-content:start}
-.idx .card .big{font-size:clamp(1.6rem,1.1rem + 1.2vw,2.3rem);font-weight:900;letter-spacing:-.03em;line-height:1}
-@media (max-width:900px){ .idx .col{grid-column:span 6} .idx .card{grid-column:1 / -1} .index-head{grid-column:1/-1} }
-@media (max-width:520px){ .idx .col{grid-column:1 / -1} }
-
-/* faq: large questions, answers beside */
-.faq .row{padding-block:clamp(28px,3vw,44px)}
-.faq .q{grid-column:1 / 7;font-size:clamp(1.6rem,1rem + 1.6vw,2.5rem);font-weight:500;letter-spacing:-.02em;line-height:1.1}
-.faq .a{grid-column:8 / 13;max-width:44ch}
-.faq .q.head{color:var(--muted);font-weight:900}
-@media (max-width:800px){ .faq .q,.faq .a{grid-column:1 / -1} .faq .a{margin-top:12px} }
-
-/* visit + request */
-.night{background:var(--night);color:var(--on-night)}
-.visit{padding-block:calc(var(--section)/2)}
-.visit-head{grid-column:1 / 8;font-size:var(--step-head)}
-.status{grid-column:8 / 13;align-self:end;font-size:var(--step-lead);font-weight:500}
-.status .dot{display:inline-block;width:.55em;height:.55em;margin-right:.45em;background:var(--yellow);vertical-align:.08em}
-.status.closed .dot{background:var(--on-night-muted)}
-.visit-body{margin-top:clamp(40px,5vw,80px);row-gap:48px}
-.places{grid-column:1 / 6;display:grid;gap:34px;align-content:start}
-.place h3{font-size:1.06rem;letter-spacing:0;font-weight:500;line-height:1.3;color:var(--on-night-muted)}
-.place p{margin-top:6px}
-.phone{font-size:clamp(2rem,1.2rem + 2.6vw,3.6rem);font-weight:900;letter-spacing:-.03em;line-height:1;text-decoration:none;color:var(--yellow);display:inline-block}
-.hours{display:grid;grid-template-columns:auto 1fr;gap:6px 22px;margin-top:8px}
-.hours .today{color:var(--yellow);font-weight:500}
-.form{grid-column:7 / 13;background:var(--night-2);padding:clamp(22px,2.6vw,40px);display:grid;gap:18px;align-content:start}
-.form h3{font-size:clamp(1.6rem,1.1rem + 1.4vw,2.4rem)}
-.form .chips .chip{background:#2a2d30;color:var(--on-night)}
-.form .chips .chip[aria-pressed="true"]{background:var(--yellow);color:var(--ink)}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-label{display:grid;gap:6px;font-size:.95rem;color:var(--on-night-muted)}
-input,textarea{width:100%;background:transparent;border:0;border-bottom:2px solid #3a3e41;color:var(--on-night);padding:10px 0;font-size:1.06rem;border-radius:0}
-input:focus,textarea:focus{outline:none;border-bottom-color:var(--yellow)}
-textarea{min-height:92px;resize:vertical}
-.result{background:var(--bg);color:var(--ink);padding:18px;display:grid;gap:12px}
-.result pre{margin:0;white-space:pre-wrap;font:inherit;font-size:.98rem}
-.result .note{font-size:var(--step-small);color:var(--muted)}
-.result .acts{display:flex;flex-wrap:wrap;gap:8px}
-.result .btn{background:var(--ink);color:var(--yellow)}
-@media (max-width:900px){ .visit-head,.status,.places,.form{grid-column:1 / -1} .status{margin-top:18px} }
-@media (max-width:520px){ .f-row{grid-template-columns:1fr} }
-
-/* footer */
-.foot{background:var(--night);color:var(--on-night);min-height:90svh;display:grid;grid-template-rows:auto 1fr auto;padding-top:clamp(48px,6vw,96px)}
-.foot .cols .c{grid-column:span 3;display:grid;gap:4px;align-content:start;font-size:.98rem}
-.foot .cols .c b{font-weight:500;margin-bottom:6px}
-.foot .cols .c span,.foot .cols .c a{color:var(--on-night-muted)}
-.foot-word{font-weight:900;color:var(--yellow);font-size:clamp(3rem,12.4vw,17rem);line-height:.8;letter-spacing:-.045em;white-space:nowrap;padding:0 var(--gut-r) 0 var(--gut-l);margin-top:48px}
-.legal{display:flex;flex-wrap:wrap;gap:8px 28px;padding-block:18px 28px;font-size:var(--step-small);color:var(--on-night-muted)}
-@media (max-width:800px){ .foot .cols .c{grid-column:span 6;margin-bottom:28px} .foot-word{font-size:23vw;white-space:normal} }
-
-/* phone action bar */
-.dock{display:none}
-@media (max-width:700px){
-  .dock{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(3,1fr);background:var(--ink);padding-bottom:env(safe-area-inset-bottom,0px);transition:transform var(--t-ui) var(--ease-out)}
-  .dock a{display:flex;align-items:center;justify-content:center;min-height:56px;color:var(--on-night);text-decoration:none;font-weight:500}
-  .dock a:first-child{background:var(--yellow);color:var(--ink)}
-  .dock.is-off{transform:translateY(110%)}
-  body{padding-bottom:56px}
-}
-
-/* entrances: only with JS, only without reduced motion */
-@media (prefers-reduced-motion:no-preference){
-  .js [data-rv]>*{opacity:0;transform:translateY(24px)}
-  .js [data-rv].in>*{opacity:1;transform:none;transition:opacity .7s var(--ease-out),transform .9s var(--ease-expo);transition-delay:calc(var(--i,0) * 75ms)}
-  .js .monument{transform:translateY(18%);opacity:0}
-  .js .monument.in{transform:none;opacity:1;transition:transform 1.1s var(--ease-expo),opacity .6s ease}
-}
-@media (prefers-reduced-motion:reduce){
-  *{scroll-behavior:auto!important}
-  .roll .strip{transition:none}
-}
-</style>
 </head>
-<body>
-<div class="rib" role="note"><div class="wrap"><b data-en="Concept">Conceito</b><span data-en="A website proposal for Speed Master by Orla web studio. Not the official site: the stock and prices are examples.">Proposta de site para a Speed Master, feita pelo estúdio Orla. Não é o site oficial: o stock e os preços são exemplos.</span></div></div>
-
-<header class="bar" id="bar">
-  <div class="wrap">
-    <a class="mark" href="#top">Speed Master</a>
-    <nav class="nav" aria-label="Secções" data-en-aria-label="Sections">
-      <a href="#stock">Stock</a>
-      <a href="#comprar" data-en="How to buy">Como comprar</a>
-      <a href="#oficina" data-en="Workshop">Oficina</a>
-      <a href="#contactos" data-en="Contact">Contactos</a>
-    </nav>
-    <div class="lang" role="group" aria-label="Idioma" data-en-aria-label="Language">
-      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
-      <button type="button" data-lang="en" aria-pressed="false">EN</button>
-    </div>
-    <a class="btn" href="#stock" data-en="See stock">Ver stock</a>
-  </div>
-</header>
-
+<body data-page="home">
 <main id="main">
 <section class="hero" id="top">
   <div class="hero-top wrap">
-    <p class="hero-lede" data-en="New and used motorcycles in São Domingos de Rana, Cascais. Official dealer for ten brands, with our own workshop.">Motas novas e usadas em São Domingos de Rana, Cascais. Representante oficial de dez marcas, com oficina própria.</p>
+    <p class="lede" id="lede">Motas usadas em São Domingos de Rana, Cascais. Escolha pela sua carta.</p>
     <div class="hero-acts">
-      <a class="btn" href="#stock" data-en="See bikes in stock">Ver motas em stock</a>
+      <a class="btn" href="motas/" data-en="See bikes">Ver motas</a>
       <a class="link" href="tel:+351214444116" data-en="Call 214 444 116">Ligar 214 444 116</a>
     </div>
   </div>
   <div class="hero-stage" id="stage"></div>
-  <h1 class="monument" id="monument"><span class="sr-only" data-en="Speed Master, new and used motorcycles in Cascais">Speed Master, motas novas e usadas em Cascais</span><span aria-hidden="true">SPEED<br class="m-br"> MASTER</span></h1>
+  <h1 class="monument" id="monument" data-fit><span class="sr-only" data-en="Speed Master, used motorcycles in Cascais">Speed Master, motas usadas em Cascais</span><span aria-hidden="true">SPEED<br class="m-br"> MASTER</span></h1>
 </section>
 
-<section class="sec wrap" id="stock" aria-labelledby="stock-h">
-  <div class="grid">
-    <h2 class="stock-word" id="stock-h">Stock</h2>
-    <div class="stock-ask" data-rv>
-      <p class="ask-q" data-en="Which licence do you have?">Que carta tem?</p>
-      <div class="chips" id="lic" role="group" aria-label="Carta de condução" data-en-aria-label="Driving licence"></div>
-      <div class="chips" id="cond" role="group" aria-label="Estado" data-en-aria-label="Condition"></div>
-      <p class="readout" id="readout" aria-live="polite"></p>
-    </div>
-  </div>
-  <div class="grid stock-body">
-    <div class="bars" id="bars"></div>
-    <aside class="detail" id="detail" aria-live="polite"></aside>
-  </div>
+<section class="sec wrap" aria-labelledby="lic-h">
+  <div class="head-row"><h2 class="sec-head" id="lic-h" data-en="Which licence do you have?">Que carta tem?</h2></div>
+  <div class="tiles" id="tiles"></div>
 </section>
 
-<section class="verbs" id="comprar" aria-labelledby="buy-h">
-  <h2 class="sr-only" id="buy-h" data-en="How to buy">Como comprar</h2>
-  <article class="panel">
-    <img src="assets/img/verb-choose.webp" alt="Motas usadas no stand da Speed Master" data-en-alt="Used bikes in the Speed Master showroom" loading="lazy" onerror="this.remove()" width="1600" height="676">
-    <h3 class="verb" data-en="Choose">Escolha</h3>
-    <p class="cap" data-en="New from the ten brands we represent, or used bikes our workshop has assessed and checked.">Novas das dez marcas que representamos, ou usadas que a nossa oficina avaliou e verificou.</p>
-  </article>
-  <article class="panel">
-    <img src="assets/img/verb-ride.webp" alt="Fachada do stand da Speed Master" data-en-alt="The Speed Master showroom from the street" loading="lazy" onerror="this.remove()" width="1600" height="676">
-    <h3 class="verb" data-en="Ride it">Experimente</h3>
-    <p class="cap" data-en="Book a test ride. The coast road and the Sintra hills are minutes from the showroom.">Marque um test-ride. A Marginal e a serra de Sintra ficam a poucos minutos do stand.</p>
-  </article>
-  <article class="panel">
-    <img src="assets/img/verb-trade.webp" alt="Oficina da Speed Master" data-en-alt="The Speed Master workshop" loading="lazy" onerror="this.remove()" width="1600" height="676">
-    <h3 class="verb" data-en="Trade">Troque</h3>
-    <p class="cap" data-en="Bring your bike in. We value it and take it off the price of the next one.">Traga a sua mota. Avaliamos e descontamos o valor no preço da próxima.</p>
-  </article>
-  <article class="panel last">
-    <h3 class="verb" data-en="Ride away">Arranque</h3>
-    <p class="cap" data-en="Leave serviced, with the paperwork done and the workshop around the corner.">Saia com a revisão feita, os papéis tratados e a oficina ao virar da esquina.</p>
-  </article>
+<section class="sec wrap" aria-labelledby="feat-h">
+  <div class="head-row"><h2 class="sec-head" id="feat-h" data-en="Featured">Em destaque</h2><a class="link" id="see-all" href="motas/">Ver todas</a></div>
+  <div class="cards" id="feat"></div>
 </section>
 
-<section class="sec wrap" id="oficina" aria-labelledby="idx-h">
-  <div class="grid">
-    <h2 class="index-head" id="idx-h" data-rv><span data-en="Ten brands, one workshop">Dez marcas, uma oficina</span></h2>
-  </div>
-  <div class="grid idx" data-rv>
-    <div class="col">
-      <h3 data-en="Official dealer">Representante oficial</h3>
-      <ul class="list"><li>Kawasaki</li><li>Benelli</li><li>Kymco</li><li>Peugeot Motocycles</li><li>Keeway</li><li>Moto Morini</li><li>Morbidelli</li><li>Sherco</li><li>Benda</li><li>Neovolt</li></ul>
-    </div>
-    <div class="col">
-      <h3 data-en="Workshop">Oficina</h3>
-      <ul class="list">
-        <li data-en="Servicing">Revisões</li><li data-en="Oil and filters">Óleo e filtros</li><li data-en="Tyres">Pneus</li><li data-en="Brakes">Travões</li><li data-en="Chain and sprockets">Kit de transmissão</li><li data-en="Diagnostics">Diagnóstico</li><li data-en="Batteries">Baterias</li><li data-en="Inspection prep">Preparação para inspeção</li>
-      </ul>
-    </div>
-    <div class="col">
-      <h3 data-en="Parts and gear">Peças e equipamento</h3>
-      <ul class="list">
-        <li data-en="Genuine parts">Peças originais</li><li data-en="Helmets">Capacetes</li><li data-en="Jackets and gloves">Casacos e luvas</li><li data-en="Top cases and luggage">Top cases e malas</li><li data-en="Covers and locks">Capas e cadeados</li><li data-en="Accessories by brand">Acessórios de marca</li>
-      </ul>
-    </div>
-    <div class="card">
-      <p class="big" data-en="Book a service">Marcar oficina</p>
-      <p data-en="Largo do Lavadouro 30, São Domingos de Rana. Same hours as the showroom.">Largo do Lavadouro 30, São Domingos de Rana. Mesmo horário do stand.</p>
-      <a class="btn" href="tel:+351962892362">962 892 362</a>
-    </div>
-  </div>
-</section>
-
-<section class="sec wrap faq" id="faq" aria-labelledby="faq-h">
-  <div class="grid row"><h2 class="q head" id="faq-h" data-en="Questions">Perguntas</h2></div>
-  <div class="grid row" data-rv>
-    <h3 class="q" data-en="Can I ride a 125 on a car licence?">Posso conduzir uma 125 com a carta do carro?</h3>
-    <p class="a" data-en="Yes, if you hold a B licence and are 25 or older: bikes up to 125 cc and 11 kW. Younger riders need an A1 licence.">Sim, se tiver carta B e 25 anos ou mais: motas até 125 cc e 11 kW. Antes dos 25 precisa da carta A1.</p>
-  </div>
-  <div class="grid row" data-rv>
-    <h3 class="q" data-en="What can I ride on an A2 licence?">O que posso conduzir com a carta A2?</h3>
-    <p class="a" data-en="Bikes up to 35 kW (47.5 hp). Many bigger models come in an A2 version; pick A2 in the stock list to see them.">Motas até 35 kW (47,5 cv). Muitos modelos maiores têm versão A2; escolha A2 na lista do stock para as ver.</p>
-  </div>
-  <div class="grid row" data-rv>
-    <h3 class="q" data-en="Do used bikes come with a warranty?">As usadas têm garantia?</h3>
-    <p class="a" data-en="Yes. A used bike bought from a dealer is covered by law; the period can be agreed down to 18 months. Before sale, our workshop assesses each bike and replaces what needs replacing.">Sim. Uma mota usada comprada a um profissional tem garantia por lei, que pode ser acordada até 18 meses. Antes da venda, a oficina avalia cada mota e troca o que for preciso.</p>
-  </div>
-  <div class="grid row" data-rv>
-    <h3 class="q" data-en="Will you take my bike in part-exchange?">Aceitam a minha mota como retoma?</h3>
-    <p class="a" data-en="Send us the make, model, year and mileage through the form. We value it and, if you buy from us, take it off the price.">Envie a marca, o modelo, o ano e os quilómetros pelo formulário. Avaliamos e, se comprar connosco, descontamos no preço.</p>
-  </div>
-  <div class="grid row" data-rv>
-    <h3 class="q" data-en="Where is the workshop?">Onde fica a oficina?</h3>
-    <p class="a" data-en="Largo do Lavadouro 30, a short ride from the showroom. Call 962 892 362 to book.">No Largo do Lavadouro 30, a poucos minutos do stand. Ligue 962 892 362 para marcar.</p>
-  </div>
-</section>
-
-<section class="night visit" id="contactos" aria-labelledby="visit-h">
-  <div class="wrap">
-    <div class="grid">
-      <h2 class="visit-head" id="visit-h" data-en="Visit the showroom">Visite o stand</h2>
-      <p class="status" id="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span id="status-t"></span></p>
-    </div>
-    <div class="grid visit-body">
-      <div class="places">
-        <div class="place">
-          <a class="phone nums" href="tel:+351214444116">214 444 116</a>
-          <p class="muted" style="color:var(--on-night-muted)" data-en="Showroom mobile 926 894 041 · Workshop 962 892 362">Telemóvel do stand 926 894 041 · Oficina 962 892 362</p>
-        </div>
-        <div class="place">
-          <h3 data-en="Showroom">Stand</h3>
-          <p>Estrada Nacional 249-4, km 6,6<br>2785-033 São Domingos de Rana</p>
-          <p><a class="link" id="maps" href="https://www.google.com/maps/search/?api=1&query=Speed%20Master%20Motos%20S%C3%A3o%20Domingos%20de%20Rana" target="_blank" rel="noopener" data-en="Open in Google Maps">Abrir no Google Maps</a></p>
-        </div>
-        <div class="place">
-          <h3 data-en="Workshop">Oficina</h3>
-          <p>Largo do Lavadouro 30<br>2785-029 São Domingos de Rana</p>
-        </div>
-        <div class="place">
-          <h3 data-en="Opening hours">Horário</h3>
-          <div class="hours nums" id="hours"></div>
-        </div>
-      </div>
-      <form class="form" id="req" novalidate>
-        <h3 data-en="Send a request">Fazer um pedido</h3>
-        <div class="chips" id="kind" role="group" aria-label="Tipo de pedido" data-en-aria-label="Request type"></div>
-        <div class="f-row">
-          <label><span data-en="Name">Nome</span><input name="name" autocomplete="name" required></label>
-          <label><span data-en="Phone">Telefone</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
-        </div>
-        <label><span id="bike-l" data-en="Bike">Mota</span><input name="bike" id="bike" placeholder="Ex.: Kawasaki Z650, 2021" data-en-placeholder="E.g. Kawasaki Z650, 2021"></label>
-        <label><span data-en="Message (optional)">Mensagem (opcional)</span><textarea name="msg"></textarea></label>
-        <button class="btn" type="submit" data-en="Prepare message">Preparar mensagem</button>
-        <div class="result" id="result" hidden></div>
-      </form>
-    </div>
+<section class="night band" aria-label="Visite o stand" data-en-aria-label="Visit the showroom">
+  <div class="wrap grid">
+    <p class="status" data-status></p>
+    <a class="phone nums" href="tel:+351214444116">214 444 116</a>
+    <p class="where"><span data-en="EN 249-4, km 6.6, São Domingos de Rana.">EN 249-4, km 6,6, São Domingos de Rana.</span> <a class="link" href="contactos/" data-en="Directions and hours">Como chegar e horário</a></p>
   </div>
 </section>
 </main>
 
-<footer class="foot">
-  <div class="wrap grid cols">
-    <div class="c"><b data-en="Showroom">Stand</b><span>EN 249-4, km 6,6</span><span>2785-033 São Domingos de Rana</span><a class="link" href="tel:+351214444116">214 444 116</a></div>
-    <div class="c"><b data-en="Workshop">Oficina</b><span>Largo do Lavadouro 30</span><span>2785-029 São Domingos de Rana</span><a class="link" href="tel:+351962892362">962 892 362</a></div>
-    <div class="c"><b data-en="Hours">Horário</b><span data-en="Mon–Fri 9:00–13:00, 14:30–19:00">Seg–Sex 9:00–13:00, 14:30–19:00</span><span data-en="Sat 9:00–13:00">Sáb 9:00–13:00</span><span data-en="Sundays and holidays closed">Domingos e feriados fechado</span></div>
-    <div class="c"><b data-en="Sections">Secções</b><a class="link" href="#stock">Stock</a><a class="link" href="#comprar" data-en="How to buy">Como comprar</a><a class="link" href="#oficina" data-en="Workshop">Oficina</a><a class="link" href="#faq" data-en="Questions">Perguntas</a></div>
-  </div>
-  <div></div>
-  <div>
-    <p class="foot-word" aria-hidden="true">SPEED<br class="m-br"> MASTER</p>
-    <div class="wrap legal">
-      <span data-en="Website concept by Orla, not the official Speed Master site.">Conceito de site da Orla, não é o site oficial da Speed Master.</span>
-      <span id="credits"></span>
-      <a class="link" href="../../" data-en="Site: Orla web studio">Site: Orla, estúdio web</a>
-    </div>
-  </div>
-</footer>
-
-<nav class="dock" id="dock" aria-label="Ações rápidas" data-en-aria-label="Quick actions">
-  <a href="tel:+351214444116" data-en="Call">Ligar</a>
-  <a href="#stock">Stock</a>
-  <a href="#contactos" data-en="Request">Pedido</a>
-</nav>
-
-<script>
-document.documentElement.classList.add('js');
-window.SITE = {
-  name: 'Speed Master',
-  phone: '+351214444116',
-  whatsapp: '',          // concept: empty, nothing is sent. Live site: '351926894041'
-  email: 'geral@speedmaster.pt',
-  formEndpoint: '',      // live site: FormSubmit / Formspree URL
-  tz: 'Europe/Lisbon',
-  // [open, close] pairs in minutes, Sunday first
-  hours: [[], [[540,780],[870,1140]], [[540,780],[870,1140]], [[540,780],[870,1140]], [[540,780],[870,1140]], [[540,780],[870,1140]], [[540,780]]],
-  model: 'assets/moto.glb',
-  credits: [
-    '3D: <a class="link" href="https://sketchfab.com/3d-models/kawasaki-ninja-zx-6r-4af2b6840b8045a5af5e8df8a85f04fa" target="_blank" rel="noopener">“Kawasaki ninja ZX-6R” · valvetin</a>, CC BY 4.0',
-    { pt: 'Fotos do stand e da oficina: speedmaster.pt', en: 'Showroom and workshop photos: speedmaster.pt' }
-  ]
-};
-// Example stock: shape of the data the live site would load from a sheet or the dealer feed.
-// lic = lowest licence that can ride it: AM (moped), B (125 cc / 11 kW, B licence at 25+, or A1), A2, A.
-window.STOCK = [
-  {id:'sm01',brand:'Kawasaki',model:'Ninja ZX-10R',year:2024,km:9872,cc:998,kw:149,cat:'sport',cond:'used',price:18700,lic:'A'},
-  {id:'sm02',brand:'Triumph',model:'Tiger 900',year:2020,km:25700,cc:900,kw:70,cat:'trail',cond:'used',price:11400,lic:'A'},
-  {id:'sm03',brand:'Honda',model:'Africa Twin',year:2019,km:44832,cc:998,kw:75,cat:'trail',cond:'used',price:9800,lic:'A'},
-  {id:'sm04',brand:'Yamaha',model:'Tracer 700',year:2018,km:9186,cc:689,kw:55,cat:'trail',cond:'used',price:7800,lic:'A'},
-  {id:'sm05',brand:'Kawasaki',model:'Z900',year:2021,km:38531,cc:948,kw:91,cat:'naked',cond:'used',price:7600,lic:'A'},
-  {id:'sm06',brand:'Honda',model:'CBR650',year:2018,km:35278,cc:650,kw:66,cat:'sport',cond:'used',price:6800,lic:'A'},
-  {id:'sm07',brand:'Kymco',model:'AK 550',year:2020,km:3277,cc:550,kw:39,cat:'scooter',cond:'used',price:6900,lic:'A'},
-  {id:'sm08',brand:'Honda',model:'CB650F',year:2016,km:13891,cc:650,kw:64,cat:'naked',cond:'used',price:5900,lic:'A'},
-  {id:'sm09',brand:'Benelli',model:'TRK 502',year:2023,km:12909,cc:500,kw:35,cat:'trail',cond:'used',price:5300,lic:'A2'},
-  {id:'sm10',brand:'Honda',model:'Rebel 500',year:2020,km:12989,cc:500,kw:34,cat:'custom',cond:'used',price:4900,lic:'A2'},
-  {id:'sm11',brand:'Kymco',model:'Downtown 350 TCS',year:2026,km:4210,cc:350,kw:21,cat:'scooter',cond:'used',price:4700,lic:'A2'},
-  {id:'sm12',brand:'Macbor',model:'Rockster 410',year:2026,km:133,cc:401,kw:31,cat:'classic',cond:'used',price:4400,lic:'A2'},
-  {id:'sm13',brand:'Sherco',model:'SM-RS 125 Factory',year:2024,km:6008,cc:125,kw:10.4,cat:'trail',cond:'used',price:3900,lic:'B'},
-  {id:'sm14',brand:'Super Soco',model:'CPX',year:2022,km:3725,cc:125,kw:8,cat:'electric',cond:'used',price:2900,lic:'B'},
-  {id:'sm15',brand:'Honda',model:'PCX 125',year:2017,km:43017,cc:125,kw:8.8,cat:'scooter',cond:'used',price:2400,lic:'B'},
-  {id:'sm16',brand:'Peugeot',model:'Kisbee 50',year:2019,km:5763,cc:50,kw:2.8,cat:'scooter',cond:'used',price:1800,lic:'AM'}
-];
-</script>
+<script src="assets/stock-seed.js"></script>
+<script src="assets/store.js"></script>
+<script src="assets/site.js"></script>
 <script>
 (() => {
-  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const S = window.SITE, STOCK = window.STOCK;
-
-  const T = {
-    pt: {
-      lic: { all: 'Todas', B: 'B (125 cc)', A1: 'A1', A2: 'A2', A: 'A' },
-      cond: { all: 'Novas e usadas', new: 'Novas', used: 'Usadas' },
-      cats: { scooter: 'Scooters', naked: 'Naked', trail: 'Trail e aventura', sport: 'Desportivas', classic: 'Clássicas e scrambler', electric: 'Elétricas', custom: 'Custom' },
-      readAll: (n, lo, hi) => `<b>${n} motas</b> em stock, de ${lo} a ${hi} cc.`,
-      readLic: (l, n, tot) => n ? `Com carta ${l} pode conduzir <b>${n} das ${tot}</b> motas em stock.` : `Ainda não há motas para a carta ${l} neste filtro.`,
-      bikes: (n) => n === 1 ? '1 mota' : `${n} motas`,
-      newB: 'Nova', usedB: 'Usada', km: 'km', cc: 'Cilindrada', kw: 'Potência', licL: 'Carta', year: 'Ano',
-      licTxt: { AM: 'AM ou B', B: 'B (25+) ou A1', A2: 'A2', A: 'A' },
-      fin: (m) => `ou <b>48 × ${m}/mês</b>*`,
-      finNote: '*Exemplo ilustrativo: entrada de 20%, 48 meses, TAN 9,9%. Não é uma proposta de crédito.',
-      want: 'Quero esta', ride: 'Marcar test-ride', empty: 'Nada neste filtro. Diga-nos o que procura no formulário.',
-      note: 'Stock de exemplo: motas usadas publicadas em speedmaster.pt (nov. 2026). No site final liga-se ao stock real.',
-      pick: 'Escolha uma mota da lista para ver os detalhes.',
-      kinds: { ride: 'Test-ride', reserve: 'Reservar mota', trade: 'Avaliar a minha mota', service: 'Marcar oficina', other: 'Outro' },
-      bikeL: { ride: 'Mota para o test-ride', reserve: 'Mota a reservar', trade: 'A sua mota (marca, modelo, ano, km)', service: 'A sua mota e o serviço', other: 'Mota' },
-      days: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-      closedDay: 'Fechado', open: (t) => `Aberto agora · fecha às ${t}`, opensAt: (d, t) => `Fechado · abre ${d} às ${t}`,
-      today: 'hoje', tomorrow: 'amanhã',
-      msgHi: 'Olá Speed Master!', msgKind: 'Pedido', msgBike: 'Mota', msgName: 'Nome', msgPhone: 'Telefone', msgMsg: 'Mensagem',
-      ready: 'Mensagem pronta', copy: 'Copiar mensagem', copied: 'Copiado', mail: 'Enviar por e-mail',
-      concept: 'Conceito: nada foi enviado. No site final, o pedido chega à Speed Master por WhatsApp ou e-mail.',
-      need: 'Preencha o nome e o telefone.'
-    },
-    en: {
-      lic: { all: 'All', B: 'B (125 cc)', A1: 'A1', A2: 'A2', A: 'A' },
-      cond: { all: 'New and used', new: 'New', used: 'Used' },
-      cats: { scooter: 'Scooters', naked: 'Naked', trail: 'Adventure', sport: 'Sport', classic: 'Classic and scrambler', electric: 'Electric', custom: 'Custom' },
-      readAll: (n, lo, hi) => `<b>${n} bikes</b> in stock, from ${lo} to ${hi} cc.`,
-      readLic: (l, n, tot) => { const a = l[0] === 'A' ? 'an' : 'a'; return n ? `On ${a} ${l} licence you can ride <b>${n} of the ${tot}</b> bikes in stock.` : `No bikes for ${a} ${l} licence in this filter yet.`; },
-      bikes: (n) => n === 1 ? '1 bike' : `${n} bikes`,
-      newB: 'New', usedB: 'Used', km: 'km', cc: 'Engine', kw: 'Power', licL: 'Licence', year: 'Year',
-      licTxt: { AM: 'AM or B', B: 'B (25+) or A1', A2: 'A2', A: 'A' },
-      fin: (m) => `or <b>48 × ${m}/month</b>*`,
-      finNote: '*Illustrative example: 20% deposit, 48 months, 9.9% nominal rate. Not a credit offer.',
-      want: 'I want this one', ride: 'Book a test ride', empty: 'Nothing in this filter. Tell us what you are after in the form.',
-      note: 'Example stock: used bikes listed on speedmaster.pt (Nov 2026). The live site connects to the real stock.',
-      pick: 'Pick a bike from the list to see the details.',
-      kinds: { ride: 'Test ride', reserve: 'Reserve a bike', trade: 'Value my bike', service: 'Book the workshop', other: 'Other' },
-      bikeL: { ride: 'Bike to test', reserve: 'Bike to reserve', trade: 'Your bike (make, model, year, km)', service: 'Your bike and the job', other: 'Bike' },
-      days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      closedDay: 'Closed', open: (t) => `Open now · closes at ${t}`, opensAt: (d, t) => `Closed · opens ${d} at ${t}`,
-      today: 'today', tomorrow: 'tomorrow',
-      msgHi: 'Hello Speed Master!', msgKind: 'Request', msgBike: 'Bike', msgName: 'Name', msgPhone: 'Phone', msgMsg: 'Message',
-      ready: 'Message ready', copy: 'Copy message', copied: 'Copied', mail: 'Send by email',
-      concept: 'Concept: nothing was sent. On the live site the request reaches Speed Master by WhatsApp or email.',
-      need: 'Please fill in your name and phone.'
-    }
-  };
-  let lang = 'pt';
-  try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('sm-lang') || ((navigator.language || 'pt').toLowerCase().startsWith('pt') ? 'pt' : 'en'); } catch (e) {}
-  if (!T[lang]) lang = 'pt';
-  const t = () => T[lang];
-  const loc = () => (lang === 'pt' ? 'pt-PT' : 'en-GB');
-  const eur = (v) => new Intl.NumberFormat(loc(), { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(v);
-  const num = (v) => new Intl.NumberFormat(loc()).format(v);
-
-  /* i18n: PT lives in the markup, EN in data-en attributes */
-  const ATTRS = ['aria-label', 'placeholder', 'alt', 'href'];
-  function applyLang() {
-    document.documentElement.lang = lang === 'pt' ? 'pt-PT' : 'en';
-    $$('[data-en]').forEach((el) => { if (el._pt === undefined) el._pt = el.innerHTML; el.innerHTML = lang === 'en' ? el.dataset.en : el._pt; });
-    ATTRS.forEach((a) => $$(`[data-en-${a}]`).forEach((el) => { const k = '_pt_' + a; if (el[k] === undefined) el[k] = el.getAttribute(a); el.setAttribute(a, lang === 'en' ? el.getAttribute(`data-en-${a}`) : el[k]); }));
-    $$('.lang button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
-    renderStock(); renderHours(); renderKinds(); renderCredits();
+  const { $, t, card, num, onLang, LIC_MAX } = SMI;
+  requestAnimationFrame(() => $('#monument').classList.add('in'));
+  function render() {
+    const L = t(), all = SM.all().filter((b) => b.status !== 'sold'), ccs = all.map((b) => b.cc).filter(Boolean);
+    if (all.length) $('#lede').textContent = L.lede(all.length, Math.min(...ccs), num(Math.max(...ccs)));
+    $('#tiles').innerHTML = ['AM', 'B', 'A2', 'A'].map((k) => `
+      <a class="tile" href="motas/?carta=${k}"><span class="tile-k">${k}</span><span class="tile-d">${L.licDesc[k]}</span><span class="tile-n">${L.bikes(all.filter((b) => SM.LIC[b.lic] <= LIC_MAX[k]).length)}</span></a>`).join('');
+    const feat = all.filter((b) => b.featured);
+    $('#feat').innerHTML = (feat.length ? feat : all).slice(0, 6).map(card).join('');
+    $('#see-all').textContent = L.seeAll(all.length);
+    SM.hydrate($('#feat'));
   }
-  $$('.lang button').forEach((b) => b.addEventListener('click', () => { lang = b.dataset.lang; try { localStorage.setItem('sm-lang', lang); } catch (e) {} applyLang(); }));
-
-  /* the name fills the width */
-  const mon = $('#monument'), foot = $('.foot-word');
-  function fit(el) {
-    if (!el) return;
-    if (innerWidth <= 700) { el.style.fontSize = ''; return; }
-    el.style.fontSize = '100px';
-    const cs = getComputedStyle(el);
-    const avail = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-    const span = el.querySelector('[aria-hidden]') || el;
-    const w = span.getBoundingClientRect ? span.scrollWidth || span.getBoundingClientRect().width : 0;
-    const r = document.createRange(); r.selectNodeContents(span); const tw = r.getBoundingClientRect().width;
-    el.style.fontSize = Math.floor(100 * avail / (tw || w || avail) * 0.995) + 'px';
-  }
-  const fitAll = () => { fit(mon); fit(foot); };
-  fitAll();
-  addEventListener('resize', fitAll);
-  if (document.fonts) document.fonts.ready.then(fitAll);
-  requestAnimationFrame(() => mon.classList.add('in'));
-
-  /* stock: licence picker, condition, category bars, detail */
-  const LIC_ORDER = { AM: 0, B: 1, A2: 2, A: 3 };
-  const LIC_MAX = { all: 3, B: 1, A1: 1, A2: 2, A: 3 };
-  let licSel = 'all', condSel = 'all', selId = null;
-  const openCats = new Set();
-  const visible = () => STOCK.filter((b) => LIC_ORDER[b.lic] <= LIC_MAX[licSel] && (condSel === 'all' || b.cond === condSel));
-  function chips(host, keys, cur, labels, onPick) {
-    host.innerHTML = keys.map((k) => `<button type="button" class="chip" data-k="${k}" aria-pressed="${k === cur}">${labels[k]}</button>`).join('');
-    $$('.chip', host).forEach((b) => b.addEventListener('click', () => onPick(b.dataset.k)));
-  }
-  function pmt(price) {
-    const P = price * 0.8, r = 0.099 / 12, n = 48;
-    return Math.round(P * r / (1 - Math.pow(1 + r, -n)));
-  }
-  function renderStock() {
-    if (!STOCK.length) return;
-    const L = t();
-    chips($('#lic'), ['all', 'B', 'A1', 'A2', 'A'], licSel, L.lic, (k) => { licSel = k; renderStock(); });
-    chips($('#cond'), ['all', 'new', 'used'].filter((k) => k === 'all' || STOCK.some((b) => b.cond === k)), condSel, L.cond, (k) => { condSel = k; renderStock(); });
-    const list = visible();
-    const ccs = STOCK.map((b) => b.cc);
-    $('#readout').innerHTML = licSel === 'all'
-      ? L.readAll(list.length, Math.min(...ccs), num(Math.max(...ccs)))
-      : L.readLic(L.lic[licSel].replace(' (125 cc)', ''), list.length, STOCK.length);
-    const cats = Object.keys(L.cats).filter((c) => list.some((b) => b.cat === c));
-    if (!openCats.size && cats.length) openCats.add(cats[0]);
-    const bars = $('#bars');
-    bars.innerHTML = cats.length ? cats.map((c) => {
-      const items = list.filter((b) => b.cat === c).sort((a, b) => a.price - b.price);
-      return `<details class="cat" data-c="${c}"${openCats.has(c) ? ' open' : ''}><summary>${L.cats[c]} <span class="n">${items.length}</span></summary><div class="items">${items.map((b) => `
-        <button type="button" class="item" data-id="${b.id}" aria-pressed="${b.id === selId}">
-          <span class="nm">${b.brand} ${b.model}</span>
-          <span class="sub nums">${b.cond === 'new' ? L.newB : L.usedB} · ${b.year} · ${num(b.km)} km · ${b.cc} cc</span>
-          <span class="pr">${eur(b.price)}</span>
-        </button>`).join('')}</div></details>`;
-    }).join('') : `<p class="empty">${L.empty}</p>`;
-    bars.insertAdjacentHTML('beforeend', `<p class="stock-note">${L.note}</p>`);
-    $$('.cat', bars).forEach((d) => d.addEventListener('toggle', () => { d.open ? openCats.add(d.dataset.c) : openCats.delete(d.dataset.c); }));
-    $$('.item', bars).forEach((b) => b.addEventListener('click', () => { selId = b.dataset.id; renderStock(); if (innerWidth <= 900) $('#detail').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }); }));
-    if (!list.some((b) => b.id === selId)) selId = list[0] ? list[0].id : null;
-    $$('.item', bars).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.id === selId)));
-    renderDetail(STOCK.find((b) => b.id === selId));
-  }
-  let lastKm = null;
-  function roll(value) {
-    const s = num(value);
-    return `<span class="roll" aria-hidden="true">${[...s].map((ch, i) => /\d/.test(ch)
-      ? `<span class="col"><span class="strip" style="--d:${lastKm === null || reduced ? ch : 0};--i:${i}">${'0123456789'.split('').map((n) => `<span>${n}</span>`).join('')}</span></span>`
-      : `<span>${ch}</span>`).join('')}</span><span class="sr-only">${s}</span>`;
-  }
-  function renderDetail(b) {
-    const host = $('#detail'), L = t();
-    if (!b) { host.innerHTML = `<p>${L.pick}</p>`; return; }
-    host.innerHTML = `
-      <p class="d-kind">${b.cond === 'new' ? L.newB : L.usedB} · ${L.cats[b.cat]}</p>
-      <h3 class="d-name">${b.brand} ${b.model}</h3>
-      <p class="odo">${roll(b.km)}<small>${L.km}</small></p>
-      <dl class="specs nums">
-        <div><dt>${L.year}</dt><dd>${b.year}</dd></div>
-        <div><dt>${L.cc}</dt><dd>${num(b.cc)} cc</dd></div>
-        <div><dt>${L.kw}</dt><dd>${b.kw ? b.kw + ' kW' : '—'}</dd></div>
-        <div><dt>${L.licL}</dt><dd>${L.licTxt[b.lic]}</dd></div>
-      </dl>
-      <div><p class="price nums">${eur(b.price)}</p><p class="fin nums">${L.fin(eur(pmt(b.price)))}</p></div>
-      <div class="d-acts"><a class="btn" href="#contactos" data-act="reserve">${L.want}</a><a class="btn alt" href="#contactos" data-act="ride">${L.ride}</a></div>
-      <p class="fin">${L.finNote}</p>`;
-    const strips = $$('.strip', host);
-    if (lastKm !== null && !reduced) requestAnimationFrame(() => requestAnimationFrame(() => strips.forEach((st, i) => {
-      const digits = [...num(b.km)].filter((c) => /\d/.test(c)); st.style.setProperty('--d', digits[i]);
-    })));
-    lastKm = b.km;
-    $$('[data-act]', host).forEach((a) => a.addEventListener('click', () => { kindSel = a.dataset.act; renderKinds(); $('#bike').value = `${b.brand} ${b.model}, ${b.year}, ${num(b.km)} km (${eur(b.price)})`; }));
-  }
-
-  /* hours and live open status, Europe/Lisbon */
-  function lisbonNow() {
-    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: S.tz, weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map((x) => [x.type, x.value]));
-    const wd = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday);
-    return { wd, min: +p.hour * 60 + +p.minute };
-  }
-  const hm = (m) => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
-  function renderHours() {
-    const L = t(), now = lisbonNow();
-    const order = [1, 2, 3, 4, 5, 6, 0];
-    $('#hours').innerHTML = order.map((d) => {
-      const h = S.hours[d], cls = d === now.wd ? ' class="today"' : '';
-      return `<span${cls}>${L.days[d]}</span><span${cls}>${h.length ? h.map(([a, b]) => `${hm(a)}–${hm(b)}`).join(', ') : L.closedDay}</span>`;
-    }).join('');
-    const today = S.hours[now.wd];
-    const cur = today.find(([a, b]) => now.min >= a && now.min < b);
-    const st = $('#status');
-    if (cur) { st.classList.remove('closed'); $('#status-t').textContent = L.open(hm(cur[1])); return; }
-    st.classList.add('closed');
-    for (let k = 0; k < 7; k++) {
-      const d = (now.wd + k) % 7;
-      const next = S.hours[d].find(([a]) => k > 0 || a > now.min);
-      if (next) { $('#status-t').textContent = L.opensAt(k === 0 ? L.today : k === 1 ? L.tomorrow : L.days[d].toLowerCase(), hm(next[0])); return; }
-    }
-  }
-  setInterval(renderHours, 60000);
-
-  /* request form: composes a message; the concept sends nothing */
-  let kindSel = 'ride';
-  function renderKinds() {
-    const L = t();
-    chips($('#kind'), Object.keys(L.kinds), kindSel, L.kinds, (k) => { kindSel = k; renderKinds(); });
-    $('#bike-l').textContent = L.bikeL[kindSel];
-  }
-  $('#req').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const L = t(), f = e.target, v = (n) => f.elements[n].value.trim(), out = $('#result');
-    if (!v('name') || !v('phone')) { out.hidden = false; out.innerHTML = `<p>${L.need}</p>`; (v('name') ? f.elements.phone : f.elements.name).focus(); return; }
-    const lines = [L.msgHi, '', `${L.msgKind}: ${L.kinds[kindSel]}`];
-    if (v('bike')) lines.push(`${L.msgBike}: ${v('bike')}`);
-    lines.push(`${L.msgName}: ${v('name')}`, `${L.msgPhone}: ${v('phone')}`);
-    if (v('msg')) lines.push('', v('msg'));
-    const text = lines.join('\n');
-    let sent = false;
-    if (S.formEndpoint) {
-      try { const r = await fetch(S.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ kind: kindSel, name: v('name'), phone: v('phone'), bike: v('bike'), message: text }) }); sent = r.ok; } catch (err) {}
-    }
-    const wa = S.whatsapp ? `<a class="btn" href="https://wa.me/${S.whatsapp}?text=${encodeURIComponent(text)}" target="_blank" rel="noopener">WhatsApp</a>` : '';
-    out.hidden = false;
-    out.innerHTML = `<b>${L.ready}</b><pre></pre><div class="acts"><button type="button" class="btn" id="cp">${L.copy}</button>${wa}<a class="btn" href="mailto:${S.email}?subject=${encodeURIComponent(L.kinds[kindSel] + ' · ' + v('name'))}&body=${encodeURIComponent(text)}">${L.mail}</a></div><p class="note">${sent ? '' : L.concept}</p>`;
-    $('pre', out).textContent = text;
-    $('#cp').addEventListener('click', async (ev) => { try { await navigator.clipboard.writeText(text); ev.target.textContent = L.copied; } catch (err) { const r = document.createRange(); r.selectNodeContents($('pre', out)); getSelection().removeAllRanges(); getSelection().addRange(r); } });
-  });
-
-  function renderCredits() {
-    const c = S.credits || [];
-    $('#credits').innerHTML = c.map((x) => (typeof x === 'string' ? x : x[lang])).join(' · ');
-  }
-
-  /* header turns solid off the hero; phone dock hides over the form */
-  const bar = $('#bar'), hero = $('#top'), dock = $('#dock');
-  new IntersectionObserver(([en]) => bar.classList.toggle('is-solid', !en.isIntersecting), { rootMargin: '-68px 0px 0px 0px' }).observe(hero);
-  new IntersectionObserver(([en]) => dock.classList.toggle('is-off', en.isIntersecting), { threshold: 0.15 }).observe($('#req'));
-
-  /* entrances, once */
-  $$('[data-rv]').forEach((el) => [...el.children].forEach((c, i) => c.style.setProperty('--i', i)));
-  if ('IntersectionObserver' in window && !reduced) {
-    const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
-    $$('[data-rv]').forEach((el) => io.observe(el));
-  } else $$('[data-rv]').forEach((el) => el.classList.add('in'));
-
-  applyLang();
+  onLang(render);
+  addEventListener('sm:change', render);
 })();
 </script>
 <script type="module">
 const hasGL = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } })();
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (hasGL && window.SITE.model) {
+if (hasGL) {
   import('./assets/hero3d.js')
-    .then((m) => m.initHero({ stage: document.getElementById('stage'), plinth: document.getElementById('monument'), src: window.SITE.model, reduced, paint: window.SITE.paint }))
+    .then((m) => m.initHero({ stage: document.getElementById('stage'), plinth: document.getElementById('monument'), src: window.SITE.model, reduced }))
     .then(() => document.getElementById('top').classList.add('is-3d'))
     .catch((err) => console.warn('[speedmaster 3d]', err));
 }

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-PT" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Motas · Speed Master</title>
+<meta name="description" content="Motas usadas em stock na Speed Master, São Domingos de Rana. Conceito de site, não é o site oficial.">
+<meta name="theme-color" content="#ffe522">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ffe522'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%23121314'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="motas">
+<main id="main">
+<section class="phead" id="top">
+  <div class="wrap grid">
+    <h1 class="pword ph-word" data-fit data-fit-max=".17" data-en="Bikes">Motas</h1>
+    <div class="ph-side">
+      <p class="ask-q" data-en="Which licence do you have?">Que carta tem?</p>
+      <div class="chips" id="lic" role="group" aria-label="Carta de condução" data-en-aria-label="Driving licence"></div>
+      <p class="readout" id="readout" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" aria-label="Motas em stock" data-en-aria-label="Bikes in stock">
+  <div class="tools">
+    <div class="chips" id="cat" role="group" aria-label="Tipo de mota" data-en-aria-label="Bike type"></div>
+    <label class="sort"><span data-en="Sort">Ordenar</span><select id="sort"></select></label>
+  </div>
+  <div class="cards" id="cards"></div>
+  <p class="note-s" data-en="Used stock as published on speedmaster.pt on 13 November 2026.">Stock de usadas publicado em speedmaster.pt a 13 de novembro de 2026.</p>
+</section>
+</main>
+
+<script src="../assets/stock-seed.js"></script>
+<script src="../assets/store.js"></script>
+<script src="../assets/site.js"></script>
+<script>
+(() => {
+  const { $, $$, t, card, num, eur, onLang, LIC_MAX } = SMI;
+  const q = new URLSearchParams(location.search);
+  let lic = ['AM', 'B', 'A2', 'A'].includes(q.get('carta')) ? q.get('carta') : 'all';
+  let cat = q.get('tipo') || 'all', sort = 'new', max = +q.get('max') || 0;
+  const SORTS = {
+    new: (a, b) => (b.year || 0) - (a.year || 0) || (b.price || 0) - (a.price || 0),
+    cheap: (a, b) => (a.price || 1e9) - (b.price || 1e9),
+    dear: (a, b) => (b.price || 0) - (a.price || 0),
+    km: (a, b) => (a.km == null ? 1e9 : a.km) - (b.km == null ? 1e9 : b.km)
+  };
+  const chips = (host, keys, cur, labels, pick) => {
+    host.innerHTML = keys.map((k) => `<button type="button" class="chip" data-k="${k}" aria-pressed="${k === cur}">${labels[k]}</button>`).join('');
+    $$('.chip', host).forEach((b) => b.addEventListener('click', () => pick(b.dataset.k)));
+  };
+  function sync() {
+    const p = new URLSearchParams();
+    if (lic !== 'all') p.set('carta', lic);
+    if (cat !== 'all') p.set('tipo', cat);
+    if (max) p.set('max', max);
+    history.replaceState(null, '', p.toString() ? '?' + p : location.pathname);
+  }
+  function render() {
+    const L = t(), stock = SM.all().filter((b) => b.status !== 'sold'), ccs = stock.map((b) => b.cc).filter(Boolean);
+    chips($('#lic'), ['all', 'AM', 'B', 'A2', 'A'], lic, L.lic, (k) => { lic = k; sync(); render(); });
+    const fit = stock.filter((b) => SM.LIC[b.lic] <= LIC_MAX[lic] && (!max || (b.price && b.price <= max)));
+    const cats = ['all', ...Object.keys(L.catsP).filter((c) => c !== 'all' && fit.some((b) => b.cat === c))];
+    if (!cats.includes(cat)) cat = 'all';
+    chips($('#cat'), cats, cat, L.catsP, (k) => { cat = k; sync(); render(); });
+    $('#sort').innerHTML = Object.keys(L.sort).map((k) => `<option value="${k}"${k === sort ? ' selected' : ''}>${L.sort[k]}</option>`).join('');
+    let read = lic === 'all' ? L.readAll(fit.length, Math.min(...ccs), num(Math.max(...ccs))) : L.readLic(lic, fit.length, stock.length);
+    if (max) read += ` <button type="button" class="chip" id="unmax">${L.upTo(eur(max))} ×</button>`;
+    $('#readout').innerHTML = read;
+    if (max) $('#unmax').addEventListener('click', () => { max = 0; sync(); render(); });
+    const list = fit.filter((b) => cat === 'all' || b.cat === cat).sort(SORTS[sort]);
+    $('#cards').innerHTML = list.length ? list.map(card).join('') : `<p class="empty">${L.empty} <a class="link" href="../contactos/#pedido">${L.kinds.other}</a></p>`;
+    SM.hydrate($('#cards'));
+  }
+  $('#sort').addEventListener('change', (e) => { sort = e.target.value; render(); });
+  onLang(render);
+  addEventListener('sm:change', render);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-PT" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Mota · Speed Master</title>
+<meta name="description" content="Uma mota em stock na Speed Master, São Domingos de Rana. Conceito de site, não é o site oficial.">
+<meta name="theme-color" content="#ffe522">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ffe522'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%23121314'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="mota">
+<main id="main">
+<section class="phead bike-head" id="top">
+  <div class="wrap">
+    <div class="bh-top"><p class="bh-brand" id="bh-brand"></p><a class="link" href="../motas/" data-en="All bikes">Todas as motas</a></div>
+    <h1 class="bh-name" id="bh-name" data-fit data-fit-max=".19"></h1>
+  </div>
+</section>
+
+<section class="bike wrap" id="bike">
+  <div class="grid">
+    <div class="gal" id="gal"></div>
+    <aside class="bpanel" id="bpanel"></aside>
+  </div>
+</section>
+
+<section class="sec wrap" id="pedido">
+  <div class="grid">
+    <div class="ask">
+      <h2 class="sec-head" data-en="Come and see it">Venha vê-la</h2>
+      <p class="lede" data-en="Book a test ride or reserve it. Or just call.">Marque um test-ride ou reserve-a. Ou ligue.</p>
+      <a class="big-phone nums" href="tel:+351214444116">214 444 116</a>
+    </div>
+    <form class="form" data-req data-kind="ride" data-kinds="ride,reserve,trade,other"></form>
+  </div>
+</section>
+
+<section class="sec wrap" id="sim-sec">
+  <div class="head-row"><h2 class="sec-head" id="sim-h"></h2></div>
+  <div class="cards" id="sim"></div>
+</section>
+</main>
+
+<script src="../assets/stock-seed.js"></script>
+<script src="../assets/store.js"></script>
+<script src="../assets/site.js"></script>
+<script>
+(() => {
+  const { $, $$, t, eur, num, pmt, card, roll, spin, esc, setReq, onLang, reduced } = SMI;
+  const id = new URLSearchParams(location.search).get('id');
+  const form = $('form[data-req]');
+  let first = true, idx = 0;
+
+  function gallery(b, L) {
+    const photos = (b.photos && b.photos.length) ? b.photos : b.cover ? [b.cover] : [];
+    if (!photos.length) { $('#gal').innerHTML = `<div class="card-ph"><span class="noph">${esc(b.brand)}</span></div>`; return; }
+    idx = Math.min(idx, photos.length - 1);
+    $('#gal').innerHTML = `
+      <div class="gal-track" id="track" tabindex="0" aria-label="${esc(b.name)}">${photos.map((p, i) => `<img ${SM.img(p)} alt="${esc(b.name)}, ${L.photo(i + 1, photos.length)}" width="1200" height="900"${i ? ' loading="lazy"' : ''}>`).join('')}</div>
+      <div class="gal-ui"><button type="button" id="prev" aria-label="${L.prev}">←</button><button type="button" id="next" aria-label="${L.next}">→</button><span class="count nums" id="count"></span></div>
+      <div class="thumbs">${photos.map((p, i) => `<button type="button" data-i="${i}" aria-label="${L.photo(i + 1, photos.length)}"><img ${SM.img(p)} alt="" loading="lazy" width="200" height="150"></button>`).join('')}</div>
+      <p class="gal-cap">${L.photos}</p>`;
+    const track = $('#track');
+    const show = () => {
+      $('#count').textContent = `${idx + 1} / ${photos.length}`;
+      $$('.thumbs button').forEach((x, i) => x.setAttribute('aria-current', String(i === idx)));
+    };
+    const go = (i) => { idx = Math.max(0, Math.min(photos.length - 1, i)); track.scrollTo({ left: idx * track.clientWidth, behavior: reduced ? 'auto' : 'smooth' }); show(); };
+    $('#prev').addEventListener('click', () => go(idx - 1));
+    $('#next').addEventListener('click', () => go(idx + 1));
+    $$('.thumbs button').forEach((x) => x.addEventListener('click', () => go(+x.dataset.i)));
+    track.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); go(idx + (e.key === 'ArrowRight' ? 1 : -1)); } });
+    track.addEventListener('scroll', () => { const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth)); if (i !== idx) { idx = i; show(); } }, { passive: true });
+    track.scrollLeft = idx * track.clientWidth;
+    show();
+  }
+
+  function render() {
+    const L = t(), b = SM.get(id);
+    if (!b) {
+      $('#bh-brand').textContent = '';
+      $('#bh-name').textContent = 'Speed Master';
+      $('#gal').innerHTML = `<div class="gone"><p class="lede">${L.gone}</p><a class="btn" href="../motas/">${L.seeAll(SM.all().filter((x) => x.status !== 'sold').length)}</a></div>`;
+      $('#bpanel').hidden = $('#pedido').hidden = $('#sim-sec').hidden = true;
+      return;
+    }
+    document.title = `${b.name} · Speed Master`;
+    $('#bh-brand').textContent = [b.brand, b.year].filter(Boolean).join(' · ');
+    const nm = $('#bh-name');
+    nm.textContent = b.model;
+    nm.classList.toggle('long', b.model.length > 9);
+    gallery(b, L);
+    const specs = [
+      [L.year, b.year || '—'], [L.cc, b.cc ? `${num(b.cc)} cc` : '—'],
+      [L.kw, b.kw ? `${num(b.kw)} kW` : '—'], [L.licL, L.licTxt[b.lic]],
+      [L.type, L.cats[b.cat] || '—'], [L.color, L.colors[b.color] || esc(b.color) || '—']
+    ];
+    $('#bpanel').innerHTML = `
+      ${b.status !== 'available' ? `<span class="stamp-in">${b.status === 'sold' ? L.sold : L.reserved}</span>` : ''}
+      <span class="tag nums">${b.price ? eur(b.price) : L.onReq}</span>
+      ${b.price ? `<p class="fin nums">${L.fin(eur(pmt(b.price)))}</p>` : ''}
+      ${b.km != null ? `<p class="odo">${roll(b.km, first)}<small>km</small></p>` : ''}
+      <dl class="specs nums">${specs.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+      <div class="acts"><a class="btn" href="#pedido" data-k="ride">${L.ride}</a><a class="btn alt" href="#pedido" data-k="reserve">${L.reserve}</a><a class="btn alt" href="tel:${SITE.phone}">${L.call}</a></div>
+      ${b.price ? `<p class="fin">${L.finNote}</p>` : ''}`;
+    $$('[data-k]', $('#bpanel')).forEach((a) => a.addEventListener('click', () => setReq(form, { kind: a.dataset.k })));
+    setReq(form, { bike: `${b.name}${b.year ? ', ' + b.year : ''}`, bikeId: b.id });
+    const sim = SM.all()
+      .filter((x) => x.id !== b.id && x.status !== 'sold' && (x.lic === b.lic || x.cat === b.cat))
+      .sort((x, y) => Math.abs((x.price || 0) - (b.price || 0)) - Math.abs((y.price || 0) - (b.price || 0)))
+      .slice(0, 3);
+    $('#sim-h').textContent = L.similar;
+    $('#sim').innerHTML = sim.map(card).join('');
+    $('#sim-sec').hidden = !sim.length;
+    SM.hydrate();
+    if (first) { spin($('#bpanel')); first = false; }
+  }
+  onLang(render);
+  addEventListener('sm:change', render);
+})();
+</script>
+</body>
+</html>

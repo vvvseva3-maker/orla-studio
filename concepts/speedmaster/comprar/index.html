@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-PT" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Como comprar · Speed Master</title>
+<meta name="description" content="Escolher, experimentar, trocar e financiar uma mota na Speed Master. Conceito de site, não é o site oficial.">
+<meta name="theme-color" content="#ffe522">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ffe522'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%23121314'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="comprar">
+<main id="main">
+<section class="phead" id="top">
+  <div class="wrap grid">
+    <h1 class="pword ph-word" data-fit data-fit-max=".17" data-en="How to buy">Como comprar</h1>
+    <div class="ph-side"><p class="lede" data-en="Choose it, ride it, trade in your old one and leave with it serviced.">Escolha, experimente, troque a sua e saia com a revisão feita.</p></div>
+  </div>
+</section>
+
+<section aria-label="Os passos" data-en-aria-label="The steps">
+  <article class="panel">
+    <img src="../assets/img/verb-choose.webp" alt="Motas usadas no stand da Speed Master" data-en-alt="Used bikes in the Speed Master showroom" loading="lazy" width="1600" height="676">
+    <h2 class="verb" data-en="Choose">Escolha</h2>
+    <p class="cap" data-en="Pick by your licence in the stock list, or ask us for what is not there yet.">Escolha pela sua carta na lista do stock, ou peça-nos o que ainda não está lá.</p>
+  </article>
+  <article class="panel">
+    <img src="../assets/img/verb-ride.webp" alt="Fachada do stand da Speed Master" data-en-alt="The Speed Master showroom from the street" loading="lazy" width="1600" height="676">
+    <h2 class="verb" data-en="Ride it">Experimente</h2>
+    <p class="cap" data-en="Book a test ride from any bike's page.">Marque o test-ride na página de cada mota.</p>
+  </article>
+  <article class="panel">
+    <img src="../assets/img/verb-trade.webp" alt="Oficina da Speed Master" data-en-alt="The Speed Master workshop" loading="lazy" width="1600" height="676">
+    <h2 class="verb" data-en="Trade">Troque</h2>
+    <p class="cap" data-en="We value your bike and take it off the price.">Avaliamos a sua mota e descontamos no preço.</p>
+  </article>
+  <article class="panel last">
+    <h2 class="verb" data-en="Ride away">Arranque</h2>
+    <p class="cap" data-en="Serviced, paperwork done, workshop around the corner.">Revisão feita, papéis tratados, oficina ao virar da esquina.</p>
+  </article>
+</section>
+
+<section class="sec wrap calc" aria-labelledby="calc-h">
+  <div class="grid">
+    <div class="calc-h">
+      <h2 class="sec-head" id="calc-h" data-en="How much a month?">Quanto fica por mês?</h2>
+      <p class="lede" data-en="Move the price and the deposit.">Mexa no preço e na entrada.</p>
+    </div>
+    <div class="calc-box">
+      <label><span data-en="Bike price">Preço da mota</span><output id="o-price" class="nums"></output><input type="range" id="c-price" min="1000" max="20000" step="100" value="6000"></label>
+      <label><span data-en="Deposit">Entrada</span><output id="o-dep" class="nums"></output><input type="range" id="c-dep" min="0" max="50" step="5" value="20"></label>
+      <div class="calc-n"><p data-en="Months">Meses</p><div class="chips" id="c-n" role="group" aria-label="Meses" data-en-aria-label="Months"></div></div>
+      <p class="calc-out nums"><span id="o-m"></span><small data-en=" a month"> por mês</small></p>
+      <p class="fin" data-en="Illustrative example at a 9.9% nominal rate, not a credit offer. Real terms come from the dealer's finance partner, with the APR (TAEG) shown.">Exemplo ilustrativo com TAN 9,9%, não é uma proposta de crédito. As condições reais vêm do parceiro de crédito do stand, com a TAEG indicada.</p>
+      <a class="btn" id="c-see" href="../motas/"></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" id="retoma">
+  <div class="grid">
+    <div class="ask">
+      <h2 class="sec-head" data-en="Value my bike">Avaliar a minha mota</h2>
+      <p class="lede" data-en="Tell us the make, model, year and mileage.">Diga-nos a marca, o modelo, o ano e os quilómetros.</p>
+    </div>
+    <form class="form" data-req data-kind="trade" data-kinds="trade" data-title="Pedido de avaliação" data-title-en="Valuation request"></form>
+  </div>
+</section>
+</main>
+
+<script src="../assets/stock-seed.js"></script>
+<script src="../assets/store.js"></script>
+<script src="../assets/site.js"></script>
+<script>
+(() => {
+  const { $, $$, t, eur, pmt, onLang } = SMI;
+  let n = 48;
+  function render() {
+    const price = +$('#c-price').value, dep = +$('#c-dep').value / 100;
+    $('#o-price').textContent = eur(price);
+    $('#o-dep').textContent = `${Math.round(dep * 100)}% · ${eur(price * dep)}`;
+    $('#c-n').innerHTML = [24, 36, 48, 60, 72].map((m) => `<button type="button" class="chip" data-n="${m}" aria-pressed="${m === n}">${m}</button>`).join('');
+    $$('#c-n .chip').forEach((b) => b.addEventListener('click', () => { n = +b.dataset.n; render(); }));
+    $('#o-m').textContent = eur(pmt(price, dep, n));
+    const a = $('#c-see');
+    a.textContent = t().seeUpTo(eur(price));
+    a.href = `../motas/?max=${price}`;
+  }
+  $('#c-price').addEventListener('input', render);
+  $('#c-dep').addEventListener('input', render);
+  onLang(render);
+})();
+</script>
+</body>
+</html>

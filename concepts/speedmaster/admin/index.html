@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-PT" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel · Speed Master</title>
+<meta name="theme-color" content="#121314">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121314'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%23ffe522'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<p class="demo" role="note"><b>Demonstração.</b> <span>Tudo o que mudar aqui fica guardado só neste navegador.</span> <button type="button" id="reset">Repor dados de exemplo</button></p>
+<div class="topbar"><a class="brand" href="#inicio">Speed Master <span>Painel do stand</span></a><a href="../" target="_blank" rel="noopener">Ver o site</a></div>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="#inicio">Speed Master <span>Painel do stand</span></a>
+    <nav class="tabs" aria-label="Painel">
+      <a href="#inicio" data-v="inicio">Início</a>
+      <a href="#motas" data-v="motas">Motas</a>
+      <a href="#pedidos" data-v="pedidos">Pedidos <span class="badge" id="badge" hidden></span></a>
+    </nav>
+    <a class="tosite" href="../" target="_blank" rel="noopener">Ver o site</a>
+  </aside>
+  <main class="main" id="view" tabindex="-1"></main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<datalist id="brands"><option>Kawasaki</option><option>Honda</option><option>Yamaha</option><option>Suzuki</option><option>BMW</option><option>KTM</option><option>Triumph</option><option>Ducati</option><option>Benelli</option><option>Kymco</option><option>Peugeot</option><option>Keeway</option><option>Morbidelli</option><option>Moto Morini</option><option>Sherco</option><option>Super Soco</option><option>SYM</option><option>Piaggio</option><option>Vespa</option><option>Macbor</option><option>Daelim</option></datalist>
+<script src="../assets/stock-seed.js"></script>
+<script src="../assets/store.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

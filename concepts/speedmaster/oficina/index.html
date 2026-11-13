@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-PT" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Oficina · Speed Master</title>
+<meta name="description" content="Oficina da Speed Master em São Domingos de Rana: revisões, pneus, travões e diagnóstico. Conceito de site, não é o site oficial.">
+<meta name="theme-color" content="#ffe522">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23ffe522'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial' font-weight='900' font-size='34' text-anchor='middle' fill='%23121314'%3ESM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body data-page="oficina">
+<main id="main">
+<section class="phead" id="top">
+  <div class="wrap grid">
+    <h1 class="pword ph-word" data-fit data-fit-max=".17" data-en="Workshop">Oficina</h1>
+    <div class="ph-side">
+      <a class="big-phone nums" href="tel:+351962892362">962 892 362</a>
+      <p>Largo do Lavadouro 30, São Domingos de Rana</p>
+      <p class="status" data-status></p>
+    </div>
+  </div>
+</section>
+
+<section class="sec wrap" aria-labelledby="svc-h">
+  <div class="grid">
+    <div class="svc">
+      <h2 class="sec-head" id="svc-h" data-en="What does it need?">O que precisa?</h2>
+      <div class="chips" id="svc" role="group" aria-label="Serviços" data-en-aria-label="Services"></div>
+      <p class="muted" data-en="Official service for Kawasaki, Peugeot and Keeway. Every other make too.">Assistência oficial Kawasaki, Peugeot e Keeway. E todas as outras marcas.</p>
+    </div>
+    <img class="svc-photo" src="../assets/img/verb-trade.webp" alt="A oficina da Speed Master" data-en-alt="The Speed Master workshop" loading="lazy" width="1600" height="676">
+  </div>
+</section>
+
+<section class="sec wrap" id="marcar">
+  <div class="grid">
+    <div class="ask">
+      <h2 class="sec-head" data-en="Book it">Marcar</h2>
+      <p class="lede" data-en="Pick a day and tell us what the bike needs.">Escolha o dia e diga-nos o que a mota precisa.</p>
+    </div>
+    <form class="form" data-req data-kind="service" data-kinds="service" data-date data-title="Marcar oficina" data-title-en="Book the workshop"></form>
+  </div>
+</section>
+</main>
+
+<script src="../assets/stock-seed.js"></script>
+<script src="../assets/store.js"></script>
+<script src="../assets/site.js"></script>
+<script>
+(() => {
+  const { $, $$, lang, onLang } = SMI;
+  const S = {
+    pt: ['Revisão', 'Óleo e filtros', 'Pneus', 'Travões', 'Kit de transmissão', 'Diagnóstico', 'Bateria', 'Preparação para inspeção', 'Lavagem'],
+    en: ['Service', 'Oil and filters', 'Tyres', 'Brakes', 'Chain and sprockets', 'Diagnostics', 'Battery', 'Inspection prep', 'Wash']
+  };
+  const on = new Set(), msg = $('form[data-req]').elements.msg;
+  msg.addEventListener('input', () => { msg.dataset.auto = '0'; });
+  function render() {
+    const L = S[lang()];
+    $('#svc').innerHTML = L.map((s, i) => `<button type="button" class="chip" data-i="${i}" aria-pressed="${on.has(i)}">${s}</button>`).join('');
+    $$('#svc .chip').forEach((b) => b.addEventListener('click', () => { const i = +b.dataset.i; on.has(i) ? on.delete(i) : on.add(i); render(); }));
+    if (!msg.value || msg.dataset.auto === '1') { msg.value = [...on].sort((a, b) => a - b).map((i) => L[i]).join(', '); msg.dataset.auto = '1'; }
+  }
+  onLang(render);
+})();
+</script>
+</body>
+</html>
