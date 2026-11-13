@@ -215,7 +215,7 @@ p{text-wrap:pretty}
 .calc-h{display:grid;gap:22px}
 .calc-n p{color:var(--on-night-muted);margin-bottom:10px}
 .calc-out{font-weight:900;font-size:clamp(3rem,2rem + 3vw,5.4rem);letter-spacing:-.04em;line-height:1;color:var(--yellow)}
-.calc-out small{font-size:.3em;font-weight:500;letter-spacing:0;color:var(--on-night)}
+.calc-out small{font-size:clamp(.95rem,.85rem + .45vw,1.3rem);font-weight:500;letter-spacing:0;color:var(--on-night)}
 @media (max-width:900px){ .calc-h,.calc-box{grid-column:1 / -1} }
 
 /* workshop */
